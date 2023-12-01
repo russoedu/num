@@ -1,0 +1,133 @@
+{
+  "settings": {
+    "files.exclude": {
+      "node_modules": true,
+      // ".eslintrc.cjs": true,
+      ".gitignore": true,
+      "package-lock.json": true,
+      "tsconfig*": true,
+      // "vite.config.ts": true,
+    },
+    "debug.javascript.terminalOptions": {
+      "skipFiles": [
+        "<node_internals>/**",
+        "!**/node_modules/**"
+      ]
+    },
+    "cSpell.words": [
+      "formatjs",
+      "localematcher"
+    ]
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Start dev",
+        "command": "npm run dev",
+        "request": "launch",
+        "type": "node-terminal"
+      },
+      {
+        "name": "Test",
+        "command": "npm test",
+        "request": "launch",
+        "type": "node-terminal"
+      },
+      {
+        "name": "Build",
+        "command": "npm run build",
+        "request": "launch",
+        "type": "node-terminal"
+      },
+      {
+        "name": "Start prod",
+        "command": "npm start",
+        "request": "launch",
+        "type": "node-terminal"
+      },
+      {
+        "type": "msedge",
+        "request": "launch",
+        "name": "Edge debug",
+        "url": "http://localhost:4000",
+        "webRoot": "${workspaceFolder}/src"
+      },
+      {
+        "name": "Generate documentation",
+        "command": "npm run doc",
+        "request": "launch",
+        "type": "node-terminal"
+      }
+    ]
+  },
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "LineCount.comment": [
+    {
+      "ext": [
+        "c",
+        "cpp"
+      ],
+      "separator": {
+        "linecomment": "//",
+        "linetol": false,
+        "blockstart": "/*",
+        "blockend": "*/",
+        "blocktol": false,
+        "string": {
+          "doublequotes": true,
+          "singlequotes": true
+        }
+      }
+    }
+  ],
+  "LineCount.includes": [
+    "**/**/*.ts"
+  ],
+  "LineCount.output": {
+    "txt": false,
+    "json": false,
+    "csv": false,
+    "md": true,
+    "outdir": ""
+  },
+  "LineCount.excludes": [
+    "**/.vscode/**",
+    "**/node_modules/**"
+  ],
+  "LineCount.showStatusBarItem": true,
+  "cSpell.words": [
+    "argb",
+    "blockend",
+    "blockstart",
+    "blocktol",
+    "Carspecs",
+    "Cobertura",
+    "customfield",
+    "doublequotes",
+    "endregion",
+    "exceljs",
+    "funcignore",
+    "issuetype",
+    "Jupitor",
+    "linecomment",
+    "linetol",
+    "npmrc",
+    "outdir",
+    "Rema",
+    "setvariable",
+    "SHAREPOINT",
+    "singlequotes",
+    "updatebuildnumber",
+    "VCODE",
+    "Veracode"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "folders": [
+    {
+      "path": "."
+    }
+  ]
+}
