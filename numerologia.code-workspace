@@ -2,11 +2,11 @@
   "settings": {
     "files.exclude": {
       "node_modules": true,
-      // ".eslintrc.cjs": true,
+      ".eslintrc.cjs": true,
       ".gitignore": true,
       "package-lock.json": true,
       "tsconfig*": true,
-      // "vite.config.ts": true,
+      "vite.config.ts": true,
     },
     "debug.javascript.terminalOptions": {
       "skipFiles": [
@@ -16,7 +16,9 @@
     },
     "cSpell.words": [
       "formatjs",
-      "localematcher"
+      "localematcher",
+      "Numerologia",
+      "Pitagórica"
     ]
   },
   "launch": {
