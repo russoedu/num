@@ -81,5 +81,6 @@ module.exports = {
     ],
     'multiline-comment-style': ['error', 'starred-block'],
     quotes:                    ['error', 'single'],
+    'jsx-quotes':              ['error', 'prefer-single'],
   },
 }

@@ -1,0 +1,6 @@
+.MuiFormLabel-root {
+  transform: translate(14px, -12px) scale(0.75);
+}
+.MuiFormLabel-root, .MuiOutlinedInput-notchedOutline {
+  font-size: 1.4em;
+}

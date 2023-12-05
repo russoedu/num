@@ -1,0 +1,8 @@
+.header-toolbar {
+  display: flex;
+  justify-content: space-around;
+}
+.copyright {
+  color: white;
+  font-size: 14px!important;
+}
