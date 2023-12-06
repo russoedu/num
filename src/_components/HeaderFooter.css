@@ -1,7 +1,12 @@
-.header-toolbar {
+.header-footer-toolbar {
   display: flex;
   justify-content: space-around;
 }
+
+.footer {
+  min-height: 30px!important;
+}
+
 .copyright {
   color: white;
   font-size: 14px!important;

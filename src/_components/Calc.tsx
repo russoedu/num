@@ -7,6 +7,5 @@ export function Calc () {
     <Container maxWidth='md'>
       <Form/>
     </Container>
-
   )
 }

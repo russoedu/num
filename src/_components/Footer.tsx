@@ -8,8 +8,8 @@ export function Footer () {
     : `2015 - ${currentYear}`
 
   return <Box sx={{ flexGrow: 1 }}>
-    <AppBar position='fixed' component='nav' sx={{ top: 'auto', bottom: 0 }}>
-      <Toolbar className='header-toolbar' variant='dense'>
+    <AppBar className='footer' position='fixed' component='nav' sx={{ top: 'auto', bottom: 0 }}>
+      <Toolbar className='header-footer-toolbar footer' variant='dense'>
         <Typography color='inherit' component='div'>
           <Link className='copyright' href='https://www.linkedin.com/in/russoedu/'>
             © {c} Eduardo Russo
