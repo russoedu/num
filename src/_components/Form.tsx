@@ -1,27 +1,57 @@
 import DeleteIcon from '@mui/icons-material/HighlightOff'
 import { Button, InputAdornment, TextField } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
+import { useEffect, useState } from 'react'
 import './Form.css'
-import { useState } from 'react'
-import { normaliseName } from '../_services/normaliseName'
+import { _date } from '../_services/_date'
 
+/**
+ * The main form component
+ * @returns Form component
+ */
 export function Form () {
   const [name, setName] = useState('')
   const [birthday, setBirthday] = useState('')
-  function clean () {
-    console.log('clean')
+  const [valid, setValid] = useState(false)
+
+  /**
+   * Updates the name
+   * @param event - The input change event
+   */
+  function handleNameChange (event: React.ChangeEvent<HTMLTextAreaElement>) {
+    setName(event.target.value.toUpperCase())
   }
 
-  const handleNameChange = (event: any) => {
-    console.log(event?.target.value)
-    setName(normaliseName(event.target.value as string).toUpperCase())
-    // setValid(FormService.validateInput(event.target.value, validation))
+  /**
+   * Cleans the name
+   */
+  function cleanName () {
+    setName('')
   }
-  const handleBirthdayChange = (event: any) => {
+
+  /**
+   * Updates the birthday
+   * @param event - The input change event
+   */
+  function handleBirthdayChange (event: React.ChangeEvent<HTMLTextAreaElement>) {
     setBirthday(event.target.value)
-    console.log(event?.target.value)
-    // setValid(FormService.validateInput(event.target.value, validation))
   }
+
+  /**
+   * Cleans the birthday
+   */
+  function cleanBirthday () {
+    setBirthday('')
+  }
+
+  /**
+   * Checks if bot the name and birthday are filled to set valid to true
+   */
+  useEffect(() => {
+    const date = new Date(birthday)
+
+    setValid(name !== '' && _date.isValid(date))
+  }, [name, birthday])
 
   return (
     <Grid container spacing={3} sx={{ flexGrow: 2 }}>
@@ -35,10 +65,13 @@ export function Form () {
           variant='outlined'
           aria-autocomplete='none'
           type='text'
-          helperText='Nome completo como registrado'
+          helperText='Nome completo como no nascimento'
           InputProps={{
-            endAdornment: <InputAdornment position='start'><div onClick={clean}>
-              <DeleteIcon id='clean-name' className='clean-button'/></div></InputAdornment>,
+            endAdornment: <InputAdornment position='start'>
+              <div onClick={cleanName}>
+                <DeleteIcon id='clean-name' className='clean-button'/>
+              </div>
+            </InputAdornment>,
           }}
           focused
           fullWidth
@@ -46,7 +79,7 @@ export function Form () {
       </Grid>
       <Grid xs={6}>
         <TextField 
-          id='name'
+          id='birthDay'
           className='input'
           value={birthday}
           onChange={handleBirthdayChange}
@@ -56,15 +89,23 @@ export function Form () {
           type='date'
           helperText='Data no formato dd/mm/aaaa'
           InputProps={{
-            endAdornment: <InputAdornment position='start'><div onClick={ () => alert('ok') }>
-              <DeleteIcon id='clean-birthday' className='clean-button'/></div></InputAdornment>,
+            endAdornment: <InputAdornment position='start'>
+              <div onClick={cleanBirthday}>
+                <DeleteIcon className='clean-button'/>
+              </div>
+            </InputAdornment>,
           }}
           focused
           fullWidth
         />
       </Grid>
       <Grid xs md={4} mdOffset={8}>
-        <Button size='large' variant='contained' sx={{ float: 'right' }}>
+        <Button
+          size='large'
+          variant='contained'
+          sx={{ float: 'right' }}
+          disabled={!valid}
+        >
           Calcular
         </Button>
       </Grid>

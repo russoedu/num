@@ -2,6 +2,10 @@ import { AppBar, Box, Toolbar, Typography } from '@mui/material'
 import { appName } from '../helpers/types'
 import './HeaderFooter.css'
 
+/**
+ * The app header component
+ * @returns The app header
+ */
 export function Header () {
   return <Box sx={{ flexGrow: 1 }}>
     <AppBar position='fixed' component='nav'>

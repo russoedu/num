@@ -1,6 +1,10 @@
 import { AppBar, Box, Link, Toolbar, Typography } from '@mui/material'
 import './HeaderFooter.css'
 
+/**
+ * The app form component
+ * @returns The footer component
+ */
 export function Footer () {
   const currentYear = new Date().getFullYear()
   const c = currentYear === 2015
