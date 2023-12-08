@@ -1,18 +1,24 @@
 import DeleteIcon from '@mui/icons-material/HighlightOff'
-import { Button, InputAdornment, TextField } from '@mui/material'
+import { Alert, Button, InputAdornment, TextField } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 import { useEffect, useState } from 'react'
 import './Form.css'
 import { _date } from '../_services/_date'
 
+export type FormInput = {
+  name: [string, React.Dispatch<React.SetStateAction<string>>],
+  birthday: [string, React.Dispatch<React.SetStateAction<string>>],
+  calculate: () => void
+}
 /**
  * The main form component
  * @returns Form component
  */
-export function Form () {
-  const [name, setName] = useState('')
-  const [birthday, setBirthday] = useState('')
+export function Form ({ name, birthday, calculate }: FormInput) {
+  const [formName, setName] = name
+  const [formBirthday, setBirthday] = birthday
   const [valid, setValid] = useState(false)
+  const [showAlert, setShowAlert] = useState(false)
 
   /**
    * Updates the name
@@ -44,26 +50,57 @@ export function Form () {
     setBirthday('')
   }
 
+  function handleKeyDown (k: React.KeyboardEvent<HTMLDivElement>) {
+    if (k.key === 'Enter') {
+      if (valid) {
+        calculate()
+      } else {
+        setShowAlert(true)
+        setTimeout(() => {
+          setShowAlert(false)
+        }, 5000)
+      }
+    }
+  }
+
   /**
    * Checks if bot the name and birthday are filled to set valid to true
    */
   useEffect(() => {
-    const date = new Date(birthday)
+    const isValid = formName !== '' && _date.isValid(formBirthday)
+    setValid(isValid)
+    if(isValid) {
+      setShowAlert(false)
+    }
+  }, [formName, formBirthday])
 
-    setValid(name !== '' && _date.isValid(date))
-  }, [name, birthday])
+  /*
+   * useEffect(() => {
+   *   console.log('delaying...') // <-- for demo
+   *   setTimeout(() => {
+   *     console.log('starting...') // <-- for demo
+   *     setShowAlert(false)
+   */
+
+  /*
+   *   }, 2000)
+   * }, [showAlert])
+   */
 
   return (
-    <Grid container spacing={3} sx={{ flexGrow: 2 }}>
+    <Grid container spacing={3} columns={{ xs: 6, md: 12 }} sx={{ flexGrow: 2 }}>
       <Grid xs={6}>
         <TextField 
           id='name'
           className='input'
-          value={name}
+          value={formName}
           onChange={handleNameChange}
+          onKeyDown={handleKeyDown}
           label='Nome completo'
           variant='outlined'
           aria-autocomplete='none'
+          autoComplete='off'
+          autoFocus
           type='text'
           helperText='Nome completo como no nascimento'
           InputProps={{
@@ -81,8 +118,9 @@ export function Form () {
         <TextField 
           id='birthDay'
           className='input'
-          value={birthday}
+          value={formBirthday}
           onChange={handleBirthdayChange}
+          onKeyDown={handleKeyDown}
           label='Data de nascimento'
           variant='outlined'
           aria-autocomplete='none'
@@ -99,16 +137,28 @@ export function Form () {
           fullWidth
         />
       </Grid>
-      <Grid xs md={4} mdOffset={8}>
-        <Button
-          size='large'
-          variant='contained'
-          sx={{ float: 'right' }}
-          disabled={!valid}
-        >
-          Calcular
-        </Button>
-      </Grid>
+      {showAlert
+        ? (
+          <Grid xs={12}>
+            <Alert severity='info' color='info'>
+              Por favor preencha o nome completo e a data de nascimento para calcular
+            </Alert>
+          </Grid>
+        )
+        : (
+          <Grid xs md={4} mdOffset={8}>
+            <Button
+              size='large'
+              variant='contained'
+              sx={{ float: 'right' }}
+              disabled={!valid}
+              onClick={calculate}
+              fullWidth
+            >
+              Calcular
+            </Button>
+          </Grid>
+        )}
     </Grid>
   )
 }

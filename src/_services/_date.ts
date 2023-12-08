@@ -1,5 +1,7 @@
 class DateService {
-  isValid (d: Date) {
+  isValid (date: string) {
+    const d = new Date(date)
+    
     return (
       typeof d === 'object' &&
       d instanceof Date &&

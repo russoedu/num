@@ -1,11 +1,11 @@
 import { ThemeProvider } from '@emotion/react'
-import { Container, createTheme, CssBaseline, StyledEngineProvider } from '@mui/material'
+import { createTheme, CssBaseline, StyledEngineProvider } from '@mui/material'
 import fontColorContrast from 'font-color-contrast'
 import { StrictMode } from 'react'
 import { Helmet, HelmetProvider } from 'react-helmet-async'
-import { Calc } from './_components/Calc'
 import { Footer } from './_components/Footer'
 import { Header } from './_components/Header'
+import { Home } from './_pages.tsx/home'
 import './App.css'
 import { appName, ThemeT } from './helpers/types'
 
@@ -46,16 +46,12 @@ export function App () {
                 <link rel='canonical' href='http://mysite.com/example' />
               </Helmet>
               <Header/>
-              {/* "lg" | "xs" | "sm" | "md" | "xl" */}
-              <Container maxWidth='md'>
-                <Calc/>
-              </Container>
+              <Home/>
               <Footer/>
             </CssBaseline>
           </StyledEngineProvider>
         </ThemeProvider>
       </HelmetProvider>
-      
     </StrictMode>
   )
 }
