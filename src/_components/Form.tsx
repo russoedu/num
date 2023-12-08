@@ -50,8 +50,12 @@ export function Form ({ name, birthday, calculate }: FormInput) {
     setBirthday('')
   }
 
-  function handleKeyDown (k: React.KeyboardEvent<HTMLDivElement>) {
-    if (k.key === 'Enter') {
+  /**
+   * Handles the "Enter" press to calculate. If the fields are not filled, shows the alert
+   * @param event - The key down event
+   */
+  function handleKeyDown (event: React.KeyboardEvent<HTMLDivElement>) {
+    if (event.key === 'Enter') {
       if (valid) {
         calculate()
       } else {
@@ -73,19 +77,6 @@ export function Form ({ name, birthday, calculate }: FormInput) {
       setShowAlert(false)
     }
   }, [formName, formBirthday])
-
-  /*
-   * useEffect(() => {
-   *   console.log('delaying...') // <-- for demo
-   *   setTimeout(() => {
-   *     console.log('starting...') // <-- for demo
-   *     setShowAlert(false)
-   */
-
-  /*
-   *   }, 2000)
-   * }, [showAlert])
-   */
 
   return (
     <Grid container spacing={3} columns={{ xs: 6, md: 12 }} sx={{ flexGrow: 2 }}>
