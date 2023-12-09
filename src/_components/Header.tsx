@@ -3,7 +3,7 @@ import { appName } from '../helpers/types'
 import './HeaderFooter.css'
 
 /**
- * The app header component
+ * The app header
  * @returns The app header
  */
 export function Header () {

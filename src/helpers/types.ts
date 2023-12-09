@@ -8,3 +8,9 @@ export type ThemeT = {
   width:        number,
   height:       number,
 }
+
+export type FormInput = {
+  name: [string, React.Dispatch<React.SetStateAction<string>>],
+  birthday: [string, React.Dispatch<React.SetStateAction<string>>],
+  calculate: () => void
+}

@@ -5,7 +5,7 @@ import { StrictMode } from 'react'
 import { Helmet, HelmetProvider } from 'react-helmet-async'
 import { Footer } from './_components/Footer'
 import { Header } from './_components/Header'
-import { Home } from './_pages.tsx/home'
+import { Home } from './_pages/Home'
 import './App.css'
 import { appName, ThemeT } from './helpers/types'
 

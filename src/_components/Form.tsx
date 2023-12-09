@@ -2,14 +2,10 @@ import DeleteIcon from '@mui/icons-material/HighlightOff'
 import { Alert, Button, InputAdornment, TextField } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 import { useEffect, useState } from 'react'
+import { _date } from '../helpers/_date'
 import './Form.css'
-import { _date } from '../_services/_date'
+import { FormInput } from '../helpers/types'
 
-export type FormInput = {
-  name: [string, React.Dispatch<React.SetStateAction<string>>],
-  birthday: [string, React.Dispatch<React.SetStateAction<string>>],
-  calculate: () => void
-}
 /**
  * The main form component
  * @returns Form component

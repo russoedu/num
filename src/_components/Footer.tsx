@@ -2,7 +2,7 @@ import { AppBar, Box, Link, Toolbar, Typography } from '@mui/material'
 import './HeaderFooter.css'
 
 /**
- * The app form component
+ * The app footer
  * @returns The footer component
  */
 export function Footer () {
