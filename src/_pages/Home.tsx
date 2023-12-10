@@ -2,6 +2,7 @@ import { Container, Paper } from '@mui/material'
 import { Form } from '../_components/Form'
 import { useState } from 'react'
 import './Home.css'
+import { Calculator } from '../_services/Calculator'
 
 /**
  * Home page
@@ -14,7 +15,8 @@ export function Home () {
   const [birthday] = birthdayState
 
   const calculate = () => {
-    console.log(name)
+    const c = new Calculator(name, birthday)
+    console.log(c)
     console.log(birthday)
   }
 

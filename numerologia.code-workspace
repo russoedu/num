@@ -53,7 +53,7 @@
         "type": "msedge",
         "request": "launch",
         "name": "Edge debug",
-        "url": "http://localhost:4000",
+        "url": "http://localhost:5173",
         "webRoot": "${workspaceFolder}/src"
       },
       {
