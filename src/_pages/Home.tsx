@@ -1,8 +1,9 @@
-import { Container, Paper } from '@mui/material'
-import { Form } from '../_components/Form'
+import { Container } from '@mui/material'
 import { useState } from 'react'
-import './Home.css'
+import { Form } from '../_components/Form'
 import { Calculator } from '../_services/Calculator'
+import './Home.css'
+import { Result } from '../_components/Results'
 
 /**
  * Home page
@@ -14,19 +15,23 @@ export function Home () {
   const birthdayState = useState('')
   const [birthday] = birthdayState
 
+  const [result, setResult] = useState({} as Calculator)
+  const [hasResult, setHasResult] = useState(false)
+
   const calculate = () => {
     const c = new Calculator(name, birthday)
-    console.log(c)
-    console.log(birthday)
+    setResult(c)
+    setHasResult(true)
   }
 
   return (
     <Container maxWidth='md'>
-      <Paper variant='outlined' sx={{ padding: 3 }}>
-        {/* "lg" | "xs" | "sm" | "md" | "xl" */}
-        <Form name={nameState} birthday={birthdayState} calculate={calculate}/>
-        {/* Results */}
-      </Paper>
+      {/* "lg" | "xs" | "sm" | "md" | "xl" */}
+      <Form name={nameState} birthday={birthdayState} calculate={calculate}/>
+      {hasResult
+        ? <Result result={result}/>
+        : <></>
+      }
     </Container>
   )
 }
