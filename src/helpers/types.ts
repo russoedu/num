@@ -25,5 +25,13 @@ export const letterValues = {
   S:   1, T:   2, U:   3, V:   4, W:   5, X:   6, Y:   7, Z:   8,
 }
 
+export enum LetterType {
+  VOWEL,
+  CONSONANT,
+}
 export const consonants = ['B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z']
+
+export type Consonants = 'B'|'C'|'D'|'F'|'G'|'H'|'J'|'K'|'L'|'M'|'N'|'P'|'Q'|'R'|'S'|'T'|'V'|'W'|'X'|'Y'|'Z'
+
 export const vowels = ['A', 'E', 'I', 'O', 'U']
+export type Vowels = 'A'|'E'|'I'|'O'|'U'

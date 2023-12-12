@@ -1,34 +1,34 @@
 angular.module('app').factory('nameCalc', function(nameNormalizer, lodash, summer) {
   // private vars and functions
-  var
-    self = this,
-    fullName          = name,
-    vowelsInName      = [],
-    consonantsInName  = [],
+  // var
+  //   self = this,
+  //   fullName          = name,
+  //   vowelsInName      = [],
+  //   consonantsInName  = [],
 
-    vowelsSum         = '',
-    consonantsSum     = '',
+  //   vowelsSum         = '',
+  //   consonantsSum     = '',
 
-    letterValues = {
-      'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5, 'F': 6, 'G': 7, 'H': 8, 'I': 9,
-      'J': 1, 'K': 2, 'L': 3, 'M': 4, 'N': 5, 'O': 6, 'P': 7, 'Q': 8, 'R': 9,
-      'S': 1, 'T': 2, 'U': 3, 'V': 4, 'W': 5, 'X': 6, 'Y': 7, 'Z': 8, ' ': 0
-    };
+  //   letterValues = {
+  //     'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5, 'F': 6, 'G': 7, 'H': 8, 'I': 9,
+  //     'J': 1, 'K': 2, 'L': 3, 'M': 4, 'N': 5, 'O': 6, 'P': 7, 'Q': 8, 'R': 9,
+  //     'S': 1, 'T': 2, 'U': 3, 'V': 4, 'W': 5, 'X': 6, 'Y': 7, 'Z': 8, ' ': 0
+  //   };
 
-  function normalizeName(name) {
-    self.fullName = nameNormalizer.normalize(name.toUpperCase());
-  }
+  // function normalizeName(name) {
+  //   self.fullName = nameNormalizer.normalize(name.toUpperCase());
+  // }
 
   /* Save the objects 'vowelsInName' and 'consonantsInName' with the valid chars, creating arrays with each name, spliting with space */
-  function findLettersInName(name) {
-    name = name.split(' ');
+  // function findLettersInName(name) {
+  //   name = name.split(' ');
 
-    for (var i = name.length - 1; i >= 0; i--) {
-      self.vowelsInName[i] = lodash.without(name[i], 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z');
+  //   for (var i = name.length - 1; i >= 0; i--) {
+  //     self.vowelsInName[i] = lodash.without(name[i], 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z');
 
-      self.consonantsInName[i] = lodash.without(name[i], 'A', 'E', 'I', 'O', 'U');
-    }
-  }
+  //     self.consonantsInName[i] = lodash.without(name[i], 'A', 'E', 'I', 'O', 'U');
+  //   }
+  // }
 
   /* Convert each char to it's value. Saves it in the proper array and the final value in the propper variable*/
   function countName(fullNameArrayOfNames, type) {
@@ -85,10 +85,10 @@ angular.module('app').factory('nameCalc', function(nameNormalizer, lodash, summe
       self.vowelsInName = [];
       self.consonantsInName  = [];
 
-      normalizeName(self.fullName);
+      // normalizeName(self.fullName);
 
 
-      findLettersInName(self.fullName);
+      // findLettersInName(self.fullName);
 
       // console.log('vowelsInName', self.vowelsInName);
       // // console.log('consonantsInName', self.consonantsInName);
