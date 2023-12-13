@@ -18,6 +18,7 @@ export function Home () {
   const [result, setResult] = useState({} as Calculator)
   const [hasResult, setHasResult] = useState(false)
 
+  /** replace by a state - "filled" */
   const calculate = () => {
     const c = new Calculator(name, birthday)
     setResult(c)

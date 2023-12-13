@@ -35,3 +35,9 @@ export type Consonants = 'B'|'C'|'D'|'F'|'G'|'H'|'J'|'K'|'L'|'M'|'N'|'P'|'Q'|'R'
 
 export const vowels = ['A', 'E', 'I', 'O', 'U']
 export type Vowels = 'A'|'E'|'I'|'O'|'U'
+
+export type ResultValueT = {
+  title: string,
+  value: number,
+  age?: string
+}
