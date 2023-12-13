@@ -16,7 +16,7 @@ export type FormInput = {
 }
 
 export type SingleDigitT = 0|1|2|3|4|5|6|7|8|9
-export type FinalSingleDigitT = SingleDigitT
+export type FinalSingleDigitT = 0|1|2|11|3|4|22|5|6|7|8|9
 
 export const letterValues = {
   ' ': 0,

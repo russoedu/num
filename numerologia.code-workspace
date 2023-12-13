@@ -19,8 +19,10 @@
       "formatjs",
       "localematcher",
       "Numerologia",
+      "Pessoal",
       "Pitagórica"
-    ]
+    ],
+    "cSpell.enabled": false
   },
   "launch": {
     "version": "0.2.0",

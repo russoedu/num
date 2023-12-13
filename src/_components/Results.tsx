@@ -10,6 +10,7 @@ import { ResultGrid } from './ResultGrid'
 export function Result ({ result }: { result: Calculator }) {
   return (
     <Paper variant='elevation' elevation={3} sx={{ padding: 3, marginTop: 5 }} >
+      {result.age}
       <Grid container spacing={1} columns={{ xs: 2, sm: 6, md: 8 }}>
         <ResultGrid
           data={[
@@ -27,9 +28,9 @@ export function Result ({ result }: { result: Calculator }) {
         />
         <ResultGrid
           data={[
-            { title: 'C1', value: result.mo, age: '0/28' },
-            { title: 'C2', value: result.eu, age: '28/56' },
-            { title: 'C3', value: result.ex, age: '+56' },
+            { title: 'C1', value: result.c1, age: '0/28' },
+            { title: 'C2', value: result.c2, age: '28/56' },
+            { title: 'C3', value: result.c3, age: '+56' },
           ]}
           xs={2}
         />
@@ -43,10 +44,10 @@ export function Result ({ result }: { result: Calculator }) {
         />
         <ResultGrid
           data={[
-            { title: 'R1', value: result.mo },
-            { title: 'R2', value: result.eu },
-            { title: 'R3', value: result.ex },
-            { title: 'R4', value: result.ex },
+            { title: 'R1', value: result.r1, age: `0/${result.rAges.r1}` },
+            { title: 'R2', value: result.r2, age: `${result.rAges.r1}/${result.rAges.r2}` },
+            { title: 'R3', value: result.r3, age: `${result.rAges.r2}/${result.rAges.r3}` },
+            { title: 'R4', value: result.r4, age: `+${result.rAges.r3}` },
           ]}
           xs={2}
         />
