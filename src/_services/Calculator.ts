@@ -78,11 +78,15 @@ export class Calculator {
   /**
    * ANO PESSOAL
    */
-  anoPessoal: {
+  personalYear: {
     value: number,
     start: Date,
     end:   Date,
-  }
+  } = {} as any
+
+  #daySum: number
+  #monthSum: number
+  #yearSum: number
 
   constructor (name: string, birthday: string) {
     if (!_date.isValid(birthday)) throw new Error('birthday is not a valid date')
@@ -92,41 +96,37 @@ export class Calculator {
 
     this.age = this.#getAge()
 
-    const daySum = this.#getCharactersSum(this.birthday.getDate())
-    const monthSum = this.#getCharactersSum(this.birthday.getMonth() + 1)
-    const yearSum = this.#getCharactersSum(this.birthday.getFullYear())
+    this.#daySum = this.#getCharactersSum(this.birthday.getDate())
+    this.#monthSum = this.#getCharactersSum(this.birthday.getMonth() + 1)
+    this.#yearSum = this.#getCharactersSum(this.birthday.getFullYear())
     const { vowelsInName, consonantsInName } = this.#getLettersInName()
 
     this.mo = this.#countName(vowelsInName)
     this.eu = this.#countName(consonantsInName)
     this.ex = this.#getCharactersSum(this.mo + this.eu)
 
-    this.cd = this.#getCharactersSum(daySum + monthSum + yearSum, true)
+    this.cd = this.#getCharactersSum(this.#daySum + this.#monthSum + this.#yearSum, true)
     
-    this.c1 = this.#getCharactersSum(monthSum)
-    this.c2 = this.#getCharactersSum(daySum)
-    this.c3 = this.#getCharactersSum(yearSum)
+    this.c1 = this.#getCharactersSum(this.#monthSum)
+    this.c2 = this.#getCharactersSum(this.#daySum)
+    this.c3 = this.#getCharactersSum(this.#yearSum)
     
-    this.d1 = this.#getCharactersSum(Math.abs(daySum - monthSum))
-    this.d2 = this.#getCharactersSum(Math.abs(yearSum - monthSum))
+    this.d1 = this.#getCharactersSum(Math.abs(this.#daySum - this.#monthSum))
+    this.d2 = this.#getCharactersSum(Math.abs(this.#yearSum - this.#monthSum))
     this.dm = this.#getCharactersSum(Math.abs(this.d1 - this.d2))
 
-    this.r1 = this.#getCharactersSum(daySum + monthSum, true)
+    this.r1 = this.#getCharactersSum(this.#daySum + this.#monthSum, true)
 
-    this.r2 = this.#getCharactersSum(daySum + yearSum, true)
+    this.r2 = this.#getCharactersSum(this.#daySum + this.#yearSum, true)
 
     this.r3 = this.#getCharactersSum(this.r1 + this.r2, true)
-    this.r4 = this.#getCharactersSum(monthSum + yearSum, true)
+    this.r4 = this.#getCharactersSum(this.#monthSum + this.#yearSum, true)
 
     this.rAges.r1 = 36 - this.cd
     this.rAges.r2 = this.rAges.r1 + 10
     this.rAges.r3 = this.rAges.r2 + 10
 
-    this.anoPessoal = {
-      value: 9,
-      start: new Date('2023-03-17'),
-      end:   new Date('2024-03-17'),
-    }
+    this.personalYear = this.#getInterestYear()
   }
 
   /**
@@ -218,5 +218,33 @@ export class Calculator {
     }
 
     return years
+  }
+
+  #getInterestYear () {
+    
+    const day       = this.birthday.getDate()
+    const month     = this.birthday.getMonth()
+    const year      = new Date().getFullYear()
+    
+    const birthdayThisYear = new Date(year, month, day)
+    const today = new Date()
+
+    const timeDiff = birthdayThisYear.getTime() - today.getTime()
+    const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24))
+
+    const hasPassed = diffDays > 0 ? false : true
+
+    // log.info('diffDays', diffDays, hasPassed);
+    const interestYear = hasPassed ? year : year - 1
+
+    const start = new Date(year, month, day)
+    const end = new Date(interestYear + 1, month, day)
+    const value = this.#getCharactersSum(this.#daySum + this.#monthSum + interestYear, true)
+
+    return {
+      value,
+      start,
+      end,
+    }
   }
 }

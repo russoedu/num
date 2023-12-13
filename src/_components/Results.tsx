@@ -1,5 +1,5 @@
 import Grid from '@mui/material/Unstable_Grid2'
-import { Paper } from '@mui/material'
+import { Box, Divider, Paper, Typography } from '@mui/material'
 import { Calculator } from '../_services/Calculator'
 import { ResultGrid } from './ResultGrid'
 
@@ -10,8 +10,18 @@ import { ResultGrid } from './ResultGrid'
 export function Result ({ result }: { result: Calculator }) {
   return (
     <Paper variant='elevation' elevation={3} sx={{ padding: 3, marginTop: 5 }} >
-      {result.age}
       <Grid container spacing={1} columns={{ xs: 2, sm: 6, md: 8 }}>
+        <Grid xs={8}>
+          <Box  sx={{ paddingBottom: 1 }}>
+            <Typography variant='h5' display='inline' color={'#894fd6'} sx={{ fontWeight: 'bold', paddingRight: 1 }}>
+              {result.age}
+            </Typography>
+            <Typography variant='h6' display='inline'>
+          anos
+            </Typography>
+            <Divider sx={{ paddingTop: 1 }}/>
+          </Box>
+        </Grid>
         <ResultGrid
           data={[
             { title: 'MO', value: result.mo },
@@ -51,6 +61,20 @@ export function Result ({ result }: { result: Calculator }) {
           ]}
           xs={2}
         />
+      </Grid>
+      <Grid xs={8}>
+        <Divider sx={{ paddingTop: 1 }}/>
+        <Box sx={{ paddingTop: 1 }}>
+          <Typography variant='h6' display='inline' sx={{ paddingRight: 1 }}>
+          Ano Pessoal
+          </Typography>
+          <Typography variant='h5' display='inline' color={'#894fd6'} sx={{ fontWeight: 'bold', paddingRight: 1 }}>
+            {result.personalYear.value}
+          </Typography>
+          <Typography variant='h6' display='inline' sx={{ paddingRight: 1 }}>
+          de {result.personalYear.start.toLocaleDateString()} a {result.personalYear.end.toLocaleDateString()}
+          </Typography>
+        </Box>
       </Grid>
     </Paper>
   )

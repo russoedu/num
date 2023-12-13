@@ -27,10 +27,10 @@ angular.module('app').factory('birthCalc', function(summer) {
 
   function interestYear(date) {
     var
-        d         = date.split('/'),
-        day       = parseInt(d[0]),
-        month     = parseInt(d[1]) - 1,
-        birthYear = parseInt(d[2]),
+        dddddddxxxxxx         = date.split('/'),
+        day       = parseInt(dddddddxxxxxx[0]),
+        month     = parseInt(dddddddxxxxxx[1]) - 1,
+        birthYear = parseInt(dddddddxxxxxx[2]),
         year      = new Date().getFullYear(),
         birthdayThisYear,
         today;

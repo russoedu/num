@@ -97,8 +97,6 @@ class DiacriticsMap {
         this.#diacriticsMap[letters[j]] = defaultDiacriticsMap[i].base
       }
     }
-    console.log(defaultDiacriticsMap)
-    console.table(defaultDiacriticsMap)
   }
 
   /**
