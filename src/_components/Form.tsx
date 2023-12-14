@@ -10,7 +10,7 @@ import './Form.css'
  * The main form component
  * @returns Form component
  */
-export function Form ({ name, birthday, calculate }: FormInput) {
+export function Form ({ name, birthday, hasResult, calculate, reset }: FormInput) {
   const [formName, setName] = name
   const [formBirthday, setBirthday] = birthday
   const [valid, setValid] = useState(false)
@@ -29,6 +29,7 @@ export function Form ({ name, birthday, calculate }: FormInput) {
    */
   function cleanName () {
     setName('')
+    reset()
   }
 
   /**
@@ -44,6 +45,7 @@ export function Form ({ name, birthday, calculate }: FormInput) {
    */
   function cleanBirthday () {
     setBirthday('')
+    reset()
   }
 
   /**
@@ -76,53 +78,54 @@ export function Form ({ name, birthday, calculate }: FormInput) {
 
   return (
     <Grid container spacing={3} columns={{ xs: 6, md: 12 }} sx={{ flexGrow: 2 }}>
-      <Grid xs={6}>
-        <TextField 
-          id='name'
-          className='input'
-          value={formName}
-          onChange={handleNameChange}
-          onKeyDown={handleKeyDown}
-          label='Nome completo'
-          variant='outlined'
-          aria-autocomplete='none'
-          autoComplete='off'
-          autoFocus
-          type='text'
-          helperText='Nome completo como no nascimento'
-          InputProps={{
-            endAdornment: <InputAdornment position='start'>
-              <div onClick={cleanName}>
-                <DeleteIcon id='clean-name' className='clean-button'/>
-              </div>
-            </InputAdornment>,
-          }}
-          focused
-          fullWidth
-        />
-      </Grid>
-      <Grid xs={6}>
-        <TextField 
-          id='birthDay'
-          className='input'
-          value={formBirthday}
-          onChange={handleBirthdayChange}
-          onKeyDown={handleKeyDown}
-          label='Data de nascimento'
-          variant='outlined'
-          aria-autocomplete='none'
-          type='date'
-          helperText='Data no formato dd/mm/aaaa'
-          InputProps={{
-            endAdornment: <InputAdornment position='start'>
-              <div onClick={cleanBirthday}>
-                <DeleteIcon className='clean-button'/>
-              </div>
-            </InputAdornment>,
-          }}
-          focused
-          fullWidth
-        />
+      <Grid container xs={12}>
+        <Grid xs={6}>
+          <TextField 
+            id='name'
+            className='input'
+            value={formName}
+            onChange={handleNameChange}
+            onKeyDown={handleKeyDown}
+            label='Nome completo'
+            variant='outlined'
+            aria-autocomplete='none'
+            autoComplete='off'
+            autoFocus
+            type='text'
+            helperText='Nome completo como no nascimento'
+            InputProps={{
+              endAdornment: <InputAdornment position='start'>
+                <div onClick={cleanName}>
+                  <DeleteIcon id='clean-name' className='clean-button'/>
+                </div>
+              </InputAdornment>,
+            }}
+            focused
+            fullWidth
+          />
+        </Grid>
+        <Grid xs={6}>
+          <TextField 
+            id='birthDay'
+            className='input'
+            value={formBirthday}
+            onChange={handleBirthdayChange}
+            onKeyDown={handleKeyDown}
+            label='Data de nascimento'
+            variant='outlined'
+            aria-autocomplete='none'
+            type='date'
+            InputProps={{
+              endAdornment: <InputAdornment position='start'>
+                <div onClick={cleanBirthday}>
+                  <DeleteIcon className='clean-button'/>
+                </div>
+              </InputAdornment>,
+            }}
+            focused
+            fullWidth
+          />
+        </Grid>
       </Grid>
       {showAlert
         ? (
@@ -133,17 +136,33 @@ export function Form ({ name, birthday, calculate }: FormInput) {
           </Grid>
         )
         : (
-          <Grid xs md={4} mdOffset={8}>
-            <Button
-              size='large'
-              variant='contained'
-              sx={{ float: 'right' }}
-              disabled={!valid}
-              onClick={calculate}
-              fullWidth
-            >
-              Calcular
-            </Button>
+          <Grid container xs={6} mdOffset={6}>
+            {hasResult
+              ? (
+                <Grid xs={6}>
+                  <Button
+                    size='large'
+                    variant='contained'
+                    onClick={reset}
+                    fullWidth
+                  >
+                    Limpar
+                  </Button>
+                </Grid>
+              )
+              : (<></>)
+            }
+            <Grid xs md={hasResult ? 6: 12}>
+              <Button
+                size='large'
+                variant='contained'
+                disabled={!valid}
+                onClick={calculate}
+                fullWidth
+              >
+                Calcular
+              </Button>
+            </Grid>
           </Grid>
         )}
     </Grid>

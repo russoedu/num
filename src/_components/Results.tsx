@@ -2,6 +2,7 @@ import Grid from '@mui/material/Unstable_Grid2'
 import { Box, Divider, Paper, Typography } from '@mui/material'
 import { Calculator } from '../_services/Calculator'
 import { ResultGrid } from './ResultGrid'
+import './Results.css'
 
 /**
  * The main form component
@@ -10,7 +11,7 @@ import { ResultGrid } from './ResultGrid'
 export function Result ({ result }: { result: Calculator }) {
   return (
     <Paper variant='elevation' elevation={3} sx={{ padding: 3, marginTop: 5 }} >
-      <Grid container spacing={1} columns={{ xs: 2, sm: 6, md: 8 }}>
+      <Grid container spacing={1} columns={{ xs: 2, sm: 4, md: 8 }}>
         <Grid xs={8}>
           <Box  sx={{ paddingBottom: 1 }}>
             <Typography variant='h5' display='inline' color={'#894fd6'} sx={{ fontWeight: 'bold', paddingRight: 1 }}>
@@ -36,6 +37,7 @@ export function Result ({ result }: { result: Calculator }) {
           ]}
           xs={1}
         />
+        <Divider className='divider-sm'/>
         <ResultGrid
           data={[
             { title: 'C1', value: result.c1, age: '0/28' },
@@ -44,6 +46,8 @@ export function Result ({ result }: { result: Calculator }) {
           ]}
           xs={2}
         />
+        <Divider className='divider-md'/>
+        <Divider className='divider-sm'/>
         <ResultGrid
           data={[
             { title: 'D1', value: result.d1, age: '0/28' },
@@ -52,6 +56,7 @@ export function Result ({ result }: { result: Calculator }) {
           ]}
           xs={2}
         />
+        <Divider className='divider-sm'/>
         <ResultGrid
           data={[
             { title: 'R1', value: result.r1, age: `0/${result.rAges.r1}` },
@@ -61,21 +66,22 @@ export function Result ({ result }: { result: Calculator }) {
           ]}
           xs={2}
         />
-      </Grid>
-      <Grid xs={8}>
-        <Divider sx={{ paddingTop: 1 }}/>
-        <Box sx={{ paddingTop: 1 }}>
-          <Typography variant='h6' display='inline' sx={{ paddingRight: 1 }}>
+        <Grid xs={8}>
+          <Divider sx={{ paddingTop: 1 }}/>
+          <Box sx={{ paddingTop: 1 }}>
+            <Typography variant='h6' display='inline' sx={{ paddingRight: 1 }}>
           Ano Pessoal
-          </Typography>
-          <Typography variant='h5' display='inline' color={'#894fd6'} sx={{ fontWeight: 'bold', paddingRight: 1 }}>
-            {result.personalYear.value}
-          </Typography>
-          <Typography variant='h6' display='inline' sx={{ paddingRight: 1 }}>
+            </Typography>
+            <Typography variant='h5' display='inline' color={'#894fd6'} sx={{ fontWeight: 'bold', paddingRight: 1 }}>
+              {result.personalYear.value}
+            </Typography>
+            <Typography variant='h6' display='inline' sx={{ paddingRight: 1 }}>
           de {result.personalYear.start.toLocaleDateString()} a {result.personalYear.end.toLocaleDateString()}
-          </Typography>
-        </Box>
+            </Typography>
+          </Box>
+        </Grid>
       </Grid>
+      
     </Paper>
   )
 }

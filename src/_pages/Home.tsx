@@ -10,25 +10,37 @@ import { Result } from '../_components/Results'
  */
 export function Home () {
   const nameState = useState('')
-  const [name] = nameState
+  const [name, setName] = nameState
 
   const birthdayState = useState('')
-  const [birthday] = birthdayState
+  const [birthday, setBirthday] = birthdayState
 
   const [result, setResult] = useState({} as Calculator)
   const [hasResult, setHasResult] = useState(false)
 
   /** replace by a state - "filled" */
-  const calculate = () => {
+  function calculate () {
     const c = new Calculator(name, birthday)
     setResult(c)
     setHasResult(true)
+  }
+  function reset () {
+    setResult({} as Calculator)
+    setName('')
+    setBirthday('')
+    setHasResult(false)
   }
 
   return (
     <Container maxWidth='md'>
       {/* "lg" | "xs" | "sm" | "md" | "xl" */}
-      <Form name={nameState} birthday={birthdayState} calculate={calculate}/>
+      <Form
+        name={nameState}
+        birthday={birthdayState}
+        calculate={calculate}
+        reset={reset}
+        hasResult={hasResult}
+      />
       {hasResult
         ? <Result result={result}/>
         : <></>
