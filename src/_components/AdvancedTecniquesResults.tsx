@@ -10,21 +10,21 @@ import { purple } from '../helpers/types'
 export function AdvancedTecniquesResults ({ result }: { result: AdvancedTecniques }) {
   return (
     <Paper variant='elevation' elevation={3} sx={{ padding: 3, marginTop: 5 }} >
-      <Typography variant='h4' color={purple}>
+      <Typography variant='h3' color={purple}>
             Pirâmide
       </Typography>
-      <Divider sx={{ marginBottom: 1 }}/>
+      <Divider sx={{ marginBottom: 2 }}/>
       {result.piramide.map(p => (
-        <Grid container spacing={1} key={p.title}>
+        <Grid container spacing={1} key={p.title} justifyContent={'flex-end'}>
           <Grid xs={1}>
-            <Typography variant='h5'>
+            <Typography variant='h6'>
               {p.title}
             </Typography>
           </Grid>
           {p.results.map(r => (
             <Grid container xs={11} key={r.number}>
               <Grid xs={1}>
-                <Typography variant='h5' color={purple}>
+                <Typography variant='h6' color={purple}>
                   {r.number}
                 </Typography>
               </Grid>
