@@ -2,7 +2,7 @@ import { _date } from '../helpers/_date'
 import { _name } from '../helpers/_name'
 import { FinalSingleDigitT, SingleDigitT, consonants, vowels, Consonants, Vowels, letterValues } from '../helpers/types'
 
-export class Calculator {
+export class NumericMap {
   name: string
   birthday: Date
 

@@ -3,7 +3,7 @@ import { FinalSingleDigitT } from './types'
 class Vn {
   piramide (num: FinalSingleDigitT) {
     const index: { [key in FinalSingleDigitT]: string } = {
-      0:  '',
+      0:  'Terá uma vida atribulada, agidata e movimentada. Deverá aceitar a movimentação e atribulação, aproveitando esses fatos para produzir expansão, crescimentoe desenvolvimento na vida',
       1:  'força / determinação / autoconfiança / iniciativa / coragem / ousadia / liderança / conquistas / independência',
       2:  'união / parceria/ flexibilidade / concessão / facilidade de adaptação / colaboração / cooperação',
       3:  'imaginação / criatividade / comunicação / sociabilidade / crescimento / expansão / valorização da estética / beleza',
@@ -18,13 +18,84 @@ class Vn {
     }
 
     if (num === 11) {
-      return `${index[2]} / ${index[num]}`
+      return [
+        {
+          number:      2,
+          description: index[2],
+        },
+        {
+          number:      11,
+          description: index[11],
+        },
+      ]
     } else if (num === 22) {
-      return `${index[4]} / ${index[num]}`
+      return [
+        {
+          number:      4,
+          description: index[4],
+        },
+        {
+          number:      22,
+          description: index[22],
+        },
+      ]
     } else if (num === 0) {
-      return `${index[1]} / ${index[2]} / ${index[11]} / ${index[3]} / ${index[4]} / ${index[22]} / ${index[5]} / ${index[6]} / ${index[7]} / ${index[8]} / ${index[9]} / `
+      return [
+        {
+          number:      0,
+          description: index[0],
+        },
+        {
+          number:      1,
+          description: index[1],
+        },
+        {
+          number:      2,
+          description: index[2],
+        },
+        {
+          number:      11,
+          description: index[11],
+        },
+        {
+          number:      3,
+          description: index[3],
+        },
+        {
+          number:      4,
+          description: index[4],
+        },
+        {
+          number:      22,
+          description: index[22],
+        },
+        {
+          number:      5,
+          description: index[5],
+        },
+        {
+          number:      6,
+          description: index[6],
+        },
+        {
+          number:      7,
+          description: index[7],
+        },
+        {
+          number:      8,
+          description: index[8],
+        },
+        {
+          number:      9,
+          description: index[9],
+        },
+      ]
     } else {
-      return index[num]
+      return [
+        {
+          number:      num,
+          description: index[num],
+        }]
     }
   }
 }

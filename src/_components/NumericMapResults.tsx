@@ -1,20 +1,21 @@
 import Grid from '@mui/material/Unstable_Grid2'
 import { Box, Divider, Paper, Typography } from '@mui/material'
-import { Calculator } from '../_services/Calculator'
+import { NumericMap } from '../_services/NumericMap'
 import { ResultGrid } from './ResultGrid'
-import './Results.css'
+import './NumericMapResults.css'
+import { purple } from '../helpers/types'
 
 /**
  * The main form component
  * @returns Form component
  */
-export function Result ({ result }: { result: Calculator }) {
+export function NumericMapResults ({ result }: { result: NumericMap }) {
   return (
     <Paper variant='elevation' elevation={3} sx={{ padding: 3, marginTop: 5 }} >
       <Grid container spacing={1} columns={{ xs: 2, sm: 4, md: 8 }}>
         <Grid xs={8}>
           <Box  sx={{ paddingBottom: 1 }}>
-            <Typography variant='h5' display='inline' color={'#894fd6'} sx={{ fontWeight: 'bold', paddingRight: 1 }}>
+            <Typography variant='h5' display='inline' color={purple} sx={{ fontWeight: 'bold', paddingRight: 1 }}>
               {result.age}
             </Typography>
             <Typography variant='h6' display='inline'>
@@ -72,7 +73,7 @@ export function Result ({ result }: { result: Calculator }) {
             <Typography variant='h6' display='inline' sx={{ paddingRight: 1 }}>
           Ano Pessoal
             </Typography>
-            <Typography variant='h5' display='inline' color={'#894fd6'} sx={{ fontWeight: 'bold', paddingRight: 1 }}>
+            <Typography variant='h5' display='inline' color={purple} sx={{ fontWeight: 'bold', paddingRight: 1 }}>
               {result.personalYear.value}
             </Typography>
             <Typography variant='h6' display='inline' sx={{ paddingRight: 1 }}>

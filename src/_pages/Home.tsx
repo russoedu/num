@@ -1,11 +1,12 @@
 import { Container } from '@mui/material'
 import { useState } from 'react'
+import { Advancedbuttons } from '../_components/AdvancedButtons'
+import { AdvancedTecniquesResults } from '../_components/AdvancedTecniquesResults'
 import { Form } from '../_components/Form'
-import { Calculator } from '../_services/Calculator'
+import { NumericMapResults } from '../_components/NumericMapResults'
+import { AdvancedTecniques } from '../_services/AdvancedTecniques'
+import { NumericMap } from '../_services/NumericMap'
 import './Home.css'
-import { Result } from '../_components/Results'
-import { AdvancedCalculator } from '../_services/AdvancedCalculator'
-import { AdvancedResult } from '../_components/AdvancedResults'
 
 /**
  * Home page
@@ -17,21 +18,25 @@ export function Home () {
   const birthdayState = useState('')
   const [birthday, setBirthday] = birthdayState
 
-  const [result, setResult] = useState({} as Calculator)
-  const [advancedResult, setAdvancedResult] = useState({} as AdvancedCalculator)
+  const [result, setResult] = useState({} as NumericMap)
+  const [advancedResult, setAdvancedResult] = useState({} as AdvancedTecniques)
   const [hasResult, setHasResult] = useState(false)
+
+  const advancedMap = useState(false)
+  const advancedTecniques = useState(false)
+
 
   /** replace by a state - "filled" */
   function calculate () {
-    const c = new Calculator(name, birthday)
-    const a = new AdvancedCalculator(c)
-    setResult(c)
-    setAdvancedResult(a)
+    const map = new NumericMap(name, birthday)
+    const advanced = new AdvancedTecniques(map)
+    setResult(map)
+    setAdvancedResult(advanced)
     setHasResult(true)
   }
   function reset () {
-    setResult({} as Calculator)
-    setAdvancedResult({} as AdvancedCalculator)
+    setResult({} as NumericMap)
+    setAdvancedResult({} as AdvancedTecniques)
     setName('')
     setBirthday('')
     setHasResult(false)
@@ -50,8 +55,9 @@ export function Home () {
       {hasResult
         ? (
           <>
-            <Result result={result}/>
-            <AdvancedResult result={advancedResult}/>
+            <NumericMapResults result={result}/>
+            <Advancedbuttons advancedMap={advancedMap} advancedTecniques={advancedTecniques}/>
+            <AdvancedTecniquesResults result={advancedResult}/>
           </>
         )
         : <></>

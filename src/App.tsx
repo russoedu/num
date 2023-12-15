@@ -7,13 +7,13 @@ import { Footer } from './_components/Footer'
 import { Header } from './_components/Header'
 import { Home } from './_pages/Home'
 import './App.css'
-import { appName, ThemeT } from './helpers/types'
+import { appName, purple, ThemeT } from './helpers/types'
 
 export function App () {
   const tm: ThemeT = {
     mode:         'light',
     highContrast: false,
-    colour:       '#894fd6',
+    colour:       purple,
     width:        10,
     height:       10,
   }
