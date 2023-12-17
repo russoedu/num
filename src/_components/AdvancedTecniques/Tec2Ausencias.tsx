@@ -11,7 +11,11 @@ export function Tec2Ausencias ({ result }: { result: AdvancedTecniques }) {
       </Typography>
       <Divider sx={{ marginBottom: 2 }}/>
       <Typography variant='h6'>
-        {_array.join(result.ausencia)}
+        {
+          result.ausencia.length > 0
+            ? _array.join(result.ausencia)
+            : 'Não há ausência'
+        }
       </Typography>
     </>
   )
