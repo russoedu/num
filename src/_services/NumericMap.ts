@@ -1,3 +1,4 @@
+import { _array } from '../helpers/_array'
 import { _date } from '../helpers/_date'
 import { _name } from '../helpers/_name'
 import { FinalSingleDigitT, SingleDigitT, consonants, vowels, Consonants, Vowels, letterValues } from '../helpers/types'
@@ -127,6 +128,180 @@ export class NumericMap {
     this.rAges.r3 = this.rAges.r2 + 10
 
     this.personalYear = this.#getInterestYear()
+  }
+
+  /**
+   * List of numbers in the map
+   */
+  get numbers () {
+    return  [
+      this.mo,
+      this.eu,
+      this.cd,
+      this.ex,
+      this.d1,
+      this.d2,
+      this.dm,
+      this.c1,
+      this.c2,
+      this.c3,
+      this.r1,
+      this.r2,
+      this.r3,
+      this.r4,
+    ]
+  }
+  /**
+   * List of fixed numbers in the map
+   */
+  get fixedNumbers () {
+    return  [
+      this.mo,
+      this.eu,
+      this.cd,
+      this.ex,
+      this.dm,
+    ]
+  }
+
+  /**
+   * List of fixed numbers and VNs in the map
+   */
+  get fixedVnNumbers () {
+    return  [
+      { vn: 'MO', number: this.mo },
+      { vn: 'EU', number: this.eu },
+      { vn: 'CD', number: this.cd },
+      { vn: 'EX', number: this.ex },
+      { vn: 'DM', number: this.dm },
+    ]
+  }
+
+  /**
+   * List of the first cycle (0 to 28 years old) numbers in the map
+   */
+  get firstCycleNumbers () {
+    return this.firstCycleVnNumbers.map(vn => vn.number)
+  }
+
+  /**
+   * List of the first cycle (0 to 28 years old) numbers and VNs in the map
+   */
+  get firstCycleVnNumbers () {
+    const cycleStart = 0
+    const cycleEnd = 28
+
+    const list =  [
+      { vn: 'MO', number: this.mo },
+      { vn: 'EU', number: this.eu },
+      { vn: 'CD', number: this.cd },
+      { vn: 'EX', number: this.ex },
+      { vn: 'DM', number: this.dm },
+      { vn: 'D1', number: this.d1 },
+      { vn: 'C1', number: this.c1 },
+    ]
+
+    if (this.rAges.r1 >= cycleStart && this.rAges.r1 <= cycleEnd) {
+      list.push({ vn: 'R1', number: this.r1 })
+    }
+    if (this.rAges.r2 >= cycleStart && this.rAges.r2 <= cycleEnd) {
+      list.push({ vn: 'R2', number: this.r2 })
+    }
+    if (this.rAges.r3 >= cycleStart && this.rAges.r3 <= cycleEnd) {
+      list.push({ vn: 'R3', number: this.r3 })
+    }
+    if (this.rAges.r3 >= cycleEnd) {
+      list.push({ vn: 'R4', number: this.r4 })
+    }
+
+    return list
+  }
+
+  /**
+   * List of the second cycle (28 to 56 years old) numbers in the map
+   */
+  get secondCycleNumbers () {
+    return this.secondCycleVnNumbers.map(vn => vn.number)
+
+  }
+
+  /**
+   * List of the second cycle (28 to 56 years old) numbers and VNs in the map
+   */
+  get secondCycleVnNumbers () {
+    const cycleStart = 28
+    const cycleEnd = 56
+
+    const list =  [
+      { vn: 'MO', number: this.mo },
+      { vn: 'EU', number: this.eu },
+      { vn: 'CD', number: this.cd },
+      { vn: 'EX', number: this.ex },
+      { vn: 'DM', number: this.dm },
+      { vn: 'D2', number: this.d2 },
+      { vn: 'C2', number: this.c2 },
+    ]
+
+    if (this.rAges.r1 >= cycleStart && this.rAges.r1 <= cycleEnd) {
+      list.push({ vn: 'R1', number: this.r1 })
+    }
+    if (this.rAges.r2 >= cycleStart && this.rAges.r2 <= cycleEnd) {
+      list.push({ vn: 'R2', number: this.r2 })
+    }
+    if (this.rAges.r3 >= cycleStart && this.rAges.r3 <= cycleEnd) {
+      list.push({ vn: 'R3', number: this.r3 })
+    }
+    if (this.rAges.r3 >= cycleEnd) {
+      list.push({ vn: 'R4', number: this.r4 })
+    }
+
+    return list
+  }
+
+  /**
+   * List of the third cycle (28 to 56 years old) numbers in the map
+   */
+  get thirdCycleNumbers () {
+    return this.thirdCycleVnNumbers.map(vn => vn.number)
+  }
+
+  /**
+   * List of the third cycle (28 to 56 years old) numbers and VNs in the map
+   */
+  get thirdCycleVnNumbers () {
+    const cycleStart = 56
+    const cycleEnd = Infinity
+
+    const list =  [
+      { vn: 'MO', number: this.mo },
+      { vn: 'EU', number: this.eu },
+      { vn: 'CD', number: this.cd },
+      { vn: 'EX', number: this.ex },
+      { vn: 'DM', number: this.dm },
+      { vn: 'C3', number: this.c3 },
+    ]
+
+    if (this.rAges.r1 >= cycleStart && this.rAges.r1 <= cycleEnd) {
+      list.push({ vn: 'R1', number: this.r1 })
+    }
+    if (this.rAges.r2 >= cycleStart && this.rAges.r2 <= cycleEnd) {
+      list.push({ vn: 'R2', number: this.r2 })
+    }
+    if (this.rAges.r3 >= cycleStart && this.rAges.r3 <= cycleEnd) {
+      list.push({ vn: 'R3', number: this.r3 })
+    }
+    if (this.rAges.r3 >= cycleEnd) {
+      list.push({ vn: 'R4', number: this.r4 })
+    }
+
+    return list
+  }
+
+  /**
+   * List of unique numbers in the map
+   */
+  get uniqueNumbers () {
+    return _array.unique(this.numbers).sort()
   }
 
   /**

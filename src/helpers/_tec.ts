@@ -1,6 +1,6 @@
 import { FinalSingleDigitT } from './types'
 
-class Vn {
+class Tecniques {
   piramide (num: FinalSingleDigitT) {
     const index: { [key in FinalSingleDigitT]: string } = {
       0:  'Terá uma vida atribulada, agidata e movimentada. Deverá aceitar a movimentação e atribulação, aproveitando esses fatos para produzir expansão, crescimentoe desenvolvimento na vida',
@@ -100,5 +100,5 @@ class Vn {
   }
 }
 
-const _vn = new Vn()
-export { _vn }
+const _tec = new Tecniques()
+export { _tec }

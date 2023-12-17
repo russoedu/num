@@ -1,8 +1,8 @@
-import { Divider, Paper, Typography } from '@mui/material'
-import Grid from '@mui/material/Unstable_Grid2'
+import { Paper } from '@mui/material'
 import { AdvancedTecniques } from '../_services/AdvancedTecniques'
-import { purple } from '../helpers/types'
-
+import { Tec1Piramide } from './AdvancedTecniques/Tec1Piramide'
+import { Tec2Ausencias } from './AdvancedTecniques/Tec2Ausencias'
+import './AdvancedTecniquesResults.css'
 /**
  * The main form component
  * @returns Form component
@@ -10,31 +10,9 @@ import { purple } from '../helpers/types'
 export function AdvancedTecniquesResults ({ result }: { result: AdvancedTecniques }) {
   return (
     <Paper variant='elevation' elevation={3} sx={{ padding: 3, marginTop: 5 }} >
-      <Typography variant='h3' color={purple}>
-            Pirâmide
-      </Typography>
-      <Divider sx={{ marginBottom: 2 }}/>
-      {result.piramide.map(p => (
-        <Grid container spacing={1} key={p.title} justifyContent={'flex-end'}>
-          <Grid xs={1}>
-            <Typography variant='h6'>
-              {p.title}
-            </Typography>
-          </Grid>
-          {p.results.map(r => (
-            <Grid container xs={11} key={r.number}>
-              <Grid xs={1}>
-                <Typography variant='h6' color={purple}>
-                  {r.number}
-                </Typography>
-              </Grid>
-              <Grid xs={10}>
-                {r.description}
-              </Grid>
-            </Grid>
-          ))}
-        </Grid>
-      ))}
+      <Tec1Piramide result={result}/>
+      <div className='spacer'/>
+      <Tec2Ausencias result={result}/>
     </Paper>
   )
 }

@@ -48,3 +48,34 @@ export type ResultValueT = {
   value: number,
   age?: string
 }
+
+export const MultiplicityTypeT: [
+  'D'  , // Duplicidade: a pessoa controla sozinha
+  'T'  , // Triplicidade: a pessoa precisa de orientação
+  'Qd' , // Quadruplicidade: a pessoa necessita de orientação
+  'Qt' ,  // Quintuplicidade: a pessoa necessita de orientação
+] = [
+  'D'  , // Duplicidade: a pessoa controla sozinha
+  'T'  , // Triplicidade: a pessoa precisa de orientação
+  'Qd' , // Quadruplicidade: a pessoa necessita de orientação
+  'Qt' ,  // Quintuplicidade: a pessoa necessita de orientação
+]
+export type MultiplicityT = {
+  type: 'Fixas' | '1º Ciclo - 0/28 anos'|'2º Ciclo - 28/56 anos'|'3º Ciclo - + 56 anos',
+  multiples: {
+    vns: string[]
+    number: FinalSingleDigitT,
+    type: 'D'  | // Duplicidade: a pessoa controla sozinha
+          'T'  | // Triplicidade: a pessoa precisa de orientação
+          'Qd' | // Quadruplicidade: a pessoa necessita de orientação
+          'Qt'   // Quintuplicidade: a pessoa necessita de orientação
+  }[]
+}
+
+export const FixedVns = [
+  'MO',
+  'EU',
+  'CD',
+  'EX',
+  'DM',
+]
