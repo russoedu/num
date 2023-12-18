@@ -20,23 +20,15 @@ class Tecniques {
     if (num === 11) {
       return [
         {
-          number:      2,
-          description: index[2],
-        },
-        {
           number:      11,
-          description: index[11],
+          description: `${index[2]} / ${index[11]}`,
         },
       ]
     } else if (num === 22) {
       return [
         {
-          number:      4,
-          description: index[4],
-        },
-        {
           number:      22,
-          description: index[22],
+          description: `${index[4]} / ${index[22]}`,
         },
       ]
     } else if (num === 0) {
