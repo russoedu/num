@@ -4,130 +4,46 @@ import { _name } from '../helpers/_name'
 import { FinalSingleDigitT, SingleDigitT, consonants, vowels, Consonants, Vowels, letterValues } from '../helpers/types'
 
 export class NumericMap {
-  name: string
-  birthday: Date
-
-  /**
-   * MOTIVAÇÃO – ALMA /PERSONALIDADE – QUEM É
-   */
-  mo: FinalSingleDigitT = 0
-  /**
-   * CAMINHO DO DESTINO – O QUE VEIO FAZER / REALIZAR
-   */
-  cd: FinalSingleDigitT = 0
-  /**
-   * EU ÍNTIMO – SONHO – O QUE QUER NA VIDA
-   */
-  eu: FinalSingleDigitT = 0
-  /**
-   * EXPRESSÃO – O QUE APARENTA SER
-   */
-  ex: FinalSingleDigitT = 0
-  /**
-   * PRIMEIRO DESAFIO
-   */
-  d1: FinalSingleDigitT = 0
-  /**
-   * SEGUNDO DESAFIO
-   */
-  d2: FinalSingleDigitT = 0
-  /**
-   * DESAFIO MAIOR – O QUE VEIO APRENDER COM DIFICULDADE
-   */
-  dm: FinalSingleDigitT = 0
-  /**
-   * PRIMEIRO CICLO
-   */
-  c1: FinalSingleDigitT = 0
-  /**
-   * SEGUNDO CICLO
-   */
-  c2: FinalSingleDigitT = 0
-  /**
-   * TERCEIRO CICLO
-   */
-  c3: FinalSingleDigitT = 0
-  
-  /**
-   * PRIMEIRA REALIZAÇÃO
-   */
-  r1: FinalSingleDigitT = 0
-  /**
-   * SEGUNDA REALIZAÇÃO
-   */
-  r2: FinalSingleDigitT = 0
-  /**
-   * TERCEIRA REALIZAÇÃO
-   */
-  r3: FinalSingleDigitT = 0
-  /**
-   * QUARTA REALIZAÇÃO
-   */
-  r4: FinalSingleDigitT = 0
-  /**
-   * IDADE FINAL DA R1
-   */
-  rAges: {r1: number, r2: number, r3: number  } = {
-    r1: 0,
-    r2: 0,
-    r3: 0,
-  }
-  /**
-   * IDADE
-   */
-  age: number = 0
-  /**
-   * ANO PESSOAL
-   */
-  personalYear: {
-    value: number,
-    start: Date,
-    end:   Date,
-  } = {} as any
-
-  #daySum: number
-  #monthSum: number
-  #yearSum: number
-
   constructor (name: string, birthday: string) {
     if (!_date.isValid(birthday)) throw new Error('birthday is not a valid date')
 
     this.name = _name.normalise(name)
     this.birthday = new Date(birthday)
 
-    this.age = this.#getAge()
+    this.age = this.#age()
 
-    this.#daySum = this.#getCharactersSum(this.birthday.getDate())
-    this.#monthSum = this.#getCharactersSum(this.birthday.getMonth() + 1)
-    this.#yearSum = this.#getCharactersSum(this.birthday.getFullYear())
-    const { vowelsInName, consonantsInName } = this.#getLettersInName()
+    this.#daySum = this.#charactersSum(this.birthday.getDate())
+    this.#monthSum = this.#charactersSum(this.birthday.getMonth() + 1)
+    this.#yearSum = this.#charactersSum(this.birthday.getFullYear())
+    
+    const { vowelsInName, consonantsInName } = this.#lettersInName()
 
     this.mo = this.#countName(vowelsInName)
     this.eu = this.#countName(consonantsInName)
-    this.ex = this.#getCharactersSum(this.mo + this.eu)
+    this.ex = this.#charactersSum(this.mo + this.eu, true)
 
-    this.cd = this.#getCharactersSum(this.#daySum + this.#monthSum + this.#yearSum, true)
+    this.cd = this.#charactersSum(this.#daySum + this.#monthSum + this.#yearSum, true)
     
-    this.c1 = this.#getCharactersSum(this.#monthSum)
-    this.c2 = this.#getCharactersSum(this.#daySum)
-    this.c3 = this.#getCharactersSum(this.#yearSum)
+    this.c1 = this.#charactersSum(this.#monthSum)
+    this.c2 = this.#charactersSum(this.#daySum)
+    this.c3 = this.#charactersSum(this.#yearSum)
     
-    this.d1 = this.#getCharactersSum(Math.abs(this.#daySum - this.#monthSum))
-    this.d2 = this.#getCharactersSum(Math.abs(this.#yearSum - this.#monthSum))
-    this.dm = this.#getCharactersSum(Math.abs(this.d1 - this.d2))
+    this.d1 = this.#charactersSum(Math.abs(this.#daySum - this.#monthSum))
+    this.d2 = this.#charactersSum(Math.abs(this.#yearSum - this.#monthSum))
+    this.dm = this.#charactersSum(Math.abs(this.d1 - this.d2))
 
-    this.r1 = this.#getCharactersSum(this.#daySum + this.#monthSum, true)
+    this.r1 = this.#charactersSum(this.#daySum + this.#monthSum, true)
 
-    this.r2 = this.#getCharactersSum(this.#daySum + this.#yearSum, true)
+    this.r2 = this.#charactersSum(this.#daySum + this.#yearSum, true)
 
-    this.r3 = this.#getCharactersSum(this.r1 + this.r2, true)
-    this.r4 = this.#getCharactersSum(this.#monthSum + this.#yearSum, true)
+    this.r3 = this.#charactersSum(this.r1 + this.r2, true)
+    this.r4 = this.#charactersSum(this.#monthSum + this.#yearSum, true)
 
     this.rAges.r1 = 36 - this.cd
     this.rAges.r2 = this.rAges.r1 + 10
     this.rAges.r3 = this.rAges.r2 + 10
 
-    this.personalYear = this.#getInterestYear()
+    this.personalYear = this.#interestYear()
   }
 
   /**
@@ -149,6 +65,28 @@ export class NumericMap {
       this.r2,
       this.r3,
       this.r4,
+    ]
+  }
+
+  /**
+   * List of VNs and numbers in the map
+   */
+  get vnNumbers () {
+    return  [
+      { vn: 'MO', number: this.mo },
+      { vn: 'EU', number: this.eu },
+      { vn: 'CD', number: this.cd },
+      { vn: 'EX', number: this.ex },
+      { vn: 'D1', number: this.d1 },
+      { vn: 'D2', number: this.d2 },
+      { vn: 'DM', number: this.dm },
+      { vn: 'C1', number: this.c1 },
+      { vn: 'C2', number: this.c2 },
+      { vn: 'C3', number: this.c3 },
+      { vn: 'R1', number: this.r1 },
+      { vn: 'R2', number: this.r2 },
+      { vn: 'R3', number: this.r3 },
+      { vn: 'R4', number: this.r4 },
     ]
   }
   /**
@@ -175,13 +113,6 @@ export class NumericMap {
       { vn: 'EX', number: this.ex },
       { vn: 'DM', number: this.dm },
     ]
-  }
-
-  /**
-   * List of the first cycle (0 to 28 years old) numbers in the map
-   */
-  get firstCycleNumbers () {
-    return this.firstCycleVnNumbers.map(vn => vn.number)
   }
 
   /**
@@ -218,11 +149,10 @@ export class NumericMap {
   }
 
   /**
-   * List of the second cycle (28 to 56 years old) numbers in the map
+   * List of the first cycle (0 to 28 years old) numbers in the map
    */
-  get secondCycleNumbers () {
-    return this.secondCycleVnNumbers.map(vn => vn.number)
-
+  get firstCycleNumbers () {
+    return this.firstCycleVnNumbers.map(vn => vn.number)
   }
 
   /**
@@ -259,10 +189,11 @@ export class NumericMap {
   }
 
   /**
-   * List of the third cycle (28 to 56 years old) numbers in the map
+   * List of the second cycle (28 to 56 years old) numbers in the map
    */
-  get thirdCycleNumbers () {
-    return this.thirdCycleVnNumbers.map(vn => vn.number)
+  get secondCycleNumbers () {
+    return this.secondCycleVnNumbers.map(vn => vn.number)
+
   }
 
   /**
@@ -298,6 +229,13 @@ export class NumericMap {
   }
 
   /**
+   * List of the third cycle (28 to 56 years old) numbers in the map
+   */
+  get thirdCycleNumbers () {
+    return this.thirdCycleVnNumbers.map(vn => vn.number)
+  }
+
+  /**
    * List of unique numbers in the map
    */
   get uniqueNumbers () {
@@ -305,25 +243,86 @@ export class NumericMap {
   }
 
   /**
+   * The amount of each number (0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9)
+   */
+  get singleDigitCount () {
+    const count: { number: SingleDigitT, count: number, vns: string[] }[] = [
+      { number: 1, ...this.digitCount(1) },
+      { number: 2, ...this.digitCount([2, 11]) },
+      { number: 3, ...this.digitCount(3) },
+      { number: 4, ...this.digitCount([4, 22]) },
+      { number: 5, ...this.digitCount(5) },
+      { number: 6, ...this.digitCount(6) },
+      { number: 7, ...this.digitCount(7) },
+      { number: 8, ...this.digitCount(8) },
+      { number: 9, ...this.digitCount(9) },
+    ]
+
+    return count
+  }
+
+  /**
+   * The amount of each number (0 | 1 | 2 | 11 | 3 | 4 | 22 | 5 | 6 | 7 | 8 | 9)
+   */
+  get finalDigitCount () {
+    const count: { number: FinalSingleDigitT, count: number, vns: string[] }[] = [
+      { number: 1, ...this.digitCount(1) },
+      { number: 2, ...this.digitCount(2) },
+      { number: 11, ...this.digitCount(11) },
+      { number: 3, ...this.digitCount(3) },
+      { number: 4, ...this.digitCount(4) },
+      { number: 22, ...this.digitCount(22) },
+      { number: 5, ...this.digitCount(5) },
+      { number: 6, ...this.digitCount(6) },
+      { number: 7, ...this.digitCount(7) },
+      { number: 8, ...this.digitCount(8) },
+      { number: 9, ...this.digitCount(9) },
+    ]
+
+    return count
+  }
+
+  /**
+   * The amount of each number and the list of VNs
+   * @param number - The number or numbers to be counted
+   * @returns The amount of each number
+   */
+  digitCount (number: FinalSingleDigitT|FinalSingleDigitT[]) {
+    const num = typeof number === 'number' ? [number] : number
+    const matchingVns: string[] = this.vnNumbers
+      .filter(vn => num.includes(vn.number))
+      .map(vn =>vn.vn)
+
+    const singleDigitCount: { vns: string[], count: number } = { vns: [], count: 0 }
+
+    for (const vn of matchingVns) {
+      singleDigitCount.vns.push(vn)
+      singleDigitCount.count++
+    }
+
+    return singleDigitCount
+  }
+
+  /**
    * Sums the digits of the number until it is a single digit (1 - 9)
    * @param num - The number to be summed
    * @returns The sum of each number digit
    */
-  #getCharactersSum (num: number): SingleDigitT
+  #charactersSum (num: number): SingleDigitT
   /**
    * Sums the digits of the number until it is a single digit (1 - 9)
    * @param num - The number to be summed
    * @param final - If true, the results can also be 11 or 22, else, 11 and 22 wil be summed again (to 2 or 4)
    * @returns The sum of each number digit
    */
-  #getCharactersSum (num: number, final: false): SingleDigitT
+  #charactersSum (num: number, final: false): SingleDigitT
   /**
    * Sums the digits of the number until it is a single digit (1 - 9, 11 or 22)
    * @param num - The number to be summed
    * @param final - If true, the results can also be 11 or 22, else, 11 and 22 wil be summed again (to 2 or 4)
    * @returns The sum of each number digit
    */
-  #getCharactersSum (num: number, final: true): FinalSingleDigitT
+  #charactersSum (num: number, final: true): FinalSingleDigitT
   
   /**
    * Sums the digits of the number until it is a single digit (1 - 9). If final is true, 11 and 22 are also possible
@@ -331,9 +330,9 @@ export class NumericMap {
    * @param final - If true, the results can also be 11 or 22, else, 11 and 22 wil be summed again (to 2 or 4)
    * @returns The sum of each number digit
    */
-  #getCharactersSum (num: number, final: boolean): FinalSingleDigitT|SingleDigitT
+  #charactersSum (num: number, final: boolean): FinalSingleDigitT|SingleDigitT
   
-  #getCharactersSum (num: number, final = false) {
+  #charactersSum (num: number, final = false) {
     let sum: any = 0
 
     if (num > 9 && (final !== true || (num != 11 && num != 22))) {
@@ -342,7 +341,7 @@ export class NumericMap {
         num = Math.floor(num / 10)
       }
 
-      sum = this.#getCharactersSum(sum, final)
+      sum = this.#charactersSum(sum, final)
 
     } else {
       sum = num
@@ -352,9 +351,9 @@ export class NumericMap {
   }
 
   /**
-   * Sets the name vowels and consonants extracted from the name
+   * Retrieves the name vowels and consonants extracted from the name
    */
-  #getLettersInName () {
+  #lettersInName () {
     const vowelsInName = this.name
       .split('')
       .filter(char => vowels.includes(char)) as Vowels[]
@@ -369,6 +368,11 @@ export class NumericMap {
     }
   }
 
+  /**
+   * Retrieves the sum of the list of letters
+   * @param lettersInName - The list of vowels or consonantes in the name
+   * @returns The sum of the letters
+   */
   #countName (lettersInName: Consonants[]|Vowels[]) {
     let nameSum = 0
 
@@ -379,10 +383,14 @@ export class NumericMap {
       nameSum += chValue
     }
 
-    return this.#getCharactersSum(nameSum, true)
+    return this.#charactersSum(nameSum, true)
   }
 
-  #getAge () {
+  /**
+   * Retrieves the current age depending on the current day
+   * @returns The current age
+   */
+  #age () {
     const otherDate = new Date()
 
     let years = (otherDate.getFullYear() - this.birthday.getFullYear())
@@ -395,8 +403,7 @@ export class NumericMap {
     return years
   }
 
-  #getInterestYear () {
-    
+  #interestYear () {
     const day       = this.birthday.getDate()
     const month     = this.birthday.getMonth()
     const year      = new Date().getFullYear()
@@ -414,7 +421,7 @@ export class NumericMap {
 
     const start = new Date(year, month, day)
     const end = new Date(interestYear + 1, month, day)
-    const value = this.#getCharactersSum(this.#daySum + this.#monthSum + interestYear, true)
+    const value = this.#charactersSum(this.#daySum + this.#monthSum + interestYear, true)
 
     return {
       value,
@@ -422,4 +429,89 @@ export class NumericMap {
       end,
     }
   }
+
+  name: string
+  birthday: Date
+
+  /**
+   * MOTIVAÇÃO – ALMA /PERSONALIDADE – QUEM É
+   */
+  mo: FinalSingleDigitT = 0
+  /**
+   * CAMINHO DO DESTINO – O QUE VEIO FAZER / REALIZAR
+   */
+  cd: FinalSingleDigitT = 0
+  /**
+   * EU ÍNTIMO – SONHO – O QUE QUER NA VIDA
+   */
+  eu: FinalSingleDigitT = 0
+  /**
+   * EXPRESSÃO – O QUE APARENTA SER
+   */
+  ex: FinalSingleDigitT = 0
+  /**
+   * PRIMEIRO DESAFIO
+   */
+  d1: SingleDigitT = 0
+  /**
+   * SEGUNDO DESAFIO
+   */
+  d2: SingleDigitT = 0
+  /**
+   * DESAFIO MAIOR – O QUE VEIO APRENDER COM DIFICULDADE
+   */
+  dm: SingleDigitT = 0
+  /**
+   * PRIMEIRO CICLO
+   */
+  c1: SingleDigitT = 0
+  /**
+   * SEGUNDO CICLO
+   */
+  c2: SingleDigitT = 0
+  /**
+   * TERCEIRO CICLO
+   */
+  c3: SingleDigitT = 0
+  
+  /**
+   * PRIMEIRA REALIZAÇÃO
+   */
+  r1: FinalSingleDigitT = 0
+  /**
+   * SEGUNDA REALIZAÇÃO
+   */
+  r2: FinalSingleDigitT = 0
+  /**
+   * TERCEIRA REALIZAÇÃO
+   */
+  r3: FinalSingleDigitT = 0
+  /**
+   * QUARTA REALIZAÇÃO
+   */
+  r4: FinalSingleDigitT = 0
+  /**
+   * IDADE FINAL DA R1
+   */
+  rAges: {r1: number, r2: number, r3: number  } = {
+    r1: 0,
+    r2: 0,
+    r3: 0,
+  }
+  /**
+   * IDADE
+   */
+  age: number = 0
+  /**
+   * ANO PESSOAL
+   */
+  personalYear: {
+    value: FinalSingleDigitT,
+    start: Date,
+    end:   Date,
+  } = {} as any
+
+  #daySum: number
+  #monthSum: number
+  #yearSum: number
 }

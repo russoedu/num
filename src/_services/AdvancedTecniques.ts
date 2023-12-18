@@ -28,13 +28,50 @@ export class AdvancedTecniques {
    * TÉCNICA 4 – DUPLICIDADES OU MAIS 
    */
   multiplicidades: MultiplicityT[]
+
   /**
    * REGRAS PARA AS TÉCNICAS COM PERCENTUAIS
+   * REGRAS PARA AS TÉCNICAS COM PERCENTUAIS
+   *
+   *
+   *As técnicas de percentuais são: 5, 6, 7, 11, 13 e 25.
+   *
+   *
+   *Regras
+   *
+   *Tabular – contar quantas vezes cada VN aparece no MNN. 
+   *
+   *Encontrar o percentual – cada VN corresponde a 7% - multiplicar pela quantidade de VNs encontradas.
+   *
+   *Subtrair do maior % o segundo maior %.
+   *
+   *Considerar a diferença entre eles: 
+   *Se a diferença for maior que 10% – concentrou. 
+   *Se a diferença for menor que 10% – empatou. 
+   *
+   *
+   *Exemplos
+   *
+   *63% - 28% = 35% é maior que 10 – concentrou.
+   *
+   *42% - 35% = 7% é menor que 10 – empatou.
+   *
+   *35% - 14% = 21% é maior que 10 – concentrou.
+   *
+   *21% - 14% = 7% é menor que 10 – empatou.
+   *
    */
   
   /**
    * TÉCNICA 5 – POTENCIAIS – COMO REAGEM
    */
+  potenciais: {
+    percentage: {
+      name: 'Possuir'|'Compartilhar'|'Vivenciar'|'Espiritualidade',
+      value: number
+    }[],
+    result: string
+  }
   
   /**
    * TÉCNICA 6 – POTENCIAIS – COMO SENTEM
@@ -130,12 +167,13 @@ export class AdvancedTecniques {
   constructor (map: NumericMap) {
     this.#map = map
 
-    this.piramide = this.#getPiramide()
-    this.ausencia = this.#getAusencia()
-    this.multiplicidades = this.#getMultiplicity()
+    this.piramide = this.#piramide()
+    this.ausencia = this.#ausencia()
+    this.multiplicidades = this.#multiplicidades()
+    this.potenciais = this.#potenciais()
   }
 
-  #getPiramide () {
+  #piramide () {
     return [
       {
         title:   'CD',
@@ -156,26 +194,14 @@ export class AdvancedTecniques {
     ]
   }
 
-  #getAusencia () {
+  #ausencia () {
     const unique = this.#map.uniqueNumbers
     const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
     return _array.notInArray(numbers, unique)
   }
 
-  #getMultiplicity () {
-    /**
-     * D = Duplicidade: a pessoa controla sozinha
-     * T = Triplicidade: a pessoa precisa de orientação
-     * Qd = Quadruplicidade: a pessoa necessita de orientação
-     * Qt = Quintuplicidade: a pessoa necessita de orientação
-     */
-    /**
-     * FIXAS
-     * C1
-     * C2
-     * C3
-     */
+  #multiplicidades () {
     const allMultiplicities: MultiplicityT[] = [
       {
         type:      'Fixas',
@@ -271,6 +297,45 @@ export class AdvancedTecniques {
     return multiplicity
   }
 
+  #potenciais () {
+    const percentage: {
+      name: 'Possuir'|'Compartilhar'|'Vivenciar'|'Espiritualidade',
+      value: number
+    }[] = [
+      {
+        name:  'Possuir' as 'Possuir'|'Compartilhar'|'Vivenciar'|'Espiritualidade',
+        value: this.#map.digitCount([1, 4, 22, 8]).count * 7,
+      },
+      {
+        name:  'Compartilhar' as 'Possuir'|'Compartilhar'|'Vivenciar'|'Espiritualidade',
+        value: this.#map.digitCount([2, 11, 6]).count * 7,
+      },
+      {
+        name:  'Vivenciar' as 'Possuir'|'Compartilhar'|'Vivenciar'|'Espiritualidade',
+        value: this.#map.digitCount([3, 5]).count * 7,
+      },
+      {
+        name:  'Espiritualidade' as 'Possuir'|'Compartilhar'|'Vivenciar'|'Espiritualidade',
+        value: this.#map.digitCount([7, 9, 11, 22]).count * 7,
+      },
+    ]
+      .sort((a, b) => b.value - a.value)
+
+    const result = percentage[0].value - percentage[1].value > 10
+      ? percentage[0].name
+      : percentage[1].value - percentage[2].value !== 0
+        ? `${percentage[0].name} e ${percentage[1].name}`
+        : percentage[2].value - percentage[3].value !== 0
+          ? `${percentage[0].name}, ${percentage[1].name} e ${percentage[2].name}`
+          : `${percentage[0].name}, ${percentage[1].name}, ${percentage[2].name} e ${percentage[2].name}`
+          
+
+    return{
+      percentage,
+      result,
+    }
+  }
+    
   /**
    *mo
    *cd

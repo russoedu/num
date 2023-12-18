@@ -20,7 +20,7 @@ export function Tec1Piramide ({ result }: { result: AdvancedTecniques }) {
           {p.results.map(r => (
             <Grid container xs={11} key={r.number}>
               <Grid xs={1}>
-                <Typography variant='h6' color={purple}>
+                <Typography variant='h5' color={purple} sx={{ fontWeight: 'bold' }}>
                   {r.number}
                 </Typography>
               </Grid>

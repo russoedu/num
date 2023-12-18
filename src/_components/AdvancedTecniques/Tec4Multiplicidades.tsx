@@ -15,25 +15,27 @@ export function Tec4Multiplicidades ({ result }: { result: AdvancedTecniques }) 
         result.multiplicidades.length > 0
           ? result.multiplicidades.map(p => (
             <Grid container spacing={1} key={p.type} justifyContent={'flex-end'}>
-              <Grid xs={4}>
+              <Grid xs={3}>
                 <Typography variant='h6'>
                   {p.type}
                 </Typography>
               </Grid>
               {p.multiples.map(m => (
-                <Grid container xs={8} key={m.number}>
-                  <Grid xs={2}>
-                    <Typography variant='h6' color={purple}>
+                <Grid container xs={9} key={m.number}>
+                  <Grid xs={1}>
+                    <Typography variant='h5' color={purple} sx={{ fontWeight: 'bold' }}>
                       {m.number}
                     </Typography>
                   </Grid>
-                  <Grid xs={2}>
-                    <Typography variant='h6' color={purple}>
+                  <Grid xs={1}>
+                    <Typography variant='h6'>
                       {m.type}
                     </Typography>
                   </Grid>
-                  <Grid xs={6}>
-                    {_array.join(m.vns)}
+                  <Grid xs={7}>
+                    <Typography variant='h6'>
+                      {_array.join(m.vns)}
+                    </Typography>
                   </Grid>
                 </Grid>
               ))}
