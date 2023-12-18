@@ -1,6 +1,6 @@
-import { _array } from '../helpers/_array'
-import { _tec } from '../helpers/_tec'
-import { MultiplicityT as MultiplicityT, MultiplicityTypeT, FixedVns } from '../helpers/types'
+import { _array } from '../_helpers/_array'
+import { _tec } from '../_helpers/_tec'
+import { MultiplicityT as MultiplicityT, MultiplicityTypeT, FixedVns } from '../_helpers/types'
 import { NumericMap } from './NumericMap'
 
 export class AdvancedTecniques {

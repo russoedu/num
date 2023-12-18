@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2/Grid2'
-import { ResultValueT, purple } from '../helpers/types'
+import { ResultValueT, purple } from '../_helpers/types'
 
 export function ResultGrid ({ data, xs }: { data: ResultValueT[], xs: number }) {
   return (

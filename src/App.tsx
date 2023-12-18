@@ -7,7 +7,7 @@ import { Footer } from './_components/Footer'
 import { Header } from './_components/Header'
 import { Home } from './_pages/Home'
 import './App.css'
-import { appName, purple, ThemeT } from './helpers/types'
+import { appName, purple, ThemeT } from './_helpers/types'
 
 export function App () {
   const tm: ThemeT = {

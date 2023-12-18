@@ -3,7 +3,7 @@ import { Box, Divider, Paper, Typography } from '@mui/material'
 import { NumericMap } from '../_services/NumericMap'
 import { ResultGrid } from './ResultGrid'
 import './NumericMapResults.css'
-import { purple } from '../helpers/types'
+import { purple } from '../_helpers/types'
 
 /**
  * The main form component

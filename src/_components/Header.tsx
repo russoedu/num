@@ -1,5 +1,5 @@
 import { AppBar, Box, Toolbar, Typography } from '@mui/material'
-import { appName } from '../helpers/types'
+import { appName } from '../_helpers/types'
 import './HeaderFooter.css'
 
 /**

@@ -2,8 +2,8 @@ import DeleteIcon from '@mui/icons-material/HighlightOff'
 import { Alert, Button, InputAdornment, TextField } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 import { useEffect, useState } from 'react'
-import { _date } from '../helpers/_date'
-import { FormInput } from '../helpers/types'
+import { _date } from '../_helpers/_date'
+import { FormInput } from '../_helpers/types'
 import './Form.css'
 
 /**

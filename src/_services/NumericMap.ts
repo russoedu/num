@@ -1,7 +1,7 @@
-import { _array } from '../helpers/_array'
-import { _date } from '../helpers/_date'
-import { _name } from '../helpers/_name'
-import { FinalSingleDigitT, SingleDigitT, consonants, vowels, Consonants, Vowels, letterValues } from '../helpers/types'
+import { _array } from '../_helpers/_array'
+import { _date } from '../_helpers/_date'
+import { _name } from '../_helpers/_name'
+import { FinalSingleDigitT, SingleDigitT, consonants, vowels, Consonants, Vowels, letterValues } from '../_helpers/types'
 
 export class NumericMap {
   constructor (name: string, birthday: string) {

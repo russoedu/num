@@ -1,7 +1,7 @@
 import { Divider, Typography } from '@mui/material'
 import { AdvancedTecniques } from '../../_services/AdvancedTecniques'
-import { _array } from '../../helpers/_array'
-import { purple } from '../../helpers/types'
+import { _array } from '../../_helpers/_array'
+import { purple } from '../../_helpers/types'
 import Grid from '@mui/material/Unstable_Grid2/Grid2'
 
 export function Tec5Potenciais ({ result }: { result: AdvancedTecniques }) {

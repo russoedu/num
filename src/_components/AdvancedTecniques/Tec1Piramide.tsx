@@ -1,6 +1,6 @@
 import { Divider, Typography } from '@mui/material'
 import { AdvancedTecniques } from '../../_services/AdvancedTecniques'
-import { purple } from '../../helpers/types'
+import { purple } from '../../_helpers/types'
 import Grid from '@mui/material/Unstable_Grid2'
 
 export function Tec1Piramide ({ result }: { result: AdvancedTecniques }) {

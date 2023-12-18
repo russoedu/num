@@ -1,6 +1,6 @@
 import { Container } from '@mui/material'
 import { useState } from 'react'
-import { Advancedbuttons } from '../_components/AdvancedButtons'
+// import { Advancedbuttons } from '../_components/AdvancedButtons'
 import { AdvancedTecniquesResults } from '../_components/AdvancedTecniquesResults'
 import { Form } from '../_components/Form'
 import { NumericMapResults } from '../_components/NumericMapResults'
@@ -22,8 +22,10 @@ export function Home () {
   const [advancedResult, setAdvancedResult] = useState({} as AdvancedTecniques)
   const [hasResult, setHasResult] = useState(false)
 
-  const advancedMap = useState(false)
-  const advancedTecniques = useState(false)
+  /*
+   * const advancedMap = useState(false)
+   * const advancedTecniques = useState(false)
+   */
 
 
   /** replace by a state - "filled" */
@@ -56,7 +58,7 @@ export function Home () {
         ? (
           <>
             <NumericMapResults result={result}/>
-            <Advancedbuttons advancedMap={advancedMap} advancedTecniques={advancedTecniques}/>
+            {/* <Advancedbuttons advancedMap={advancedMap} advancedTecniques={advancedTecniques}/> */}
             <AdvancedTecniquesResults result={advancedResult}/>
           </>
         )
