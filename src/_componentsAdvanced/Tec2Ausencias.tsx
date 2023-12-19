@@ -5,6 +5,7 @@ import { purple } from '../_helpers/types'
 import { AdvancedTitle } from '../_components/AdvancedTitle'
 import { AdvancedGrid } from '../_components/AdvancedGrid'
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2'
+import './Tec.css'
 
 export function Tec2Ausencias ({ result }: { result: AdvancedTecniques }) {
   return (
@@ -12,7 +13,7 @@ export function Tec2Ausencias ({ result }: { result: AdvancedTecniques }) {
       <AdvancedTitle>
         Ausências
       </AdvancedTitle>
-      <Grid2 container>
+      <Grid2 container className='tec-content'>
         <AdvancedGrid i={0} key='aus'>
           <Typography variant='h5' color={purple} sx={{ fontWeight: 'bold' }}>
             {

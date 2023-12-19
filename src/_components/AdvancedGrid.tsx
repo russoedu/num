@@ -8,7 +8,7 @@ export function AdvancedGrid ({ children, key, i }: { children: ReactNode | JSX.
       container
       className='advanced-grid'
       key={key}
-      sx={{ backgroundColor: i % 2 === 0 ? '#f5f3f3' : '#fbfbfb' }}
+      sx={{ backgroundColor: i % 2 === 0 ? 'hsl(266 62% 96% / 1)' : 'hsl(266 62% 90% / 1)', padding: '0.3em' }}
     >
       {children}
     </Grid2>

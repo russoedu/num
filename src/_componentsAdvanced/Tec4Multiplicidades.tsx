@@ -6,6 +6,7 @@ import Grid from '@mui/material/Unstable_Grid2/Grid2'
 import { AdvancedTitle } from '../_components/AdvancedTitle'
 import { AdvancedGrid } from '../_components/AdvancedGrid'
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2'
+import './Tec.css'
 
 export function Tec4Multiplicidades ({ result }: { result: AdvancedTecniques }) {
   return (
@@ -13,7 +14,7 @@ export function Tec4Multiplicidades ({ result }: { result: AdvancedTecniques }) 
       <AdvancedTitle>
         Multiplicidades
       </AdvancedTitle>
-      <Grid2 container>
+      <Grid2 container className='tec-content'>
         {
           result.multiplicidades.length > 0
             ? (

@@ -4,6 +4,7 @@ import { purple } from '../_helpers/types'
 import Grid2 from '@mui/material/Unstable_Grid2'
 import { AdvancedGrid } from '../_components/AdvancedGrid'
 import { AdvancedTitle } from '../_components/AdvancedTitle'
+import './Tec.css'
 
 export function Tec1Piramide ({ result }: { result: AdvancedTecniques }) {
   return (
@@ -11,7 +12,7 @@ export function Tec1Piramide ({ result }: { result: AdvancedTecniques }) {
       <AdvancedTitle>
         Pirâmide
       </AdvancedTitle>
-      <Grid2 container>
+      <Grid2 container className='tec-content'>
         {result.piramide.map((p, i) => (
           <>
             <AdvancedGrid i={i} key={p.title}>

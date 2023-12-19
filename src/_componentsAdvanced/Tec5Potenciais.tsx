@@ -4,6 +4,7 @@ import { _array } from '../_helpers/_array'
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2'
 import { AdvancedTitle } from '../_components/AdvancedTitle'
 import { AdvancedGrid } from '../_components/AdvancedGrid'
+import './Tec.css'
 
 export function Tec5Potenciais ({ result }: { result: AdvancedTecniques }) {
   return (
@@ -14,7 +15,7 @@ export function Tec5Potenciais ({ result }: { result: AdvancedTecniques }) {
       <Typography variant='h5' sx={{ paddingBottom: 1 }}>
         {result.potenciais.result}
       </Typography>
-      <Grid2 container>
+      <Grid2 container className='tec-content'>
         {
           result.potenciais.percentage.map((p, i) => (
             <AdvancedGrid i={i} key={p.name}>
