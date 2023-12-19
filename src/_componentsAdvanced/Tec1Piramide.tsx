@@ -13,7 +13,7 @@ export function Tec1Piramide ({ result }: { result: AdvancedTecniques }) {
         Pirâmide
       </AdvancedTitle>
       <Grid2 container className='tec-content'>
-        {result.piramide.map((p, i) => (
+        {result.tec1Piramide.map((p, i) => (
           <>
             <AdvancedGrid i={i} key={p.title}>
               <Grid2 className='left-column' xs={12} sm={1}>
@@ -40,6 +40,7 @@ export function Tec1Piramide ({ result }: { result: AdvancedTecniques }) {
           </>
         ))}
       </Grid2>
+      <div className='spacer'/>
     </>
   )
 }

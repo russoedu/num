@@ -6,18 +6,18 @@ import { AdvancedTitle } from '../_components/AdvancedTitle'
 import { AdvancedGrid } from '../_components/AdvancedGrid'
 import './Tec.css'
 
-export function Tec5Potenciais ({ result }: { result: AdvancedTecniques }) {
+export function Tec5PotenciaisComoReagem ({ result }: { result: AdvancedTecniques }) {
   return (
     <>
       <AdvancedTitle>
-        Potenciais
+        Potenciais como reagem
       </AdvancedTitle>
       <Typography variant='h5' sx={{ paddingBottom: 1 }}>
-        {result.potenciais.result}
+        {result.tec5PotenciaisComoReagem.result}
       </Typography>
       <Grid2 container className='tec-content'>
         {
-          result.potenciais.percentage.map((p, i) => (
+          result.tec5PotenciaisComoReagem.percentage.map((p, i) => (
             <AdvancedGrid i={i} key={p.name}>
               <Grid2 xs={9} sm={3}>
                 <Typography variant='h6'>
@@ -33,6 +33,7 @@ export function Tec5Potenciais ({ result }: { result: AdvancedTecniques }) {
           ))
         }
       </Grid2>
+      <div className='spacer'/>
     </>
   )
 }

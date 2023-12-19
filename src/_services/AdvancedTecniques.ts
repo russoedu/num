@@ -8,7 +8,7 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 1 – PIRAMIDE
    */
-  piramide: {
+  tec1Piramide: {
     title: string,
     results: {
         number: number,
@@ -19,7 +19,7 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 2 – AUSÊNCIAS – AUS 
    */
-  ausencia: number[]
+  tec2Ausencia: number[]
   /**
    * TÉCNICA 3 – NOSSO MAPA ATUAL
    */
@@ -27,45 +27,12 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 4 – DUPLICIDADES OU MAIS 
    */
-  multiplicidades: MultiplicityT[]
+  tec4Multiplicidades: MultiplicityT[]
 
-  /**
-   * REGRAS PARA AS TÉCNICAS COM PERCENTUAIS
-   * REGRAS PARA AS TÉCNICAS COM PERCENTUAIS
-   *
-   *
-   *As técnicas de percentuais são: 5, 6, 7, 11, 13 e 25.
-   *
-   *
-   *Regras
-   *
-   *Tabular – contar quantas vezes cada VN aparece no MNN. 
-   *
-   *Encontrar o percentual – cada VN corresponde a 7% - multiplicar pela quantidade de VNs encontradas.
-   *
-   *Subtrair do maior % o segundo maior %.
-   *
-   *Considerar a diferença entre eles: 
-   *Se a diferença for maior que 10% – concentrou. 
-   *Se a diferença for menor que 10% – empatou. 
-   *
-   *
-   *Exemplos
-   *
-   *63% - 28% = 35% é maior que 10 – concentrou.
-   *
-   *42% - 35% = 7% é menor que 10 – empatou.
-   *
-   *35% - 14% = 21% é maior que 10 – concentrou.
-   *
-   *21% - 14% = 7% é menor que 10 – empatou.
-   *
-   */
-  
   /**
    * TÉCNICA 5 – POTENCIAIS – COMO REAGEM
    */
-  potenciais: {
+  tec5PotenciaisComoReagem: {
     percentage: {
       name: 'Possuir'|'Compartilhar'|'Vivenciar'|'Espiritualidade',
       value: number
@@ -76,10 +43,39 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 6 – POTENCIAIS – COMO SENTEM
    */
+  tec6PotenciaisComoSentem: {
+    percentage: {
+      name: 'Emoção'|'Razão',
+      value: number
+    }[],
+    result: string
+  }
   
   /**
-   * TÉCNICA 7 – RISCOS
+   * TÉCNICA 7 – RISCOS - PRIMEIRA LEITURA
    */
+  tec7Riscos1aLeitura: {
+    percentage: {
+      name: 'Exigência / solidão / violência / agressão'|
+      'Desprendimento / incerteza / insegurança'|
+      'Acomodação / dependência / depressão',
+      value: number
+    }[],
+    result: string
+  }
+
+  /**
+   * TÉCNICA 7 – RISCOS - SEGUNDA LEITURA
+   */
+  tec7Riscos2aLeitura: {
+    percentage: {
+      name: 'CP'|
+      'VG'|
+      'SC',
+      value: number
+    }[],
+    result: string
+  }
   
   /**
    * TÉCNICA 8 – ADEQUAÇÃO DA LINGUAGEM
@@ -167,13 +163,20 @@ export class AdvancedTecniques {
   constructor (map: NumericMap) {
     this.#map = map
 
-    this.piramide = this.#piramide()
-    this.ausencia = this.#ausencia()
-    this.multiplicidades = this.#multiplicidades()
-    this.potenciais = this.#potenciais()
+    this.tec1Piramide = this.#tec1Piramide()
+    this.tec2Ausencia = this.#tec2Ausencia()
+    this.tec4Multiplicidades = this.#tec4Multiplicidades()
+    this.tec5PotenciaisComoReagem = this.#tec5PotenciaisComoReagem()
+    this.tec6PotenciaisComoSentem = this.#tec6PotenciaisComoSentem()
+    this.tec7Riscos1aLeitura = this.#tec7Riscos1aLeitura()
+    this.tec7Riscos2aLeitura = this.#tec7Riscos2aLeitura()
   }
 
-  #piramide () {
+  /**
+   * Pyramid tecnique
+   * @returns Pyramid tecnique results
+   */
+  #tec1Piramide () {
     return [
       {
         title:   'CD',
@@ -194,14 +197,22 @@ export class AdvancedTecniques {
     ]
   }
 
-  #ausencia () {
+  /**
+   * Ausency tecnique
+   * @returns Ausency tecnique results
+   */
+  #tec2Ausencia () {
     const unique = this.#map.uniqueNumbers
     const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
     return _array.notInArray(numbers, unique)
   }
 
-  #multiplicidades () {
+  /**
+   * Multiplicity tecnique
+   * @returns Multiplicity tecnique results
+   */
+  #tec4Multiplicidades () {
     const allMultiplicities: MultiplicityT[] = [
       {
         type:      'Fixas',
@@ -297,11 +308,12 @@ export class AdvancedTecniques {
     return multiplicity
   }
 
-  #potenciais () {
-    const percentage: {
-      name: 'Possuir'|'Compartilhar'|'Vivenciar'|'Espiritualidade',
-      value: number
-    }[] = [
+  /**
+   * Reaction potentials tecnique
+   * @returns Reaction potentials tecnique results
+   */
+  #tec5PotenciaisComoReagem () {
+    const percentage: typeof this.tec5PotenciaisComoReagem.percentage = [
       {
         name:  'Possuir' as 'Possuir'|'Compartilhar'|'Vivenciar'|'Espiritualidade',
         value: this.#map.digitCount([1, 4, 22, 8]).count * 7,
@@ -323,11 +335,113 @@ export class AdvancedTecniques {
 
     const result = percentage[0].value - percentage[1].value > 10
       ? percentage[0].name
-      : percentage[1].value - percentage[2].value !== 0
+      : percentage[1].value - percentage[2].value > 0
         ? `${percentage[0].name} e ${percentage[1].name}`
-        : percentage[2].value - percentage[3].value !== 0
+        : percentage[2].value - percentage[3].value > 0
           ? `${percentage[0].name}, ${percentage[1].name} e ${percentage[2].name}`
           : `${percentage[0].name}, ${percentage[1].name}, ${percentage[2].name} e ${percentage[2].name}`
+          
+
+    return{
+      percentage,
+      result,
+    }
+  }
+
+  /**
+   * Feeling potential tecnique
+   * @returns Feeling potential tecnique results
+   */
+  #tec6PotenciaisComoSentem () {
+    const percentage: typeof this.tec6PotenciaisComoSentem.percentage = [
+      {
+        name:  'Emoção' as 'Emoção'|'Razão',
+        value: this.#map.digitCount([2, 11, 3, 5, 6, 9]).count * 7,
+      },
+      {
+        name:  'Razão' as 'Emoção'|'Razão',
+        value: this.#map.digitCount([1, 4, 22, 7, 8]).count * 7,
+      },
+    ]
+      .sort((a, b) => b.value - a.value)
+
+    const result = percentage[0].value - percentage[1].value > 10
+      ? percentage[0].name
+      : `${percentage[0].name} e ${percentage[1].name}`
+          
+
+    return{
+      percentage,
+      result,
+    }
+  }
+
+  /**
+   * First reading risks tecnique
+   * @returns First reading risks tecnique results
+   */
+  #tec7Riscos1aLeitura () {
+    const percentage: typeof this.tec7Riscos1aLeitura.percentage = [
+      {
+        name: 'Exigência / solidão / violência / agressão' as 'Exigência / solidão / violência / agressão'|
+      'Desprendimento / incerteza / insegurança'|
+      'Acomodação / dependência / depressão',
+        value: this.#map.digitCount([1, 4, 22, 7, 8]).count * 7,
+      },
+      {
+        name: 'Desprendimento / incerteza / insegurança' as 'Exigência / solidão / violência / agressão'|
+      'Desprendimento / incerteza / insegurança'|
+      'Acomodação / dependência / depressão',
+        value: this.#map.digitCount([3, 5, 9]).count * 7,
+      },
+      {
+        name: 'Acomodação / dependência / depressão' as 'Exigência / solidão / violência / agressão'|
+      'Desprendimento / incerteza / insegurança'|
+      'Acomodação / dependência / depressão',
+        value: this.#map.digitCount([2, 11, 4, 22, 6]).count * 7,
+      },
+    ]
+      .sort((a, b) => b.value - a.value)
+
+    const result = percentage[0].value - percentage[1].value > 10
+      ? percentage[0].name
+      : percentage[1].value - percentage[2].value > 0
+        ? `${percentage[0].name} e ${percentage[1].name}`
+        : `${percentage[0].name}, ${percentage[1].name} e ${percentage[2].name}`
+          
+
+    return{
+      percentage,
+      result,
+    }
+  }
+
+  /**
+   * First reading risks tecnique
+   * @returns First reading risks tecnique results
+   */
+  #tec7Riscos2aLeitura () {
+    const percentage: typeof this.tec7Riscos2aLeitura.percentage = [
+      {
+        name:  'CP' as 'CP'|'VG'|'SC',
+        value: this.tec7Riscos2aLeitura.percentage[0].value + this.tec7Riscos2aLeitura.percentage[2].value,
+      },
+      {
+        name:  'VG' as 'CP'|'VG'|'SC',
+        value: this.#map.digitCount([3, 5, 9]).count * 7,
+      },
+      {
+        name:  'SC' as 'CP'|'VG'|'SC',
+        value: this.tec7Riscos2aLeitura.percentage[0].value + this.tec7Riscos2aLeitura.percentage[1].value,
+      },
+    ]
+      .sort((a, b) => b.value - a.value)
+
+    const result = percentage[0].value - percentage[1].value > 10
+      ? percentage[0].name
+      : percentage[1].value - percentage[2].value > 0
+        ? `${percentage[0].name} e ${percentage[1].name}`
+        : `${percentage[0].name}, ${percentage[1].name} e ${percentage[2].name}`
           
 
     return{

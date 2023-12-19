@@ -4,7 +4,7 @@ import { Tec1Piramide } from '../_componentsAdvanced/Tec1Piramide'
 import { Tec2Ausencias } from '../_componentsAdvanced/Tec2Ausencias'
 import './AdvancedTecniquesResults.css'
 import { Tec4Multiplicidades } from '../_componentsAdvanced/Tec4Multiplicidades'
-import { Tec5Potenciais } from '../_componentsAdvanced/Tec5Potenciais'
+import { Tec5PotenciaisComoReagem } from '../_componentsAdvanced/Tec5PotenciaisComoReagem'
 /**
  * The main form component
  * @returns Form component
@@ -18,7 +18,7 @@ export function AdvancedTecniquesResults ({ result }: { result: AdvancedTecnique
       <div className='spacer'/>
       <Tec4Multiplicidades result={result}/>
       <div className='spacer'/>
-      <Tec5Potenciais result={result}/>
+      <Tec5PotenciaisComoReagem result={result}/>
     </Paper>
   )
 }

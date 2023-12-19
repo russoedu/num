@@ -17,14 +17,14 @@ export function Tec2Ausencias ({ result }: { result: AdvancedTecniques }) {
         <AdvancedGrid i={0} key='aus'>
           <Typography variant='h5' color={purple} sx={{ fontWeight: 'bold' }}>
             {
-              result.ausencia.length > 0
-                ? _array.join(result.ausencia)
+              result.tec2Ausencia.length > 0
+                ? _array.join(result.tec2Ausencia)
                 : 'Não há ausência'
             }
           </Typography>
         </AdvancedGrid>
       </Grid2>
-      {/* <Divider sx={{ marginTop: 0.5, marginBottom: 0.5 }}/> */}
+      <div className='spacer'/>
     </>
   )
 }

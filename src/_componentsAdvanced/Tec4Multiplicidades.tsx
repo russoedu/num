@@ -16,9 +16,9 @@ export function Tec4Multiplicidades ({ result }: { result: AdvancedTecniques }) 
       </AdvancedTitle>
       <Grid2 container className='tec-content'>
         {
-          result.multiplicidades.length > 0
+          result.tec4Multiplicidades.length > 0
             ? (
-              result.multiplicidades.map((p, i) => (
+              result.tec4Multiplicidades.map((p, i) => (
                 <>
                   <AdvancedGrid i={i} key={p.type}>
                     <Grid xs={12} sm={3}>
@@ -58,6 +58,7 @@ export function Tec4Multiplicidades ({ result }: { result: AdvancedTecniques }) 
             )
         }
       </Grid2>
+      <div className='spacer'/>
     </>
   )
 }
