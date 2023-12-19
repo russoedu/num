@@ -1,7 +1,7 @@
 import Grid from '@mui/material/Unstable_Grid2'
 import { Box, Divider, Paper, Typography } from '@mui/material'
 import { NumericMap } from '../_services/NumericMap'
-import { ResultGrid } from './ResultGrid'
+import { ResultGrid } from '../_components/ResultGrid'
 import './NumericMapResults.css'
 import { purple } from '../_helpers/types'
 
