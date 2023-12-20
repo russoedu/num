@@ -80,10 +80,12 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 8 – ADEQUAÇÃO DA LINGUAGEM
    */
+  tec8AdequacaoDaLinguagem: string
   
   /**
    * TÉCNICA 9 – VIBRAÇÃO DA EXPRESSÃO
    */
+  tec9ExpressionVibration: { title: string, more: string }
   
   /**
    * TÉCNICA 10 – INTERPRETANDO O 1º CICLO DE VIDA
@@ -170,6 +172,8 @@ export class AdvancedTecniques {
     this.tec6PotenciaisComoSentem = this.#tec6PotenciaisComoSentem()
     this.tec7Riscos1aLeitura = this.#tec7Riscos1aLeitura()
     this.tec7Riscos2aLeitura = this.#tec7Riscos2aLeitura()
+    this.tec8AdequacaoDaLinguagem = this.#tec8AdequacaoDaLinguagem()
+    this.tec9ExpressionVibration = this.#tec9ExpressionVibration()
   }
 
   /**
@@ -449,7 +453,44 @@ export class AdvancedTecniques {
       result,
     }
   }
+  
+  /**
+   * Reading style
+   * @returns Reading style results
+   */
+  #tec8AdequacaoDaLinguagem () {
+    const cycle = this.#map.cycle.cycle
+    const index = this.#map.cycle.index
     
+    return `${cycle} - 
+Multiplicidades no ciclo: ${this.tec4Multiplicidades[index]?.multiples.map(m => m.number).join(', ')}`
+  }
+
+  /**
+   * Reading style
+   * @returns Reading style results
+   */
+  #tec9ExpressionVibration () {
+    const ex = this.#map.ex
+    
+    if ([1, 4, 7, 8].includes(ex)) {
+      return {
+        title: 'Bons ouvintes',
+        more:  'Falam pouco, com objetividade e clareza',
+      }
+
+    } else if ([3, 5, 9].includes(ex)) {
+      return {
+        title: 'Bons falantes',
+        more:  'Dominam o ato de expressão oral. Falam com criatividade e desprendimento',
+      }
+    } else {
+      return {
+        title: 'Calma e delicadeza',
+        more:  '',
+      }
+    }
+  }
   /**
    *mo
    *cd

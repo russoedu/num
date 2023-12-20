@@ -7,6 +7,8 @@ import { Tec6PotenciaisComoSentem } from '../_componentsAdvanced/Tec6PotenciaisC
 import { Tec7Riscos } from '../_componentsAdvanced/Tec7Riscos'
 import { AdvancedTecniques } from '../_services/AdvancedTecniques'
 import './AdvancedTecniquesResults.css'
+import { Tec8AdequacaoDaLinguagem } from '../_componentsAdvanced/Tec8AdequacaoDaLinguagem'
+import { Tec9ExpressionVibration } from '../_componentsAdvanced/Tec9ExpressionVibration'
 /**
  * The main form component
  * @returns Form component
@@ -20,6 +22,8 @@ export function AdvancedTecniquesResults ({ result }: { result: AdvancedTecnique
       <Tec5PotenciaisComoReagem result={result}/>
       <Tec6PotenciaisComoSentem result={result}/>
       <Tec7Riscos result={result}/>
+      <Tec8AdequacaoDaLinguagem result={result}/>
+      <Tec9ExpressionVibration result={result}/>
     </Paper>
   )
 }

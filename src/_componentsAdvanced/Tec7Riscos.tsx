@@ -60,6 +60,9 @@ export function Tec7Riscos ({ result }: { result: AdvancedTecniques }) {
           ))
         }
       </Grid2>
+      <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
+            ---- Preciso de mais detalhes para calcular ----
+      </Typography>
       <div className='spacer'/>
     </>
   )

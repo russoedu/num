@@ -236,6 +236,30 @@ export class NumericMap {
   }
 
   /**
+   * The current cycle and its numbers
+   */
+  get cycle () {
+    if (this.age < 28) {
+      return {
+        cycle:     '1º Ciclo - 0/28 anos',
+        index: 1,
+        vnNumbers: this.firstCycleVnNumbers,
+      }
+    } else if (this.age < 56) {
+      return {
+        cycle:     '2º Ciclo - 28/56 anos',
+        index: 2,
+        vnNumbers: this.secondCycleVnNumbers,
+      } 
+    } else {
+      return {
+        cycle:     '3º Ciclo - + 56 anos',
+        index: 3,
+        vnNumbers: this.thirdCycleVnNumbers,
+      }
+    }
+  }
+  /**
    * List of unique numbers in the map
    */
   get uniqueNumbers () {
