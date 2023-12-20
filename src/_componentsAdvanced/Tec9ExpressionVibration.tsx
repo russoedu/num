@@ -25,6 +25,9 @@ export function Tec9ExpressionVibration ({ result }: { result: AdvancedTecniques
               </Typography>
               : <></>
             }
+            <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
+            ---- Calma e delicadeza não tem uma descrição extra na apostila ----
+            </Typography>
           </Box>
         </AdvancedGrid>
       </Grid2>
