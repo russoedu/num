@@ -16,12 +16,12 @@ export function Tec1Piramide ({ result }: { result: AdvancedTecniques }) {
         {result.tec1Piramide.map((p, i) => (
           <>
             <AdvancedGrid i={i} key={p.title}>
-              <Grid2 className='left-column' xs={12} sm={1}>
+              <Grid2 xs={12} sm={1}>
                 <Typography variant='h6'>
                   {p.title}
                 </Typography>
               </Grid2>
-              <Grid2 className='righ-column' container xs={12} sm={11}>
+              <Grid2 container xs={12} sm={11}>
                 {p.results.map(r => (
                   <>
                     <Grid2 xs={2} sm={1}>
@@ -36,7 +36,6 @@ export function Tec1Piramide ({ result }: { result: AdvancedTecniques }) {
                 ))}
               </Grid2>
             </AdvancedGrid>
-            {/* <Divider sx={{ marginTop: 0.5, marginBottom: 0.5 }}/> */}
           </>
         ))}
       </Grid2>

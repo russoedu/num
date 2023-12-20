@@ -30,6 +30,7 @@ export function Home () {
 
   /** replace by a state - "filled" */
   function calculate () {
+    console.log('calc')
     const map = new NumericMap(name, birthday)
     const advanced = new AdvancedTecniques(map)
     setResult(map)

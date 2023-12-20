@@ -424,15 +424,15 @@ export class AdvancedTecniques {
     const percentage: typeof this.tec7Riscos2aLeitura.percentage = [
       {
         name:  'CP' as 'CP'|'VG'|'SC',
-        value: this.tec7Riscos2aLeitura.percentage[0].value + this.tec7Riscos2aLeitura.percentage[2].value,
+        value: this.tec7Riscos1aLeitura.percentage[0].value + this.tec7Riscos1aLeitura.percentage[2].value,
       },
       {
         name:  'VG' as 'CP'|'VG'|'SC',
-        value: this.#map.digitCount([3, 5, 9]).count * 7,
+        value: this.tec7Riscos1aLeitura.percentage[1].value + this.tec7Riscos1aLeitura.percentage[2].value,
       },
       {
         name:  'SC' as 'CP'|'VG'|'SC',
-        value: this.tec7Riscos2aLeitura.percentage[0].value + this.tec7Riscos2aLeitura.percentage[1].value,
+        value: this.tec7Riscos1aLeitura.percentage[0].value + this.tec7Riscos1aLeitura.percentage[1].value,
       },
     ]
       .sort((a, b) => b.value - a.value)

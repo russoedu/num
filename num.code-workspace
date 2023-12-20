@@ -26,6 +26,13 @@
   },
   "launch": {
     "version": "0.2.0",
+    "compounds": [
+      {
+        "name": "Run on Chrome",
+        "configurations": ["Start dev", "Edge debug"],
+        "stopAll": true
+      }
+    ],
     "configurations": [
       {
         "name": "Start dev",
@@ -52,9 +59,9 @@
         "type": "node-terminal"
       },
       {
+        "name": "Edge debug",
         "type": "msedge",
         "request": "launch",
-        "name": "Edge debug",
         "url": "http://localhost:5173",
         "webRoot": "${workspaceFolder}/src"
       },
