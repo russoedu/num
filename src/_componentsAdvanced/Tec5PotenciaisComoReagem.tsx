@@ -19,12 +19,12 @@ export function Tec5PotenciaisComoReagem ({ result }: { result: AdvancedTecnique
         {
           result.tec5PotenciaisComoReagem.percentage.map((p, i) => (
             <AdvancedGrid i={i} key={p.name}>
-              <Grid2 xs={9} sm={3}>
+              <Grid2 xs={9} sm={4} md={3}>
                 <Typography variant='h6'>
                   {p.name}
                 </Typography>
               </Grid2>
-              <Grid2 xs={3} sm={9}>
+              <Grid2 xs={3} sm={8} md={9}>
                 <Typography variant='h6'>
                   {p.value}%
                 </Typography>

@@ -19,12 +19,12 @@ export function Tec6PotenciaisComoSentem ({ result }: { result: AdvancedTecnique
         {
           result.tec6PotenciaisComoSentem.percentage.map((p, i) => (
             <AdvancedGrid i={i} key={p.name}>
-              <Grid2 xs={10} sm={3}>
+              <Grid2 xs={10} sm={4} md={3}>
                 <Typography variant='h6'>
                   {p.name}
                 </Typography>
               </Grid2>
-              <Grid2 xs={2} sm={9}>
+              <Grid2 xs={2} sm={8} md={9}>
                 <Typography variant='h6'>
                   {p.value}%
                 </Typography>
