@@ -52,12 +52,6 @@ jobs:
           # Upload dist repository
           path: './dist'
       
-      - name: Upload public
-        uses: actions/upload-pages-artifact@v2
-        with:
-          # Upload dist repository
-          path: './public/robots.txt'
-      
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
