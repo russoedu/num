@@ -15,10 +15,10 @@ export function Tec1Piramide ({ result }: { result: AdvancedTecniques }) {
       <Grid2 container className='tec-content'>
         {result.tec1Piramide.map((p, i) => (
           <>
-            <AdvancedGrid i={i} key={p.title}>
+            <AdvancedGrid i={i} key={p.position}>
               <Grid2 xs={12} sm={1}>
                 <Typography variant='h6'>
-                  {p.title}
+                  {p.position}
                 </Typography>
               </Grid2>
               <Grid2 container xs={12} sm={11}>
@@ -26,10 +26,10 @@ export function Tec1Piramide ({ result }: { result: AdvancedTecniques }) {
                   <>
                     <Grid2 xs={2} sm={1}>
                       <Typography variant='h5' color={purple} sx={{ fontWeight: 'bold' }}>
-                        {r.number}
+                        {r.vn}
                       </Typography>
                     </Grid2>
-                    <Grid2 xs={10} sm={11} key={r.number}>
+                    <Grid2 xs={10} sm={11} key={r.vn}>
                       {r.description}
                     </Grid2>
                   </>

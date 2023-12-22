@@ -49,6 +49,13 @@ export type ResultValueT = {
   age?: string
 }
 
+export type PyramidT = {
+  position: string,
+  results: {
+      vn: number,
+      description: string,
+    }[]
+}
 export const MultiplicityTypeT: [
   'D'  , // Duplicidade: a pessoa controla sozinha
   'T'  , // Triplicidade: a pessoa precisa de orientação
@@ -63,8 +70,8 @@ export const MultiplicityTypeT: [
 export type MultiplicityT = {
   type: 'Fixas' | '1º Ciclo - 0/28 anos'|'2º Ciclo - 28/56 anos'|'3º Ciclo - + 56 anos',
   multiples: {
-    vns: string[]
-    number: FinalSingleDigitT,
+    vn: FinalSingleDigitT,
+    positions: string[]
     type: 'D'  | // Duplicidade: a pessoa controla sozinha
           'T'  | // Triplicidade: a pessoa precisa de orientação
           'Qd' | // Quadruplicidade: a pessoa necessita de orientação
@@ -72,6 +79,15 @@ export type MultiplicityT = {
   }[]
 }
 
+export type PercentageT = {
+  name: string,
+  value: number
+}
+
+export type PercentageResultT = {
+  percentage: PercentageT[],
+  result: string
+}
 export const FixedVns = [
   'MO',
   'EU',

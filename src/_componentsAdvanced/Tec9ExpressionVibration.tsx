@@ -11,7 +11,7 @@ export function Tec9ExpressionVibration ({ result }: { result: AdvancedTecniques
   return (
     <>
       <AdvancedTitle>
-        Adequação da linguagem
+        Vibração da expressão
       </AdvancedTitle>
       <Grid2 container className='tec-content'>
         <AdvancedGrid i={0} key='aus'>

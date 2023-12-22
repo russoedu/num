@@ -46,12 +46,12 @@ export function Tec7Riscos ({ result }: { result: AdvancedTecniques }) {
         {
           result.tec7Riscos2aLeitura.percentage.map((p, i) => (
             <AdvancedGrid i={i} key={p.name}>
-              <Grid2 xs={10} sm={5}>
+              <Grid2 xs={10} sm={3}>
                 <Typography variant='h6'>
                   {p.name}
                 </Typography>
               </Grid2>
-              <Grid2 xs={2} sm={5}>
+              <Grid2 xs={2} sm={9}>
                 <Typography variant='h6'>
                   {p.value}%
                 </Typography>

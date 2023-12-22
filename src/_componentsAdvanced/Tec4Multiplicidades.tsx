@@ -30,7 +30,7 @@ export function Tec4Multiplicidades ({ result }: { result: AdvancedTecniques }) 
                         <>
                           <Grid2 xs={2} md={1}>
                             <Typography variant='h5' color={purple} sx={{ fontWeight: 'bold' }}>
-                              {m.number}
+                              {m.vn}
                             </Typography>
                           </Grid2>
                           <Grid2 xs={2} md={1}>
@@ -40,7 +40,7 @@ export function Tec4Multiplicidades ({ result }: { result: AdvancedTecniques }) 
                           </Grid2>
                           <Grid2 xs={8} md={10}>
                             <Typography variant='h6'>
-                              {_array.join(m.vns)}
+                              {_array.join(m.positions)}
                             </Typography>
                           </Grid2>
                         </>

@@ -20,72 +20,72 @@ class Tecniques {
     if (num === 11) {
       return [
         {
-          number:      11,
+          vn:          11,
           description: `${index[2]} / ${index[11]}`,
         },
       ]
     } else if (num === 22) {
       return [
         {
-          number:      22,
+          vn:          22,
           description: `${index[4]} / ${index[22]}`,
         },
       ]
     } else if (num === 0) {
       return [
         {
-          number:      0,
+          vn:          0,
           description: index[0],
         },
         {
-          number:      1,
+          vn:          1,
           description: index[1],
         },
         {
-          number:      2,
+          vn:          2,
           description: index[2],
         },
         {
-          number:      11,
+          vn:          11,
           description: index[11],
         },
         {
-          number:      3,
+          vn:          3,
           description: index[3],
         },
         {
-          number:      4,
+          vn:          4,
           description: index[4],
         },
         {
-          number:      22,
+          vn:          22,
           description: index[22],
         },
         {
-          number:      5,
+          vn:          5,
           description: index[5],
         },
         {
-          number:      6,
+          vn:          6,
           description: index[6],
         },
         {
-          number:      7,
+          vn:          7,
           description: index[7],
         },
         {
-          number:      8,
+          vn:          8,
           description: index[8],
         },
         {
-          number:      9,
+          vn:          9,
           description: index[9],
         },
       ]
     } else {
       return [
         {
-          number:      num,
+          vn:          num,
           description: index[num],
         }]
     }

@@ -1,6 +1,6 @@
 import { _array } from '../_helpers/_array'
 import { _tec } from '../_helpers/_tec'
-import { MultiplicityT as MultiplicityT, MultiplicityTypeT, FixedVns } from '../_helpers/types'
+import { MultiplicityT as MultiplicityT, MultiplicityTypeT, FixedVns, PyramidT, PercentageResultT, PercentageT } from '../_helpers/types'
 import { NumericMap } from './NumericMap'
 
 export class AdvancedTecniques {
@@ -8,13 +8,7 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 1 – PIRAMIDE
    */
-  tec1Piramide: {
-    title: string,
-    results: {
-        number: number,
-        description: string,
-      }[]
-  }[]
+  tec1Piramide: PyramidT[]
 
   /**
    * TÉCNICA 2 – AUSÊNCIAS – AUS 
@@ -32,50 +26,22 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 5 – POTENCIAIS – COMO REAGEM
    */
-  tec5PotenciaisComoReagem: {
-    percentage: {
-      name: 'Possuir'|'Compartilhar'|'Vivenciar'|'Espiritualidade',
-      value: number
-    }[],
-    result: string
-  }
+  tec5PotenciaisComoReagem: PercentageResultT
   
   /**
    * TÉCNICA 6 – POTENCIAIS – COMO SENTEM
    */
-  tec6PotenciaisComoSentem: {
-    percentage: {
-      name: 'Emoção'|'Razão',
-      value: number
-    }[],
-    result: string
-  }
+  tec6PotenciaisComoSentem: PercentageResultT
   
   /**
    * TÉCNICA 7 – RISCOS - PRIMEIRA LEITURA
    */
-  tec7Riscos1aLeitura: {
-    percentage: {
-      name: 'Exigência / solidão / violência / agressão'|
-      'Desprendimento / incerteza / insegurança'|
-      'Acomodação / dependência / depressão',
-      value: number
-    }[],
-    result: string
-  }
+  tec7Riscos1aLeitura: PercentageResultT
 
   /**
    * TÉCNICA 7 – RISCOS - SEGUNDA LEITURA
    */
-  tec7Riscos2aLeitura: {
-    percentage: {
-      name: 'CP'|
-      'VG'|
-      'SC',
-      value: number
-    }[],
-    result: string
-  }
+  tec7Riscos2aLeitura: PercentageResultT
   
   /**
    * TÉCNICA 8 – ADEQUAÇÃO DA LINGUAGEM
@@ -90,7 +56,9 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 10 – INTERPRETANDO O 1º CICLO DE VIDA
    */
-  
+  // tec10FirstCycleInterpretation: {
+
+  // }
   /**
    * TÉCNICA 11 – DONOS E PRATICANTES – RISCOS 
    */
@@ -181,24 +149,26 @@ export class AdvancedTecniques {
    * @returns Pyramid tecnique results
    */
   #tec1Piramide () {
-    return [
+    const pyramid: PyramidT[] = [
       {
-        title:   'CD',
-        results: _tec.piramide(this.#map.cd),
+        position: 'CD',
+        results:  _tec.piramide(this.#map.cd),
       },
       {
-        title:   'MO',
-        results: _tec.piramide(this.#map.mo),
+        position: 'MO',
+        results:  _tec.piramide(this.#map.mo),
       },
       {
-        title:   'DM',
-        results: _tec.piramide(this.#map.dm),
+        position: 'DM',
+        results:  _tec.piramide(this.#map.dm),
       },
       {
-        title:   'EU',
-        results: _tec.piramide(this.#map.eu),
+        position: 'EU',
+        results:  _tec.piramide(this.#map.eu),
       },
     ]
+
+    return pyramid
   }
 
   /**
@@ -244,9 +214,9 @@ export class AdvancedTecniques {
           .map(val => val.vn)
 
         allMultiplicities[0].multiples.push({
-          vns:    multiplicatedVns,
-          number: num,
-          type:   MultiplicityTypeT[multiplicatedVns.length - 2],
+          positions: multiplicatedVns,
+          vn:        num,
+          type:      MultiplicityTypeT[multiplicatedVns.length - 2],
         })
       }
     }
@@ -260,9 +230,9 @@ export class AdvancedTecniques {
 
         if (_array.notInArray(multiplicatedVns, FixedVns).length > 0) {
           allMultiplicities[1].multiples.push({
-            vns:    multiplicatedVns,
-            number: num,
-            type:   MultiplicityTypeT[multiplicatedVns.length - 2],
+            positions: multiplicatedVns,
+            vn:        num,
+            type:      MultiplicityTypeT[multiplicatedVns.length - 2],
           })
         }
       }
@@ -277,9 +247,9 @@ export class AdvancedTecniques {
 
         if (_array.notInArray(multiplicatedVns, FixedVns).length > 0) {
           allMultiplicities[2].multiples.push({
-            vns:    multiplicatedVns,
-            number: num,
-            type:   MultiplicityTypeT[multiplicatedVns.length - 2],
+            positions: multiplicatedVns,
+            vn:        num,
+            type:      MultiplicityTypeT[multiplicatedVns.length - 2],
           })
         }
       }
@@ -294,9 +264,9 @@ export class AdvancedTecniques {
 
         if (_array.notInArray(multiplicatedVns, FixedVns).length > 0) {
           allMultiplicities[3].multiples.push({
-            vns:    multiplicatedVns,
-            number: num,
-            type:   MultiplicityTypeT[multiplicatedVns.length - 2],
+            positions: multiplicatedVns,
+            vn:        num,
+            type:      MultiplicityTypeT[multiplicatedVns.length - 2],
           })
         }
       }
@@ -317,21 +287,21 @@ export class AdvancedTecniques {
    * @returns Reaction potentials tecnique results
    */
   #tec5PotenciaisComoReagem () {
-    const percentage: typeof this.tec5PotenciaisComoReagem.percentage = [
+    const percentage: PercentageT[] = [
       {
-        name:  'Possuir' as 'Possuir'|'Compartilhar'|'Vivenciar'|'Espiritualidade',
+        name:  'Possuir',
         value: this.#map.digitCount([1, 4, 22, 8]).count * 7,
       },
       {
-        name:  'Compartilhar' as 'Possuir'|'Compartilhar'|'Vivenciar'|'Espiritualidade',
+        name:  'Compartilhar',
         value: this.#map.digitCount([2, 11, 6]).count * 7,
       },
       {
-        name:  'Vivenciar' as 'Possuir'|'Compartilhar'|'Vivenciar'|'Espiritualidade',
+        name:  'Vivenciar',
         value: this.#map.digitCount([3, 5]).count * 7,
       },
       {
-        name:  'Espiritualidade' as 'Possuir'|'Compartilhar'|'Vivenciar'|'Espiritualidade',
+        name:  'Espiritualidade',
         value: this.#map.digitCount([7, 9, 11, 22]).count * 7,
       },
     ]
@@ -357,13 +327,13 @@ export class AdvancedTecniques {
    * @returns Feeling potential tecnique results
    */
   #tec6PotenciaisComoSentem () {
-    const percentage: typeof this.tec6PotenciaisComoSentem.percentage = [
+    const percentage: PercentageT[] = [
       {
-        name:  'Emoção' as 'Emoção'|'Razão',
+        name:  'Emoção',
         value: this.#map.digitCount([2, 11, 3, 5, 6, 9]).count * 7,
       },
       {
-        name:  'Razão' as 'Emoção'|'Razão',
+        name:  'Razão',
         value: this.#map.digitCount([1, 4, 22, 7, 8]).count * 7,
       },
     ]
@@ -385,23 +355,17 @@ export class AdvancedTecniques {
    * @returns First reading risks tecnique results
    */
   #tec7Riscos1aLeitura () {
-    const percentage: typeof this.tec7Riscos1aLeitura.percentage = [
+    const percentage: PercentageT[] = [
       {
-        name: 'Exigência / solidão / violência / agressão' as 'Exigência / solidão / violência / agressão'|
-      'Desprendimento / incerteza / insegurança'|
-      'Acomodação / dependência / depressão',
+        name:  'Exigência / solidão / violência / agressão',
         value: this.#map.digitCount([1, 4, 22, 7, 8]).count * 7,
       },
       {
-        name: 'Desprendimento / incerteza / insegurança' as 'Exigência / solidão / violência / agressão'|
-      'Desprendimento / incerteza / insegurança'|
-      'Acomodação / dependência / depressão',
+        name:  'Desprendimento / incerteza / insegurança',
         value: this.#map.digitCount([3, 5, 9]).count * 7,
       },
       {
-        name: 'Acomodação / dependência / depressão' as 'Exigência / solidão / violência / agressão'|
-      'Desprendimento / incerteza / insegurança'|
-      'Acomodação / dependência / depressão',
+        name:  'Acomodação / dependência / depressão',
         value: this.#map.digitCount([2, 11, 4, 22, 6]).count * 7,
       },
     ]
@@ -425,17 +389,17 @@ export class AdvancedTecniques {
    * @returns First reading risks tecnique results
    */
   #tec7Riscos2aLeitura () {
-    const percentage: typeof this.tec7Riscos2aLeitura.percentage = [
+    const percentage: PercentageT[] = [
       {
-        name:  'CP' as 'CP'|'VG'|'SC',
+        name:  'CP',
         value: this.tec7Riscos1aLeitura.percentage[0].value + this.tec7Riscos1aLeitura.percentage[2].value,
       },
       {
-        name:  'VG' as 'CP'|'VG'|'SC',
+        name:  'VG',
         value: this.tec7Riscos1aLeitura.percentage[1].value + this.tec7Riscos1aLeitura.percentage[2].value,
       },
       {
-        name:  'SC' as 'CP'|'VG'|'SC',
+        name:  'SC',
         value: this.tec7Riscos1aLeitura.percentage[0].value + this.tec7Riscos1aLeitura.percentage[1].value,
       },
     ]
@@ -463,7 +427,7 @@ export class AdvancedTecniques {
     const index = this.#map.cycle.index
     
     return `${cycle} - 
-Multiplicidades no ciclo: ${this.tec4Multiplicidades[index]?.multiples.map(m => m.number).join(', ')}`
+Multiplicidades no ciclo: ${this.tec4Multiplicidades[index]?.multiples.map(m => m.vn).join(', ')}`
   }
 
   /**
