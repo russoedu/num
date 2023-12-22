@@ -9,6 +9,7 @@ import { AdvancedTecniques } from '../_services/AdvancedTecniques'
 import './AdvancedTecniquesResults.css'
 import { Tec8AdequacaoDaLinguagem } from '../_componentsAdvanced/Tec8AdequacaoDaLinguagem'
 import { Tec9ExpressionVibration } from '../_componentsAdvanced/Tec9ExpressionVibration'
+import { Tec10FirstCycleInterpretation } from '../_componentsAdvanced/Tec10FirstCycleInterpretation'
 /**
  * The main form component
  * @returns Form component
@@ -24,6 +25,7 @@ export function AdvancedTecniquesResults ({ result }: { result: AdvancedTecnique
       <Tec7Riscos result={result}/>
       <Tec8AdequacaoDaLinguagem result={result}/>
       <Tec9ExpressionVibration result={result}/>
+      <Tec10FirstCycleInterpretation result={result}/>
     </Paper>
   )
 }

@@ -8,13 +8,14 @@ export class NumericMap {
     if (!_date.isValid(birthday)) throw new Error('birthday is not a valid date')
 
     this.name = _name.normalise(name)
-    this.birthday = new Date(birthday)
+    const [year, month, day] = birthday.split('-').map(d => Number(d))
+    this.birthday = { year, month, day }
 
     this.age = this.#age()
 
-    this.#daySum = this.#charactersSum(this.birthday.getDate())
-    this.#monthSum = this.#charactersSum(this.birthday.getMonth() + 1)
-    this.#yearSum = this.#charactersSum(this.birthday.getFullYear())
+    this.#daySum = this.#charactersSum(this.birthday.day)
+    this.#monthSum = this.#charactersSum(this.birthday.month)
+    this.#yearSum = this.#charactersSum(this.birthday.year)
     
     const { vowelsInName, consonantsInName } = this.#lettersInName()
 
@@ -417,10 +418,10 @@ export class NumericMap {
   #age () {
     const otherDate = new Date()
 
-    let years = (otherDate.getFullYear() - this.birthday.getFullYear())
+    let years = (otherDate.getFullYear() - this.birthday.year)
 
-    if (otherDate.getMonth() < this.birthday.getMonth() || 
-        otherDate.getMonth() == this.birthday.getMonth() && otherDate.getDate() < this.birthday.getDate()) {
+    if (otherDate.getMonth() < this.birthday.month - 1 || 
+        otherDate.getMonth() == this.birthday.month - 1 && otherDate.getDate() < this.birthday.day) {
       years--
     }
 
@@ -428,8 +429,8 @@ export class NumericMap {
   }
 
   #interestYear () {
-    const day       = this.birthday.getDate()
-    const month     = this.birthday.getMonth()
+    const day       = this.birthday.day
+    const month     = this.birthday.month - 1
     const year      = new Date().getFullYear()
     
     const birthdayThisYear = new Date(year, month, day)
@@ -455,7 +456,11 @@ export class NumericMap {
   }
 
   name: string
-  birthday: Date
+  birthday: {
+    day: number,
+    month: number,
+    year: number
+  }
 
   /**
    * MOTIVAÇÃO – ALMA /PERSONALIDADE – QUEM É

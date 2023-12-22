@@ -95,3 +95,39 @@ export const FixedVns = [
   'EX',
   'DM',
 ]
+
+export enum Relation {
+  'ADORACAO_EU' = 'Adoração e identificação',
+  'FORTISSIMA_C1' = 'Identificação',
+  'FORTE_MO' = 'Igualdade, grande aproximação',
+  'MEDIA_CD_R1' = 'Aproximação',
+  'DIFICULDADE_D1_DM' = 'Dificuldade',
+  'AUSENCIA' = 'Não previsto convívio significativo',
+}
+
+export enum Person {
+  'PAI' = 'do pai',
+  'MAE' = 'da mãe',
+  'IRMAO' = 'dos irmãos e/ou irmãs, tios e/ou tias e primos e/ou primas',
+  'AVO' = 'dos avôs e/ou avós',
+}
+
+export const CycleInterpretationVns = [
+  {
+    vn:     1,
+    person: Person.PAI },
+  {
+    vn:     2,
+    person: Person.MAE },
+  {
+    vn:     3,
+    person: Person.IRMAO },
+  {
+    vn:     4,
+    person: Person.AVO },
+]
+
+export type CycleInterpretationT = {
+  relation: Relation,
+  person: Person
+}

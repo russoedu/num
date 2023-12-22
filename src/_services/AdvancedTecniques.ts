@@ -1,6 +1,6 @@
 import { _array } from '../_helpers/_array'
 import { _tec } from '../_helpers/_tec'
-import { MultiplicityT as MultiplicityT, MultiplicityTypeT, FixedVns, PyramidT, PercentageResultT, PercentageT } from '../_helpers/types'
+import { MultiplicityT as MultiplicityT, MultiplicityTypeT, FixedVns, PyramidT, PercentageResultT, PercentageT, CycleInterpretationT, CycleInterpretationVns, Relation } from '../_helpers/types'
 import { NumericMap } from './NumericMap'
 
 export class AdvancedTecniques {
@@ -56,9 +56,7 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 10 – INTERPRETANDO O 1º CICLO DE VIDA
    */
-  // tec10FirstCycleInterpretation: {
-
-  // }
+  tec10FirstCycleInterpretation: CycleInterpretationT[]
   /**
    * TÉCNICA 11 – DONOS E PRATICANTES – RISCOS 
    */
@@ -142,6 +140,7 @@ export class AdvancedTecniques {
     this.tec7Riscos2aLeitura = this.#tec7Riscos2aLeitura()
     this.tec8AdequacaoDaLinguagem = this.#tec8AdequacaoDaLinguagem()
     this.tec9ExpressionVibration = this.#tec9ExpressionVibration()
+    this.tec10FirstCycleInterpretation = this.#tec10FirstCycleInterpretation()
   }
 
   /**
@@ -454,6 +453,55 @@ Multiplicidades no ciclo: ${this.tec4Multiplicidades[index]?.multiples.map(m => 
         more:  '',
       }
     }
+  }
+
+  /**
+   * First Cycle interpretation
+   * @returns First Cycle interpretation results
+   */
+  #tec10FirstCycleInterpretation () {
+    const int: CycleInterpretationT[] = []
+    
+    for (const vn of CycleInterpretationVns) {
+      if (this.#map.eu === vn.vn) {
+        int.push({
+          person:   vn.person,
+          relation: Relation.ADORACAO_EU,
+        })
+      }
+      if (this.#map.c1 === vn.vn) {
+        int.push({
+          person:   vn.person,
+          relation: Relation.FORTISSIMA_C1,
+        })
+      }
+      if (this.#map.mo === vn.vn) {
+        int.push({
+          person:   vn.person,
+          relation: Relation.FORTE_MO,
+        })
+      }
+      if (this.#map.cd === vn.vn || this.#map.r1 === vn.vn) {
+        int.push({
+          person:   vn.person,
+          relation: Relation.MEDIA_CD_R1,
+        })
+      }
+      if (this.#map.d1 === vn.vn || this.#map.dm === vn.vn) {
+        int.push({
+          person:   vn.person,
+          relation: Relation.DIFICULDADE_D1_DM,
+        })
+      }
+      if (this.#tec2Ausencia().includes(vn.vn)) {
+        int.push({
+          person:   vn.person,
+          relation: Relation.AUSENCIA,
+        })
+      }
+    }
+
+    return int
   }
   /**
    *mo
