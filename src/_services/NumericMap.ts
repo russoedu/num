@@ -104,6 +104,18 @@ export class NumericMap {
   }
 
   /**
+   * List of fixed numbers in the map excluding EX
+   */
+  get fixedMainVNs () {
+    return  [
+      this.mo,
+      this.eu,
+      this.cd,
+      this.dm,
+    ]
+  }
+
+  /**
    * List of fixed numbers and VNs in the map
    */
   get fixedVNsPosition () {
@@ -112,6 +124,18 @@ export class NumericMap {
       { position: 'EU', vn: this.eu },
       { position: 'CD', vn: this.cd },
       { position: 'EX', vn: this.ex },
+      { position: 'DM', vn: this.dm },
+    ] as VN[]
+  }
+
+  /**
+   * List of fixed numbers and VNs in the map excluding EX
+   */
+  get fixedMainVNsPosition () {
+    return  [
+      { position: 'MO', vn: this.mo },
+      { position: 'EU', vn: this.eu },
+      { position: 'CD', vn: this.cd },
       { position: 'DM', vn: this.dm },
     ] as VN[]
   }

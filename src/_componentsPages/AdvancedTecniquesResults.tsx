@@ -18,6 +18,7 @@ import './AdvancedTecniquesResults.css'
 export function AdvancedTecniquesResults ({ result }: { result: AdvancedTecniques }) {
   return (
     <Paper variant='elevation' elevation={3} sx={{ padding: 1, marginTop: 5 }} >
+      <Tec8AdequacaoDaLinguagem result={result}/>
       <Tec1Piramide result={result}/>
       <Tec14Pureza result={result}/>
       <Tec2Ausencias result={result}/>
@@ -25,7 +26,6 @@ export function AdvancedTecniquesResults ({ result }: { result: AdvancedTecnique
       <Tec5PotenciaisComoReagem result={result}/>
       <Tec6PotenciaisComoSentem result={result}/>
       <Tec7Riscos result={result}/>
-      <Tec8AdequacaoDaLinguagem result={result}/>
       <Tec9ExpressionVibration result={result}/>
       <Tec10FirstCycleInterpretation result={result}/>
     </Paper>

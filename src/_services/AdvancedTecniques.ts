@@ -139,10 +139,12 @@ export class AdvancedTecniques {
     this.tec6PotenciaisComoSentem = this.#tec6PotenciaisComoSentem()
     this.tec7Riscos1aLeitura = this.#tec7Riscos1aLeitura()
     this.tec7Riscos2aLeitura = this.#tec7Riscos2aLeitura()
-    this.tec8AdequacaoDaLinguagem = this.#tec8AdequacaoDaLinguagem()
     this.tec9ExpressionVibration = this.#tec9ExpressionVibration()
     this.tec10FirstCycleInterpretation = this.#tec10FirstCycleInterpretation()
     this.tec14Pureza = this.#tec14Pureza()
+
+    // Must be the last calculated because it uses other tecniques
+    this.tec8AdequacaoDaLinguagem = this.#tec8AdequacaoDaLinguagem()
   }
 
   /**
@@ -390,6 +392,14 @@ export class AdvancedTecniques {
    * @returns Reading style results
    */
   #tec8AdequacaoDaLinguagem () {
+    if (this.tec14Pureza !== false) {
+      return this.#tec14Style(`Pureza de ${this.tec14Pureza}`, this.tec14Pureza)
+    }
+
+    const multiples = _array.duplicatedFinalSingleDigitT(this.#map.fixedMainVNs)
+    if (multiples.length > 0) {
+      return this.#tec14Style(`Multiplicidade de ${multiples[0]}`, multiples[0])
+    }
     const cycle = this.#map.cycle.cycle
     const index = this.#map.cycle.index
     
@@ -397,6 +407,37 @@ export class AdvancedTecniques {
 Multiplicidades no ciclo: ${this.tec4Multiplicidades[index]?.multiples.map(m => m.vn).join(', ')}`
   }
 
+  #tec14Style (type: string, num: FinalSingleDigitT): string {
+
+    const style = [
+      {
+        numbers: [1],
+        style:   'Rapidez, não se prender a detalhes',
+      },
+      {
+        numbers: [2, 6],
+        style:   'Calma / pausadamente / revelar com cuidado',
+      },
+      {
+        numbers: [3, 5],
+        style:   'Bom humor / criatividade',
+      },
+      {
+        numbers: [4, 8],
+        style:   'Segurança / precisão e clareza',
+      },
+      {
+        numbers: [7, 9, 11, 22],
+        style:   'Profundidade / qualidade / holisticamente',
+      },
+    ]
+    
+    const result: string =  style
+      .find(st => st.numbers.includes(num as FinalSingleDigitT))
+      ?.style as string
+
+    return `${type} - ${result}`
+  }
   /**
    * Reading style
    * @returns Reading style results
