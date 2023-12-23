@@ -1,6 +1,6 @@
 import { _array } from '../_helpers/_array'
 import { _tec } from '../_helpers/_tec'
-import { MultiplicityT as MultiplicityT, MultiplicityTypeT, FixedPositions, PyramidT, PercentageResultT, PercentageT, CycleInterpretationT, CycleInterpretationVns, Relation, MultiplicityMultipleT, FinalSingleDigitT, VN } from '../_helpers/types'
+import { CycleInterpretationT, CycleInterpretationVns, FinalSingleDigitT, MultiplicityMultipleT, MultiplicityT, MultiplicityTypeT, PercentageResultT, PercentageT, PyramidT, Relation, VN } from '../_helpers/types'
 import { NumericMap } from './NumericMap'
 
 export class AdvancedTecniques {
