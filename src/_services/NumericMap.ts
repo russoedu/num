@@ -1,7 +1,7 @@
 import { _array } from '../_helpers/_array'
 import { _date } from '../_helpers/_date'
 import { _name } from '../_helpers/_name'
-import { FinalSingleDigitT, SingleDigitT, consonants, vowels, Consonants, Vowels, letterValues } from '../_helpers/types'
+import { FinalSingleDigitT, SingleDigitT, consonants, vowels, Consonants, Vowels, letterValues, VN, VnCountSingleDigit, VnCountFinalDigit } from '../_helpers/types'
 
 export class NumericMap {
   constructor (name: string, birthday: string) {
@@ -50,7 +50,7 @@ export class NumericMap {
   /**
    * List of numbers in the map
    */
-  get numbers () {
+  get vns () {
     return  [
       this.mo,
       this.eu,
@@ -72,28 +72,28 @@ export class NumericMap {
   /**
    * List of VNs and numbers in the map
    */
-  get vnNumbers () {
+  get vnsPosition () {
     return  [
-      { vn: 'MO', number: this.mo },
-      { vn: 'EU', number: this.eu },
-      { vn: 'CD', number: this.cd },
-      { vn: 'EX', number: this.ex },
-      { vn: 'D1', number: this.d1 },
-      { vn: 'D2', number: this.d2 },
-      { vn: 'DM', number: this.dm },
-      { vn: 'C1', number: this.c1 },
-      { vn: 'C2', number: this.c2 },
-      { vn: 'C3', number: this.c3 },
-      { vn: 'R1', number: this.r1 },
-      { vn: 'R2', number: this.r2 },
-      { vn: 'R3', number: this.r3 },
-      { vn: 'R4', number: this.r4 },
-    ]
+      { position: 'MO', vn: this.mo },
+      { position: 'EU', vn: this.eu },
+      { position: 'CD', vn: this.cd },
+      { position: 'EX', vn: this.ex },
+      { position: 'D1', vn: this.d1 },
+      { position: 'D2', vn: this.d2 },
+      { position: 'DM', vn: this.dm },
+      { position: 'C1', vn: this.c1 },
+      { position: 'C2', vn: this.c2 },
+      { position: 'C3', vn: this.c3 },
+      { position: 'R1', vn: this.r1 },
+      { position: 'R2', vn: this.r2 },
+      { position: 'R3', vn: this.r3 },
+      { position: 'R4', vn: this.r4 },
+    ] as VN[]
   }
   /**
    * List of fixed numbers in the map
    */
-  get fixedNumbers () {
+  get fixedVNs () {
     return  [
       this.mo,
       this.eu,
@@ -106,44 +106,44 @@ export class NumericMap {
   /**
    * List of fixed numbers and VNs in the map
    */
-  get fixedVnNumbers () {
+  get fixedVNsPosition () {
     return  [
-      { vn: 'MO', number: this.mo },
-      { vn: 'EU', number: this.eu },
-      { vn: 'CD', number: this.cd },
-      { vn: 'EX', number: this.ex },
-      { vn: 'DM', number: this.dm },
-    ]
+      { position: 'MO', vn: this.mo },
+      { position: 'EU', vn: this.eu },
+      { position: 'CD', vn: this.cd },
+      { position: 'EX', vn: this.ex },
+      { position: 'DM', vn: this.dm },
+    ] as VN[]
   }
 
   /**
    * List of the first cycle (0 to 28 years old) numbers and VNs in the map
    */
-  get firstCycleVnNumbers () {
+  get firstCycleVNsPosition () {
     const cycleStart = 0
     const cycleEnd = 28
 
     const list =  [
-      { vn: 'MO', number: this.mo },
-      { vn: 'EU', number: this.eu },
-      { vn: 'CD', number: this.cd },
-      { vn: 'EX', number: this.ex },
-      { vn: 'DM', number: this.dm },
-      { vn: 'D1', number: this.d1 },
-      { vn: 'C1', number: this.c1 },
-    ]
+      { position: 'MO', vn: this.mo },
+      { position: 'EU', vn: this.eu },
+      { position: 'CD', vn: this.cd },
+      { position: 'EX', vn: this.ex },
+      { position: 'DM', vn: this.dm },
+      { position: 'D1', vn: this.d1 },
+      { position: 'C1', vn: this.c1 },
+    ] as VN[]
 
     if (this.rAges.r1 >= cycleStart && this.rAges.r1 <= cycleEnd) {
-      list.push({ vn: 'R1', number: this.r1 })
+      list.push({ position: 'R1', vn: this.r1 })
     }
     if (this.rAges.r2 >= cycleStart && this.rAges.r2 <= cycleEnd) {
-      list.push({ vn: 'R2', number: this.r2 })
+      list.push({ position: 'R2', vn: this.r2 })
     }
     if (this.rAges.r3 >= cycleStart && this.rAges.r3 <= cycleEnd) {
-      list.push({ vn: 'R3', number: this.r3 })
+      list.push({ position: 'R3', vn: this.r3 })
     }
     if (this.rAges.r3 >= cycleEnd) {
-      list.push({ vn: 'R4', number: this.r4 })
+      list.push({ position: 'R4', vn: this.r4 })
     }
 
     return list
@@ -152,38 +152,38 @@ export class NumericMap {
   /**
    * List of the first cycle (0 to 28 years old) numbers in the map
    */
-  get firstCycleNumbers () {
-    return this.firstCycleVnNumbers.map(vn => vn.number)
+  get firstCycleVNs () {
+    return this.firstCycleVNsPosition.map(vnp => vnp.vn)
   }
 
   /**
    * List of the second cycle (28 to 56 years old) numbers and VNs in the map
    */
-  get secondCycleVnNumbers () {
+  get secondCycleVNsPosition () {
     const cycleStart = 28
     const cycleEnd = 56
 
     const list =  [
-      { vn: 'MO', number: this.mo },
-      { vn: 'EU', number: this.eu },
-      { vn: 'CD', number: this.cd },
-      { vn: 'EX', number: this.ex },
-      { vn: 'DM', number: this.dm },
-      { vn: 'D2', number: this.d2 },
-      { vn: 'C2', number: this.c2 },
-    ]
+      { position: 'MO', vn: this.mo },
+      { position: 'EU', vn: this.eu },
+      { position: 'CD', vn: this.cd },
+      { position: 'EX', vn: this.ex },
+      { position: 'DM', vn: this.dm },
+      { position: 'D2', vn: this.d2 },
+      { position: 'C2', vn: this.c2 },
+    ] as VN[]
 
     if (this.rAges.r1 >= cycleStart && this.rAges.r1 <= cycleEnd) {
-      list.push({ vn: 'R1', number: this.r1 })
+      list.push({ position: 'R1', vn: this.r1 })
     }
     if (this.rAges.r2 >= cycleStart && this.rAges.r2 <= cycleEnd) {
-      list.push({ vn: 'R2', number: this.r2 })
+      list.push({ position: 'R2', vn: this.r2 })
     }
     if (this.rAges.r3 >= cycleStart && this.rAges.r3 <= cycleEnd) {
-      list.push({ vn: 'R3', number: this.r3 })
+      list.push({ position: 'R3', vn: this.r3 })
     }
     if (this.rAges.r3 >= cycleEnd) {
-      list.push({ vn: 'R4', number: this.r4 })
+      list.push({ position: 'R4', vn: this.r4 })
     }
 
     return list
@@ -192,38 +192,38 @@ export class NumericMap {
   /**
    * List of the second cycle (28 to 56 years old) numbers in the map
    */
-  get secondCycleNumbers () {
-    return this.secondCycleVnNumbers.map(vn => vn.number)
+  get secondCycleVNs () {
+    return this.secondCycleVNsPosition.map(vnp => vnp.vn)
 
   }
 
   /**
    * List of the third cycle (28 to 56 years old) numbers and VNs in the map
    */
-  get thirdCycleVnNumbers () {
+  get thirdCycleVNsPosition () {
     const cycleStart = 56
     const cycleEnd = Infinity
 
     const list =  [
-      { vn: 'MO', number: this.mo },
-      { vn: 'EU', number: this.eu },
-      { vn: 'CD', number: this.cd },
-      { vn: 'EX', number: this.ex },
-      { vn: 'DM', number: this.dm },
-      { vn: 'C3', number: this.c3 },
-    ]
+      { position: 'MO', vn: this.mo },
+      { position: 'EU', vn: this.eu },
+      { position: 'CD', vn: this.cd },
+      { position: 'EX', vn: this.ex },
+      { position: 'DM', vn: this.dm },
+      { position: 'C3', vn: this.c3 },
+    ] as VN[]
 
     if (this.rAges.r1 >= cycleStart && this.rAges.r1 <= cycleEnd) {
-      list.push({ vn: 'R1', number: this.r1 })
+      list.push({ position: 'R1', vn: this.r1 })
     }
     if (this.rAges.r2 >= cycleStart && this.rAges.r2 <= cycleEnd) {
-      list.push({ vn: 'R2', number: this.r2 })
+      list.push({ position: 'R2', vn: this.r2 })
     }
     if (this.rAges.r3 >= cycleStart && this.rAges.r3 <= cycleEnd) {
-      list.push({ vn: 'R3', number: this.r3 })
+      list.push({ position: 'R3', vn: this.r3 })
     }
     if (this.rAges.r3 >= cycleEnd) {
-      list.push({ vn: 'R4', number: this.r4 })
+      list.push({ position: 'R4', vn: this.r4 })
     }
 
     return list
@@ -232,8 +232,8 @@ export class NumericMap {
   /**
    * List of the third cycle (28 to 56 years old) numbers in the map
    */
-  get thirdCycleNumbers () {
-    return this.thirdCycleVnNumbers.map(vn => vn.number)
+  get thirdCycleVNs () {
+    return this.thirdCycleVNsPosition.map(vnp => vnp.vn)
   }
 
   /**
@@ -244,43 +244,43 @@ export class NumericMap {
       return {
         cycle:     '1º Ciclo - 0/28 anos',
         index:     1,
-        vnNumbers: this.firstCycleVnNumbers,
+        vnNumbers: this.firstCycleVNsPosition,
       }
     } else if (this.age < 56) {
       return {
         cycle:     '2º Ciclo - 28/56 anos',
         index:     2,
-        vnNumbers: this.secondCycleVnNumbers,
+        vnNumbers: this.secondCycleVNsPosition,
       } 
     } else {
       return {
         cycle:     '3º Ciclo - + 56 anos',
         index:     3,
-        vnNumbers: this.thirdCycleVnNumbers,
+        vnNumbers: this.thirdCycleVNsPosition,
       }
     }
   }
   /**
    * List of unique numbers in the map
    */
-  get uniqueNumbers () {
-    return _array.unique(this.numbers).sort()
+  get uniqueVNs () {
+    return _array.unique(this.vns).sort()
   }
 
   /**
    * The amount of each number (0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9)
    */
   get singleDigitCount () {
-    const count: { number: SingleDigitT, count: number, vns: string[] }[] = [
-      { number: 1, ...this.digitCount(1) },
-      { number: 2, ...this.digitCount([2, 11]) },
-      { number: 3, ...this.digitCount(3) },
-      { number: 4, ...this.digitCount([4, 22]) },
-      { number: 5, ...this.digitCount(5) },
-      { number: 6, ...this.digitCount(6) },
-      { number: 7, ...this.digitCount(7) },
-      { number: 8, ...this.digitCount(8) },
-      { number: 9, ...this.digitCount(9) },
+    const count: VnCountSingleDigit[] = [
+      { vn: 1, ...this.digitCount(1) },
+      { vn: 2, ...this.digitCount([2, 11]) },
+      { vn: 3, ...this.digitCount(3) },
+      { vn: 4, ...this.digitCount([4, 22]) },
+      { vn: 5, ...this.digitCount(5) },
+      { vn: 6, ...this.digitCount(6) },
+      { vn: 7, ...this.digitCount(7) },
+      { vn: 8, ...this.digitCount(8) },
+      { vn: 9, ...this.digitCount(9) },
     ]
 
     return count
@@ -290,18 +290,18 @@ export class NumericMap {
    * The amount of each number (0 | 1 | 2 | 11 | 3 | 4 | 22 | 5 | 6 | 7 | 8 | 9)
    */
   get finalDigitCount () {
-    const count: { number: FinalSingleDigitT, count: number, vns: string[] }[] = [
-      { number: 1, ...this.digitCount(1) },
-      { number: 2, ...this.digitCount(2) },
-      { number: 11, ...this.digitCount(11) },
-      { number: 3, ...this.digitCount(3) },
-      { number: 4, ...this.digitCount(4) },
-      { number: 22, ...this.digitCount(22) },
-      { number: 5, ...this.digitCount(5) },
-      { number: 6, ...this.digitCount(6) },
-      { number: 7, ...this.digitCount(7) },
-      { number: 8, ...this.digitCount(8) },
-      { number: 9, ...this.digitCount(9) },
+    const count: VnCountFinalDigit[] = [
+      { vn: 1, ...this.digitCount(1) },
+      { vn: 2, ...this.digitCount(2) },
+      { vn: 11, ...this.digitCount(11) },
+      { vn: 3, ...this.digitCount(3) },
+      { vn: 4, ...this.digitCount(4) },
+      { vn: 22, ...this.digitCount(22) },
+      { vn: 5, ...this.digitCount(5) },
+      { vn: 6, ...this.digitCount(6) },
+      { vn: 7, ...this.digitCount(7) },
+      { vn: 8, ...this.digitCount(8) },
+      { vn: 9, ...this.digitCount(9) },
     ]
 
     return count
@@ -314,14 +314,14 @@ export class NumericMap {
    */
   digitCount (number: FinalSingleDigitT|FinalSingleDigitT[]) {
     const num = typeof number === 'number' ? [number] : number
-    const matchingVns: string[] = this.vnNumbers
-      .filter(vn => num.includes(vn.number))
-      .map(vn =>vn.vn)
+    const matchingPositions: string[] = this.vnsPosition
+      .filter(vn => num.includes(vn.vn))
+      .map(vn =>vn.position)
 
-    const singleDigitCount: { vns: string[], count: number } = { vns: [], count: 0 }
+    const singleDigitCount: { positions: string[], count: number } = { positions: [], count: 0 }
 
-    for (const vn of matchingVns) {
-      singleDigitCount.vns.push(vn)
+    for (const position of matchingPositions) {
+      singleDigitCount.positions.push(position)
       singleDigitCount.count++
     }
 

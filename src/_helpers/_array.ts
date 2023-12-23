@@ -1,3 +1,5 @@
+import { FinalSingleDigitT } from './types'
+
 class ArrayHelper {
   /**
    * Returns an array with the unique values of the original array
@@ -26,6 +28,23 @@ class ArrayHelper {
   duplicated <T> (arr: T[]): T[] {
     return arr
       .filter((itm, i) => arr.lastIndexOf(itm) === i && arr.indexOf(itm) !== i)
+  }
+
+  /**
+   * Returns a new array with the FinalSingleDigitT in the array that occurs more than once. 2 also counts 11 and 4 also counts 22 
+   * @param arr - The array to be checked
+   * @returns A new array with the list of duplicated values
+   */
+  duplicatedFinalSingleDigitT (arr: FinalSingleDigitT[]): FinalSingleDigitT[] {
+    const converted = arr
+      .map(d => d === 11
+        ? 2
+        : d === 22
+          ? 4
+          : d,
+      )
+
+    return [...new Set([...this.duplicated(converted), ...this.duplicated(arr)])]
   }
 
   /**

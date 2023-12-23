@@ -1,6 +1,6 @@
 import { _array } from '../_helpers/_array'
 import { _tec } from '../_helpers/_tec'
-import { MultiplicityT as MultiplicityT, MultiplicityTypeT, FixedVns, PyramidT, PercentageResultT, PercentageT, CycleInterpretationT, CycleInterpretationVns, Relation } from '../_helpers/types'
+import { MultiplicityT as MultiplicityT, MultiplicityTypeT, FixedPositions, PyramidT, PercentageResultT, PercentageT, CycleInterpretationT, CycleInterpretationVns, Relation, MultiplicityMultipleT, FinalSingleDigitT, VN } from '../_helpers/types'
 import { NumericMap } from './NumericMap'
 
 export class AdvancedTecniques {
@@ -175,7 +175,7 @@ export class AdvancedTecniques {
    * @returns Ausency tecnique results
    */
   #tec2Ausencia () {
-    const unique = this.#map.uniqueNumbers
+    const unique = this.#map.uniqueVNs
     const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
     return _array.notInArray(numbers, unique)
@@ -192,84 +192,30 @@ export class AdvancedTecniques {
         multiples: [],
       },
       {
-        type:      '1º Ciclo - 0/28 anos',
+        type:      '1º Ciclo (0/28 anos)',
         multiples: [],
       },
       {
-        type:      '2º Ciclo - 28/56 anos',
+        type:      '2º Ciclo (28/56 anos)',
         multiples: [],
       },
       {
-        type:      '3º Ciclo - + 56 anos',
+        type:      '3º Ciclo (+ 56 anos)',
         multiples: [],
       },
     ]
 
-    const fixedMultiplicity = _array.duplicated(this.#map.fixedNumbers)
-    if (fixedMultiplicity.length > 0) {
-      for (const num of fixedMultiplicity) {
-        const multiplicatedVns = this.#map.fixedVnNumbers
-          .filter(vn => vn.number === num)
-          .map(val => val.vn)
+    const fixedMultiplicity = _array.duplicatedFinalSingleDigitT(this.#map.fixedVNs)
+    allMultiplicities[0].multiples.push(...this.#multiples(fixedMultiplicity, this.#map.fixedVNsPosition))
 
-        allMultiplicities[0].multiples.push({
-          positions: multiplicatedVns,
-          vn:        num,
-          type:      MultiplicityTypeT[multiplicatedVns.length - 2],
-        })
-      }
-    }
+    const firstCycleMultiplicity = _array.duplicatedFinalSingleDigitT(this.#map.firstCycleVNs)
+    allMultiplicities[1].multiples.push(...this.#multiples(firstCycleMultiplicity, this.#map.firstCycleVNsPosition))
 
-    const firstCycleMultiplicity = _array.duplicated(this.#map.firstCycleNumbers)
-    if (firstCycleMultiplicity.length > 0) {
-      for (const num of firstCycleMultiplicity) {
-        const multiplicatedVns = this.#map.firstCycleVnNumbers
-          .filter(vn => vn.number === num)
-          .map(val => val.vn)
+    const secondCycleMultiplicity = _array.duplicatedFinalSingleDigitT(this.#map.secondCycleVNs)
+    allMultiplicities[2].multiples.push(...this.#multiples(secondCycleMultiplicity, this.#map.secondCycleVNsPosition))
 
-        if (_array.notInArray(multiplicatedVns, FixedVns).length > 0) {
-          allMultiplicities[1].multiples.push({
-            positions: multiplicatedVns,
-            vn:        num,
-            type:      MultiplicityTypeT[multiplicatedVns.length - 2],
-          })
-        }
-      }
-    }
-
-    const secondCycleMultiplicity = _array.duplicated(this.#map.secondCycleNumbers)
-    if (secondCycleMultiplicity.length > 0) {
-      for (const num of secondCycleMultiplicity) {
-        const multiplicatedVns = this.#map.secondCycleVnNumbers
-          .filter(vn => vn.number === num)
-          .map(val => val.vn)
-
-        if (_array.notInArray(multiplicatedVns, FixedVns).length > 0) {
-          allMultiplicities[2].multiples.push({
-            positions: multiplicatedVns,
-            vn:        num,
-            type:      MultiplicityTypeT[multiplicatedVns.length - 2],
-          })
-        }
-      }
-    }
-
-    const thirdCycleMultiplicity = _array.duplicated(this.#map.thirdCycleNumbers)
-    if (thirdCycleMultiplicity.length > 0) {
-      for (const num of thirdCycleMultiplicity) {
-        const multiplicatedVns = this.#map.thirdCycleVnNumbers
-          .filter(vn => vn.number === num)
-          .map(val => val.vn)
-
-        if (_array.notInArray(multiplicatedVns, FixedVns).length > 0) {
-          allMultiplicities[3].multiples.push({
-            positions: multiplicatedVns,
-            vn:        num,
-            type:      MultiplicityTypeT[multiplicatedVns.length - 2],
-          })
-        }
-      }
-    }
+    const thirdCycleMultiplicity = _array.duplicatedFinalSingleDigitT(this.#map.thirdCycleVNs)
+    allMultiplicities[3].multiples.push(...this.#multiples(thirdCycleMultiplicity, this.#map.thirdCycleVNsPosition))
     
     const multiplicity: MultiplicityT[] = []
     for (let i = 0; i < allMultiplicities.length; i++) {
@@ -279,6 +225,26 @@ export class AdvancedTecniques {
     }
     
     return multiplicity
+  }
+  
+  #multiples (multiplicity: FinalSingleDigitT[], vnPositions: VN[]) {
+    const multiples: MultiplicityMultipleT[] = []
+
+    for (const num of multiplicity) {
+      const multiplicatedVNsPosition = vnPositions
+        .filter(vnp => vnp.vn === num ||
+            (vnp.vn === 11 && num === 2) ||
+            (vnp.vn === 22 && num === 4))
+        .map(vnp => vnp.position)
+
+      multiples.push({
+        positions: multiplicatedVNsPosition,
+        vn:        num,
+        type:      MultiplicityTypeT[multiplicatedVNsPosition.length - 2],
+      })
+    }
+    
+    return multiples
   }
 
   /**

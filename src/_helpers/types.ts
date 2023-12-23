@@ -67,16 +67,19 @@ export const MultiplicityTypeT: [
   'Qd' , // Quadruplicidade: a pessoa necessita de orientação
   'Qt' ,  // Quintuplicidade: a pessoa necessita de orientação
 ]
+
+export type MultiplicityMultipleT = {
+  vn: FinalSingleDigitT,
+  positions: string[]
+  type: 'D'  | // Duplicidade: a pessoa controla sozinha
+        'T'  | // Triplicidade: a pessoa precisa de orientação
+        'Qd' | // Quadruplicidade: a pessoa necessita de orientação
+        'Qt'   // Quintuplicidade: a pessoa necessita de orientação
+}
+
 export type MultiplicityT = {
-  type: 'Fixas' | '1º Ciclo - 0/28 anos'|'2º Ciclo - 28/56 anos'|'3º Ciclo - + 56 anos',
-  multiples: {
-    vn: FinalSingleDigitT,
-    positions: string[]
-    type: 'D'  | // Duplicidade: a pessoa controla sozinha
-          'T'  | // Triplicidade: a pessoa precisa de orientação
-          'Qd' | // Quadruplicidade: a pessoa necessita de orientação
-          'Qt'   // Quintuplicidade: a pessoa necessita de orientação
-  }[]
+  type: 'Fixas' | '1º Ciclo (0/28 anos)'|'2º Ciclo (28/56 anos)'|'3º Ciclo (+ 56 anos)',
+  multiples: MultiplicityMultipleT[]
 }
 
 export type PercentageT = {
@@ -88,13 +91,30 @@ export type PercentageResultT = {
   percentage: PercentageT[],
   result: string
 }
-export const FixedVns = [
+export const FixedPositions = [
   'MO',
   'EU',
   'CD',
   'EX',
   'DM',
 ]
+
+export type VN = {
+  vn: FinalSingleDigitT,
+  position: string,
+}
+
+export type VnCountSingleDigit = {
+  vn: SingleDigitT,
+  positions: string[],
+  count: number,
+}
+
+export type VnCountFinalDigit = {
+  vn: FinalSingleDigitT,
+  positions: string[],
+  count: number,
+}
 
 export enum Relation {
   'ADORACAO_EU' = 'Adoração e identificação',
