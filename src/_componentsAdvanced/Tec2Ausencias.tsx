@@ -11,7 +11,7 @@ export function Tec2Ausencias ({ result }: { result: AdvancedTecniques }) {
   return (
     <>
       <AdvancedTitle>
-        Ausências
+        Ausências (AUS)
       </AdvancedTitle>
       <Grid2 container className='tec-content'>
         <AdvancedGrid i={0} key='aus'>
