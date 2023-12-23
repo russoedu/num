@@ -72,6 +72,7 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 14 – PUREZA
    */
+  tec14Pureza: FinalSingleDigitT|false
   
   /**
    * TÉCNICA 15 – REALIZAÇÃO ESPONTÂNEA
@@ -141,6 +142,7 @@ export class AdvancedTecniques {
     this.tec8AdequacaoDaLinguagem = this.#tec8AdequacaoDaLinguagem()
     this.tec9ExpressionVibration = this.#tec9ExpressionVibration()
     this.tec10FirstCycleInterpretation = this.#tec10FirstCycleInterpretation()
+    this.tec14Pureza = this.#tec14Pureza()
   }
 
   /**
@@ -468,6 +470,18 @@ Multiplicidades no ciclo: ${this.tec4Multiplicidades[index]?.multiples.map(m => 
     }
 
     return int
+  }
+
+  /**
+   * Purity interpretation
+   * @returns Purity interpretation results
+   */
+  #tec14Pureza () {
+    if (this.#map.cd === this.#map.mo) return this.#map.cd
+    if (this.#map.cd === this.#map.dm) return this.#map.cd
+    if (this.#map.mo === this.#map.dm) return this.#map.mo
+    
+    return false
   }
   /**
    *mo

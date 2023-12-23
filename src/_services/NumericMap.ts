@@ -133,16 +133,16 @@ export class NumericMap {
       { position: 'C1', vn: this.c1 },
     ] as VN[]
 
-    if (this.rAges.r1 >= cycleStart && this.rAges.r1 <= cycleEnd) {
+    if (this.rAges.r1 > cycleStart && this.rAges.r1 <= cycleEnd) {
       list.push({ position: 'R1', vn: this.r1 })
     }
-    if (this.rAges.r2 >= cycleStart && this.rAges.r2 <= cycleEnd) {
+    if (this.rAges.r2 > cycleStart && this.rAges.r2 <= cycleEnd) {
       list.push({ position: 'R2', vn: this.r2 })
     }
-    if (this.rAges.r3 >= cycleStart && this.rAges.r3 <= cycleEnd) {
+    if (this.rAges.r3 > cycleStart && this.rAges.r3 <= cycleEnd) {
       list.push({ position: 'R3', vn: this.r3 })
     }
-    if (this.rAges.r3 >= cycleEnd) {
+    if (this.rAges.r3 > cycleEnd) {
       list.push({ position: 'R4', vn: this.r4 })
     }
 
@@ -173,13 +173,13 @@ export class NumericMap {
       { position: 'C2', vn: this.c2 },
     ] as VN[]
 
-    if (this.rAges.r1 >= cycleStart && this.rAges.r1 <= cycleEnd) {
+    if (this.rAges.r1 > cycleStart && this.rAges.r1 <= cycleEnd) {
       list.push({ position: 'R1', vn: this.r1 })
     }
-    if (this.rAges.r2 >= cycleStart && this.rAges.r2 <= cycleEnd) {
+    if (this.rAges.r2 > cycleStart && this.rAges.r2 <= cycleEnd) {
       list.push({ position: 'R2', vn: this.r2 })
     }
-    if (this.rAges.r3 >= cycleStart && this.rAges.r3 <= cycleEnd) {
+    if (this.rAges.r3 > cycleStart && this.rAges.r3 <= cycleEnd) {
       list.push({ position: 'R3', vn: this.r3 })
     }
     if (this.rAges.r3 >= cycleEnd) {
@@ -213,16 +213,16 @@ export class NumericMap {
       { position: 'C3', vn: this.c3 },
     ] as VN[]
 
-    if (this.rAges.r1 >= cycleStart && this.rAges.r1 <= cycleEnd) {
+    if (this.rAges.r1 > cycleStart && this.rAges.r1 <= cycleEnd) {
       list.push({ position: 'R1', vn: this.r1 })
     }
-    if (this.rAges.r2 >= cycleStart && this.rAges.r2 <= cycleEnd) {
+    if (this.rAges.r2 > cycleStart && this.rAges.r2 <= cycleEnd) {
       list.push({ position: 'R2', vn: this.r2 })
     }
-    if (this.rAges.r3 >= cycleStart && this.rAges.r3 <= cycleEnd) {
+    if (this.rAges.r3 > cycleStart && this.rAges.r3 <= cycleEnd) {
       list.push({ position: 'R3', vn: this.r3 })
     }
-    if (this.rAges.r3 >= cycleEnd) {
+    if (this.rAges.r3 > cycleEnd) {
       list.push({ position: 'R4', vn: this.r4 })
     }
 
