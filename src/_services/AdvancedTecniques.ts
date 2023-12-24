@@ -402,10 +402,20 @@ export class AdvancedTecniques {
       ]
     }
 
-    const multiples = _array.duplicatedFinalSingleDigitT(this.#map.fixedMainVNs)
-    if (multiples.length > 0) {
-      return multiples.map(vn => ({
+    const fixedMultiples = _array.duplicatedFinalSingleDigitT(this.#map.fixedMainVNs)
+    if (fixedMultiples.length > 0) {
+      return fixedMultiples.map(vn => ({
         reason:  'Multiplicidade fixa de',
+        vn,
+        content: this.#tec14Style(vn),
+      }))
+    }
+
+    const cycleVns = this.#map.cycle.vnNumbers.map(c => c.vn)
+    const cycleMultiples = _array.duplicatedFinalSingleDigitT(cycleVns)
+    if (cycleMultiples.length > 0) {
+      return fixedMultiples.map(vn => ({
+        reason:  'Multiplicidade de',
         vn,
         content: this.#tec14Style(vn),
       }))

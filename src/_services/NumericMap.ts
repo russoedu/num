@@ -148,36 +148,13 @@ export class NumericMap {
     const cycleEnd = 28
 
     const list =  [
-      { position: 'MO', vn: this.mo },
-      { position: 'EU', vn: this.eu },
-      { position: 'CD', vn: this.cd },
-      { position: 'EX', vn: this.ex },
-      { position: 'DM', vn: this.dm },
+      ...this.fixedVNsPosition,
       { position: 'D1', vn: this.d1 },
       { position: 'C1', vn: this.c1 },
+      ...this.#getCycleList(cycleStart, cycleEnd),
     ] as VN[]
 
-    if (this.rAges.r1 > cycleStart && this.rAges.r1 <= cycleEnd) {
-      list.push({ position: 'R1', vn: this.r1 })
-    }
-    if (this.rAges.r2 > cycleStart && this.rAges.r2 <= cycleEnd) {
-      list.push({ position: 'R2', vn: this.r2 })
-    }
-    if (this.rAges.r3 > cycleStart && this.rAges.r3 <= cycleEnd) {
-      list.push({ position: 'R3', vn: this.r3 })
-    }
-    if (this.rAges.r3 > cycleEnd) {
-      list.push({ position: 'R4', vn: this.r4 })
-    }
-
     return list
-  }
-
-  /**
-   * List of the first cycle (0 to 28 years old) numbers in the map
-   */
-  get firstCycleVNs () {
-    return this.firstCycleVNsPosition.map(vnp => vnp.vn)
   }
 
   /**
@@ -188,37 +165,13 @@ export class NumericMap {
     const cycleEnd = 56
 
     const list =  [
-      { position: 'MO', vn: this.mo },
-      { position: 'EU', vn: this.eu },
-      { position: 'CD', vn: this.cd },
-      { position: 'EX', vn: this.ex },
-      { position: 'DM', vn: this.dm },
+      ...this.fixedVNsPosition,
       { position: 'D2', vn: this.d2 },
       { position: 'C2', vn: this.c2 },
+      ...this.#getCycleList(cycleStart, cycleEnd),
     ] as VN[]
 
-    if (this.rAges.r1 > cycleStart && this.rAges.r1 <= cycleEnd) {
-      list.push({ position: 'R1', vn: this.r1 })
-    }
-    if (this.rAges.r2 > cycleStart && this.rAges.r2 <= cycleEnd) {
-      list.push({ position: 'R2', vn: this.r2 })
-    }
-    if (this.rAges.r3 > cycleStart && this.rAges.r3 <= cycleEnd) {
-      list.push({ position: 'R3', vn: this.r3 })
-    }
-    if (this.rAges.r3 >= cycleEnd) {
-      list.push({ position: 'R4', vn: this.r4 })
-    }
-
     return list
-  }
-
-  /**
-   * List of the second cycle (28 to 56 years old) numbers in the map
-   */
-  get secondCycleVNs () {
-    return this.secondCycleVNsPosition.map(vnp => vnp.vn)
-
   }
 
   /**
@@ -229,30 +182,62 @@ export class NumericMap {
     const cycleEnd = Infinity
 
     const list =  [
-      { position: 'MO', vn: this.mo },
-      { position: 'EU', vn: this.eu },
-      { position: 'CD', vn: this.cd },
-      { position: 'EX', vn: this.ex },
-      { position: 'DM', vn: this.dm },
+      ...this.fixedVNsPosition,
       { position: 'C3', vn: this.c3 },
+      ...this.#getCycleList(cycleStart, cycleEnd),
     ] as VN[]
+    
+    return list
+  }
 
-    if (this.rAges.r1 > cycleStart && this.rAges.r1 <= cycleEnd) {
+  /**
+   * The list of VNs in the cycle
+   * @param cycleStart - The start of the life cycle
+   * @param cycleEnd - The end of the life cycle
+   * @returns The list of VNs
+   */
+  #getCycleList (cycleStart: number, cycleEnd: number) {
+    const r0 = 0
+    const list: VN[] = []
+
+    if ((r0 >= cycleStart && r0 < cycleEnd) ||
+    (this.rAges.r1 > cycleStart && this.rAges.r1 <= cycleEnd)) {
       list.push({ position: 'R1', vn: this.r1 })
     }
-    if (this.rAges.r2 > cycleStart && this.rAges.r2 <= cycleEnd) {
+
+    if ((this.rAges.r1 >= cycleStart && this.rAges.r1 < cycleEnd) ||
+    (this.rAges.r2 > cycleStart && this.rAges.r2 <= cycleEnd)) {
       list.push({ position: 'R2', vn: this.r2 })
     }
-    if (this.rAges.r3 > cycleStart && this.rAges.r3 <= cycleEnd) {
+
+    if ((this.rAges.r2 >= cycleStart && this.rAges.r2 < cycleEnd) ||
+    (this.rAges.r3 > cycleStart && this.rAges.r3 <= cycleEnd)) {
       list.push({ position: 'R3', vn: this.r3 })
     }
-    if (this.rAges.r3 > cycleEnd) {
+
+    if ((this.rAges.r3 >= cycleStart && this.rAges.r3 < cycleEnd) ||
+    this.rAges.r3 <= cycleEnd){
       list.push({ position: 'R4', vn: this.r4 })
     }
 
     return list
   }
+  
+  /**
+   * List of the first cycle (0 to 28 years old) numbers in the map
+   */
+  get firstCycleVNs () {
+    return this.firstCycleVNsPosition.map(vnp => vnp.vn)
+  }
+  
+  /**
+   * List of the second cycle (28 to 56 years old) numbers in the map
+   */
+  get secondCycleVNs () {
+    return this.secondCycleVNsPosition.map(vnp => vnp.vn)
 
+  }
+  
   /**
    * List of the third cycle (28 to 56 years old) numbers in the map
    */
