@@ -52,10 +52,10 @@ class ArrayHelper {
    * @param arr - The array to be joined
    * @returns The array separated by comma and "e" before the last
    */
-  join <T> (arr: T[]): string {
+  join <T> (arr: T[], surroundStart = '', surroundEnd = ''): string {
     if (arr.length === 1) return String(arr[0])
 
-    const copy = [...arr]
+    const copy = arr.map(entry => surroundStart + entry + surroundEnd)
     const last = copy.pop()
 
     const joinned = copy.join(', ') + ' e ' + last

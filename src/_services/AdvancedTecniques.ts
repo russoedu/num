@@ -1,6 +1,6 @@
 import { _array } from '../_helpers/_array'
 import { _tec } from '../_helpers/_tec'
-import { CycleInterpretationT, CycleInterpretationVns, FinalSingleDigitT, MultiplicityMultipleT, MultiplicityT, MultiplicityTypeT, PercentageResultT, PercentageT, PyramidT, Relation, VN } from '../_helpers/types'
+import { CycleInterpretationT, CycleInterpretationVns, FinalSingleDigitT, LanguageStyleT, MultiplicityMultipleT, MultiplicityT, MultiplicityTypeT, PercentageResultT, PercentageT, PyramidT, Relation, VN } from '../_helpers/types'
 import { NumericMap } from './NumericMap'
 
 export class AdvancedTecniques {
@@ -46,7 +46,7 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 8 – ADEQUAÇÃO DA LINGUAGEM
    */
-  tec8AdequacaoDaLinguagem: string
+  tec8AdequacaoDaLinguagem: LanguageStyleT[]
   
   /**
    * TÉCNICA 9 – VIBRAÇÃO DA EXPRESSÃO
@@ -391,24 +391,35 @@ export class AdvancedTecniques {
    * Reading style
    * @returns Reading style results
    */
-  #tec8AdequacaoDaLinguagem () {
+  #tec8AdequacaoDaLinguagem (): LanguageStyleT[] {
     if (this.tec14Pureza !== false) {
-      return this.#tec14Style(`Pureza de ${this.tec14Pureza}`, this.tec14Pureza)
+      return [
+        {
+          reason:  'Pureza de',
+          vn:      this.tec14Pureza,
+          content: this.#tec14Style(this.tec14Pureza),
+        },
+      ]
     }
 
     const multiples = _array.duplicatedFinalSingleDigitT(this.#map.fixedMainVNs)
     if (multiples.length > 0) {
-      return this.#tec14Style(`Multiplicidade de ${multiples[0]}`, multiples[0])
+      return multiples.map(vn => ({
+        reason:  'Multiplicidade fixa de',
+        vn,
+        content: this.#tec14Style(vn),
+      }))
     }
-    const cycle = this.#map.cycle.cycle
-    const index = this.#map.cycle.index
     
-    return `${cycle} - 
-Multiplicidades no ciclo: ${this.tec4Multiplicidades[index]?.multiples.map(m => m.vn).join(', ')}`
+    return []
   }
 
-  #tec14Style (type: string, num: FinalSingleDigitT): string {
-
+  /**
+   * The content for each VN
+   * @param vn - The number to retrieve the content
+   * @returns The content
+   */
+  #tec14Style (vn: FinalSingleDigitT): string {
     const style = [
       {
         numbers: [1],
@@ -433,14 +444,15 @@ Multiplicidades no ciclo: ${this.tec4Multiplicidades[index]?.multiples.map(m => 
     ]
     
     const result: string =  style
-      .find(st => st.numbers.includes(num as FinalSingleDigitT))
+      .find(st => st.numbers.includes(vn as FinalSingleDigitT))
       ?.style as string
 
-    return `${type} - ${result}`
+    return result
   }
+
   /**
-   * Reading style
-   * @returns Reading style results
+   * Expression vibration
+   * @returns Expression vibration results
    */
   #tec9ExpressionVibration () {
     const ex = this.#map.ex

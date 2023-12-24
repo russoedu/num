@@ -13,14 +13,26 @@ export function Tec8AdequacaoDaLinguagem ({ result }: { result: AdvancedTecnique
         Adequação da linguagem
       </AdvancedTitle>
       <Grid2 container className='tec-content'>
-        <AdvancedGrid i={0} key='aus'>
-          <Typography variant='h5'>
-            {result.tec8AdequacaoDaLinguagem}
-          </Typography>
-          <br/>
-        </AdvancedGrid>
-        <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
-        </Typography>
+        {
+          result.tec8AdequacaoDaLinguagem.map((tec, i) => (
+            <AdvancedGrid i={i} key={i}>
+              <Grid2 container sm={12} md={4} lg={3}>
+                <Typography variant='h6'>
+                  {tec.reason}
+                </Typography>
+                &nbsp;
+                <Typography variant='h5' className='vn'>
+                  {tec.vn}
+                </Typography>
+              </Grid2>
+              <Grid2 sm={12} md={8} lg={9}>
+                <Typography variant='h6'>
+                  {tec.content}
+                </Typography>
+              </Grid2>
+            </AdvancedGrid>
+          ))
+        }
       </Grid2>
       <div className='spacer'/>
     </>

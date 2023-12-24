@@ -1,10 +1,9 @@
 import { Typography } from '@mui/material'
-import { AdvancedTecniques } from '../_services/AdvancedTecniques'
-import { _array } from '../_helpers/_array'
-import { purple } from '../_helpers/types'
-import { AdvancedTitle } from '../_components/AdvancedTitle'
-import { AdvancedGrid } from '../_components/AdvancedGrid'
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2'
+import { AdvancedGrid } from '../_components/AdvancedGrid'
+import { AdvancedTitle } from '../_components/AdvancedTitle'
+import { _array } from '../_helpers/_array'
+import { AdvancedTecniques } from '../_services/AdvancedTecniques'
 import './Tec.css'
 
 export function Tec4Multiplicidades ({ result }: { result: AdvancedTecniques }) {
@@ -19,7 +18,7 @@ export function Tec4Multiplicidades ({ result }: { result: AdvancedTecniques }) 
             ? (
               result.tec4Multiplicidades.map((p, i) => (
                 <>
-                  <AdvancedGrid i={i} key={p.type}>
+                  <AdvancedGrid i={i}>
                     <Grid2 xs={12} sm={5} md={3}>
                       <Typography variant='h6'>
                         {p.type}
@@ -29,7 +28,7 @@ export function Tec4Multiplicidades ({ result }: { result: AdvancedTecniques }) 
                       {p.multiples.map(m => (
                         <>
                           <Grid2 xs={2} md={1}>
-                            <Typography variant='h5' color={purple} sx={{ fontWeight: 'bold' }}>
+                            <Typography variant='h5' className='vn'>
                               {m.vn}
                             </Typography>
                           </Grid2>
@@ -51,7 +50,7 @@ export function Tec4Multiplicidades ({ result }: { result: AdvancedTecniques }) 
               ))
             )
             : (
-              <AdvancedGrid i={0} key='mul'>
+              <AdvancedGrid i={0}>
                 <Typography variant='h6'>
                 Não há multiplicidades
                 </Typography>

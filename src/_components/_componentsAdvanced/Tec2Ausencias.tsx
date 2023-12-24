@@ -10,7 +10,7 @@ export function Tec2Ausencias ({ result }: { result: AdvancedTecniques }) {
         Ausências
       </Typography>
       <Divider sx={{ marginBottom: 2 }}/>
-      <Typography variant='h5' color={purple} sx={{ fontWeight: 'bold' }}>
+      <Typography variant='h5' className='vn'>
         {
           result.tec2Ausencia.length > 0
             ? _array.join(result.tec2Ausencia)

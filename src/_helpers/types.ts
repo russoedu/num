@@ -151,3 +151,9 @@ export type CycleInterpretationT = {
   relation: Relation,
   person: Person
 }
+
+export type LanguageStyleT = {
+  reason: string,
+  vn: FinalSingleDigitT,
+  content: string,
+}

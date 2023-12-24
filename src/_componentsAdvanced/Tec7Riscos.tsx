@@ -21,7 +21,7 @@ export function Tec7Riscos ({ result }: { result: AdvancedTecniques }) {
       <Grid2 container className='tec-content'>
         {
           result.tec7Riscos1aLeitura.percentage.map((p, i) => (
-            <AdvancedGrid i={i} key={p.name}>
+            <AdvancedGrid i={i} key={i}>
               <Grid2 xs={12} sm={9} md={6}>
                 <Typography variant='h6'>
                   {p.name}
@@ -45,7 +45,7 @@ export function Tec7Riscos ({ result }: { result: AdvancedTecniques }) {
       <Grid2 container className='tec-content'>
         {
           result.tec7Riscos2aLeitura.percentage.map((p, i) => (
-            <AdvancedGrid i={i} key={p.name}>
+            <AdvancedGrid i={i} key={i}>
               <Grid2 xs={10} sm={3}>
                 <Typography variant='h6'>
                   {p.name}

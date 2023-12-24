@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2/Grid2'
-import { ResultValueT, purple } from '../_helpers/types'
+import { ResultValueT } from '../_helpers/types'
 
 export function ResultGrid ({ data, xs }: { data: ResultValueT[], xs: number }) {
   return (
@@ -15,7 +15,7 @@ export function ResultGrid ({ data, xs }: { data: ResultValueT[], xs: number }) 
                 </Typography>
               </td>
               <td>
-                <Typography variant='h5' align='left' key={d.title} color={purple} sx={{ fontWeight: 'bold' }}>
+                <Typography variant='h5' align='left' key={d.title} className='vn'>
                   {d.value}
                 </Typography>
               </td>

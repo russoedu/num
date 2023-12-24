@@ -18,7 +18,7 @@ export function Tec5PotenciaisComoReagem ({ result }: { result: AdvancedTecnique
       <Grid2 container className='tec-content'>
         {
           result.tec5PotenciaisComoReagem.percentage.map((p, i) => (
-            <AdvancedGrid i={i} key={p.name}>
+            <AdvancedGrid i={i} key={i}>
               <Grid2 xs={9} sm={4} md={3}>
                 <Typography variant='h6'>
                   {p.name}

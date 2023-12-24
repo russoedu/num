@@ -18,7 +18,7 @@ export function Tec6PotenciaisComoSentem ({ result }: { result: AdvancedTecnique
       <Grid2 container className='tec-content'>
         {
           result.tec6PotenciaisComoSentem.percentage.map((p, i) => (
-            <AdvancedGrid i={i} key={p.name}>
+            <AdvancedGrid i={i} key={i}>
               <Grid2 xs={10} sm={4} md={3}>
                 <Typography variant='h6'>
                   {p.name}

@@ -2,11 +2,10 @@ import { Typography } from '@mui/material'
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2'
 import { AdvancedGrid } from '../_components/AdvancedGrid'
 import { AdvancedTitle } from '../_components/AdvancedTitle'
-import { purple } from '../_helpers/types'
 import { AdvancedTecniques } from '../_services/AdvancedTecniques'
 import './Tec.css'
 
-export function Tec10FirstCycleInterpretation ({ result }: { result: AdvancedTecniques }) {
+export function Tec10InterpretacaoDoPrimeiroCiclo ({ result }: { result: AdvancedTecniques }) {
   return (
     <>
       <AdvancedTitle>
@@ -15,16 +14,16 @@ export function Tec10FirstCycleInterpretation ({ result }: { result: AdvancedTec
       <Grid2 container className='tec-content'>
         {
           result.tec10FirstCycleInterpretation.map((ci, i) => (
-            <AdvancedGrid i={i} key={ci.person + ci.relation}>
-              <Typography variant='h5' color={purple} sx={{ fontWeight: 'bold' }}>
+            <AdvancedGrid i={i} key={i}>
+              <Typography variant='h5' className='vn'>
                 {ci.relation}
               </Typography>
               &nbsp;
-              <Typography variant='h5'>
+              <Typography variant='h6'>
                 com a figura
               </Typography>
               &nbsp;
-              <Typography variant='h5' color={purple} sx={{ fontWeight: 'bold' }}>
+              <Typography variant='h5' className='vn'>
                 {ci.person}
               </Typography>
             </AdvancedGrid>

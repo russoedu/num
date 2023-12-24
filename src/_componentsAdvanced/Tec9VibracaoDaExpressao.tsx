@@ -1,22 +1,20 @@
 import { Box, Typography } from '@mui/material'
-import { AdvancedTecniques } from '../_services/AdvancedTecniques'
-import { _array } from '../_helpers/_array'
-import { purple } from '../_helpers/types'
-import { AdvancedTitle } from '../_components/AdvancedTitle'
-import { AdvancedGrid } from '../_components/AdvancedGrid'
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2'
+import { AdvancedGrid } from '../_components/AdvancedGrid'
+import { AdvancedTitle } from '../_components/AdvancedTitle'
+import { AdvancedTecniques } from '../_services/AdvancedTecniques'
 import './Tec.css'
 
-export function Tec9ExpressionVibration ({ result }: { result: AdvancedTecniques }) {
+export function Tec9VibracaoDaExpressao ({ result }: { result: AdvancedTecniques }) {
   return (
     <>
       <AdvancedTitle>
         Vibração da expressão
       </AdvancedTitle>
       <Grid2 container className='tec-content'>
-        <AdvancedGrid i={0} key='aus'>
+        <AdvancedGrid i={0}>
           <Box>
-            <Typography variant='h5' color={purple} sx={{ fontWeight: 'bold' }} gutterBottom>
+            <Typography variant='h5' className='vn' gutterBottom>
               {result.tec9ExpressionVibration.title}
             </Typography>
             {result.tec9ExpressionVibration.more !== ''

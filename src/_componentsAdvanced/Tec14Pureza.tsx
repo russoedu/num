@@ -13,7 +13,7 @@ export function Tec14Pureza ({ result }: { result: AdvancedTecniques }) {
         Pureza
       </AdvancedTitle>
       <Grid2 container className='tec-content'>
-        <AdvancedGrid i={0} key='aus'>
+        <AdvancedGrid i={0}>
           <Typography variant='h5'>
             {
               result.tec14Pureza
