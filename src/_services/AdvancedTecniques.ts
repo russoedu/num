@@ -15,6 +15,10 @@ export class AdvancedTecniques {
     r3End: number,
     age: number,
     cycle: number,
+    cycles: {
+      name: string,
+      vns: VN[],
+    }[]
   }
 
   /**
@@ -145,14 +149,32 @@ export class AdvancedTecniques {
     this.#map = map
 
     this.tec0Cycles = {
-      c1End: 28,
-      c2End: 56,
-      c3End: 150,
-      r1End: map.rAges.r1,
-      r2End: map.rAges.r2,
-      r3End: map.rAges.r3,
-      age:   map.age,
-      cycle: map.cycle.index,
+      c1End:  28,
+      c2End:  56,
+      c3End:  150,
+      r1End:  map.rAges.r1,
+      r2End:  map.rAges.r2,
+      r3End:  map.rAges.r3,
+      age:    map.age,
+      cycle:  map.cycle.index,
+      cycles: [
+        {
+          name: 'Fixas',
+          vns:  map.fixedVNsPosition,
+        },
+        {
+          name: '1º Ciclo (0/28 anos)',
+          vns:  map.firstCycleOnlyVNsPosition,
+        },
+        {
+          name: '2º Ciclo (28/56 anos)',
+          vns:  map.secondCycleOnlyVNsPosition,
+        },
+        {
+          name: '3º Ciclo (+ 56 anos)',
+          vns:  map.thirdCycleOnlyVNsPosition,
+        },
+      ],
     }
     this.tec1Piramide = this.#tec1Piramide()
     this.tec2Ausencia = this.#tec2Ausencia()

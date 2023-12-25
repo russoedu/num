@@ -158,6 +158,22 @@ export class NumericMap {
   }
 
   /**
+   * List of the first cycle (0 to 28 years old) numbers and VNs in the map, excluding the fixed ones
+   */
+  get firstCycleOnlyVNsPosition () {
+    const cycleStart = 0
+    const cycleEnd = 28
+
+    const list =  [
+      { position: 'D1', vn: this.d1 },
+      { position: 'C1', vn: this.c1 },
+      ...this.#getCycleList(cycleStart, cycleEnd),
+    ] as VN[]
+
+    return list
+  }
+
+  /**
    * List of the second cycle (28 to 56 years old) numbers and VNs in the map
    */
   get secondCycleVNsPosition () {
@@ -175,6 +191,22 @@ export class NumericMap {
   }
 
   /**
+   * List of the second cycle (28 to 56 years old) numbers and VNs in the map, excluding the fixed ones
+   */
+  get secondCycleOnlyVNsPosition () {
+    const cycleStart = 28
+    const cycleEnd = 56
+
+    const list =  [
+      { position: 'D2', vn: this.d2 },
+      { position: 'C2', vn: this.c2 },
+      ...this.#getCycleList(cycleStart, cycleEnd),
+    ] as VN[]
+
+    return list
+  }
+
+  /**
    * List of the third cycle (28 to 56 years old) numbers and VNs in the map
    */
   get thirdCycleVNsPosition () {
@@ -183,6 +215,21 @@ export class NumericMap {
 
     const list =  [
       ...this.fixedVNsPosition,
+      { position: 'C3', vn: this.c3 },
+      ...this.#getCycleList(cycleStart, cycleEnd),
+    ] as VN[]
+    
+    return list
+  }
+
+  /**
+   * List of the third cycle (28 to 56 years old) numbers and VNs in the map, excluding the fixed ones
+   */
+  get thirdCycleOnlyVNsPosition () {
+    const cycleStart = 56
+    const cycleEnd = Infinity
+
+    const list =  [
       { position: 'C3', vn: this.c3 },
       ...this.#getCycleList(cycleStart, cycleEnd),
     ] as VN[]
