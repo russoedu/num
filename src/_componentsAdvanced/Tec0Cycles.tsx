@@ -5,6 +5,48 @@ import { AdvancedTecniques } from '../_services/AdvancedTecniques'
 import { AdvancedTitle } from '../_components/AdvancedTitle'
 import { useState } from 'react'
 
+/*
+ * https://stackoverflow.com/questions/4932181/rounded-table-corners-css-only
+ * 
+ * th:first-of-type {
+ * border-top-left-radius: 10px;
+ * }
+ * th:last-of-type {
+ * border-top-right-radius: 10px;
+ * }
+ * tr:last-of-type td:first-of-type {
+ * border-bottom-left-radius: 10px;
+ * }
+ * tr:last-of-type td:last-of-type {
+ * border-bottom-right-radius: 10px;
+ * }
+ * table {
+ *   border-collapse:separate;
+ *   border:solid black 1px;
+ *   border-radius:6px;
+ *   -moz-border-radius:6px;
+ * }
+ */
+
+/*
+ * td, th {
+ *   border-left:solid black 1px;
+ *   border-top:solid black 1px;
+ * }
+ */
+
+/*
+ * th {
+ *   background-color: blue;
+ *   border-top: none;
+ * }
+ */
+
+/*
+ * td:first-child, th:first-child {
+ *    border-left: none;
+ * }
+ */
 export function Tec0Cycles ({ result }: { result: AdvancedTecniques }) {
   const [show, setShow] = useState(false)
   const cycles = result.tec0Cycles
@@ -17,7 +59,7 @@ export function Tec0Cycles ({ result }: { result: AdvancedTecniques }) {
   
   return (
     <>
-      <div onClick={() => setShow(!show)}>
+      <div style={{ cursor: 'pointer' }} onClick={() => setShow(!show)}>
         <AdvancedTitle>
           Ciclos
         </AdvancedTitle>
@@ -25,6 +67,7 @@ export function Tec0Cycles ({ result }: { result: AdvancedTecniques }) {
       { show
         ? (
           <>
+            <p>Usando para ver se estou calculando certo. Pode ou não ficar no final.</p>
             <div style={{ width: '100%', borderSpacing: 0, height: 160, paddingTop: 25, marginBottom: 25 }}>
               <table style={{ width: '100%', borderSpacing: 0, height: 50 }}>
                 <tr>
@@ -75,6 +118,7 @@ export function Tec0Cycles ({ result }: { result: AdvancedTecniques }) {
                 {cycles.age} anos
               </Typography>
             </div>
+            <p>(ciclos mostrando só valores do ciclo, excluindo os fixos)</p>
             <Grid2 container className='tec-content'>
               {
                 result.tec0Cycles.cycles.map((p, i) => (
@@ -93,7 +137,7 @@ export function Tec0Cycles ({ result }: { result: AdvancedTecniques }) {
                                 {m.position}
                               </Typography>
                             </Grid2>
-                            <Grid2 xs={8} md={11}>
+                            <Grid2 xs={10} md={11}>
                               <Typography variant='h5' className='vn'>
                                 {m.vn}
                               </Typography>
@@ -111,9 +155,7 @@ export function Tec0Cycles ({ result }: { result: AdvancedTecniques }) {
         )
         :(
           <>
-            <p>Usando para ver se estou calculando certo. Pode ou não ficar no final.</p>
             <p>Clique no título para ver os valores</p>
-            <p>(ciclos mostrando só valores do ciclo, excluindo os fixos)</p>
           </>
         )}      
     </>

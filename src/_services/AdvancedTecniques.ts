@@ -436,6 +436,7 @@ export class AdvancedTecniques {
    * @returns Reading style results
    */
   #tec8AdequacaoDaLinguagem (): LanguageStyleT[] {
+    // Has purity
     if (this.tec14Pureza !== false) {
       return [
         {
@@ -446,6 +447,7 @@ export class AdvancedTecniques {
       ]
     }
 
+    // Fixed Multiplicity
     const fixedMultiples = _array.duplicatedFinalSingleDigitT(this.#map.fixedMainVNs)
     if (fixedMultiples.length > 0) {
       return fixedMultiples.map(vn => ({
@@ -455,17 +457,25 @@ export class AdvancedTecniques {
       }))
     }
 
+    // Cycle multiplicity
     const cycleVns = this.#map.cycle.vnNumbers.map(c => c.vn)
     const cycleMultiples = _array.duplicatedFinalSingleDigitT(cycleVns)
     if (cycleMultiples.length > 0) {
-      return fixedMultiples.map(vn => ({
+      return cycleMultiples.map(vn => ({
         reason:  'Multiplicidade de',
         vn,
         content: this.#tec14Style(vn),
       }))
     }
-    
-    return []
+
+    // CD
+    return [
+      {
+        reason:  'CD ',
+        vn:      this.#map.cd,
+        content: this.#tec14Style(this.#map.cd),
+      },
+    ]
   }
 
   /**

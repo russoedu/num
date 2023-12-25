@@ -48,17 +48,6 @@ export function Home () {
 
   return (
     <Container maxWidth={size}>
-      {/*  "xs" | "sm" | "md" | "lg" | "xl" */}
-      <div style={{ textAlign: 'center' }}>
-        <p>Size test</p>
-        <ButtonGroup sx={{ paddingBottom: 2 }}>
-          <Button variant={ size=== 'xs' ? 'contained' : 'outlined'} onClick={() => setSize('xs')}>pp</Button>
-          <Button variant={ size=== 'sm' ? 'contained' : 'outlined'} onClick={() => setSize('sm')}>p</Button>
-          <Button variant={ size=== 'md' ? 'contained' : 'outlined'} onClick={() => setSize('md')}>m</Button>
-          <Button variant={ size=== 'lg' ? 'contained' : 'outlined'} onClick={() => setSize('lg')}>g</Button>
-          <Button variant={ size=== 'xl' ? 'contained' : 'outlined'} onClick={() => setSize('xl')}>gg</Button>
-        </ButtonGroup>
-      </div>
       <Form
         name={nameState}
         birthday={birthdayState}
@@ -76,6 +65,17 @@ export function Home () {
         )
         : <></>
       }
+      {/*  "xs" | "sm" | "md" | "lg" | "xl" */}
+      <div className='spacer'/>
+      <div style={{ textAlign: 'center' }}>
+        <ButtonGroup sx={{ paddingBottom: 2 }}>
+          <Button variant={ size=== 'xs' ? 'contained' : 'outlined'} onClick={() => setSize('xs')}>pp</Button>
+          <Button variant={ size=== 'sm' ? 'contained' : 'outlined'} onClick={() => setSize('sm')}>p</Button>
+          <Button variant={ size=== 'md' ? 'contained' : 'outlined'} onClick={() => setSize('md')}>m</Button>
+          <Button variant={ size=== 'lg' ? 'contained' : 'outlined'} onClick={() => setSize('lg')}>g</Button>
+          <Button variant={ size=== 'xl' ? 'contained' : 'outlined'} onClick={() => setSize('xl')}>gg</Button>
+        </ButtonGroup>
+      </div>
     </Container>
   )
 }
