@@ -5,6 +5,18 @@ import { NumericMap } from './NumericMap'
 
 export class AdvancedTecniques {
   #map: NumericMap
+
+  tec0Cycles: {
+    c1End: number,
+    c2End: number,
+    c3End: number,
+    r1End: number,
+    r2End: number,
+    r3End: number,
+    age: number,
+    cycle: number,
+  }
+
   /**
    * TÉCNICA 1 – PIRAMIDE
    */
@@ -132,6 +144,16 @@ export class AdvancedTecniques {
   constructor (map: NumericMap) {
     this.#map = map
 
+    this.tec0Cycles = {
+      c1End: 28,
+      c2End: 56,
+      c3End: 150,
+      r1End: map.rAges.r1,
+      r2End: map.rAges.r2,
+      r3End: map.rAges.r3,
+      age:   map.age,
+      cycle: map.cycle.index,
+    }
     this.tec1Piramide = this.#tec1Piramide()
     this.tec2Ausencia = this.#tec2Ausencia()
     this.tec4Multiplicidades = this.#tec4Multiplicidades()
