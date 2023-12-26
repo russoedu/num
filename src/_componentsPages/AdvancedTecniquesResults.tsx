@@ -1,5 +1,9 @@
 import { Paper } from '@mui/material'
+import { Tec0Cycles } from '../_componentsAdvanced/Tec0Cycles'
 import { Tec10InterpretacaoDoPrimeiroCiclo } from '../_componentsAdvanced/Tec10InterpretacaoDoPrimeiroCiclo'
+import { Tec11DonosPraticantes } from '../_componentsAdvanced/Tec11DonosPraticantes'
+import { Tec12ConjuncaoCdMoOuMoCd } from '../_componentsAdvanced/Tec12ConjuncaoCdMoOuMoCd'
+import { Tec13PotenciaisViciosReciclador } from '../_componentsAdvanced/Tec13PotenciaisViciosReciclador'
 import { Tec14Pureza } from '../_componentsAdvanced/Tec14Pureza'
 import { Tec1Piramide } from '../_componentsAdvanced/Tec1Piramide'
 import { Tec2Ausencias } from '../_componentsAdvanced/Tec2Ausencias'
@@ -11,9 +15,6 @@ import { Tec8AdequacaoDaLinguagem } from '../_componentsAdvanced/Tec8AdequacaoDa
 import { Tec9VibracaoDaExpressao } from '../_componentsAdvanced/Tec9VibracaoDaExpressao'
 import { AdvancedTecniques } from '../_services/AdvancedTecniques'
 import './AdvancedTecniquesResults.css'
-import { Tec0Cycles } from '../_componentsAdvanced/Tec0Cycles'
-import { Tec11DonosPraticantes } from '../_componentsAdvanced/Tec11DonosPraticantes'
-import { Tec12ConjuncaoCdMoOuMoCd } from '../_componentsAdvanced/Tec12ConjuncaoCdMoOuMoCd'
 /**
  * The main form component
  * @returns Form component
@@ -51,6 +52,7 @@ export function AdvancedTecniquesResults ({ result }: { result: AdvancedTecnique
       <Tec6PotenciaisComoSentem result={result}/>
       <Tec7Riscos result={result}/>
       <Tec10InterpretacaoDoPrimeiroCiclo result={result}/>
+      <Tec13PotenciaisViciosReciclador result={result}/>
     </Paper>
   )
 }

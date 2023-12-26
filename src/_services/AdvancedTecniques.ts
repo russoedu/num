@@ -92,7 +92,8 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 13 – POTENCIAIS – VÍCIOS – RECICLADOR DE ENERGIAS E RISCOS  
    */
-  
+  tec13PotenciaisViciosReciclador1aLeitura: PercentageResultT
+
   /**
    * TÉCNICA 14 – PUREZA
    */
@@ -168,6 +169,7 @@ export class AdvancedTecniques {
     this.tec10InterpretacaoDoPrimeiroCiclo = this.#tec10InterpretacaoDoPrimeiroCiclo()
     this.tec11DonosPraticantes = this.#tec11DonosPraticantes()
     this.tec12ConjuncaoCdMoOuMoCd = this.#tec12ConjuncaoCdMoOuMoCd()
+    this.tec13PotenciaisViciosReciclador1aLeitura = this.#tec13PotenciaisViciosReciclador1aLeitura()
     this.tec14Pureza = this.#tec14Pureza()
 
     // Must be the last calculated because it uses other tecniques
@@ -838,6 +840,44 @@ export class AdvancedTecniques {
       return 'Pureza de estabilidade / sabedoria / magia / maestria / prática da espiritualidade'
     default:
       return ''
+    }
+  }
+
+  /**
+   * Potentials, vices and recicler interpretation
+   * @returns Potentials, vices and recicler interpretation results
+   */
+  #tec13PotenciaisViciosReciclador1aLeitura () {
+    const percentage: PercentageT[] = [
+      {
+        name:  'Honestidade',
+        value: this.#map.digitCount([1, 4, 22, 7, 8]).count * 7,
+      },
+      {
+        name:  'Colaboração / participação',
+        value: this.#map.digitCount([2, 11, 3, 5, 6, 9]).count * 7,
+      },
+      {
+        name:  'Trabalho',
+        value: this.#map.digitCount([1, 4, 22, 8]).count * 7,
+      },
+      {
+        name:  'Espiritualidade',
+        value: this.#map.digitCount([7, 9, 11, 22]).count * 7,
+      },
+    ]
+      .sort((a, b) => b.value - a.value)
+
+    const result = percentage[0].value - percentage[1].value > 10
+      ? percentage[0].name
+      : percentage[1].value - percentage[2].value > 0
+        ? `${percentage[0].name} e ${percentage[1].name}`
+        : `${percentage[0].name}, ${percentage[1].name} e ${percentage[2].name}`
+          
+
+    return{
+      percentage,
+      result,
     }
   }
 

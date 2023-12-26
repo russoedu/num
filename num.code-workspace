@@ -6,7 +6,12 @@
       ".gitignore": true,
       "package-lock.json": true,
       "tsconfig*": true,
-      // "vite.config.ts": true,
+      "vite.config.ts": true,
+      "index.html": true,
+      "copyPublic.js": true,
+      "public": true,
+      "dist": true,
+      ".github": true,
     },
     "debug.javascript.terminalOptions": {
       "skipFiles": [
