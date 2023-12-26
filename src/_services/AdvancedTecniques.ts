@@ -1,6 +1,6 @@
 import { _array } from '../_helpers/_array'
 import { _tec } from '../_helpers/_tec'
-import { CycleInterpretationT, CycleInterpretationVns, FinalSingleDigitT, LanguageStyleT, MultiplicityMultipleT, MultiplicityT, MultiplicityTypeT, PercentageResultT, PercentageT, PyramidT, Relation, VN } from '../_helpers/types'
+import { CycleInterpretationT, CycleInterpretationVns, FinalSingleDigitT, LanguageStyleT, MultiplicityMultipleT, MultiplicityT, MultiplicityTypeT, OwnersAndPractitionersT, PercentageResultT, PercentageT, PyramidT, Relation, SingleDigitT, VN, vnOwnerPractitioner } from '../_helpers/types'
 import { NumericMap } from './NumericMap'
 
 export class AdvancedTecniques {
@@ -29,7 +29,7 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 2 – AUSÊNCIAS – AUS 
    */
-  tec2Ausencia: number[]
+  tec2Ausencia: SingleDigitT[]
   /**
    * TÉCNICA 3 – NOSSO MAPA ATUAL
    */
@@ -37,13 +37,16 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 4 – DUPLICIDADES OU MAIS 
    */
-  tec4Multiplicidades: MultiplicityT[]
+  tec4Multiplicidades: {
+    data: MultiplicityT[],
+    comments: string,
+  }
 
   /**
    * TÉCNICA 5 – POTENCIAIS – COMO REAGEM
    */
   tec5PotenciaisComoReagem: PercentageResultT
-  
+
   /**
    * TÉCNICA 6 – POTENCIAIS – COMO SENTEM
    */
@@ -72,11 +75,15 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 10 – INTERPRETANDO O 1º CICLO DE VIDA
    */
-  tec10FirstCycleInterpretation: CycleInterpretationT[]
+  tec10InterpretacaoDoPrimeiroCiclo: CycleInterpretationT[]
   /**
    * TÉCNICA 11 – DONOS E PRATICANTES – RISCOS 
    */
-  
+  tec11DonosPraticantes: {
+    normal: OwnersAndPractitionersT[]
+    zeroAge?: OwnersAndPractitionersT[]
+  }
+
   /**
    * TÉCNICA 12 – CONJUNÇÃO CD X MO OU MO X CD
    */
@@ -148,34 +155,7 @@ export class AdvancedTecniques {
   constructor (map: NumericMap) {
     this.#map = map
 
-    this.tec0Cycles = {
-      c1End:  28,
-      c2End:  56,
-      c3End:  150,
-      r1End:  map.rAges.r1,
-      r2End:  map.rAges.r2,
-      r3End:  map.rAges.r3,
-      age:    map.age,
-      cycle:  map.cycle.index,
-      cycles: [
-        {
-          name: 'Fixas',
-          vns:  map.fixedVNsPosition,
-        },
-        {
-          name: '1º Ciclo (0/28 anos)',
-          vns:  map.firstCycleOnlyVNsPosition,
-        },
-        {
-          name: '2º Ciclo (28/56 anos)',
-          vns:  map.secondCycleOnlyVNsPosition,
-        },
-        {
-          name: '3º Ciclo (+ 56 anos)',
-          vns:  map.thirdCycleOnlyVNsPosition,
-        },
-      ],
-    }
+    this.tec0Cycles = this.#tec0Cycles()
     this.tec1Piramide = this.#tec1Piramide()
     this.tec2Ausencia = this.#tec2Ausencia()
     this.tec4Multiplicidades = this.#tec4Multiplicidades()
@@ -184,13 +164,48 @@ export class AdvancedTecniques {
     this.tec7Riscos1aLeitura = this.#tec7Riscos1aLeitura()
     this.tec7Riscos2aLeitura = this.#tec7Riscos2aLeitura()
     this.tec9ExpressionVibration = this.#tec9ExpressionVibration()
-    this.tec10FirstCycleInterpretation = this.#tec10FirstCycleInterpretation()
+    this.tec10InterpretacaoDoPrimeiroCiclo = this.#tec10InterpretacaoDoPrimeiroCiclo()
+    this.tec11DonosPraticantes = this.#tec11DonosPraticantes()
     this.tec14Pureza = this.#tec14Pureza()
 
     // Must be the last calculated because it uses other tecniques
     this.tec8AdequacaoDaLinguagem = this.#tec8AdequacaoDaLinguagem()
   }
 
+  /**
+   * Cycles info
+   * @returns Cycles info
+   */
+  #tec0Cycles () {
+    return {
+      c1End:  28,
+      c2End:  56,
+      c3End:  150,
+      r1End:  this.#map.rAges.r1,
+      r2End:  this.#map.rAges.r2,
+      r3End:  this.#map.rAges.r3,
+      age:    this.#map.age,
+      cycle:  this.#map.cycle.index,
+      cycles: [
+        {
+          name: 'Fixas',
+          vns:  this.#map.fixedVNsPosition,
+        },
+        {
+          name: '1º Ciclo (0/28 anos)',
+          vns:  this.#map.firstCycleOnlyVNsPosition,
+        },
+        {
+          name: '2º Ciclo (28/56 anos)',
+          vns:  this.#map.secondCycleOnlyVNsPosition,
+        },
+        {
+          name: '3º Ciclo (+ 56 anos)',
+          vns:  this.#map.thirdCycleOnlyVNsPosition,
+        },
+      ],
+    }
+  }
   /**
    * Pyramid tecnique
    * @returns Pyramid tecnique results
@@ -222,11 +237,11 @@ export class AdvancedTecniques {
    * Ausency tecnique
    * @returns Ausency tecnique results
    */
-  #tec2Ausencia () {
+  #tec2Ausencia (): SingleDigitT[] {
     const unique = this.#map.uniqueVNs
     const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-    return _array.notInArray(numbers, unique)
+    return _array.notInArray(numbers, unique) as SingleDigitT[]
   }
 
   /**
@@ -272,7 +287,26 @@ export class AdvancedTecniques {
       }
     }
     
-    return multiplicity
+    let hasT = false
+    for (const mm of multiplicity) {
+      for (const m of mm.multiples) {
+        if (m.type !== 'D') {
+          hasT = true
+          break
+        }   
+      }
+    }
+
+    let comments = 'Quando tem Duplicidades ou mais deve ser mais reforçado.'
+    
+    if (hasT) {
+      comments += ' De Triplicidade em diante deve procurar ajuda e viver a multiplicidade e o número seguinte.'
+    }
+
+    return {
+      data: multiplicity,
+      comments,
+    }
   }
   
   #multiples (multiplicity: FinalSingleDigitT[], vnPositions: VN[]) {
@@ -544,7 +578,7 @@ export class AdvancedTecniques {
    * First Cycle interpretation
    * @returns First Cycle interpretation results
    */
-  #tec10FirstCycleInterpretation () {
+  #tec10InterpretacaoDoPrimeiroCiclo () {
     const int: CycleInterpretationT[] = []
     
     for (const vn of CycleInterpretationVns) {
@@ -589,6 +623,64 @@ export class AdvancedTecniques {
     return int
   }
 
+  #tec11DonosPraticantes () {
+    const normal: OwnersAndPractitionersT[] = []
+    const unique = this.#map.uniqueVNs
+    const hasZero = unique.includes(0)
+
+    
+    if (!unique.includes(2) && unique.includes(11)) {
+      unique.push(2)
+    }
+    if (!unique.includes(4) && unique.includes(22)) {
+      unique.push(4)
+    }
+    unique.sort((a, b) => a - b)
+    if (hasZero) {
+      unique.shift()
+    }
+    
+    for (const vn of unique) {
+      normal.push(this.#ownerAndPractitionersSupport(vn, vnOwnerPractitioner[vn]))
+    }
+    
+
+    if (hasZero) {
+      const zeroAge: OwnersAndPractitionersT[] = []
+      
+      for (const vn of this.tec2Ausencia) {
+        if (!unique.includes(vn)) {
+          zeroAge.push(this.#ownerAndPractitionersSupport(vn, vnOwnerPractitioner[vn]))
+        }
+      }
+
+      return {
+        normal,
+        zeroAge,
+      } 
+    } else {
+      return {
+        normal,
+      } 
+    }
+  }
+
+  #ownerAndPractitionersSupport (vn: FinalSingleDigitT, numbers: FinalSingleDigitT[]) {
+    const percentage = this.#map.digitCount(numbers).count * 7
+
+    const support = percentage <= 21
+      ? 'pouca'
+      : percentage <= 56
+        ? 'média'
+        : 'muita'
+    
+    return {
+      vn,
+      percentage,
+      support,
+    } as OwnersAndPractitionersT
+  }
+
   /**
    * Purity interpretation
    * @returns Purity interpretation results
@@ -600,21 +692,4 @@ export class AdvancedTecniques {
     
     return false
   }
-  /**
-   *mo
-   *cd
-   *eu
-   *ex
-   *d1
-   *d2
-   *dm
-   *c1
-   *c2
-   *c3
-   *r1
-   *r2
-   *r3
-   *r4
-   *rAges
-   */
 }

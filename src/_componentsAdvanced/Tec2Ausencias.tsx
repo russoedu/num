@@ -5,6 +5,7 @@ import { AdvancedTitle } from '../_components/AdvancedTitle'
 import { _array } from '../_helpers/_array'
 import { AdvancedTecniques } from '../_services/AdvancedTecniques'
 import './Tec.css'
+import { Spacer } from '../_components/Spacer'
 
 export function Tec2Ausencias ({ result }: { result: AdvancedTecniques }) {
   return (
@@ -26,7 +27,7 @@ export function Tec2Ausencias ({ result }: { result: AdvancedTecniques }) {
           </Typography>
         </AdvancedGrid>
       </Grid2>
-      <div className='spacer'/>
+      <Spacer/>
     </>
   )
 }

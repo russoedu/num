@@ -4,6 +4,7 @@ import { AdvancedGrid } from '../_components/AdvancedGrid'
 import { AdvancedTecniques } from '../_services/AdvancedTecniques'
 import { AdvancedTitle } from '../_components/AdvancedTitle'
 import { useState } from 'react'
+import { Spacer } from '../_components/Spacer'
 
 /*
  * https://stackoverflow.com/questions/4932181/rounded-table-corners-css-only
@@ -150,7 +151,7 @@ export function Tec0Cycles ({ result }: { result: AdvancedTecniques }) {
                 ))
               }
             </Grid2>
-            <div className='spacer'/>
+            <Spacer/>
           </>
         )
         :(

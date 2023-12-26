@@ -5,6 +5,7 @@ import Grid2 from '@mui/material/Unstable_Grid2/Grid2'
 import { AdvancedTitle } from '../_components/AdvancedTitle'
 import { AdvancedGrid } from '../_components/AdvancedGrid'
 import './Tec.css'
+import { Spacer } from '../_components/Spacer'
 
 export function Tec6PotenciaisComoSentem ({ result }: { result: AdvancedTecniques }) {
   return (
@@ -33,7 +34,7 @@ export function Tec6PotenciaisComoSentem ({ result }: { result: AdvancedTecnique
           ))
         }
       </Grid2>
-      <div className='spacer'/>
+      <Spacer/>
     </>
   )
 }

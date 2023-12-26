@@ -134,16 +134,16 @@ export enum Person {
 
 export const CycleInterpretationVns = [
   {
-    vn:     1,
+    vn:     1 as SingleDigitT,
     person: Person.PAI },
   {
-    vn:     2,
+    vn:     2 as SingleDigitT,
     person: Person.MAE },
   {
-    vn:     3,
+    vn:     3 as SingleDigitT,
     person: Person.IRMAO },
   {
-    vn:     4,
+    vn:     4 as SingleDigitT,
     person: Person.AVO },
 ]
 
@@ -156,4 +156,25 @@ export type LanguageStyleT = {
   reason: string,
   vn: FinalSingleDigitT,
   content: string,
+}
+
+export type OwnersAndPractitionersT = {
+  vn: FinalSingleDigitT,
+  percentage: number,
+  support: 'pouca' | 'média' | 'muita'
+}
+
+export const vnOwnerPractitioner: { [key in FinalSingleDigitT]: FinalSingleDigitT[]} = {
+  0:  [],
+  1:  [1, 4, 7, 8, 22],
+  2:  [2, 6, 9, 11],
+  3:  [3, 1, 5, 9],
+  4:  [4, 1, 7, 8, 22],
+  5:  [5, 1, 3, 7, 9],
+  6:  [6, 2, 3, 5, 7, 9, 11, 22],
+  7:  [7, 9, 11, 22],
+  8:  [8, 1, 4, 7, 9, 22],
+  9:  [9, 7, 11, 22],
+  11: [11, 7, 9, 22],
+  22: [22, 7, 9, 11],
 }

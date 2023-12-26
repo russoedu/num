@@ -4,6 +4,7 @@ import { AdvancedGrid } from '../_components/AdvancedGrid'
 import { AdvancedTitle } from '../_components/AdvancedTitle'
 import { AdvancedTecniques } from '../_services/AdvancedTecniques'
 import './Tec.css'
+import { Spacer } from '../_components/Spacer'
 
 export function Tec1Piramide ({ result }: { result: AdvancedTecniques }) {
   return (
@@ -38,7 +39,7 @@ export function Tec1Piramide ({ result }: { result: AdvancedTecniques }) {
           </>
         ))}
       </Grid2>
-      <div className='spacer'/>
+      <Spacer/>
     </>
   )
 }

@@ -7,6 +7,7 @@ import { NumericMapResults } from '../_componentsPages/NumericMapResults'
 import { AdvancedTecniques } from '../_services/AdvancedTecniques'
 import { NumericMap } from '../_services/NumericMap'
 import './Home.css'
+import { Spacer } from '../_components/Spacer'
 
 /**
  * Home page
@@ -66,7 +67,7 @@ export function Home () {
         : <></>
       }
       {/*  "xs" | "sm" | "md" | "lg" | "xl" */}
-      <div className='spacer'/>
+      <Spacer/>
       <div style={{ textAlign: 'center' }}>
         <ButtonGroup sx={{ paddingBottom: 2 }}>
           <Button variant={ size=== 'xs' ? 'contained' : 'outlined'} onClick={() => setSize('xs')}>pp</Button>

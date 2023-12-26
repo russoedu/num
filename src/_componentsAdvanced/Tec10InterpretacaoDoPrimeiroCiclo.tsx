@@ -4,6 +4,7 @@ import { AdvancedGrid } from '../_components/AdvancedGrid'
 import { AdvancedTitle } from '../_components/AdvancedTitle'
 import { AdvancedTecniques } from '../_services/AdvancedTecniques'
 import './Tec.css'
+import { Spacer } from '../_components/Spacer'
 
 export function Tec10InterpretacaoDoPrimeiroCiclo ({ result }: { result: AdvancedTecniques }) {
   return (
@@ -13,7 +14,7 @@ export function Tec10InterpretacaoDoPrimeiroCiclo ({ result }: { result: Advance
       </AdvancedTitle>
       <Grid2 container className='tec-content'>
         {
-          result.tec10FirstCycleInterpretation.map((ci, i) => (
+          result.tec10InterpretacaoDoPrimeiroCiclo.map((ci, i) => (
             <AdvancedGrid i={i} key={i}>
               <Typography variant='h5' className='vn'>
                 {ci.relation}
@@ -33,7 +34,7 @@ export function Tec10InterpretacaoDoPrimeiroCiclo ({ result }: { result: Advance
             ---- Calma e delicadeza não tem uma descrição extra na apostila ----
         </Typography>
       </Grid2>
-      <div className='spacer'/>
+      <Spacer/>
     </>
   )
 }

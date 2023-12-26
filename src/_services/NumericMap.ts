@@ -50,7 +50,7 @@ export class NumericMap {
   /**
    * List of numbers in the map
    */
-  get vns () {
+  get vns (): FinalSingleDigitT[] {
     return  [
       this.mo,
       this.eu,
@@ -320,7 +320,7 @@ export class NumericMap {
    * List of unique numbers in the map
    */
   get uniqueVNs () {
-    return _array.unique(this.vns).sort()
+    return _array.unique(this.vns)
   }
 
   /**

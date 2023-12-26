@@ -5,6 +5,7 @@ import { AdvancedTitle } from '../_components/AdvancedTitle'
 import { AdvancedGrid } from '../_components/AdvancedGrid'
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2'
 import './Tec.css'
+import { Spacer } from '../_components/Spacer'
 
 export function Tec14Pureza ({ result }: { result: AdvancedTecniques }) {
   return (
@@ -23,7 +24,7 @@ export function Tec14Pureza ({ result }: { result: AdvancedTecniques }) {
           </Typography>
         </AdvancedGrid>
       </Grid2>
-      <div className='spacer'/>
+      <Spacer/>
     </>
   )
 }

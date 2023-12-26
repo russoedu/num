@@ -4,6 +4,7 @@ import { AdvancedGrid } from '../_components/AdvancedGrid'
 import { AdvancedTitle } from '../_components/AdvancedTitle'
 import { AdvancedTecniques } from '../_services/AdvancedTecniques'
 import './Tec.css'
+import { Spacer } from '../_components/Spacer'
 
 export function Tec9VibracaoDaExpressao ({ result }: { result: AdvancedTecniques }) {
   return (
@@ -29,7 +30,7 @@ export function Tec9VibracaoDaExpressao ({ result }: { result: AdvancedTecniques
           </Box>
         </AdvancedGrid>
       </Grid2>
-      <div className='spacer'/>
+      <Spacer/>
     </>
   )
 }
