@@ -52,7 +52,7 @@ export function Tec4Multiplicidades ({ result }: { result: AdvancedTecniques }) 
                     </>
                   ))
                 }
-                <Typography variant='h6' marginTop={2}>
+                <Typography variant='h6'>
                   {result.tec4Multiplicidades.comments}
                 </Typography>
               </>

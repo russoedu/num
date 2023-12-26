@@ -30,9 +30,6 @@ export function Tec10InterpretacaoDoPrimeiroCiclo ({ result }: { result: Advance
             </AdvancedGrid>
           ))
         }
-        <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
-            ---- Calma e delicadeza não tem uma descrição extra na apostila ----
-        </Typography>
       </Grid2>
       <Spacer/>
     </>

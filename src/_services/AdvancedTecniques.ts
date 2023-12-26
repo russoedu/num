@@ -87,7 +87,8 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 12 – CONJUNÇÃO CD X MO OU MO X CD
    */
-  
+  tec12ConjuncaoCdMoOuMoCd: string
+
   /**
    * TÉCNICA 13 – POTENCIAIS – VÍCIOS – RECICLADOR DE ENERGIAS E RISCOS  
    */
@@ -166,6 +167,7 @@ export class AdvancedTecniques {
     this.tec9ExpressionVibration = this.#tec9ExpressionVibration()
     this.tec10InterpretacaoDoPrimeiroCiclo = this.#tec10InterpretacaoDoPrimeiroCiclo()
     this.tec11DonosPraticantes = this.#tec11DonosPraticantes()
+    this.tec12ConjuncaoCdMoOuMoCd = this.#tec12ConjuncaoCdMoOuMoCd()
     this.tec14Pureza = this.#tec14Pureza()
 
     // Must be the last calculated because it uses other tecniques
@@ -623,6 +625,10 @@ export class AdvancedTecniques {
     return int
   }
 
+  /**
+   * Owners and practitioners interpretation
+   * @returns Owners and practitioners interpretation results
+   */
   #tec11DonosPraticantes () {
     const normal: OwnersAndPractitionersT[] = []
     const unique = this.#map.uniqueVNs
@@ -641,7 +647,7 @@ export class AdvancedTecniques {
     }
     
     for (const vn of unique) {
-      normal.push(this.#ownerAndPractitionersSupport(vn, vnOwnerPractitioner[vn]))
+      normal.push(this.#ownerAndPractitionersSupport(vn))
     }
     
 
@@ -650,7 +656,7 @@ export class AdvancedTecniques {
       
       for (const vn of this.tec2Ausencia) {
         if (!unique.includes(vn)) {
-          zeroAge.push(this.#ownerAndPractitionersSupport(vn, vnOwnerPractitioner[vn]))
+          zeroAge.push(this.#ownerAndPractitionersSupport(vn))
         }
       }
 
@@ -665,7 +671,13 @@ export class AdvancedTecniques {
     }
   }
 
-  #ownerAndPractitionersSupport (vn: FinalSingleDigitT, numbers: FinalSingleDigitT[]) {
+  /**
+   * Calculates the percentage and support for a VN
+   * @param vn - The VN to be checked
+   * @returns The VN, the percentage and the support level
+   */
+  #ownerAndPractitionersSupport (vn: FinalSingleDigitT) {
+    const numbers = vnOwnerPractitioner[vn]
     const percentage = this.#map.digitCount(numbers).count * 7
 
     const support = percentage <= 21
@@ -679,6 +691,154 @@ export class AdvancedTecniques {
       percentage,
       support,
     } as OwnersAndPractitionersT
+  }
+
+  /**
+   * CD x MO or MO x CD conjuction
+   * @returns CD x MO or MO x CD conjuction results
+   */
+  #tec12ConjuncaoCdMoOuMoCd () {
+    const small = Math.min(this.#map.cd, this.#map.mo).toString()
+    const big = Math.max(this.#map.cd, this.#map.mo).toString()
+
+    const concat = small + big
+
+    switch (concat) {
+    case '11':
+      return 'Pureza de coragem / líder nato'
+    case '12':
+      return 'Líder da união / só lidera na união / nunca sozinho'
+    case '13':
+      return 'Para crescer e desenvolver-se é preciso coragem / força / determinação com criatividade e comunicabilidade'
+    case '14':
+      return 'Lutar e conquistar mantendo estabilidade / segurança /  confiar em seus potenciais'
+    case '15':
+      return 'Liderança com liberdade / desprendimento / múltiplas vivências'
+    case '16':
+      return 'Liderança com afetividade / emoção / conciliação'
+    case '17':
+      return 'Liderança com perfeição / exigência / sabedoria'
+    case '18':
+      return 'Liderança com justiça / retidão / verdade'
+    case '19':
+      return 'Ter força / coragem para amparar / auxiliar o próximo'
+    case '111':
+      return 'Líder da união / só lidera na união / nunca sozinho / prática da espiritualidade'
+    case '122':
+      return 'Lutar e conquistar mantendo estabilidade / segurança / confiar em seus potenciais / prática da espiritualidade'
+    case '22':
+      return 'Pureza de união / flexibilidade / viver sempre unido '
+    case '23':
+      return 'União patrocina o crescimento / a expansão'
+    case '24':
+      return 'União proporciona segurança / estabilidade'
+    case '25':
+      return 'União com liberdade / desprendimento / múltiplas vivências'
+    case '26':
+      return 'Prática afetiva perfeita / união com afetividade'
+    case '27':
+      return 'União patrocina o autoconhecimento'
+    case '28':
+      return 'União baseada na justiça / retidão / verdade'
+    case '29':
+      return 'União de almas / união profunda com solicitação de acentuado companheirismo'
+    case '211':
+      return 'Pureza de união / flexibilidade / viver sempre unido / prática da espiritualidade'
+    case '222':
+      return 'União proporciona segurança / estabilidade / prática da espiritualidade'
+    case '33':
+      return 'Pureza de criação / talentos / expansão '
+    case '34':
+      return 'Crescimento proporciona segurança / estabilidade'
+    case '35':
+      return 'Crescimento / expansão sem fronteiras / diversificação / multiplicidade'
+    case '36':
+      return 'Prática efetiva com criatividade e desenvolvimento'
+    case '37':
+      return 'Crescimento para desenvolvimento de espiritualidade / autoconhecimento / sabedoria'
+    case '38':
+      return 'Crescimento justo / correto / verdadeiro'
+    case '39':
+      return 'Crescimento da alma / pessoa com interesses diversificados (acentuada curiosidade)'
+    case '311':
+      return 'União patrocina o crescimento / a expansão / prática da espiritualidade'
+    case '322':
+      return 'Crescimento proporciona segurança / estabilidade / prática da espiritualidade'
+    case '44':
+      return 'Pureza de estabilidade / segurança / trabalhador nato'
+    case '45':
+      return 'Segurança / estabilidade é adquirida pela liberdade / vivências'
+    case '46':
+      return 'Segurança nos sentimentos afetivos'
+    case '47':
+      return 'Estabilidade na prática do autoconhecimento e da espiritualidade'
+    case '48':
+      return 'Segurança no julgar / alto grau de correção / confiabilidade'
+    case '49':
+      return 'Controle da alma /  acentuada necessidade de controlar diversos aspectos da vida '
+    case '411':
+      return 'União proporciona segurança / estabilidade / prática da espiritualidade '
+    case '422':
+      return 'Pureza de estabilidade / segurança / trabalhador nato / prática da espiritualidade'
+    case '55':
+      return 'Pureza de liberdade / vivências / desprendimento para mudanças'
+    case '56':
+      return 'Afetividade com liberdade / vivências / mudanças '
+    case '57':
+      return 'Necessidade de liberdade / vivências para se autoconhecer'
+    case '58':
+      return 'Prática da justiça / retidão, considerando múltiplos aspectos (mediador)'
+    case '59':
+      return 'Alma livre / a mais intensa liberdade / desprendimento acentuado em todos os aspectos da vida'
+    case '511':
+      return 'União com liberdade /desprendimento / múltiplas vivências / prática da espiritualidade'
+    case '522':
+      return 'Segurança / estabilidade é adquirida pela liberdade / vivências / prática da espiritualidade'
+    case '66':
+      return 'Pureza de emoção / harmonia / alto potencial afetivo'
+    case '67':
+      return 'Amor com sabedoria / profundidade e exigências'
+    case '68':
+      return 'Amor com justiça / verdade / honestidade / retidão'
+    case '69':
+      return 'Amor de almas / amor com entrega total e duradouro'
+    case '611':
+      return 'Prática afetiva perfeita / união com afetividade / prática da espiritualidade'
+    case '622':
+      return 'Segurança nos sentimentos afetivos / prática da espiritualidade'
+    case '77':
+      return 'Pureza de autoconhecimento / espiritualidade / conhecimentos '
+    case '78':
+      return 'Sabedoria justa / correta / verdadeira'
+    case '79':
+      return 'Sabedoria da alma / pessoa sábia e conceituado conhecimento'
+    case '711':
+      return 'União patrocina o autoconhecimento / prática da espiritualidade'
+    case '722':
+      return 'Estabilidade na prática do autoconhecimento e da espiritualidade'
+    case '88':
+      return 'Pureza de correção / alto grau de confiabilidade / excessivamente verdadeiro '
+    case '89':
+      return 'Alma justa / correta / verdadeira '
+    case '811':
+      return 'União baseada na justiça / retidão / verdade / prática da espiritualidade'
+    case '822':
+      return 'Segurança no julgar / alto grau de correção / confiabilidade / prática da espiritualidade'
+    case '99':
+      return 'Pureza da alma / pessoa autêntica / cristalina '
+    case '911':
+      return 'União de almas / união profunda com solicitação de acentuado companheirismo / prática da espiritualidade'
+    case '922':
+      return 'Controle da alma /acentuada necessidade de controlar diversos aspectos da vida / prática da espiritualidade'
+    case '1111':
+      return 'Pureza de união / intuição / sensibilidade / prática da espiritualidade / reciclar energias '
+    case '1122':
+      return 'União proporciona segurança / estabilidade / intuição / sabedoria / prática da espiritualidade'
+    case '2222':
+      return 'Pureza de estabilidade / sabedoria / magia / maestria / prática da espiritualidade'
+    default:
+      return ''
+    }
   }
 
   /**
