@@ -36,3 +36,23 @@ table.cycle:last-of-type tr td:first-of-type {
 table.cycle:last-of-type tr td:last-of-type {
   border-bottom-right-radius: 4px;
 }
+
+.c1, .r1 {
+  background-color: rgb(245, 214, 214);
+}
+
+.c2, .r2 {
+  background-color: rgb(214, 214, 245);
+}
+
+.c3 {
+  background: linear-gradient(90deg, rgba(216, 245, 214, 1) 0%, rgba(216, 245, 214, 1) 90%, rgba(216, 245, 214, 0) 100%);
+}
+
+.r3 {
+  background-color: rgb(216, 245, 214);
+}
+
+.r4 {
+  background: linear-gradient(90deg, rgba(245, 235, 214, 1) 0%, rgba(245, 235, 214, 1) 90%, rgba(245, 235, 214, 0) 100%);
+}

@@ -49,7 +49,7 @@ export class NumericMap {
     this.tec0Cycles = {
       c1End:  28,
       c2End:  56,
-      c3End:  150,
+      c3End:  Math.max(76, this.age * 2),
       r1End:  this.rAges.r1,
       r2End:  this.rAges.r2,
       r3End:  this.rAges.r3,
