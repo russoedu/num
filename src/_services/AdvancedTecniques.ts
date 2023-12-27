@@ -6,6 +6,9 @@ import { NumericMap } from './NumericMap'
 export class AdvancedTecniques {
   #map: NumericMap
 
+  /**
+   * Cycles data
+   */
   tec0Cycles: {
     c1End: number,
     c2End: number,

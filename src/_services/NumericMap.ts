@@ -45,6 +45,35 @@ export class NumericMap {
     this.rAges.r3 = this.rAges.r2 + 10
 
     this.personalYear = this.#interestYear()
+
+    this.tec0Cycles = {
+      c1End:  28,
+      c2End:  56,
+      c3End:  150,
+      r1End:  this.rAges.r1,
+      r2End:  this.rAges.r2,
+      r3End:  this.rAges.r3,
+      age:    this.age,
+      cycle:  this.cycle.index,
+      cycles: [
+        {
+          name: 'Fixas',
+          vns:  this.fixedVNsPosition,
+        },
+        {
+          name: '1º Ciclo (0/28 anos)',
+          vns:  this.firstCycleOnlyVNsPosition,
+        },
+        {
+          name: '2º Ciclo (28/56 anos)',
+          vns:  this.secondCycleOnlyVNsPosition,
+        },
+        {
+          name: '3º Ciclo (+ 56 anos)',
+          vns:  this.thirdCycleOnlyVNsPosition,
+        },
+      ],
+    }
   }
 
   /**
@@ -595,6 +624,24 @@ export class NumericMap {
     start: Date,
     end:   Date,
   } = {} as any
+
+  /**
+   * Cycles data
+   */
+  tec0Cycles: {
+    c1End: number,
+    c2End: number,
+    c3End: number,
+    r1End: number,
+    r2End: number,
+    r3End: number,
+    age: number,
+    cycle: number,
+    cycles: {
+      name: string,
+      vns: VN[],
+    }[]
+  }
 
   #daySum: number
   #monthSum: number

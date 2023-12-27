@@ -1,0 +1,9 @@
+.MuiTabs-root {
+  position: relative;
+  top: -25px;
+  left: -25px;
+}
+
+button {
+  outline: 0!important;
+}

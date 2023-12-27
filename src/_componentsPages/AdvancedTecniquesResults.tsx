@@ -1,28 +1,26 @@
 import { Paper } from '@mui/material'
-import { Tec0Cycles } from '../_componentsAdvanced/Tec0Cycles'
-import { Tec10InterpretacaoDoPrimeiroCiclo } from '../_componentsAdvanced/Tec10InterpretacaoDoPrimeiroCiclo'
-import { Tec11DonosPraticantes } from '../_componentsAdvanced/Tec11DonosPraticantes'
-import { Tec12ConjuncaoCdMoOuMoCd } from '../_componentsAdvanced/Tec12ConjuncaoCdMoOuMoCd'
-import { Tec13PotenciaisViciosReciclador } from '../_componentsAdvanced/Tec13PotenciaisViciosReciclador'
-import { Tec14Pureza } from '../_componentsAdvanced/Tec14Pureza'
-import { Tec1Piramide } from '../_componentsAdvanced/Tec1Piramide'
-import { Tec2Ausencias } from '../_componentsAdvanced/Tec2Ausencias'
-import { Tec4Multiplicidades } from '../_componentsAdvanced/Tec4Multiplicidades'
-import { Tec5PotenciaisComoReagem } from '../_componentsAdvanced/Tec5PotenciaisComoReagem'
-import { Tec6PotenciaisComoSentem } from '../_componentsAdvanced/Tec6PotenciaisComoSentem'
-import { Tec7Riscos } from '../_componentsAdvanced/Tec7Riscos'
-import { Tec8AdequacaoDaLinguagem } from '../_componentsAdvanced/Tec8AdequacaoDaLinguagem'
-import { Tec9VibracaoDaExpressao } from '../_componentsAdvanced/Tec9VibracaoDaExpressao'
+import { Tec10InterpretacaoDoPrimeiroCiclo } from '../_componentsTecniques/Tec10InterpretacaoDoPrimeiroCiclo'
+import { Tec11DonosPraticantes } from '../_componentsTecniques/Tec11DonosPraticantes'
+import { Tec12ConjuncaoCdMoOuMoCd } from '../_componentsTecniques/Tec12ConjuncaoCdMoOuMoCd'
+import { Tec13PotenciaisViciosReciclador } from '../_componentsTecniques/Tec13PotenciaisViciosReciclador'
+import { Tec14Pureza } from '../_componentsTecniques/Tec14Pureza'
+import { Tec1Piramide } from '../_componentsTecniques/Tec1Piramide'
+import { Tec2Ausencias } from '../_componentsTecniques/Tec2Ausencias'
+import { Tec4Multiplicidades } from '../_componentsTecniques/Tec4Multiplicidades'
+import { Tec5PotenciaisComoReagem } from '../_componentsTecniques/Tec5PotenciaisComoReagem'
+import { Tec6PotenciaisComoSentem } from '../_componentsTecniques/Tec6PotenciaisComoSentem'
+import { Tec7Riscos } from '../_componentsTecniques/Tec7Riscos'
+import { Tec8AdequacaoDaLinguagem } from '../_componentsTecniques/Tec8AdequacaoDaLinguagem'
+import { Tec9VibracaoDaExpressao } from '../_componentsTecniques/Tec9VibracaoDaExpressao'
 import { AdvancedTecniques } from '../_services/AdvancedTecniques'
 import './AdvancedTecniquesResults.css'
 /**
  * The main form component
- * @returns Form component
+ * @param result - The advanced techniques result
  */
 export function AdvancedTecniquesResults ({ result }: { result: AdvancedTecniques }) {
   return (
     <Paper variant='elevation' elevation={3} sx={{ padding: 1, marginTop: 5 }} >
-      <Tec0Cycles result={result}/>
       <Tec8AdequacaoDaLinguagem result={result}/>
       <Tec11DonosPraticantes result={result}/>
       <Tec14Pureza result={result}/>

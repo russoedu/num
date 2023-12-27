@@ -3,11 +3,11 @@ import { useState } from 'react'
 // import { Advancedbuttons } from '../_components/AdvancedButtons'
 import { AdvancedTecniquesResults } from '../_componentsPages/AdvancedTecniquesResults'
 import { Form } from '../_componentsPages/Form'
-import { NumericMapResults } from '../_componentsPages/NumericMapResults'
 import { AdvancedTecniques } from '../_services/AdvancedTecniques'
 import { NumericMap } from '../_services/NumericMap'
 import './Home.css'
 import { Spacer } from '../_components/Spacer'
+import { MapOrCycle } from '../_componentsPages/MapOrCycle'
 
 /**
  * Home page
@@ -59,7 +59,7 @@ export function Home () {
       {hasResult
         ? (
           <>
-            <NumericMapResults result={result}/>
+            <MapOrCycle result={result}/>
             {/* <Advancedbuttons advancedMap={advancedMap} advancedTecniques={advancedTecniques}/> */}
             <AdvancedTecniquesResults result={advancedResult}/>
           </>

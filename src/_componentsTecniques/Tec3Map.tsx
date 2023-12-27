@@ -1,17 +1,17 @@
 import Grid from '@mui/material/Unstable_Grid2'
-import { Box, Divider, Paper, Typography } from '@mui/material'
+import { Box, Divider, Typography } from '@mui/material'
 import { NumericMap } from '../_services/NumericMap'
 import { ResultGrid } from '../_components/ResultGrid'
-import './NumericMapResults.css'
+import './Tec.css'
 import { purple } from '../_helpers/types'
 
 /**
  * The main form component
  * @returns Form component
  */
-export function NumericMapResults ({ result }: { result: NumericMap }) {
+export function Tec3Map ({ result }: { result: NumericMap }) {
   return (
-    <Paper variant='elevation' elevation={3} sx={{ padding: 3, marginTop: 5 }} >
+    <>
       <Grid container spacing={1} columns={{ xs: 2, sm: 4, md: 8 }}>
         <Grid xs={8}>
           <Box  sx={{ paddingBottom: 1 }}>
@@ -82,7 +82,6 @@ export function NumericMapResults ({ result }: { result: NumericMap }) {
           </Box>
         </Grid>
       </Grid>
-      
-    </Paper>
+    </>
   )
 }
