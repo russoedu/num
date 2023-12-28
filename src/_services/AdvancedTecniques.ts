@@ -1,28 +1,10 @@
 import { _array } from '../_helpers/_array'
 import { _tec } from '../_helpers/_tec'
-import { CycleInterpretationT, CycleInterpretationVns, FinalSingleDigitT, LanguageStyleT, MultiplicityMultipleT, MultiplicityT, MultiplicityTypeT, OwnersAndPractitionersT, PercentageResultT, PercentageT, PyramidT, Relation, SingleDigitT, VN, vnOwnerPractitioner } from '../_helpers/types'
+import { Cycle, CycleInterpretationT, CycleInterpretationVns, ExpressionVibrationT, FinalSingleDigitT, LanguageStyleT, MultiplicitesT, MultiplicityMultipleT, MultiplicityT, MultiplicityTypeT, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultT, PercentageT, PyramidT, Relation, SingleDigitT, VN, vnOwnerPractitioner } from '../_helpers/types'
 import { NumericMap } from './NumericMap'
 
 export class AdvancedTecniques {
   #map: NumericMap
-
-  /**
-   * Cycles data
-   */
-  tec0Cycles: {
-    c1End: number,
-    c2End: number,
-    c3End: number,
-    r1End: number,
-    r2End: number,
-    r3End: number,
-    age: number,
-    cycle: number,
-    cycles: {
-      name: string,
-      vns: VN[],
-    }[]
-  }
 
   /**
    * TÉCNICA 1 – PIRAMIDE
@@ -40,10 +22,7 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 4 – DUPLICIDADES OU MAIS 
    */
-  tec4Multiplicidades: {
-    data: MultiplicityT[],
-    comments: string,
-  }
+  tec4Multiplicidades: MultiplicitesT
 
   /**
    * TÉCNICA 5 – POTENCIAIS – COMO REAGEM
@@ -73,7 +52,7 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 9 – VIBRAÇÃO DA EXPRESSÃO
    */
-  tec9ExpressionVibration: { title: string, more: string }
+  tec9VibracaoDaExpressao: ExpressionVibrationT
   
   /**
    * TÉCNICA 10 – INTERPRETANDO O 1º CICLO DE VIDA
@@ -82,10 +61,7 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 11 – DONOS E PRATICANTES – RISCOS 
    */
-  tec11DonosPraticantes: {
-    normal: OwnersAndPractitionersT[]
-    zeroAge?: OwnersAndPractitionersT[]
-  }
+  tec11DonosPraticantes: OwnersAndPractitionersT
 
   /**
    * TÉCNICA 12 – CONJUNÇÃO CD X MO OU MO X CD
@@ -160,7 +136,6 @@ export class AdvancedTecniques {
   constructor (map: NumericMap) {
     this.#map = map
 
-    this.tec0Cycles = this.#tec0Cycles()
     this.tec1Piramide = this.#tec1Piramide()
     this.tec2Ausencia = this.#tec2Ausencia()
     this.tec4Multiplicidades = this.#tec4Multiplicidades()
@@ -168,7 +143,7 @@ export class AdvancedTecniques {
     this.tec6PotenciaisComoSentem = this.#tec6PotenciaisComoSentem()
     this.tec7Riscos1aLeitura = this.#tec7Riscos1aLeitura()
     this.tec7Riscos2aLeitura = this.#tec7Riscos2aLeitura()
-    this.tec9ExpressionVibration = this.#tec9ExpressionVibration()
+    this.tec9VibracaoDaExpressao = this.#tec9VibracaoDaExpressao()
     this.tec10InterpretacaoDoPrimeiroCiclo = this.#tec10InterpretacaoDoPrimeiroCiclo()
     this.tec11DonosPraticantes = this.#tec11DonosPraticantes()
     this.tec12ConjuncaoCdMoOuMoCd = this.#tec12ConjuncaoCdMoOuMoCd()
@@ -179,40 +154,6 @@ export class AdvancedTecniques {
     this.tec8AdequacaoDaLinguagem = this.#tec8AdequacaoDaLinguagem()
   }
 
-  /**
-   * Cycles info
-   * @returns Cycles info
-   */
-  #tec0Cycles () {
-    return {
-      c1End:  28,
-      c2End:  56,
-      c3End:  150,
-      r1End:  this.#map.rAges.r1,
-      r2End:  this.#map.rAges.r2,
-      r3End:  this.#map.rAges.r3,
-      age:    this.#map.age,
-      cycle:  this.#map.cycle.index,
-      cycles: [
-        {
-          name: 'Fixas',
-          vns:  this.#map.fixedVNsPosition,
-        },
-        {
-          name: '1º Ciclo (0/28 anos)',
-          vns:  this.#map.firstCycleOnlyVNsPosition,
-        },
-        {
-          name: '2º Ciclo (28/56 anos)',
-          vns:  this.#map.secondCycleOnlyVNsPosition,
-        },
-        {
-          name: '3º Ciclo (+ 56 anos)',
-          vns:  this.#map.thirdCycleOnlyVNsPosition,
-        },
-      ],
-    }
-  }
   /**
    * Pyramid tecnique
    * @returns Pyramid tecnique results
@@ -256,68 +197,80 @@ export class AdvancedTecniques {
    * @returns Multiplicity tecnique results
    */
   #tec4Multiplicidades () {
-    const allMultiplicities: MultiplicityT[] = [
+    // Creates the array with all cycles
+    const data: MultiplicityT[] = [
       {
-        type:      'Fixas',
-        multiples: [],
+        type:      Cycle.FIXED,
+        multiples: this.#multiples(Cycle.FIXED),
       },
       {
-        type:      '1º Ciclo (0/28 anos)',
-        multiples: [],
+        type:      Cycle.FIRST,
+        multiples: this.#multiples(Cycle.FIRST),
       },
       {
-        type:      '2º Ciclo (28/56 anos)',
-        multiples: [],
+        type:      Cycle.SECOND,
+        multiples: this.#multiples(Cycle.SECOND),
       },
       {
-        type:      '3º Ciclo (+ 56 anos)',
-        multiples: [],
+        type:      Cycle.THIRD,
+        multiples: this.#multiples(Cycle.THIRD),
       },
     ]
 
-    const fixedMultiplicity = _array.duplicatedFinalSingleDigitT(this.#map.fixedVNs)
-    allMultiplicities[0].multiples.push(...this.#multiples(fixedMultiplicity, this.#map.fixedVNsPosition))
+    let hasMoreThanDuplicity = false
 
-    const firstCycleMultiplicity = _array.duplicatedFinalSingleDigitT(this.#map.firstCycleVNs)
-    allMultiplicities[1].multiples.push(...this.#multiples(firstCycleMultiplicity, this.#map.firstCycleVNsPosition))
-
-    const secondCycleMultiplicity = _array.duplicatedFinalSingleDigitT(this.#map.secondCycleVNs)
-    allMultiplicities[2].multiples.push(...this.#multiples(secondCycleMultiplicity, this.#map.secondCycleVNsPosition))
-
-    const thirdCycleMultiplicity = _array.duplicatedFinalSingleDigitT(this.#map.thirdCycleVNs)
-    allMultiplicities[3].multiples.push(...this.#multiples(thirdCycleMultiplicity, this.#map.thirdCycleVNsPosition))
-    
-    const multiplicity: MultiplicityT[] = []
-    for (let i = 0; i < allMultiplicities.length; i++) {
-      if(allMultiplicities[i].multiples.length > 0) {
-        multiplicity.push(allMultiplicities[i])
+    // Removes the cycles where no multiplicity was found and checks if any has more than duplicity
+    for (let i = data.length - 1; i >= 0; i--) {
+      if(data[i].multiples.length <= 0) {
+        data.splice(i, 1)
+      } else {
+        hasMoreThanDuplicity ||= data[i].multiples.reduce((p, c) => p || (c.type !== 'D'), false) 
       }
     }
     
-    let hasT = false
-    for (const mm of multiplicity) {
-      for (const m of mm.multiples) {
-        if (m.type !== 'D') {
-          hasT = true
-          break
-        }   
-      }
-    }
-
     let comments = 'Quando tem Duplicidades ou mais deve ser mais reforçado.'
     
-    if (hasT) {
+    if (hasMoreThanDuplicity) {
       comments += ' De Triplicidade em diante deve procurar ajuda e viver a multiplicidade e o número seguinte.'
     }
 
     return {
-      data: multiplicity,
+      data,
       comments,
     }
   }
   
-  #multiples (multiplicity: FinalSingleDigitT[], vnPositions: VN[]) {
+  /**
+   * Calculates the multiplicity for the cycle
+   * @param cycle - The cycle to be calculated
+   * @returns The VN, its positions and the multiplicity type
+   */
+  #multiples (cycle: Cycle) {
+    let multiplicityData: FinalSingleDigitT[] = []
+    let vnPositions: VN[] = []
+
     const multiples: MultiplicityMultipleT[] = []
+
+    switch (cycle) {
+    case Cycle.FIXED:
+      multiplicityData = this.#map.fixedVNs
+      vnPositions = this.#map.fixedVNsPosition
+      break
+    case Cycle.FIRST:
+      multiplicityData = this.#map.firstCycleVNs
+      vnPositions = this.#map.firstCycleVNsPosition
+      break
+    case Cycle.SECOND:
+      multiplicityData = this.#map.secondCycleVNs
+      vnPositions = this.#map.secondCycleVNsPosition
+      break
+    case Cycle.THIRD:
+      multiplicityData = this.#map.thirdCycleVNs
+      vnPositions = this.#map.thirdCycleVNsPosition
+      break
+    }
+
+    const multiplicity = _array.duplicatedFinalSingleDigitT(multiplicityData)
 
     for (const num of multiplicity) {
       const multiplicatedVNsPosition = vnPositions
@@ -559,7 +512,7 @@ export class AdvancedTecniques {
    * Expression vibration
    * @returns Expression vibration results
    */
-  #tec9ExpressionVibration () {
+  #tec9VibracaoDaExpressao () {
     const ex = this.#map.ex
     
     if ([1, 4, 7, 8].includes(ex)) {
@@ -635,7 +588,7 @@ export class AdvancedTecniques {
    * @returns Owners and practitioners interpretation results
    */
   #tec11DonosPraticantes () {
-    const normal: OwnersAndPractitionersT[] = []
+    const normal: OwnersAndPractitionersDataT[] = []
     const unique = this.#map.uniqueVNs
     const hasZero = unique.includes(0)
 
@@ -657,7 +610,7 @@ export class AdvancedTecniques {
     
 
     if (hasZero) {
-      const zeroAge: OwnersAndPractitionersT[] = []
+      const zeroAge: OwnersAndPractitionersDataT[] = []
       
       for (const vn of this.tec2Ausencia) {
         if (!unique.includes(vn)) {
@@ -695,7 +648,7 @@ export class AdvancedTecniques {
       vn,
       percentage,
       support,
-    } as OwnersAndPractitionersT
+    } as OwnersAndPractitionersDataT
   }
 
   /**

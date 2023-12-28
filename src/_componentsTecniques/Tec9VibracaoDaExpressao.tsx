@@ -16,11 +16,11 @@ export function Tec9VibracaoDaExpressao ({ result }: { result: AdvancedTecniques
         <AdvancedGrid i={0}>
           <Box>
             <Typography variant='h5' className='vn' gutterBottom>
-              {result.tec9ExpressionVibration.title}
+              {result.tec9VibracaoDaExpressao.title}
             </Typography>
-            {result.tec9ExpressionVibration.more !== ''
+            {result.tec9VibracaoDaExpressao.more !== ''
               ? <Typography variant='h5'>
-                {result.tec9ExpressionVibration.more}
+                {result.tec9VibracaoDaExpressao.more}
               </Typography>
               : <></>
             }

@@ -15,6 +15,13 @@ export type ThemeT = {
   height:       number,
 }
 
+export enum Cycle {
+  FIXED = 'Fixas',
+  FIRST = '1º Ciclo (0/28 anos)',
+  SECOND = '2º Ciclo (28/56 anos)',
+  THIRD = '3º Ciclo (+ 56 anos)',
+}
+
 export type FormInput = {
   name: [string, React.Dispatch<React.SetStateAction<string>>],
   birthday: [string, React.Dispatch<React.SetStateAction<string>>],
@@ -82,8 +89,13 @@ export type MultiplicityMultipleT = {
 }
 
 export type MultiplicityT = {
-  type: 'Fixas' | '1º Ciclo (0/28 anos)'|'2º Ciclo (28/56 anos)'|'3º Ciclo (+ 56 anos)',
+  type: Cycle,
   multiples: MultiplicityMultipleT[]
+}
+
+export type MultiplicitesT = {
+  data: MultiplicityT[],
+  comments: string,
 }
 
 export type PercentageT = {
@@ -162,12 +174,16 @@ export type LanguageStyleT = {
   content: string,
 }
 
-export type OwnersAndPractitionersT = {
+export type OwnersAndPractitionersDataT = {
   vn: FinalSingleDigitT,
   percentage: number,
   support: 'pouca' | 'média' | 'muita'
 }
 
+export type OwnersAndPractitionersT = {
+  normal: OwnersAndPractitionersDataT[]
+  zeroAge?: OwnersAndPractitionersDataT[]
+}
 export const vnOwnerPractitioner: { [key in FinalSingleDigitT]: FinalSingleDigitT[]} = {
   0:  [],
   1:  [1, 4, 7, 8, 22],
@@ -182,3 +198,20 @@ export const vnOwnerPractitioner: { [key in FinalSingleDigitT]: FinalSingleDigit
   11: [11, 7, 9, 22],
   22: [22, 7, 9, 11],
 }
+
+export type CyclesT = {
+  c1End: number,
+  c2End: number,
+  c3End: number,
+  r1End: number,
+  r2End: number,
+  r3End: number,
+  age: number,
+  cycle: number,
+  cycles: {
+    name: string,
+    vns: VN[],
+  }[]
+}
+
+export type ExpressionVibrationT = { title: string, more: string }

@@ -1,7 +1,7 @@
 import { _array } from '../_helpers/_array'
 import { _date } from '../_helpers/_date'
 import { _name } from '../_helpers/_name'
-import { FinalSingleDigitT, SingleDigitT, consonants, vowels, Consonants, Vowels, letterValues, VN, VnCountSingleDigit, VnCountFinalDigit } from '../_helpers/types'
+import { FinalSingleDigitT, SingleDigitT, consonants, vowels, Consonants, Vowels, letterValues, VN, VnCountSingleDigit, VnCountFinalDigit, CyclesT } from '../_helpers/types'
 
 export class NumericMap {
   constructor (name: string, birthday: string) {
@@ -79,7 +79,7 @@ export class NumericMap {
   /**
    * List of numbers in the map
    */
-  get vns (): FinalSingleDigitT[] {
+  get vns () {
     return  [
       this.mo,
       this.eu,
@@ -95,7 +95,7 @@ export class NumericMap {
       this.r2,
       this.r3,
       this.r4,
-    ]
+    ] as FinalSingleDigitT[]
   }
 
   /**
@@ -129,7 +129,7 @@ export class NumericMap {
       this.cd,
       this.ex,
       this.dm,
-    ]
+    ] as FinalSingleDigitT[]
   }
 
   /**
@@ -141,7 +141,7 @@ export class NumericMap {
       this.eu,
       this.cd,
       this.dm,
-    ]
+    ] as FinalSingleDigitT[]
   }
 
   /**
@@ -628,20 +628,7 @@ export class NumericMap {
   /**
    * Cycles data
    */
-  tec0Cycles: {
-    c1End: number,
-    c2End: number,
-    c3End: number,
-    r1End: number,
-    r2End: number,
-    r3End: number,
-    age: number,
-    cycle: number,
-    cycles: {
-      name: string,
-      vns: VN[],
-    }[]
-  }
+  tec0Cycles: CyclesT
 
   #daySum: number
   #monthSum: number
