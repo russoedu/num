@@ -1,0 +1,10 @@
+{
+  "name": "Numerologia Pitagórica",
+  "short_name": "num pi",
+  "theme_color": "#894fd6",
+  "background_color": "#fff",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/"
+}
