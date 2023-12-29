@@ -14,10 +14,10 @@ import { MapOrCycle } from '../_componentsPages/MapOrCycle'
  */
 export function Home () {
   const nameState = useState('')
-  const [name, setName] = nameState
+  const name = nameState[0]
 
   const birthdayState = useState('')
-  const [birthday, setBirthday] = birthdayState
+  const birthday = birthdayState[0]
 
   const [result, setResult] = useState({} as NumericMap)
   const [advancedResult, setAdvancedResult] = useState({} as AdvancedTecniques)
@@ -30,21 +30,23 @@ export function Home () {
    */
 
 
-  /** replace by a state - "filled" */
-  function calculate () {
-    console.log('calc')
-    const map = new NumericMap(name, birthday)
-    const advanced = new AdvancedTecniques(map)
-    setResult(map)
-    setAdvancedResult(advanced)
-    setHasResult(true)
-  }
-  function reset () {
-    setResult({} as NumericMap)
-    setAdvancedResult({} as AdvancedTecniques)
-    setName('')
-    setBirthday('')
-    setHasResult(false)
+  /**
+   * Calculates the map
+   * @param clean - Used when the person is typing and the data is not complete
+   */
+  function calculate (clean = false) {
+    if (clean) {
+      setResult({} as NumericMap)
+      setAdvancedResult({} as AdvancedTecniques)
+      setHasResult(false)
+    } else {
+      const map = new NumericMap(name, birthday)
+      const advanced = new AdvancedTecniques(map)
+      
+      setResult(map)
+      setAdvancedResult(advanced)
+      setHasResult(true)
+    }
   }
 
   return (
@@ -53,8 +55,6 @@ export function Home () {
         name={nameState}
         birthday={birthdayState}
         calculate={calculate}
-        reset={reset}
-        hasResult={hasResult}
       />
       {hasResult
         ? (
