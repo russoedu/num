@@ -14,7 +14,7 @@ export function Footer () {
   return <Box sx={{ flexGrow: 1 }}>
     <AppBar className='footer' position='fixed' component='nav' sx={{ top: 'auto', bottom: 0 }}>
       <Toolbar className='header-footer-toolbar footer' variant='dense'>
-        <Typography color='inherit' component='div'>
+        <Typography color='inherit' component='div' sx={{ paddingBottom: 1.3 }}>
           <Link className='copyright' href='https://www.linkedin.com/in/russoedu/'>
             © {c} Eduardo Russo
           </Link>
