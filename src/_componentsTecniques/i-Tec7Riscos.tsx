@@ -6,16 +6,17 @@ import { AdvancedTitle } from '../_components/AdvancedTitle'
 import { AdvancedGrid } from '../_components/AdvancedGrid'
 import './Tec.css'
 import { Spacer } from '../_components/Spacer'
+import { AdvancedSubTitle } from '../_components/AdvancedSubTitle'
 
 export function Tec7Riscos ({ result }: { result: AdvancedTecniques }) {
   return (
     <>
-      <AdvancedTitle>
+      <AdvancedTitle margin={false}>
         Riscos
       </AdvancedTitle>
-      <Typography variant='h4' sx={{ paddingBottom: 2 }}>
+      <AdvancedSubTitle>
         1ª leitura
-      </Typography>
+      </AdvancedSubTitle>
       <Typography variant='h5' sx={{ paddingBottom: 1 }}>
         {result.tec7Riscos1aLeitura.result}
       </Typography>
@@ -37,9 +38,9 @@ export function Tec7Riscos ({ result }: { result: AdvancedTecniques }) {
           ))
         }
       </Grid2>
-      <Typography variant='h4' sx={{ paddingBottom: 2, paddingTop: 2 }}>
+      <AdvancedSubTitle>
         2ª leitura
-      </Typography>
+      </AdvancedSubTitle>
       <Typography variant='h5' sx={{ paddingBottom: 1 }}>
         {result.tec7Riscos2aLeitura.result}
       </Typography>

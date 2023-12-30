@@ -6,16 +6,17 @@ import { AdvancedTitle } from '../_components/AdvancedTitle'
 import { AdvancedGrid } from '../_components/AdvancedGrid'
 import './Tec.css'
 import { Spacer } from '../_components/Spacer'
+import { AdvancedSubTitle } from '../_components/AdvancedSubTitle'
 
 export function Tec13PotenciaisViciosReciclador ({ result }: { result: AdvancedTecniques }) {
   return (
     <>
-      <AdvancedTitle>
+      <AdvancedTitle margin={false}>
         Potenciais, vícios e reciclador de energias
       </AdvancedTitle>
-      <Typography variant='h4' sx={{ paddingBottom: 2 }}>
+      <AdvancedSubTitle>
         1ª leitura
-      </Typography>
+      </AdvancedSubTitle>
       <Typography variant='h5' sx={{ paddingBottom: 1 }}>
         {result.tec13PotenciaisViciosReciclador1aLeitura.result}
       </Typography>
@@ -37,9 +38,9 @@ export function Tec13PotenciaisViciosReciclador ({ result }: { result: AdvancedT
           ))
         }
       </Grid2>
-      <Typography variant='h4' sx={{ paddingBottom: 2 }}>
+      <AdvancedSubTitle>
         2ª leitura
-      </Typography>
+      </AdvancedSubTitle>
       <Grid2 container className='tec-content'>
         <AdvancedGrid i={0}>
           <Typography variant='h5'>
@@ -47,9 +48,9 @@ export function Tec13PotenciaisViciosReciclador ({ result }: { result: AdvancedT
           </Typography>
         </AdvancedGrid>
       </Grid2>
-      <Typography variant='h4' sx={{ paddingBottom: 2 }}>
+      <AdvancedSubTitle>
         3ª leitura
-      </Typography>
+      </AdvancedSubTitle>
       <Grid2 container className='tec-content'>
         {
           result.tec13PotenciaisViciosReciclador3aLeitura.map((p, i) => (
@@ -73,6 +74,9 @@ export function Tec13PotenciaisViciosReciclador ({ result }: { result: AdvancedT
           ))
         }
       </Grid2>
+      <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
+          ---- confirmar ----
+      </Typography>
       <Spacer/>
     </>
   )
