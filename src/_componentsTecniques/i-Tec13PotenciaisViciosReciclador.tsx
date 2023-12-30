@@ -50,33 +50,29 @@ export function Tec13PotenciaisViciosReciclador ({ result }: { result: AdvancedT
       <Typography variant='h4' sx={{ paddingBottom: 2 }}>
         3ª leitura
       </Typography>
-      {/* <Typography variant='h4' sx={{ paddingBottom: 2, paddingTop: 2 }}>
-        2ª leitura
-      </Typography>
-      <Typography variant='h5' sx={{ paddingBottom: 1 }}>
-        {result.tec7Riscos2aLeitura.result}
-      </Typography>
       <Grid2 container className='tec-content'>
         {
-          result.tec7Riscos2aLeitura.percentage.map((p, i) => (
+          result.tec13PotenciaisViciosReciclador3aLeitura.map((p, i) => (
             <AdvancedGrid i={i} key={i}>
-              <Grid2 xs={10} sm={3}>
-                <Typography variant='h6'>
+              <Grid2 xs={4} sm={3} md={2}>
+                <Typography variant='h5' className='vn'>
                   {p.name}
                 </Typography>
               </Grid2>
-              <Grid2 xs={2} sm={9}>
+              <Grid2 xs={3} sm={2} md={1}>
                 <Typography variant='h6'>
-                  {p.value}%
+                  {p.percentage}%
+                </Typography>
+              </Grid2>
+              <Grid2 xs={5} sm={7} md={9}>
+                <Typography variant='h6'>
+                  {p.risk}
                 </Typography>
               </Grid2>
             </AdvancedGrid>
           ))
         }
       </Grid2>
-      <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
-            ---- Preciso de mais detalhes para calcular ----
-      </Typography> */}
       <Spacer/>
     </>
   )

@@ -1,6 +1,6 @@
 import { _array } from '../_helpers/_array'
 import { _tec } from '../_helpers/_tec'
-import { Cycle, CycleInterpretationT, CycleInterpretationVns, ExpressionVibrationT, FinalSingleDigitT, LanguageStyleT, MultiplicitesT, MultiplicityMultipleT, MultiplicityT, MultiplicityTypeT, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultT, PercentageT, PyramidT, Relation, SingleDigitT, VN, vnOwnerPractitioner } from '../_helpers/types'
+import { Cycle, CycleInterpretationT, CycleInterpretationVns, ExpressionVibrationT, FinalSingleDigitT, LanguageStyleT, MultiplicitesT, MultiplicityMultipleT, MultiplicityT, MultiplicityTypeT, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultT, PercentageT, PyramidT, Relation, RiskT, SingleDigitT, VN, VicesAndReciclerDataT, vnOwnerPractitioner } from '../_helpers/types'
 import { NumericMap } from './NumericMap'
 
 export class AdvancedTecniques {
@@ -76,6 +76,10 @@ export class AdvancedTecniques {
    * TÉCNICA 13 – POTENCIAIS – VÍCIOS – RECICLADOR DE ENERGIAS E RISCOS - SEGUNDA LEITURA 
    */
   tec13PotenciaisViciosReciclador2aLeitura: string
+  /**
+   * TÉCNICA 13 – POTENCIAIS – VÍCIOS – RECICLADOR DE ENERGIAS E RISCOS - TERCEIRA LEITURA 
+   */
+  tec13PotenciaisViciosReciclador3aLeitura: VicesAndReciclerDataT[]
 
   /**
    * TÉCNICA 14 – PUREZA
@@ -147,16 +151,17 @@ export class AdvancedTecniques {
     this.tec6PotenciaisComoSentem = this.#tec6PotenciaisComoSentem()
     this.tec7Riscos1aLeitura = this.#tec7Riscos1aLeitura()
     this.tec7Riscos2aLeitura = this.#tec7Riscos2aLeitura()
+    this.tec8AdequacaoDaLinguagem = this.#tec8AdequacaoDaLinguagem()
     this.tec9VibracaoDaExpressao = this.#tec9VibracaoDaExpressao()
     this.tec10InterpretacaoDoPrimeiroCiclo = this.#tec10InterpretacaoDoPrimeiroCiclo()
     this.tec11DonosPraticantes = this.#tec11DonosPraticantes()
     this.tec12ConjuncaoCdMoOuMoCd = this.#tec12ConjuncaoCdMoOuMoCd()
     this.tec13PotenciaisViciosReciclador1aLeitura = this.#tec13PotenciaisViciosReciclador1aLeitura()
     this.tec13PotenciaisViciosReciclador2aLeitura = this.#tec13PotenciaisViciosReciclador2aLeitura()
+    this.tec13PotenciaisViciosReciclador3aLeitura = this.#tec13PotenciaisViciosReciclador3aLeitura()
     this.tec14Pureza = this.#tec14Pureza()
 
     // Must be the last calculated because it uses other tecniques
-    this.tec8AdequacaoDaLinguagem = this.#tec8AdequacaoDaLinguagem()
   }
 
   /**
@@ -435,13 +440,14 @@ export class AdvancedTecniques {
    * @returns Reading style results
    */
   #tec8AdequacaoDaLinguagem (): LanguageStyleT[] {
+    const tec14 = this.#tec14Pureza()
     // Has purity
-    if (this.tec14Pureza !== false) {
+    if (tec14 !== false) {
       return [
         {
           reason:  'Pureza de',
-          vn:      this.tec14Pureza,
-          content: this.#tec14Style(this.tec14Pureza),
+          vn:      tec14,
+          content: this.#styleFromTec14(tec14),
         },
       ]
     }
@@ -452,7 +458,7 @@ export class AdvancedTecniques {
       return fixedMultiples.map(vn => ({
         reason:  'Multiplicidade fixa de',
         vn,
-        content: this.#tec14Style(vn),
+        content: this.#styleFromTec14(vn),
       }))
     }
 
@@ -463,7 +469,7 @@ export class AdvancedTecniques {
       return cycleMultiples.map(vn => ({
         reason:  'Multiplicidade de',
         vn,
-        content: this.#tec14Style(vn),
+        content: this.#styleFromTec14(vn),
       }))
     }
 
@@ -472,7 +478,7 @@ export class AdvancedTecniques {
       {
         reason:  'CD ',
         vn:      this.#map.cd,
-        content: this.#tec14Style(this.#map.cd),
+        content: this.#styleFromTec14(this.#map.cd),
       },
     ]
   }
@@ -482,7 +488,7 @@ export class AdvancedTecniques {
    * @param vn - The number to retrieve the content
    * @returns The content
    */
-  #tec14Style (vn: FinalSingleDigitT): string {
+  #styleFromTec14 (vn: FinalSingleDigitT): string {
     const style = [
       {
         numbers: [1],
@@ -829,16 +835,23 @@ export class AdvancedTecniques {
     ]
       .sort((a, b) => b.value - a.value)
 
-    const result = percentage[0].value - percentage[1].value > 10
-      ? percentage[0].name
+    const hasEspiritualityOnFixes = this.#map.fixedMainVNs
+      .filter(fixed => [7, 9, 11, 22].includes(fixed))
+      .length > 0
+
+    const resultList = percentage[0].value - percentage[1].value > 10
+      ? [percentage[0].name]
       : percentage[1].value - percentage[2].value > 0
-        ? `${percentage[0].name} e ${percentage[1].name}`
-        : `${percentage[0].name}, ${percentage[1].name} e ${percentage[2].name}`
+        ? [percentage[0].name, percentage[1].name]
+        : [percentage[0].name, percentage[1].name, percentage[2].name]
           
+    if (!resultList.includes('Espiritualidade') && hasEspiritualityOnFixes) {
+      resultList.push('Espiritualidade')
+    }
 
     return {
       percentage,
-      result,
+      result: _array.join(resultList),
     }
   }
 
@@ -855,6 +868,33 @@ export class AdvancedTecniques {
       : 'Conquistas diversas não é potencial'
   }
 
+  #tec13PotenciaisViciosReciclador3aLeitura  () {
+    const percentage = this.#map.digitCount([7, 9, 11, 22]).count * 7
+    const risk: RiskT = percentage <= 15
+      ? 'fraco'
+      : percentage <= 40
+        ? 'médio'
+        : 'forte'
+    
+    const recyclingRisk: RiskT = risk !== 'forte' && this.#map.vns.includes(11)
+      ? 'forte - VN 11 presente'
+      : risk
+    
+    const data: VicesAndReciclerDataT[] = [
+      {
+        name: 'Vícios',
+        percentage,
+        risk,
+      },
+      {
+        name: 'Reciclador',
+        percentage,
+        risk: recyclingRisk,
+      },
+    ]
+
+    return data
+  }
   /**
    * Purity interpretation
    * @returns Purity interpretation results

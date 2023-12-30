@@ -178,6 +178,14 @@ export type OwnersAndPractitionersDataT = {
   support: 'pouca' | 'média' | 'muita'
 }
 
+export type RiskT = 'fraco' | 'médio' | 'forte' | 'forte - VN 11 presente'
+
+export type VicesAndReciclerDataT = {
+  name: string,
+  percentage: number,
+  risk: RiskT
+}
+
 export type OwnersAndPractitionersT = {
   normal: OwnersAndPractitionersDataT[]
   zeroAge?: OwnersAndPractitionersDataT[]
