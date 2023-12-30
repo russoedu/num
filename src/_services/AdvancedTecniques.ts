@@ -69,9 +69,13 @@ export class AdvancedTecniques {
   tec12ConjuncaoCdMoOuMoCd: string
 
   /**
-   * TÉCNICA 13 – POTENCIAIS – VÍCIOS – RECICLADOR DE ENERGIAS E RISCOS  
+   * TÉCNICA 13 – POTENCIAIS – VÍCIOS – RECICLADOR DE ENERGIAS E RISCOS - PRIMEIRA LEITURA 
    */
   tec13PotenciaisViciosReciclador1aLeitura: PercentageResultT
+  /**
+   * TÉCNICA 13 – POTENCIAIS – VÍCIOS – RECICLADOR DE ENERGIAS E RISCOS - SEGUNDA LEITURA 
+   */
+  tec13PotenciaisViciosReciclador2aLeitura: string
 
   /**
    * TÉCNICA 14 – PUREZA
@@ -148,6 +152,7 @@ export class AdvancedTecniques {
     this.tec11DonosPraticantes = this.#tec11DonosPraticantes()
     this.tec12ConjuncaoCdMoOuMoCd = this.#tec12ConjuncaoCdMoOuMoCd()
     this.tec13PotenciaisViciosReciclador1aLeitura = this.#tec13PotenciaisViciosReciclador1aLeitura()
+    this.tec13PotenciaisViciosReciclador2aLeitura = this.#tec13PotenciaisViciosReciclador2aLeitura()
     this.tec14Pureza = this.#tec14Pureza()
 
     // Must be the last calculated because it uses other tecniques
@@ -800,8 +805,8 @@ export class AdvancedTecniques {
   }
 
   /**
-   * Potentials, vices and recicler interpretation
-   * @returns Potentials, vices and recicler interpretation results
+   * Potentials, vices and recicler 1st reading interpretation
+   * @returns Potentials, vices and recicler 1st reading interpretation results
    */
   #tec13PotenciaisViciosReciclador1aLeitura () {
     const percentage: PercentageT[] = [
@@ -831,10 +836,23 @@ export class AdvancedTecniques {
         : `${percentage[0].name}, ${percentage[1].name} e ${percentage[2].name}`
           
 
-    return{
+    return {
       percentage,
       result,
     }
+  }
+
+  /**
+   * Potentials, vices and recicler 2nd reading interpretation
+   * @returns Potentials, vices and recicler 2nd reading interpretation results
+   */
+  #tec13PotenciaisViciosReciclador2aLeitura () {
+    const percentage = this.#map.digitCount([1, 3, 4, 5, 7, 8, 9]).count * 7
+          
+
+    return percentage >= 80
+      ? `Conquistas diversas é potencial com ${percentage}%`
+      : 'Conquistas diversas não é potencial'
   }
 
   /**

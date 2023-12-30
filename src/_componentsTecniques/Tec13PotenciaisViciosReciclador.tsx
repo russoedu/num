@@ -14,7 +14,7 @@ export function Tec13PotenciaisViciosReciclador ({ result }: { result: AdvancedT
         Potenciais, vícios e reciclador de energias
       </AdvancedTitle>
       <Typography variant='h4' sx={{ paddingBottom: 2 }}>
-        1ª leitura - Potenciais
+        1ª leitura
       </Typography>
       <Typography variant='h5' sx={{ paddingBottom: 1 }}>
         {result.tec13PotenciaisViciosReciclador1aLeitura.result}
@@ -37,6 +37,19 @@ export function Tec13PotenciaisViciosReciclador ({ result }: { result: AdvancedT
           ))
         }
       </Grid2>
+      <Typography variant='h4' sx={{ paddingBottom: 2 }}>
+        2ª leitura
+      </Typography>
+      <Grid2 container className='tec-content'>
+        <AdvancedGrid i={0}>
+          <Typography variant='h5'>
+            {result.tec13PotenciaisViciosReciclador2aLeitura}
+          </Typography>
+        </AdvancedGrid>
+      </Grid2>
+      <Typography variant='h4' sx={{ paddingBottom: 2 }}>
+        3ª leitura
+      </Typography>
       {/* <Typography variant='h4' sx={{ paddingBottom: 2, paddingTop: 2 }}>
         2ª leitura
       </Typography>

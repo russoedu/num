@@ -108,7 +108,7 @@ export function Form ({ name, birthday, calculate }: FormInput) {
         />
       </Grid>
 
-      <Grid xs={6} mdOffset={6}>
+      <Grid xs={12} md={6} lg={3} mdOffset={6} lgOffset={9}>
         <Button
           size='large'
           variant='contained'
