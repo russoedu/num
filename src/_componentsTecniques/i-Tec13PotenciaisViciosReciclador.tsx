@@ -9,6 +9,10 @@ import { Spacer } from '../_components/Spacer'
 import { AdvancedSubTitle } from '../_components/AdvancedSubTitle'
 
 export function Tec13PotenciaisViciosReciclador ({ result }: { result: AdvancedTecniques }) {
+  const tec13PotenciaisViciosReciclador1aLeitura = result.tec13PotenciaisViciosReciclador1aLeitura
+  const tec13PotenciaisViciosReciclador2aLeitura = result.tec13PotenciaisViciosReciclador2aLeitura
+  const tec13PotenciaisViciosReciclador3aLeitura = result.tec13PotenciaisViciosReciclador3aLeitura
+
   return (
     <>
       <AdvancedTitle margin={false}>
@@ -18,11 +22,11 @@ export function Tec13PotenciaisViciosReciclador ({ result }: { result: AdvancedT
         1ª leitura
       </AdvancedSubTitle>
       <Typography variant='h5' sx={{ paddingBottom: 1 }}>
-        {result.tec13PotenciaisViciosReciclador1aLeitura.result}
+        {tec13PotenciaisViciosReciclador1aLeitura.result}
       </Typography>
       <Grid2 container className='tec-content'>
         {
-          result.tec13PotenciaisViciosReciclador1aLeitura.percentage.map((p, i) => (
+          tec13PotenciaisViciosReciclador1aLeitura.percentage.map((p, i) => (
             <AdvancedGrid i={i} key={i}>
               <Grid2 xs={12} sm={9} md={6}>
                 <Typography variant='h6'>
@@ -44,7 +48,7 @@ export function Tec13PotenciaisViciosReciclador ({ result }: { result: AdvancedT
       <Grid2 container className='tec-content'>
         <AdvancedGrid i={0}>
           <Typography variant='h5'>
-            {result.tec13PotenciaisViciosReciclador2aLeitura}
+            {tec13PotenciaisViciosReciclador2aLeitura}
           </Typography>
         </AdvancedGrid>
       </Grid2>
@@ -53,7 +57,7 @@ export function Tec13PotenciaisViciosReciclador ({ result }: { result: AdvancedT
       </AdvancedSubTitle>
       <Grid2 container className='tec-content'>
         {
-          result.tec13PotenciaisViciosReciclador3aLeitura.map((p, i) => (
+          tec13PotenciaisViciosReciclador3aLeitura.map((p, i) => (
             <AdvancedGrid i={i} key={i}>
               <Grid2 xs={4} sm={3} md={2}>
                 <Typography variant='h5' className='vn'>

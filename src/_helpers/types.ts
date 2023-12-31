@@ -65,25 +65,25 @@ export type PyramidT = {
       description: string,
     }[]
 }
-export const MultiplicityTypeT: [
-  'D'  , // Duplicidade: a pessoa controla sozinha
-  'T'  , // Triplicidade: a pessoa precisa de orientação
-  'Qd' , // Quadruplicidade: a pessoa necessita de orientação
-  'Qt' ,  // Quintuplicidade: a pessoa necessita de orientação
-] = [
-  'D'  , // Duplicidade: a pessoa controla sozinha
-  'T'  , // Triplicidade: a pessoa precisa de orientação
-  'Qd' , // Quadruplicidade: a pessoa necessita de orientação
-  'Qt' ,  // Quintuplicidade: a pessoa necessita de orientação
+
+export type MultiplicityTypeT = 
+  'D'  | // Duplicidade: a pessoa controla sozinha
+  'T'  | // Triplicidade: a pessoa precisa de orientação
+  'Qd' | // Quadruplicidade: a pessoa necessita de orientação
+  'Qt'  // Quintuplicidade: a pessoa necessita de orientação
+
+
+export const MultiplicityType: MultiplicityTypeT[] = [
+  'D',
+  'T',
+  'Qd',
+  'Qt',
 ]
 
 export type MultiplicityMultipleT = {
   vn: FinalSingleDigitT,
   positions: string[]
-  type: 'D'  | // Duplicidade: a pessoa controla sozinha
-        'T'  | // Triplicidade: a pessoa precisa de orientação
-        'Qd' | // Quadruplicidade: a pessoa necessita de orientação
-        'Qt'   // Quintuplicidade: a pessoa necessita de orientação
+  type: MultiplicityTypeT
 }
 
 export type MultiplicityT = {

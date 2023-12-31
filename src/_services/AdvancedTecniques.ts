@@ -1,6 +1,6 @@
 import { _array } from '../_helpers/_array'
 import { _tec } from '../_helpers/_tec'
-import { Cycle, CycleInterpretationT, CycleInterpretationVns, ExpressionVibrationT, FinalSingleDigitT, LanguageStyleT, MultiplicitesT, MultiplicityMultipleT, MultiplicityT, MultiplicityTypeT, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultT, PercentageT, PyramidT, Relation, RiskT, SingleDigitT, VN, VicesAndReciclerDataT, vnOwnerPractitioner } from '../_helpers/types'
+import { Cycle, CycleInterpretationT, CycleInterpretationVns, ExpressionVibrationT, FinalSingleDigitT, LanguageStyleT, MultiplicitesT, MultiplicityMultipleT, MultiplicityT, MultiplicityType, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultT, PercentageT, PyramidT, Relation, RiskT, SingleDigitT, VN, VicesAndReciclerDataT, vnOwnerPractitioner } from '../_helpers/types'
 import { NumericMap } from './NumericMap'
 
 export class AdvancedTecniques {
@@ -18,7 +18,7 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 3 – NOSSO MAPA ATUAL
    */
-  
+
   /**
    * TÉCNICA 4 – DUPLICIDADES OU MAIS 
    */
@@ -33,7 +33,7 @@ export class AdvancedTecniques {
    * TÉCNICA 6 – POTENCIAIS – COMO SENTEM
    */
   tec6PotenciaisComoSentem: PercentageResultT
-  
+
   /**
    * TÉCNICA 7 – RISCOS - PRIMEIRA LEITURA
    */
@@ -43,17 +43,17 @@ export class AdvancedTecniques {
    * TÉCNICA 7 – RISCOS - SEGUNDA LEITURA
    */
   tec7Riscos2aLeitura: PercentageResultT
-  
+
   /**
    * TÉCNICA 8 – ADEQUAÇÃO DA LINGUAGEM
    */
   tec8AdequacaoDaLinguagem: LanguageStyleT[]
-  
+
   /**
    * TÉCNICA 9 – VIBRAÇÃO DA EXPRESSÃO
    */
   tec9VibracaoDaExpressao: ExpressionVibrationT
-  
+
   /**
    * TÉCNICA 10 – INTERPRETANDO O 1º CICLO DE VIDA
    */
@@ -84,20 +84,20 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 14 – PUREZA
    */
-  tec14Pureza: FinalSingleDigitT|false
-  
+  tec14Pureza: FinalSingleDigitT | false
+
   /**
    * TÉCNICA 15 – REALIZAÇÃO ESPONTÂNEA
    */
-  
+
   /**
    * TÉCNICA 16 – CONQUISTA ESPONTÂNEA
    */
-  
+
   /**
    * TÉCNICA 17 – RENASCIMENTO
    */
-  
+
   /**
    * TÉCNICA 18 – MOMENTO DECISIVO FORTE
    */
@@ -130,8 +130,8 @@ export class AdvancedTecniques {
    * TÉCNICA 25 – SEXUALIDADE
    */
 
-  
-  
+
+
 
 
   /*
@@ -160,8 +160,6 @@ export class AdvancedTecniques {
     this.tec13PotenciaisViciosReciclador2aLeitura = this.#tec13PotenciaisViciosReciclador2aLeitura()
     this.tec13PotenciaisViciosReciclador3aLeitura = this.#tec13PotenciaisViciosReciclador3aLeitura()
     this.tec14Pureza = this.#tec14Pureza()
-
-    // Must be the last calculated because it uses other tecniques
   }
 
   /**
@@ -195,7 +193,7 @@ export class AdvancedTecniques {
    * Ausency tecnique
    * @returns Ausency tecnique results
    */
-  #tec2Ausencia (): SingleDigitT[] {
+  #tec2Ausencia () {
     const unique = this.#map.uniqueVNs
     const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
@@ -231,15 +229,15 @@ export class AdvancedTecniques {
 
     // Removes the cycles where no multiplicity was found and checks if any has more than duplicity
     for (let i = data.length - 1; i >= 0; i--) {
-      if(data[i].multiples.length <= 0) {
+      if (data[i].multiples.length <= 0) {
         data.splice(i, 1)
       } else {
-        hasMoreThanDuplicity ||= data[i].multiples.reduce((p, c) => p || (c.type !== 'D'), false) 
+        hasMoreThanDuplicity ||= data[i].multiples.reduce((p, c) => p || (c.type !== 'D'), false)
       }
     }
-    
+
     let comments = 'Quando tem Duplicidades ou mais deve ser mais reforçado.'
-    
+
     if (hasMoreThanDuplicity) {
       comments += ' De Triplicidade em diante deve procurar ajuda e viver a multiplicidade e o número seguinte.'
     }
@@ -248,55 +246,6 @@ export class AdvancedTecniques {
       data,
       comments,
     }
-  }
-  
-  /**
-   * Calculates the multiplicity for the cycle
-   * @param cycle - The cycle to be calculated
-   * @returns The VN, its positions and the multiplicity type
-   */
-  #multiples (cycle: Cycle) {
-    let multiplicityData: FinalSingleDigitT[] = []
-    let vnPositions: VN[] = []
-
-    const multiples: MultiplicityMultipleT[] = []
-
-    switch (cycle) {
-    case Cycle.FIXED:
-      multiplicityData = this.#map.fixedVNs
-      vnPositions = this.#map.fixedVNsPosition
-      break
-    case Cycle.FIRST:
-      multiplicityData = this.#map.firstCycleVNs
-      vnPositions = this.#map.firstCycleVNsPosition
-      break
-    case Cycle.SECOND:
-      multiplicityData = this.#map.secondCycleVNs
-      vnPositions = this.#map.secondCycleVNsPosition
-      break
-    case Cycle.THIRD:
-      multiplicityData = this.#map.thirdCycleVNs
-      vnPositions = this.#map.thirdCycleVNsPosition
-      break
-    }
-
-    const multiplicity = _array.duplicatedFinalSingleDigitT(multiplicityData)
-
-    for (const num of multiplicity) {
-      const multiplicatedVNsPosition = vnPositions
-        .filter(vnp => vnp.vn === num ||
-            (vnp.vn === 11 && num === 2) ||
-            (vnp.vn === 22 && num === 4))
-        .map(vnp => vnp.position)
-
-      multiples.push({
-        positions: multiplicatedVNsPosition,
-        vn:        num,
-        type:      MultiplicityTypeT[multiplicatedVNsPosition.length - 2],
-      })
-    }
-    
-    return multiples
   }
 
   /**
@@ -327,13 +276,13 @@ export class AdvancedTecniques {
     const result = percentage[0].value - percentage[1].value > 10
       ? percentage[0].name
       : percentage[1].value - percentage[2].value > 0
-        ? `${percentage[0].name} e ${percentage[1].name}`
+        ? `${ percentage[0].name } e ${ percentage[1].name }`
         : percentage[2].value - percentage[3].value > 0
-          ? `${percentage[0].name}, ${percentage[1].name} e ${percentage[2].name}`
-          : `${percentage[0].name}, ${percentage[1].name}, ${percentage[2].name} e ${percentage[2].name}`
-          
+          ? `${ percentage[0].name }, ${ percentage[1].name } e ${ percentage[2].name }`
+          : `${ percentage[0].name }, ${ percentage[1].name }, ${ percentage[2].name } e ${ percentage[2].name }`
 
-    return{
+
+    return {
       percentage,
       result,
     }
@@ -358,10 +307,10 @@ export class AdvancedTecniques {
 
     const result = percentage[0].value - percentage[1].value > 10
       ? percentage[0].name
-      : `${percentage[0].name} e ${percentage[1].name}`
-          
+      : `${ percentage[0].name } e ${ percentage[1].name }`
 
-    return{
+
+    return {
       percentage,
       result,
     }
@@ -386,16 +335,10 @@ export class AdvancedTecniques {
         value: this.#map.digitCount([2, 11, 4, 22, 6]).count * 7,
       },
     ]
-      .sort((a, b) => b.value - a.value)
 
-    const result = percentage[0].value - percentage[1].value > 10
-      ? percentage[0].name
-      : percentage[1].value - percentage[2].value > 0
-        ? `${percentage[0].name} e ${percentage[1].name}`
-        : `${percentage[0].name}, ${percentage[1].name} e ${percentage[2].name}`
-          
+    const result = _array.join(this.#getResults(percentage).map(r => r.name))
 
-    return{
+    return {
       percentage,
       result,
     }
@@ -406,35 +349,30 @@ export class AdvancedTecniques {
    * @returns First reading risks tecnique results
    */
   #tec7Riscos2aLeitura () {
+    const firstReadingPercentage = this.#tec7Riscos1aLeitura().percentage
     const percentage: PercentageT[] = [
       {
         name:  'CP',
-        value: this.tec7Riscos1aLeitura.percentage[0].value + this.tec7Riscos1aLeitura.percentage[2].value,
+        value: firstReadingPercentage[0].value + firstReadingPercentage[2].value,
       },
       {
         name:  'VG',
-        value: this.tec7Riscos1aLeitura.percentage[1].value + this.tec7Riscos1aLeitura.percentage[2].value,
+        value: firstReadingPercentage[1].value + firstReadingPercentage[2].value,
       },
       {
         name:  'SC',
-        value: this.tec7Riscos1aLeitura.percentage[0].value + this.tec7Riscos1aLeitura.percentage[1].value,
+        value: firstReadingPercentage[0].value + firstReadingPercentage[1].value,
       },
     ]
-      .sort((a, b) => b.value - a.value)
 
-    const result = percentage[0].value - percentage[1].value > 10
-      ? percentage[0].name
-      : percentage[1].value - percentage[2].value > 0
-        ? `${percentage[0].name} e ${percentage[1].name}`
-        : `${percentage[0].name}, ${percentage[1].name} e ${percentage[2].name}`
-          
+    const result = _array.join(this.#getResults(percentage).map(r => r.name))
 
-    return{
+    return {
       percentage,
       result,
     }
   }
-  
+
   /**
    * Reading style
    * @returns Reading style results
@@ -484,48 +422,12 @@ export class AdvancedTecniques {
   }
 
   /**
-   * The content for each VN
-   * @param vn - The number to retrieve the content
-   * @returns The content
-   */
-  #styleFromTec14 (vn: FinalSingleDigitT): string {
-    const style = [
-      {
-        numbers: [1],
-        style:   'Rapidez, não se prender a detalhes',
-      },
-      {
-        numbers: [2, 6],
-        style:   'Calma / pausadamente / revelar com cuidado',
-      },
-      {
-        numbers: [3, 5],
-        style:   'Bom humor / criatividade',
-      },
-      {
-        numbers: [4, 8],
-        style:   'Segurança / precisão e clareza',
-      },
-      {
-        numbers: [7, 9, 11, 22],
-        style:   'Profundidade / qualidade / holisticamente',
-      },
-    ]
-    
-    const result: string =  style
-      .find(st => st.numbers.includes(vn as FinalSingleDigitT))
-      ?.style as string
-
-    return result
-  }
-
-  /**
    * Expression vibration
    * @returns Expression vibration results
    */
   #tec9VibracaoDaExpressao () {
     const ex = this.#map.ex
-    
+
     if ([1, 4, 7, 8].includes(ex)) {
       return {
         title: 'Bons ouvintes',
@@ -551,7 +453,7 @@ export class AdvancedTecniques {
    */
   #tec10InterpretacaoDoPrimeiroCiclo () {
     const int: CycleInterpretationT[] = []
-    
+
     for (const vn of CycleInterpretationVns) {
       if (this.#map.eu === vn.vn) {
         int.push({
@@ -603,7 +505,7 @@ export class AdvancedTecniques {
     const unique = this.#map.uniqueVNs
     const hasZero = unique.includes(0)
 
-    
+
     if (!unique.includes(2) && unique.includes(11)) {
       unique.push(2)
     }
@@ -614,16 +516,16 @@ export class AdvancedTecniques {
     if (hasZero) {
       unique.shift()
     }
-    
+
     for (const vn of unique) {
       normal.push(this.#ownerAndPractitionersSupport(vn))
     }
-    
+
 
     if (hasZero) {
       const zeroAge: OwnersAndPractitionersDataT[] = []
-      
-      for (const vn of this.tec2Ausencia) {
+
+      for (const vn of this.#tec2Ausencia()) {
         if (!unique.includes(vn)) {
           zeroAge.push(this.#ownerAndPractitionersSupport(vn))
         }
@@ -632,34 +534,12 @@ export class AdvancedTecniques {
       return {
         normal,
         zeroAge,
-      } 
+      }
     } else {
       return {
         normal,
-      } 
+      }
     }
-  }
-
-  /**
-   * Calculates the percentage and support for a VN
-   * @param vn - The VN to be checked
-   * @returns The VN, the percentage and the support level
-   */
-  #ownerAndPractitionersSupport (vn: FinalSingleDigitT) {
-    const numbers = vnOwnerPractitioner[vn]
-    const percentage = this.#map.digitCount(numbers).count * 7
-
-    const support = percentage <= 21
-      ? 'pouca'
-      : percentage <= 56
-        ? 'média'
-        : 'muita'
-    
-    return {
-      vn,
-      percentage,
-      support,
-    } as OwnersAndPractitionersDataT
   }
 
   /**
@@ -833,18 +713,13 @@ export class AdvancedTecniques {
         value: this.#map.digitCount([7, 9, 11, 22]).count * 7,
       },
     ]
-      .sort((a, b) => b.value - a.value)
 
     const hasEspiritualityOnFixes = this.#map.fixedMainVNs
       .filter(fixed => [7, 9, 11, 22].includes(fixed))
       .length > 0
 
-    const resultList = percentage[0].value - percentage[1].value > 10
-      ? [percentage[0].name]
-      : percentage[1].value - percentage[2].value > 0
-        ? [percentage[0].name, percentage[1].name]
-        : [percentage[0].name, percentage[1].name, percentage[2].name]
-          
+    const resultList = this.#getResults(percentage).map(r => r.name)
+
     if (!resultList.includes('Espiritualidade') && hasEspiritualityOnFixes) {
       resultList.push('Espiritualidade')
     }
@@ -861,25 +736,29 @@ export class AdvancedTecniques {
    */
   #tec13PotenciaisViciosReciclador2aLeitura () {
     const percentage = this.#map.digitCount([1, 3, 4, 5, 7, 8, 9]).count * 7
-          
+
 
     return percentage >= 80
-      ? `Conquistas diversas é potencial com ${percentage}%`
+      ? `Conquistas diversas é potencial com ${ percentage }%`
       : 'Conquistas diversas não é potencial'
   }
 
-  #tec13PotenciaisViciosReciclador3aLeitura  () {
+  /**
+   * Potentials, vices and recicler 3rd reading interpretation
+   * @returns Potentials, vices and recicler 2nd reading interpretation results
+   */
+  #tec13PotenciaisViciosReciclador3aLeitura () {
     const percentage = this.#map.digitCount([7, 9, 11, 22]).count * 7
     const risk: RiskT = percentage <= 15
       ? 'fraco'
       : percentage <= 40
         ? 'médio'
         : 'forte'
-    
+
     const recyclingRisk: RiskT = risk !== 'forte' && this.#map.vns.includes(11)
       ? 'forte - VN 11 presente'
       : risk
-    
+
     const data: VicesAndReciclerDataT[] = [
       {
         name: 'Vícios',
@@ -903,7 +782,136 @@ export class AdvancedTecniques {
     if (this.#map.cd === this.#map.mo) return this.#map.cd
     if (this.#map.cd === this.#map.dm) return this.#map.cd
     if (this.#map.mo === this.#map.dm) return this.#map.mo
-    
+
     return false
   }
+
+  /* #region Support methods */
+  /**
+   * Calculates the multiplicity for the cycle
+   * @param cycle - The cycle to be calculated
+   * @returns The VN, its positions and the multiplicity type
+   */
+  #multiples (cycle: Cycle) {
+    let multiplicityData: FinalSingleDigitT[] = []
+    let vnPositions: VN[] = []
+
+    const multiples: MultiplicityMultipleT[] = []
+
+    switch (cycle) {
+    case Cycle.FIXED:
+      multiplicityData = this.#map.fixedVNs
+      vnPositions = this.#map.fixedVNsPosition
+      break
+    case Cycle.FIRST:
+      multiplicityData = this.#map.firstCycleVNs
+      vnPositions = this.#map.firstCycleVNsPosition
+      break
+    case Cycle.SECOND:
+      multiplicityData = this.#map.secondCycleVNs
+      vnPositions = this.#map.secondCycleVNsPosition
+      break
+    case Cycle.THIRD:
+      multiplicityData = this.#map.thirdCycleVNs
+      vnPositions = this.#map.thirdCycleVNsPosition
+      break
+    }
+
+    const multiplicity = _array.duplicatedFinalSingleDigitT(multiplicityData)
+
+    for (const num of multiplicity) {
+      const multiplicatedVNsPosition = vnPositions
+        .filter(vnp => vnp.vn === num ||
+          (vnp.vn === 11 && num === 2) ||
+          (vnp.vn === 22 && num === 4))
+        .map(vnp => vnp.position)
+
+      multiples.push({
+        positions: multiplicatedVNsPosition,
+        vn:        num,
+        type:      MultiplicityType[multiplicatedVNsPosition.length - 2],
+      })
+    }
+
+    return multiples
+  }
+
+  /**
+   * The content for each VN
+   * @param vn - The number to retrieve the content
+   * @returns The content
+   */
+  #styleFromTec14 (vn: FinalSingleDigitT): string {
+    const style = [
+      {
+        numbers: [1],
+        style:   'Rapidez, não se prender a detalhes',
+      },
+      {
+        numbers: [2, 6],
+        style:   'Calma / pausadamente / revelar com cuidado',
+      },
+      {
+        numbers: [3, 5],
+        style:   'Bom humor / criatividade',
+      },
+      {
+        numbers: [4, 8],
+        style:   'Segurança / precisão e clareza',
+      },
+      {
+        numbers: [7, 9, 11, 22],
+        style:   'Profundidade / qualidade / holisticamente',
+      },
+    ]
+
+    const result: string = style
+      .find(st => st.numbers.includes(vn as FinalSingleDigitT))
+      ?.style as string
+
+    return result
+  }
+
+  /**
+   * Calculates the percentage and support for a VN
+   * @param vn - The VN to be checked
+   * @returns The VN, the percentage and the support level
+   */
+  #ownerAndPractitionersSupport (vn: FinalSingleDigitT) {
+    const numbers = vnOwnerPractitioner[vn]
+    const percentage = this.#map.digitCount(numbers).count * 7
+
+    const support = percentage <= 21
+      ? 'pouca'
+      : percentage <= 56
+        ? 'média'
+        : 'muita'
+
+    return {
+      vn,
+      percentage,
+      support,
+    } as OwnersAndPractitionersDataT
+  }
+
+  /**
+   * Compares the percetages with the highest value and extract the list of the ones that are less than 10% smaller
+   * @param percentage - The list of percetages sum and name
+   * @returns The percetages that should be considered
+   */
+  #getResults (percentage: PercentageT[]) {
+    const resultList: PercentageT[] = [percentage[0]]
+
+    percentage
+      .sort((a, b) => b.value - a.value)
+
+    for (let i = 1; i < percentage.length; i++) {
+      if (percentage[0].value - percentage[i].value < 10) {
+        resultList.push(percentage[i])
+      }
+    }
+
+    return resultList
+  }
+  /* #endregion */
 }

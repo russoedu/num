@@ -7,6 +7,8 @@ import './Tec.css'
 import { Spacer } from '../_components/Spacer'
 
 export function Tec9VibracaoDaExpressao ({ result }: { result: AdvancedTecniques }) {
+  const tec9VibracaoDaExpressao = result.tec9VibracaoDaExpressao
+
   return (
     <>
       <AdvancedTitle>
@@ -16,11 +18,11 @@ export function Tec9VibracaoDaExpressao ({ result }: { result: AdvancedTecniques
         <AdvancedGrid i={0}>
           <Box>
             <Typography variant='h5' className='vn' gutterBottom>
-              {result.tec9VibracaoDaExpressao.title}
+              {tec9VibracaoDaExpressao.title}
             </Typography>
-            {result.tec9VibracaoDaExpressao.more !== ''
+            {tec9VibracaoDaExpressao.more !== ''
               ? <Typography variant='h5'>
-                {result.tec9VibracaoDaExpressao.more}
+                {tec9VibracaoDaExpressao.more}
               </Typography>
               : <></>
             }

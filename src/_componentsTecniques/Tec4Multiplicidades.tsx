@@ -8,6 +8,8 @@ import './Tec.css'
 import { Spacer } from '../_components/Spacer'
 
 export function Tec4Multiplicidades ({ result }: { result: AdvancedTecniques }) {
+  const tec4Multiplicidades = result.tec4Multiplicidades
+
   return (
     <>
       <AdvancedTitle>
@@ -15,11 +17,11 @@ export function Tec4Multiplicidades ({ result }: { result: AdvancedTecniques }) 
       </AdvancedTitle>
       <Grid2 container className='tec-content'>
         {
-          result.tec4Multiplicidades.data.length > 0
+          tec4Multiplicidades.data.length > 0
             ? (
               <>
                 {
-                  result.tec4Multiplicidades.data.map((p, i) => (
+                  tec4Multiplicidades.data.map((p, i) => (
                     <>
                       <AdvancedGrid i={i}>
                         <Grid2 xs={12} sm={5} md={3}>
@@ -53,7 +55,7 @@ export function Tec4Multiplicidades ({ result }: { result: AdvancedTecniques }) 
                   ))
                 }
                 <Typography variant='h6'>
-                  {result.tec4Multiplicidades.comments}
+                  {tec4Multiplicidades.comments}
                 </Typography>
               </>
             )

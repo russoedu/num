@@ -7,6 +7,8 @@ import './Tec.css'
 import { Spacer } from '../_components/Spacer'
 
 export function Tec10InterpretacaoDoPrimeiroCiclo ({ result }: { result: AdvancedTecniques }) {
+  const tec10InterpretacaoDoPrimeiroCiclo = result.tec10InterpretacaoDoPrimeiroCiclo
+  
   return (
     <>
       <AdvancedTitle>
@@ -14,7 +16,7 @@ export function Tec10InterpretacaoDoPrimeiroCiclo ({ result }: { result: Advance
       </AdvancedTitle>
       <Grid2 container className='tec-content'>
         {
-          result.tec10InterpretacaoDoPrimeiroCiclo.map((ci, i) => (
+          tec10InterpretacaoDoPrimeiroCiclo.map((ci, i) => (
             <AdvancedGrid i={i} key={i}>
               <Typography variant='h5' className='vn'>
                 {ci.relation}

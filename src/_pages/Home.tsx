@@ -5,7 +5,6 @@ import { AdvancedTecniquesResults } from '../_componentsPages/AdvancedTecniquesR
 import { Form } from '../_componentsPages/Form'
 import { AdvancedTecniques } from '../_services/AdvancedTecniques'
 import { NumericMap } from '../_services/NumericMap'
-import './Home.css'
 import { Spacer } from '../_components/Spacer'
 import { MapOrCycle } from '../_componentsPages/MapOrCycle'
 

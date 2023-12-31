@@ -8,6 +8,8 @@ import './Tec.css'
 import { Spacer } from '../_components/Spacer'
 
 export function Tec14Pureza ({ result }: { result: AdvancedTecniques }) {
+  const tec14Pureza = result.tec14Pureza
+  
   return (
     <>
       <AdvancedTitle>
@@ -17,8 +19,8 @@ export function Tec14Pureza ({ result }: { result: AdvancedTecniques }) {
         <AdvancedGrid i={0}>
           <Typography variant='h5'>
             {
-              result.tec14Pureza
-                ? `Há pureza de ${result.tec14Pureza}`
+              tec14Pureza
+                ? `Há pureza de ${tec14Pureza}`
                 : 'Não há pureza'
             }
           </Typography>

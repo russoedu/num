@@ -8,6 +8,8 @@ import './Tec.css'
 import { Spacer } from '../_components/Spacer'
 
 export function Tec11DonosPraticantes ({ result }: { result: AdvancedTecniques }) {
+  const tec11DonosPraticantes = result.tec11DonosPraticantes
+  
   return (
     <>
       <AdvancedTitle>
@@ -16,7 +18,7 @@ export function Tec11DonosPraticantes ({ result }: { result: AdvancedTecniques }
 
       <Grid2 container className='tec-content'>
         {
-          result.tec11DonosPraticantes.normal.map((p, i) => (
+          tec11DonosPraticantes.normal.map((p, i) => (
             <AdvancedGrid i={i} key={i}>
               <Grid2 xs={2} sm={1} md={1}>
                 <Typography variant='h5' className='vn'>
@@ -38,7 +40,7 @@ export function Tec11DonosPraticantes ({ result }: { result: AdvancedTecniques }
         }
       </Grid2>
       {
-        typeof result.tec11DonosPraticantes.zeroAge !== 'undefined'
+        typeof tec11DonosPraticantes.zeroAge !== 'undefined'
           ? (
             <>
               <Typography variant='h6' sx={{ paddingTop: 1, paddingBottom: 1 }}>
@@ -46,7 +48,7 @@ export function Tec11DonosPraticantes ({ result }: { result: AdvancedTecniques }
               </Typography>
               <Grid2 container className='tec-content'>
                 {
-                  result.tec11DonosPraticantes.zeroAge.map((p, i) => (
+                  tec11DonosPraticantes.zeroAge.map((p, i) => (
                     <AdvancedGrid i={i} key={i}>
                       <Grid2 xs={2} sm={1} md={1}>
                         <Typography variant='h5' className='vn'>

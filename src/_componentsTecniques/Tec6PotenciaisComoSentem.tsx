@@ -8,17 +8,19 @@ import './Tec.css'
 import { Spacer } from '../_components/Spacer'
 
 export function Tec6PotenciaisComoSentem ({ result }: { result: AdvancedTecniques }) {
+  const tec6PotenciaisComoSentem = result.tec6PotenciaisComoSentem
+
   return (
     <>
       <AdvancedTitle>
         Potenciais como sentem
       </AdvancedTitle>
       <Typography variant='h5' sx={{ paddingBottom: 1 }}>
-        {result.tec6PotenciaisComoSentem.result}
+        {tec6PotenciaisComoSentem.result}
       </Typography>
       <Grid2 container className='tec-content'>
         {
-          result.tec6PotenciaisComoSentem.percentage.map((p, i) => (
+          tec6PotenciaisComoSentem.percentage.map((p, i) => (
             <AdvancedGrid i={i} key={i}>
               <Grid2 xs={10} sm={4} md={3}>
                 <Typography variant='h6'>

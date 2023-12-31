@@ -7,6 +7,8 @@ import './Tec.css'
 import { Spacer } from '../_components/Spacer'
 
 export function Tec12ConjuncaoCdMoOuMoCd ({ result }: { result: AdvancedTecniques }) {
+  const tec12ConjuncaoCdMoOuMoCd = result.tec12ConjuncaoCdMoOuMoCd
+  
   return (
     <>
       <AdvancedTitle>
@@ -16,7 +18,7 @@ export function Tec12ConjuncaoCdMoOuMoCd ({ result }: { result: AdvancedTecnique
         <AdvancedGrid i={0}>
           <Box>
             <Typography variant='h5' className='vn' gutterBottom>
-              {result.tec12ConjuncaoCdMoOuMoCd}
+              {tec12ConjuncaoCdMoOuMoCd}
             </Typography>
           </Box>
         </AdvancedGrid>

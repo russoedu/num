@@ -8,17 +8,19 @@ import './Tec.css'
 import { Spacer } from '../_components/Spacer'
 
 export function Tec5PotenciaisComoReagem ({ result }: { result: AdvancedTecniques }) {
+  const tec5PotenciaisComoReagem = result.tec5PotenciaisComoReagem
+
   return (
     <>
       <AdvancedTitle>
         Potenciais como reagem
       </AdvancedTitle>
       <Typography variant='h5' sx={{ paddingBottom: 1 }}>
-        {result.tec5PotenciaisComoReagem.result}
+        {tec5PotenciaisComoReagem.result}
       </Typography>
       <Grid2 container className='tec-content'>
         {
-          result.tec5PotenciaisComoReagem.percentage.map((p, i) => (
+          tec5PotenciaisComoReagem.percentage.map((p, i) => (
             <AdvancedGrid i={i} key={i}>
               <Grid2 xs={9} sm={4} md={3}>
                 <Typography variant='h6'>

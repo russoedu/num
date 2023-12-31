@@ -8,6 +8,8 @@ import './Tec.css'
 import { Spacer } from '../_components/Spacer'
 
 export function Tec2Ausencias ({ result }: { result: AdvancedTecniques }) {
+  const tec2Ausencia = result.tec2Ausencia
+
   return (
     <>
       <AdvancedTitle>
@@ -16,9 +18,9 @@ export function Tec2Ausencias ({ result }: { result: AdvancedTecniques }) {
       <Grid2 container className='tec-content'>
         <AdvancedGrid i={0}>
           <Typography variant='h5' dangerouslySetInnerHTML={{ __html:
-               result.tec2Ausencia.length > 0
+               tec2Ausencia.length > 0
                  ? _array.join(
-                   result.tec2Ausencia,
+                   tec2Ausencia,
                    '<span class="vn">',
                    '</span>',
                  )

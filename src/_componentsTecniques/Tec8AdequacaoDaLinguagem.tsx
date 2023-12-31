@@ -8,6 +8,8 @@ import './Tec.css'
 import { Spacer } from '../_components/Spacer'
 
 export function Tec8AdequacaoDaLinguagem ({ result }: { result: AdvancedTecniques }) {
+  const tec8AdequacaoDaLinguagem = result.tec8AdequacaoDaLinguagem
+
   return (
     <>
       <AdvancedTitle>
@@ -15,7 +17,7 @@ export function Tec8AdequacaoDaLinguagem ({ result }: { result: AdvancedTecnique
       </AdvancedTitle>
       <Grid2 container className='tec-content'>
         {
-          result.tec8AdequacaoDaLinguagem.map((tec, i) => (
+          tec8AdequacaoDaLinguagem.map((tec, i) => (
             <AdvancedGrid i={i} key={i}>
               <Grid2 container sm={12} md={4} lg={3}>
                 <Typography variant='h6'>
