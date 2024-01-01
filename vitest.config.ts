@@ -7,18 +7,16 @@ import type { UserConfig } from 'vitest/config'
 
 const userConfig: UserConfig = {
   test: {
-    globals:  true,
-    /*
-     * transformMode: {
-     *   web: [/\.([jt]sx?|json|tsx)$/],
-     * },
-     */
-    include:  ['**/*.{test,spec}.ts'],
-    coverage: {
+    globals:      true,
+    mockReset:    true,
+    clearMocks:   true,
+    restoreMocks: true,
+    include:      ['**/*.{test,spec}.ts*'],
+    coverage:     {
       provider:         'v8',
-      reporter:         ['html', 'cobertura', 'text', 'text-lcov', 'text-summary'],
+      reporter:         ['html', 'cobertura', 'text', 'text-summary'],
       all:              true,
-      reportsDirectory: 'report',
+      reportsDirectory: './report',
     },
   },
 }

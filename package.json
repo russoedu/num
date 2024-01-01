@@ -1,14 +1,15 @@
 {
   "name": "numerologia",
   "private": true,
-  "version": "0.0.33",
+  "version": "0.0.34",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && node copyPublic.js",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "test": "vitest"
+    "test:watch": "vitest",
+    "test": "vitest --coverage"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
@@ -31,6 +32,7 @@
     "@typescript-eslint/eslint-plugin": "^6.16.0",
     "@typescript-eslint/parser": "^6.16.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/coverage-v8": "^1.1.1",
     "eslint": "^8.56.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.29.1",

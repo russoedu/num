@@ -2,6 +2,9 @@
   "settings": {
     "files.exclude": {
       "node_modules": true,
+      "public": true,
+      "dist": true,
+      
       ".eslintrc.cjs": true,
       ".gitignore": true,
       "package-lock.json": true,
@@ -9,8 +12,6 @@
       "vite.config.ts": true,
       "index.html": true,
       "copyPublic.js": true,
-      "public": true,
-      "dist": true,
       ".github": true,
     },
     "debug.javascript.terminalOptions": {
@@ -46,8 +47,21 @@
         "type": "node-terminal"
       },
       {
+        "name": "Edge debug",
+        "type": "msedge",
+        "request": "launch",
+        "url": "http://localhost:5173",
+        "webRoot": "${workspaceFolder}/src"
+      },
+      {
+        "name": "Test watch",
+        "command": "npm run test:watch",
+        "request": "launch",
+        "type": "node-terminal"
+      },
+      {
         "name": "Test",
-        "command": "npm test",
+        "command": "npm run test",
         "request": "launch",
         "type": "node-terminal"
       },
@@ -62,13 +76,6 @@
         "command": "npm start",
         "request": "launch",
         "type": "node-terminal"
-      },
-      {
-        "name": "Edge debug",
-        "type": "msedge",
-        "request": "launch",
-        "url": "http://localhost:5173",
-        "webRoot": "${workspaceFolder}/src"
       },
       {
         "name": "Generate documentation",
