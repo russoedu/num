@@ -519,18 +519,11 @@ export class NumericMap {
     const year      = new Date().getFullYear()
     
     const birthdayThisYear = new Date(year, month, day)
-    const today = new Date()
 
-    const timeDiff = birthdayThisYear.getTime() - today.getTime()
-    const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24))
+    const interestYear = new Date() >= birthdayThisYear ? year + 1 : year
 
-    const hasPassed = diffDays > 0 ? false : true
-
-    // log.info('diffDays', diffDays, hasPassed);
-    const interestYear = hasPassed ? year : year - 1
-
-    const start = new Date(year, month, day)
-    const end = new Date(interestYear + 1, month, day)
+    const start = new Date(interestYear - 1, month, day)
+    const end = new Date(interestYear, month, day)
     const value = this.#charactersSum(this.#daySum + this.#monthSum + interestYear, true)
 
     return {

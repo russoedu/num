@@ -14,7 +14,7 @@ module.exports = {
     'plugin:react/jsx-runtime',
   ],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh', 'eslint-plugin-tsdoc', '@typescript-eslint'],
+  plugins: ['react-refresh', 'eslint-plugin-tsdoc', '@typescript-eslint', 'vitest'],
   globals: {
     React:   true,
     JSX:     true,
