@@ -33,9 +33,15 @@ describe('NumericMap', () => {
         value: 9,
       })
     })
+    test('AP 2', () => {
+      vi.useFakeTimers({ now: new Date('2024-01-01') })
+      const nm = new NumericMap('VERA LETICIES DE AZEVEDO RUIZ', '1979-04-17')
+
+      expect(nm.personalYear.value).toBe(2)
+    })
     test('AP 11', () => {
-      vi.useFakeTimers({ now: new Date('2024-12-25') })
-      const nm = new NumericMap('VERA LETICIES DE AZEVEDO RUIZ', '1977-12-17')
+      vi.useFakeTimers({ now: new Date('2024-01-01') })
+      const nm = new NumericMap('VERA LETICIES DE AZEVEDO RUIZ', '1979-11-19')
 
       expect(nm.personalYear.value).toBe(11)
     })

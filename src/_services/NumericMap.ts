@@ -524,7 +524,11 @@ export class NumericMap {
 
     const start = new Date(interestYear - 1, month, day)
     const end = new Date(interestYear, month, day)
-    const value = this.#charactersSum(this.#daySum + this.#monthSum + interestYear, true)
+    const value = this.#charactersSum(
+      this.#daySum +
+      this.#monthSum + 
+      this.#charactersSum(interestYear),
+      true)
 
     return {
       value,
