@@ -27,15 +27,15 @@ export function Tec0Cycles ({ result }: { result: NumericMap }) {
   
   return (
     <>
-      <div style={{ width: '100%', borderSpacing: 0, height: 135, marginBottom: 25 }}>
-        <table className='cycle' style={{ width: '100%', borderSpacing: 0, height: 50 }}>
+      <div className='cycleRealsContainer'>
+        <table className='cycle'>
           <tr>
-            <td className='c1' style={{ width: `${initialCyclesWidth}%`, backgroundColor: '#f5d6d6' }}>
+            <td className='c1' style={{ width: `${initialCyclesWidth}%` }}>
               <Typography variant='h6' align='center'>
               C1
               </Typography>
             </td>
-            <td className='c2' style={{ width: `${initialCyclesWidth}%`, backgroundColor: '#d6d6f5' }}>
+            <td className='c2' style={{ width: `${initialCyclesWidth}%` }}>
               <Typography variant='h6' align='center'>
               C2
               </Typography>
@@ -47,19 +47,19 @@ export function Tec0Cycles ({ result }: { result: NumericMap }) {
             </td>
           </tr>
         </table>
-        <table className='cycle' style={{ width: '100%', borderSpacing: 0, height: 50, marginTop: 1 }}>
+        <table className='reals'>
           <tr>
-            <td className='r1' style={{ width: `${firstRealWidth}%`, backgroundColor: '#f5d6d6' }}>
+            <td className='r1' style={{ width: `${firstRealWidth}%` }}>
               <Typography variant='h6' align='center'>
               R1
               </Typography>
             </td>
-            <td className='r2' style={{ width: `${realWidth}%`, backgroundColor: '#d6d6f5' }}>
+            <td className='r2' style={{ width: `${realWidth}%` }}>
               <Typography variant='h6' align='center'>
               R2
               </Typography>
             </td>
-            <td className='r3' style={{ width: `${realWidth}%`, backgroundColor: '#d8f5d6' }}>
+            <td className='r3' style={{ width: `${realWidth}%` }}>
               <Typography variant='h6' align='center'>
               R3
               </Typography>
@@ -71,7 +71,7 @@ export function Tec0Cycles ({ result }: { result: NumericMap }) {
             </td>
           </tr>
         </table>
-        <table className='cycle' style={{ width: '100%', borderSpacing: 0, height: 100, position: 'relative', top: -100 }}>
+        <table className='overlay'>
           <tr>
             <td style={{ width: `${initialCyclesWidth}%`, ...overlay(1) }}>
             </td>
@@ -81,9 +81,9 @@ export function Tec0Cycles ({ result }: { result: NumericMap }) {
             </td>
           </tr>
         </table>
-        <div style={{ width: 1, height: 130, backgroundColor: 'black', position: 'relative', top: -215, left: agePosition }}>
+        <div className='ageLine' style={{ left: agePosition }}>
         </div>
-        <Typography variant='h6' style={{ display: 'inline', position: 'relative', left: `calc(${agePosition} - 30px)`, top: -215 }}>
+        <Typography className='age' variant='h6' style={{ left: `calc(${agePosition} - 30px)` }}>
           {cycles.age} anos
         </Typography>
       </div>
