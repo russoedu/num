@@ -520,10 +520,10 @@ export class NumericMap {
     
     const birthdayThisYear = new Date(year, month, day)
 
-    const interestYear = new Date() >= birthdayThisYear ? year + 1 : year
+    const interestYear = new Date() >= birthdayThisYear ? year : year - 1
 
-    const start = new Date(interestYear - 1, month, day)
-    const end = new Date(interestYear, month, day)
+    const start = new Date(interestYear, month, day)
+    const end = new Date(interestYear + 1, month, day)
     const value = this.#charactersSum(
       this.#daySum +
       this.#monthSum + 
