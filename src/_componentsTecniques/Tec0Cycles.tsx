@@ -10,12 +10,12 @@ import { CSSProperties } from 'react'
  */
 export function Tec0Cycles ({ result }: { result: NumericMap }) {
   const cycles = result.tec0Cycles
-  const initialCyclesWidth = cycles.c1End * 100 / cycles.c3End 
-  const finalCycleWidth = (cycles.c3End - cycles.c2End) * 100 / cycles.c3End
+  const initialCyclesWidth = `${cycles.c1End * 100 / cycles.c3End}%`
+  const finalCycleWidth = `${(cycles.c3End - cycles.c2End) * 100 / cycles.c3End}%`
 
-  const firstRealWidth = cycles.r1End * 100 / cycles.c3End 
-  const realWidth = 10 * 100 / cycles.c3End
-  const finalRealWidth = (cycles.c3End - cycles.r3End) * 100 / cycles.c3End
+  const firstRealWidth = `${cycles.r1End * 100 / cycles.c3End }%`
+  const realWidth = `${10 * 100 / cycles.c3End}%`
+  const finalRealWidth = `${(cycles.c3End - cycles.r3End) * 100 / cycles.c3End}%`
   
   const agePosition = `${(cycles.age * 100) / cycles.c3End}%`
 
@@ -30,59 +30,55 @@ export function Tec0Cycles ({ result }: { result: NumericMap }) {
       <div className='cycleRealsContainer'>
         <table className='cycle'>
           <tr>
-            <td className='c1' style={{ width: `${initialCyclesWidth}%` }}>
+            <td className='c1' style={{ width: initialCyclesWidth }}>
               <Typography variant='h6' align='center'>
-              C1
+                C1
               </Typography>
             </td>
-            <td className='c2' style={{ width: `${initialCyclesWidth}%` }}>
+            <td className='c2' style={{ width: initialCyclesWidth }}>
               <Typography variant='h6' align='center'>
-              C2
+                C2
               </Typography>
             </td>
-            <td className='c3' style={{ width: `${finalCycleWidth}%` }}>
+            <td className='c3' style={{ width: finalCycleWidth }}>
               <Typography variant='h6' align='center'>
-              C3
+                C3
               </Typography>
             </td>
           </tr>
         </table>
         <table className='reals'>
           <tr>
-            <td className='r1' style={{ width: `${firstRealWidth}%` }}>
+            <td className='r1' style={{ width: firstRealWidth }}>
               <Typography variant='h6' align='center'>
-              R1
+                R1
               </Typography>
             </td>
-            <td className='r2' style={{ width: `${realWidth}%` }}>
+            <td className='r2' style={{ width: realWidth }}>
               <Typography variant='h6' align='center'>
-              R2
+                R2
               </Typography>
             </td>
-            <td className='r3' style={{ width: `${realWidth}%` }}>
+            <td className='r3' style={{ width: realWidth }}>
               <Typography variant='h6' align='center'>
-              R3
+                R3
               </Typography>
             </td>
-            <td className='r4' style={{ width: `${finalRealWidth}%` }}>
+            <td className='r4' style={{ width: finalRealWidth }}>
               <Typography variant='h6' align='center'>
-              R4
+                R4
               </Typography>
             </td>
           </tr>
         </table>
         <table className='overlay'>
           <tr>
-            <td style={{ width: `${initialCyclesWidth}%`, ...overlay(1) }}>
-            </td>
-            <td style={{ width: `${initialCyclesWidth}%`, ...overlay(2) }}>
-            </td>
-            <td style={{ width: `${finalCycleWidth}%`, ...overlay(3) }}>
-            </td>
+            <td style={{ width: initialCyclesWidth, ...overlay(1) }}/>
+            <td style={{ width: initialCyclesWidth, ...overlay(2) }}/>
+            <td style={{ width: finalCycleWidth, ...overlay(3) }}/>
           </tr>
         </table>
-        <div className='ageLine' style={{ left: agePosition }}>
-        </div>
+        <div className='ageLine' style={{ left: agePosition }}/>
         <Typography className='age' variant='h6' style={{ left: `calc(${agePosition} - 30px)` }}>
           {cycles.age} anos
         </Typography>
