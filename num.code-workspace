@@ -5,7 +5,7 @@
       "public": true,
       "dist": true,
       
-      ".eslintrc.cjs": true,
+      // ".eslintrc.cjs": true,
       ".gitignore": true,
       "package-lock.json": true,
       "tsconfig*": true,

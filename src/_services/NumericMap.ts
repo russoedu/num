@@ -1,7 +1,7 @@
 import { _array } from '../_helpers/_array'
 import { _date } from '../_helpers/_date'
 import { _name } from '../_helpers/_name'
-import { FinalSingleDigitT, SingleDigitT, consonants, vowels, Consonants, Vowels, letterValues, VN, VnCountSingleDigit, VnCountFinalDigit, CyclesT } from '../_helpers/types'
+import { FinalSingleDigitT, SingleDigitT, consonants, vowels, Consonants, Vowels, letterValues, VN, VnCountSingleDigit, VnCountFinalDigit, CyclesT, PersonalYearT } from '../_helpers/types'
 
 export class NumericMap {
   constructor (name: string, birthday: string) {
@@ -524,17 +524,17 @@ export class NumericMap {
 
     const start = new Date(interestYear, month, day)
     const end = new Date(interestYear + 1, month, day)
-    const value = this.#charactersSum(
+    const vn = this.#charactersSum(
       this.#daySum +
       this.#monthSum + 
       this.#charactersSum(interestYear),
       true)
 
     return {
-      value,
+      vn,
       start,
       end,
-    }
+    } as PersonalYearT
   }
 
   name: string
@@ -616,11 +616,7 @@ export class NumericMap {
   /**
    * ANO PESSOAL
    */
-  personalYear: {
-    value: FinalSingleDigitT,
-    start: Date,
-    end:   Date,
-  } = {} as any
+  personalYear: PersonalYearT
 
   /**
    * Cycles data

@@ -2,6 +2,7 @@ import { Typography } from '@mui/material'
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2'
 import { AdvancedGrid } from '../_components/AdvancedGrid'
 import { NumericMap } from '../_services/NumericMap'
+import { CSSProperties } from 'react'
 
 /**
  * The cycles
@@ -11,10 +12,18 @@ export function Tec0Cycles ({ result }: { result: NumericMap }) {
   const cycles = result.tec0Cycles
   const initialCyclesWidth = cycles.c1End * 100 / cycles.c3End 
   const finalCycleWidth = (cycles.c3End - cycles.c2End) * 100 / cycles.c3End
+
   const firstRealWidth = cycles.r1End * 100 / cycles.c3End 
   const realWidth = 10 * 100 / cycles.c3End
   const finalRealWidth = (cycles.c3End - cycles.r3End) * 100 / cycles.c3End
+  
   const agePosition = `${(cycles.age * 100) / cycles.c3End}%`
+
+  function overlay (cycle: number): CSSProperties {
+    return result.tec0Cycles.cycle === cycle
+      ? { backgroundColor: '#000', mixBlendMode: 'overlay' }
+      : { backgroundColor: 'transparent' }
+  }
   
   return (
     <>
@@ -62,9 +71,19 @@ export function Tec0Cycles ({ result }: { result: NumericMap }) {
             </td>
           </tr>
         </table>
-        <div style={{ width: 1, height: 130, backgroundColor: 'black', position: 'relative', top: -115, left: agePosition }}>
+        <table className='cycle' style={{ width: '100%', borderSpacing: 0, height: 100, position: 'relative', top: -100 }}>
+          <tr>
+            <td style={{ width: `${initialCyclesWidth}%`, ...overlay(1) }}>
+            </td>
+            <td style={{ width: `${initialCyclesWidth}%`, ...overlay(2) }}>
+            </td>
+            <td style={{ width: `${finalCycleWidth}%`, ...overlay(3) }}>
+            </td>
+          </tr>
+        </table>
+        <div style={{ width: 1, height: 130, backgroundColor: 'black', position: 'relative', top: -215, left: agePosition }}>
         </div>
-        <Typography variant='h6' style={{ display: 'inline', position: 'relative', left: `calc(${agePosition} - 30px)`, top: -115 }}>
+        <Typography variant='h6' style={{ display: 'inline', position: 'relative', left: `calc(${agePosition} - 30px)`, top: -215 }}>
           {cycles.age} anos
         </Typography>
       </div>

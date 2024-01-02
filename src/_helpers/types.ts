@@ -58,12 +58,14 @@ export type ResultValueT = {
   age?: string
 }
 
+export type PyramidResultT = {
+  vn: FinalSingleDigitT,
+  description: string,
+}
+
 export type PyramidT = {
   position: string,
-  results: {
-      vn: number,
-      description: string,
-    }[]
+  results:PyramidResultT[]
 }
 
 export type MultiplicityTypeT = 
@@ -79,6 +81,12 @@ export const MultiplicityType: MultiplicityTypeT[] = [
   'Qd',
   'Qt',
 ]
+
+export type PersonalYearT = {
+  vn: FinalSingleDigitT,
+  start: Date,
+  end:   Date,
+}
 
 export type MultiplicityMultipleT = {
   vn: FinalSingleDigitT,

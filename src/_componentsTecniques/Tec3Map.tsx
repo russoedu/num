@@ -74,7 +74,7 @@ export function Tec3Map ({ result }: { result: NumericMap }) {
           Ano Pessoal
             </Typography>
             <Typography variant='h5' display='inline' color={purple} sx={{ fontWeight: 'bold', paddingRight: 1 }}>
-              {result.personalYear.value}
+              {result.personalYear.vn}
             </Typography>
             <Typography variant='h6' display='inline' sx={{ paddingRight: 1 }}>
           de {result.personalYear.start.toLocaleDateString()} a {result.personalYear.end.toLocaleDateString()}

@@ -5,16 +5,12 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
-  ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
-  extends: [
-    'plugin:@typescript-eslint/recommended',
-    'eslint:recommended',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
   ],
+  ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh', 'eslint-plugin-tsdoc', '@typescript-eslint', 'vitest'],
+  plugins: ['react-refresh', 'eslint-plugin-tsdoc', '@typescript-eslint', 'eslint-plugin-vitest'],
   globals: {
     React:   true,
     JSX:     true,

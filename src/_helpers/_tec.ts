@@ -1,7 +1,7 @@
-import { FinalSingleDigitT } from './types'
+import { FinalSingleDigitT, PyramidResultT } from './types'
 
 class Tecniques {
-  piramide (num: FinalSingleDigitT) {
+  piramide (num: FinalSingleDigitT): PyramidResultT[] {
     const index: { [key in FinalSingleDigitT]: string } = {
       0:  'Terá uma vida atribulada, agidata e movimentada. Deverá aceitar a movimentação e atribulação, aproveitando esses fatos para produzir expansão, crescimentoe desenvolvimento na vida',
       1:  'força / determinação / autoconfiança / iniciativa / coragem / ousadia / liderança / conquistas / independência',
