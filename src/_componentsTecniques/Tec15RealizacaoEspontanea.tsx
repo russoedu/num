@@ -77,6 +77,9 @@ export function Tec15RealizacaoEspontanea ({ result }: { result: AdvancedTecniqu
             )
         }
       </Grid2>
+      <Typography variant='h6'>
+        --- no outro programa há um comentário relacionado ao zero, mas não encontrei nada na apostila ---
+      </Typography>
       <Spacer/>
     </>
   )
