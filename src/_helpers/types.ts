@@ -229,3 +229,9 @@ export type CyclesT = {
 }
 
 export type ExpressionVibrationT = { title: string, more: string }
+
+export type SpontaneousAccomplishmentT = {
+  position: 'CD' | 'MO' | 'EU',
+  start: number,
+  end: number,
+}

@@ -1,7 +1,7 @@
 import { _array } from '../_helpers/_array'
 import { _number } from '../_helpers/_number'
 import { _tec } from '../_helpers/_tec'
-import { Cycle, CycleInterpretationT, CycleInterpretationVns, ExpressionVibrationT, FinalSingleDigitT, LanguageStyleT, MultiplicitesT, MultiplicityMultipleT, MultiplicityT, MultiplicityType, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultT, PercentageT, PyramidT, Relation, RiskT, SingleDigitT, VN, VicesAndReciclerDataT, vnOwnerPractitioner } from '../_helpers/types'
+import { Cycle, CycleInterpretationT, CycleInterpretationVns, ExpressionVibrationT, FinalSingleDigitT, LanguageStyleT, MultiplicitesT, MultiplicityMultipleT, MultiplicityT, MultiplicityType, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultT, PercentageT, PyramidT, Relation, RiskT, SingleDigitT, SpontaneousAccomplishmentT as SpontaneousAchievementsT, VN, VicesAndReciclerDataT, vnOwnerPractitioner } from '../_helpers/types'
 import { NumericMap } from './NumericMap'
 
 export class AdvancedTecniques {
@@ -90,6 +90,7 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 15 – REALIZAÇÃO ESPONTÂNEA
    */
+  tec15RealizacaoEspontanea: SpontaneousAchievementsT[]
 
   /**
    * TÉCNICA 16 – CONQUISTA ESPONTÂNEA
@@ -161,6 +162,7 @@ export class AdvancedTecniques {
     this.tec13PotenciaisViciosReciclador2aLeitura = this.#tec13PotenciaisViciosReciclador2aLeitura()
     this.tec13PotenciaisViciosReciclador3aLeitura = this.#tec13PotenciaisViciosReciclador3aLeitura()
     this.tec14Pureza = this.#tec14Pureza()
+    this.tec15RealizacaoEspontanea = this.#tec15RealizacaoEspontanea()
   }
 
   /**
@@ -783,13 +785,50 @@ export class AdvancedTecniques {
     const cd = _number.sum(this.#map.cd)
     const mo = _number.sum(this.#map.mo)
     const dm = _number.sum(this.#map.dm)
-    
+
     if (cd === mo) return cd
     if (cd === dm) return cd
     if (mo === dm) return mo
     
 
     return false
+  }
+
+  /**
+   * Spontaneous Achievements interpretation
+   * @returns Spontaneous Achievements interpretation results
+   */
+  #tec15RealizacaoEspontanea () {
+    const result: SpontaneousAchievementsT[] = []
+
+    const positions = ['CD', 'MO', 'EU'] as ('CD' | 'MO' | 'EU')[]
+
+    for (const position of positions) {
+      const p = position === 'MO'
+        ? this.#map.mo
+        : position === 'CD'
+          ? this.#map.cd
+          : this.#map.eu
+
+      for (const achievement of this.#map.achievements) {
+        if (achievement.vn === p) {
+          const existing = result.find(r => r.position === position)
+  
+          if (typeof existing !== 'undefined' && existing.end === achievement.start) {
+            existing.end = achievement.end
+          } else {
+            result.push({
+              position: position,
+              start:    achievement.start,
+              end:      achievement.end,
+            })
+          }
+        }
+      }
+    }
+    
+
+    return result
   }
 
   /* #region Support methods */

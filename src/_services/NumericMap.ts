@@ -346,6 +346,19 @@ export class NumericMap {
       }
     }
   }
+
+  /**
+   * The achievements compiled into an object
+   */
+  get achievements () {
+    return [
+      { vn: this.r1, start: 0, end: this.rAges.r1 },
+      { vn: this.r2, start: this.rAges.r1, end: this.rAges.r2 },
+      { vn: this.r3, start: this.rAges.r2, end: this.rAges.r3 },
+      { vn: this.r4, start: this.rAges.r3, end: Infinity },
+    ]
+  }
+  
   /**
    * List of unique numbers in the map
    */
