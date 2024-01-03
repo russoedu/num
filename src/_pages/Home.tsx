@@ -1,4 +1,4 @@
-import { Breakpoint, Button, ButtonGroup, Container } from '@mui/material'
+import { Container } from '@mui/material'
 import { useState } from 'react'
 // import { Advancedbuttons } from '../_components/AdvancedButtons'
 import { AdvancedTecniquesResults } from '../_componentsPages/AdvancedTecniquesResults'
@@ -21,7 +21,7 @@ export function Home () {
   const [result, setResult] = useState({} as NumericMap)
   const [advancedResult, setAdvancedResult] = useState({} as AdvancedTecniques)
   const [hasResult, setHasResult] = useState(false)
-  const [size, setSize] = useState('lg' as Breakpoint)
+  // const [size, setSize] = useState('lg' as Breakpoint)
 
   /*
    * const advancedMap = useState(false)
@@ -49,7 +49,7 @@ export function Home () {
   }
 
   return (
-    <Container maxWidth={size}>
+    <Container maxWidth='lg'>
       <Form
         name={nameState}
         birthday={birthdayState}
@@ -67,7 +67,7 @@ export function Home () {
       }
       {/*  "xs" | "sm" | "md" | "lg" | "xl" */}
       <Spacer/>
-      <div style={{ textAlign: 'center' }}>
+      {/* <div style={{ textAlign: 'center' }}>
         <ButtonGroup sx={{ paddingBottom: 2 }}>
           <Button variant={ size=== 'xs' ? 'contained' : 'outlined'} onClick={() => setSize('xs')}>pp</Button>
           <Button variant={ size=== 'sm' ? 'contained' : 'outlined'} onClick={() => setSize('sm')}>p</Button>
@@ -75,7 +75,7 @@ export function Home () {
           <Button variant={ size=== 'lg' ? 'contained' : 'outlined'} onClick={() => setSize('lg')}>g</Button>
           <Button variant={ size=== 'xl' ? 'contained' : 'outlined'} onClick={() => setSize('xl')}>gg</Button>
         </ButtonGroup>
-      </div>
+      </div> */}
     </Container>
   )
 }

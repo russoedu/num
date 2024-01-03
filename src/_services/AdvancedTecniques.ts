@@ -1,4 +1,5 @@
 import { _array } from '../_helpers/_array'
+import { _number } from '../_helpers/_number'
 import { _tec } from '../_helpers/_tec'
 import { Cycle, CycleInterpretationT, CycleInterpretationVns, ExpressionVibrationT, FinalSingleDigitT, LanguageStyleT, MultiplicitesT, MultiplicityMultipleT, MultiplicityT, MultiplicityType, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultT, PercentageT, PyramidT, Relation, RiskT, SingleDigitT, VN, VicesAndReciclerDataT, vnOwnerPractitioner } from '../_helpers/types'
 import { NumericMap } from './NumericMap'
@@ -779,9 +780,14 @@ export class AdvancedTecniques {
    * @returns Purity interpretation results
    */
   #tec14Pureza () {
-    if (this.#map.cd === this.#map.mo) return this.#map.cd
-    if (this.#map.cd === this.#map.dm) return this.#map.cd
-    if (this.#map.mo === this.#map.dm) return this.#map.mo
+    const cd = _number.sum(this.#map.cd)
+    const mo = _number.sum(this.#map.mo)
+    const dm = _number.sum(this.#map.dm)
+    
+    if (cd === mo) return cd
+    if (cd === dm) return cd
+    if (mo === dm) return mo
+    
 
     return false
   }

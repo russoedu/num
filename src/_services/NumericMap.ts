@@ -1,6 +1,7 @@
 import { _array } from '../_helpers/_array'
 import { _date } from '../_helpers/_date'
 import { _name } from '../_helpers/_name'
+import { _number } from '../_helpers/_number'
 import { FinalSingleDigitT, SingleDigitT, consonants, vowels, Consonants, Vowels, letterValues, VN, VnCountSingleDigit, VnCountFinalDigit, CyclesT, PersonalYearT } from '../_helpers/types'
 
 export class NumericMap {
@@ -13,32 +14,32 @@ export class NumericMap {
 
     this.age = this.#age()
 
-    this.#daySum = this.#charactersSum(this.birthday.day)
-    this.#monthSum = this.#charactersSum(this.birthday.month)
-    this.#yearSum = this.#charactersSum(this.birthday.year)
+    this.#daySum = _number.sum(this.birthday.day)
+    this.#monthSum = _number.sum(this.birthday.month)
+    this.#yearSum = _number.sum(this.birthday.year)
     
     const { vowelsInName, consonantsInName } = this.#lettersInName()
 
     this.mo = this.#countName(vowelsInName)
     this.eu = this.#countName(consonantsInName)
-    this.ex = this.#charactersSum(this.mo + this.eu, true)
+    this.ex = _number.sum(this.mo + this.eu, true)
 
-    this.cd = this.#charactersSum(this.#daySum + this.#monthSum + this.#yearSum, true)
+    this.cd = _number.sum(this.#daySum + this.#monthSum + this.#yearSum, true)
     
-    this.c1 = this.#charactersSum(this.#monthSum)
-    this.c2 = this.#charactersSum(this.#daySum)
-    this.c3 = this.#charactersSum(this.#yearSum)
+    this.c1 = _number.sum(this.#monthSum)
+    this.c2 = _number.sum(this.#daySum)
+    this.c3 = _number.sum(this.#yearSum)
     
-    this.d1 = this.#charactersSum(Math.abs(this.#daySum - this.#monthSum))
-    this.d2 = this.#charactersSum(Math.abs(this.#yearSum - this.#monthSum))
-    this.dm = this.#charactersSum(Math.abs(this.d1 - this.d2))
+    this.d1 = _number.sum(Math.abs(this.#daySum - this.#monthSum))
+    this.d2 = _number.sum(Math.abs(this.#yearSum - this.#monthSum))
+    this.dm = _number.sum(Math.abs(this.d1 - this.d2))
 
-    this.r1 = this.#charactersSum(this.#daySum + this.#monthSum, true)
+    this.r1 = _number.sum(this.#daySum + this.#monthSum, true)
 
-    this.r2 = this.#charactersSum(this.#daySum + this.#yearSum, true)
+    this.r2 = _number.sum(this.#daySum + this.#yearSum, true)
 
-    this.r3 = this.#charactersSum(this.r1 + this.r2, true)
-    this.r4 = this.#charactersSum(this.#monthSum + this.#yearSum, true)
+    this.r3 = _number.sum(this.r1 + this.r2, true)
+    this.r4 = _number.sum(this.#monthSum + this.#yearSum, true)
 
     this.rAges.r1 = 36 - this.cd
     this.rAges.r2 = this.rAges.r1 + 10
@@ -414,53 +415,6 @@ export class NumericMap {
   }
 
   /**
-   * Sums the digits of the number until it is a single digit (1 - 9)
-   * @param num - The number to be summed
-   * @returns The sum of each number digit
-   */
-  #charactersSum (num: number): SingleDigitT
-  /**
-   * Sums the digits of the number until it is a single digit (1 - 9)
-   * @param num - The number to be summed
-   * @param final - If true, the results can also be 11 or 22, else, 11 and 22 wil be summed again (to 2 or 4)
-   * @returns The sum of each number digit
-   */
-  #charactersSum (num: number, final: false): SingleDigitT
-  /**
-   * Sums the digits of the number until it is a single digit (1 - 9, 11 or 22)
-   * @param num - The number to be summed
-   * @param final - If true, the results can also be 11 or 22, else, 11 and 22 wil be summed again (to 2 or 4)
-   * @returns The sum of each number digit
-   */
-  #charactersSum (num: number, final: true): FinalSingleDigitT
-  
-  /**
-   * Sums the digits of the number until it is a single digit (1 - 9). If final is true, 11 and 22 are also possible
-   * @param num - The number to be summed
-   * @param final - If true, the results can also be 11 or 22, else, 11 and 22 wil be summed again (to 2 or 4)
-   * @returns The sum of each number digit
-   */
-  #charactersSum (num: number, final: boolean): FinalSingleDigitT|SingleDigitT
-  
-  #charactersSum (num: number, final = false) {
-    let sum: any = 0
-
-    if (num > 9 && (final !== true || (num != 11 && num != 22))) {
-      while (num) {
-        sum += num % 10
-        num = Math.floor(num / 10)
-      }
-
-      sum = this.#charactersSum(sum, final)
-
-    } else {
-      sum = num
-    }
-    
-    return sum
-  }
-
-  /**
    * Retrieves the name vowels and consonants extracted from the name
    */
   #lettersInName () {
@@ -493,7 +447,7 @@ export class NumericMap {
       nameSum += chValue
     }
 
-    return this.#charactersSum(nameSum, true)
+    return _number.sum(nameSum, true)
   }
 
   /**
@@ -501,12 +455,14 @@ export class NumericMap {
    * @returns The current age
    */
   #age () {
-    const otherDate = new Date()
+    const today = new Date()
 
-    let years = (otherDate.getFullYear() - this.birthday.year)
+    const month = today.getMonth() + 1
 
-    if (otherDate.getMonth() < this.birthday.month - 1 || 
-        otherDate.getMonth() == this.birthday.month - 1 && otherDate.getDate() < this.birthday.day) {
+    let years = (today.getFullYear() - this.birthday.year)
+
+    if (month < this.birthday.month || 
+        month == this.birthday.month && today.getDate() < this.birthday.day) {
       years--
     }
 
@@ -524,10 +480,10 @@ export class NumericMap {
 
     const start = new Date(interestYear, month, day)
     const end = new Date(interestYear + 1, month, day)
-    const vn = this.#charactersSum(
+    const vn = _number.sum(
       this.#daySum +
       this.#monthSum + 
-      this.#charactersSum(interestYear),
+      _number.sum(interestYear),
       true)
 
     return {
