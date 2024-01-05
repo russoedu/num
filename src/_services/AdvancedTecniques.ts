@@ -477,7 +477,7 @@ export class AdvancedTecniques {
           relation: Relation.FORTE_MO,
         })
       }
-      if (this.#map.cd === vn.vn || this.#map.r.r1.vn === vn.vn) {
+      if (this.#map.cd === vn.vn || this.#map.achievements.r1.vn === vn.vn) {
         int.push({
           person:   vn.person,
           relation: Relation.MEDIA_CD_R1,
@@ -811,7 +811,7 @@ export class AdvancedTecniques {
           ? this.#map.cd
           : this.#map.eu
 
-      for (const achievement of this.#map.achievements) {
+      for (const achievement of this.#map.achievementsArray) {
         if (achievement.vn === p) {
           const existing = result.find(r => r.position === position)
   
@@ -834,18 +834,18 @@ export class AdvancedTecniques {
   #tec16ConquistaEspontanea () {
     const result = []
     // TODO not enough info
-    if (this.#map.d1 === this.#map.r.r1.vn) {
+    if (this.#map.d1 === this.#map.achievements.r1.vn) {
       result.push({
         position: 'R1',
         start:    0,
-        end:      Math.min(this.#map.r.r1.end, 28),
+        end:      Math.min(this.#map.achievements.r1.end, 28),
       })
     }
-    if (this.#map.d1 === this.#map.r.r2.vn && this.#map.r.r1.end < 28) {
+    if (this.#map.d1 === this.#map.achievements.r2.vn && this.#map.achievements.r1.end < 28) {
       result.push({
         position: 'R1',
         start:    0,
-        end:      Math.min(this.#map.r.r1.end, 28),
+        end:      Math.min(this.#map.achievements.r1.end, 28),
       })
     }
     

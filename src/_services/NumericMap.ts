@@ -37,7 +37,7 @@ export class NumericMap {
     this.d2 = _number.sum(Math.abs(this.#yearSum - this.#monthSum))
     this.dm = _number.sum(Math.abs(this.d1 - this.d2))
 
-    this.r = this.#r()
+    this.achievements = this.#r()
 
     this.personalYear = this.#interestYear()
 
@@ -45,9 +45,9 @@ export class NumericMap {
       c1End:  28,
       c2End:  56,
       c3End:  Math.max(76, this.age * 2),
-      r1End:  this.r.r1.end,
-      r2End:  this.r.r2.end,
-      r3End:  this.r.r3.end,
+      r1End:  this.achievements.r1.end,
+      r2End:  this.achievements.r2.end,
+      r3End:  this.achievements.r3.end,
       age:    this.age,
       cycle:  this.cycle.index,
       cycles: [
@@ -86,10 +86,10 @@ export class NumericMap {
       this.c1,
       this.c2,
       this.c3,
-      this.r.r1.vn,
-      this.r.r2.vn,
-      this.r.r3.vn,
-      this.r.r4.vn,
+      this.achievements.r1.vn,
+      this.achievements.r2.vn,
+      this.achievements.r3.vn,
+      this.achievements.r4.vn,
     ] as FinalSingleDigitT[]
   }
 
@@ -108,10 +108,10 @@ export class NumericMap {
       { position: 'C1', vn: this.c1 },
       { position: 'C2', vn: this.c2 },
       { position: 'C3', vn: this.c3 },
-      { position: 'R1', vn: this.r.r1.vn },
-      { position: 'R2', vn: this.r.r2.vn },
-      { position: 'R3', vn: this.r.r3.vn },
-      { position: 'R4', vn: this.r.r4.vn },
+      { position: 'R1', vn: this.achievements.r1.vn },
+      { position: 'R2', vn: this.achievements.r2.vn },
+      { position: 'R3', vn: this.achievements.r3.vn },
+      { position: 'R4', vn: this.achievements.r4.vn },
     ] as VN[]
   }
   /**
@@ -270,24 +270,24 @@ export class NumericMap {
   #getCycleList (cycleStart: number, cycleEnd: number) {
     const list: VN[] = []
 
-    if ((this.r.r1.start >= cycleStart && this.r.r1.start < cycleEnd) ||
-    (this.r.r1.end > cycleStart && this.r.r1.end <= cycleEnd)) {
-      list.push({ position: 'R1', vn: this.r.r1.vn })
+    if ((this.achievements.r1.start >= cycleStart && this.achievements.r1.start < cycleEnd) ||
+    (this.achievements.r1.end > cycleStart && this.achievements.r1.end <= cycleEnd)) {
+      list.push({ position: 'R1', vn: this.achievements.r1.vn })
     }
 
-    if ((this.r.r2.start >= cycleStart && this.r.r2.start < cycleEnd) ||
-    (this.r.r2.end > cycleStart && this.r.r2.end <= cycleEnd)) {
-      list.push({ position: 'R2', vn: this.r.r2.vn })
+    if ((this.achievements.r2.start >= cycleStart && this.achievements.r2.start < cycleEnd) ||
+    (this.achievements.r2.end > cycleStart && this.achievements.r2.end <= cycleEnd)) {
+      list.push({ position: 'R2', vn: this.achievements.r2.vn })
     }
 
-    if ((this.r.r3.start >= cycleStart && this.r.r3.start < cycleEnd) ||
-    (this.r.r3.end > cycleStart && this.r.r3.end <= cycleEnd)) {
-      list.push({ position: 'R3', vn: this.r.r3.vn })
+    if ((this.achievements.r3.start >= cycleStart && this.achievements.r3.start < cycleEnd) ||
+    (this.achievements.r3.end > cycleStart && this.achievements.r3.end <= cycleEnd)) {
+      list.push({ position: 'R3', vn: this.achievements.r3.vn })
     }
 
-    if ((this.r.r4.start >= cycleStart && this.r.r4.start < cycleEnd) ||
-    this.r.r4.start <= cycleEnd){
-      list.push({ position: 'R4', vn: this.r.r4.vn })
+    if ((this.achievements.r4.start >= cycleStart && this.achievements.r4.start < cycleEnd) ||
+    this.achievements.r4.start <= cycleEnd){
+      list.push({ position: 'R4', vn: this.achievements.r4.vn })
     }
 
     return list
@@ -341,14 +341,14 @@ export class NumericMap {
   }
 
   /**
-   * The achievements compiled into an object
+   * The achievements compiled into an array
    */
-  get achievements () {
+  get achievementsArray () {
     return [
-      { vn: this.r.r1.vn, start: this.r.r1.start, end: this.r.r1.end },
-      { vn: this.r.r2.vn, start: this.r.r2.start, end: this.r.r2.end },
-      { vn: this.r.r3.vn, start: this.r.r3.start, end: this.r.r3.end },
-      { vn: this.r.r4.vn, start: this.r.r4.start, end: this.r.r4.end },
+      { vn: this.achievements.r1.vn, start: this.achievements.r1.start, end: this.achievements.r1.end },
+      { vn: this.achievements.r2.vn, start: this.achievements.r2.start, end: this.achievements.r2.end },
+      { vn: this.achievements.r3.vn, start: this.achievements.r3.start, end: this.achievements.r3.end },
+      { vn: this.achievements.r4.vn, start: this.achievements.r4.start, end: this.achievements.r4.end },
     ]
   }
   
@@ -587,7 +587,7 @@ export class NumericMap {
   /**
    * REALIZAÇÕES
    */
-  r: {
+  achievements: {
     r1: {
       vn:FinalSingleDigitT,
       start: number,
