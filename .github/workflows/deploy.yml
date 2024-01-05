@@ -39,6 +39,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+      
+      - name: Run tests
+        run: npm test
 
       - name: Test Report
         uses: dorny/test-reporter@v1
