@@ -60,10 +60,10 @@ export function Tec3Map ({ result }: { result: NumericMap }) {
         <Divider className='divider-sm'/>
         <ResultGrid
           data={[
-            { title: 'R1', value: result.r1, age: `0/${result.rAges.r1}` },
-            { title: 'R2', value: result.r2, age: `${result.rAges.r1}/${result.rAges.r2}` },
-            { title: 'R3', value: result.r3, age: `${result.rAges.r2}/${result.rAges.r3}` },
-            { title: 'R4', value: result.r4, age: `+${result.rAges.r3}` },
+            { title: 'R1', value: result.r.r1.vn, age: `${result.r.r1.start}/${result.r.r1.end}` },
+            { title: 'R2', value: result.r.r2.vn, age: `${result.r.r2.start}/${result.r.r2.end}` },
+            { title: 'R3', value: result.r.r3.vn, age: `${result.r.r3.start}/${result.r.r3.end}` },
+            { title: 'R4', value: result.r.r4.vn, age: `+${result.r.r4.start}` },
           ]}
           xs={2}
         />

@@ -30,15 +30,27 @@ describe('NumericMap', () => {
         d2: 5,
         dm: 0,
 
-        r1: 11,
-        r2: 7,
-        r3: 9,
-        r4: 11,
-        
-        rAges: {
-          r1: 35,
-          r2: 45,
-          r3: 55,
+        r: {
+          r1: {
+            vn:    11,
+            start: 0,
+            end:   35,
+          },
+          r2: {
+            vn:    7,
+            start: 35,
+            end:   45,
+          },
+          r3: {
+            vn:    9,
+            start: 45,
+            end:   55,
+          },
+          r4: {
+            vn:    11,
+            start: 55,
+            end:   Infinity,
+          },
         },
 
         personalYear: {
@@ -175,15 +187,27 @@ describe('NumericMap', () => {
         d2: 3,
         dm: 2,
         
-        r1: 11,
-        r2: 5,
-        r3: 7,
-        r4: 9,
-        
-        rAges: {
-          r1: 28,
-          r2: 38,
-          r3: 48,
+        r: {
+          r1: {
+            vn:    11,
+            start: 0,
+            end:   28,
+          },
+          r2: {
+            vn:    5,
+            start: 28,
+            end:   38,
+          },
+          r3: {
+            vn:    7,
+            start: 38,
+            end:   48,
+          },
+          r4: {
+            vn:    9,
+            start: 48,
+            end:   Infinity,
+          },
         },
         
         personalYear: {

@@ -4,6 +4,7 @@
       "node_modules": true,
       "public": true,
       "dist": true,
+      ".github": true,
       
       ".eslintrc.cjs": true,
       ".gitignore": true,
@@ -12,7 +13,6 @@
       "vite.config.ts": true,
       "index.html": true,
       "copyPublic.js": true,
-      ".github": true,
     },
     "debug.javascript.terminalOptions": {
       "skipFiles": [

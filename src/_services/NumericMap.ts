@@ -39,23 +39,15 @@ export class NumericMap {
 
     this.r = this.#r()
 
-    this.r1 = _number.sum(this.#daySum + this.#monthSum, true)
-    this.r2 = _number.sum(this.#daySum + this.#yearSum, true)
-    this.r3 = _number.sum(this.r1 + this.r2, true)
-    this.r4 = _number.sum(this.#monthSum + this.#yearSum, true)
-    this.rAges.r1 = 36 - this.cd
-    this.rAges.r2 = this.rAges.r1 + 10
-    this.rAges.r3 = this.rAges.r2 + 10
-    
     this.personalYear = this.#interestYear()
 
     this.tec0Cycles = {
       c1End:  28,
       c2End:  56,
       c3End:  Math.max(76, this.age * 2),
-      r1End:  this.rAges.r1,
-      r2End:  this.rAges.r2,
-      r3End:  this.rAges.r3,
+      r1End:  this.r.r1.end,
+      r2End:  this.r.r2.end,
+      r3End:  this.r.r3.end,
       age:    this.age,
       cycle:  this.cycle.index,
       cycles: [
@@ -94,10 +86,10 @@ export class NumericMap {
       this.c1,
       this.c2,
       this.c3,
-      this.r1,
-      this.r2,
-      this.r3,
-      this.r4,
+      this.r.r1.vn,
+      this.r.r2.vn,
+      this.r.r3.vn,
+      this.r.r4.vn,
     ] as FinalSingleDigitT[]
   }
 
@@ -116,10 +108,10 @@ export class NumericMap {
       { position: 'C1', vn: this.c1 },
       { position: 'C2', vn: this.c2 },
       { position: 'C3', vn: this.c3 },
-      { position: 'R1', vn: this.r1 },
-      { position: 'R2', vn: this.r2 },
-      { position: 'R3', vn: this.r3 },
-      { position: 'R4', vn: this.r4 },
+      { position: 'R1', vn: this.r.r1.vn },
+      { position: 'R2', vn: this.r.r2.vn },
+      { position: 'R3', vn: this.r.r3.vn },
+      { position: 'R4', vn: this.r.r4.vn },
     ] as VN[]
   }
   /**
@@ -276,27 +268,26 @@ export class NumericMap {
    * @returns The list of VNs
    */
   #getCycleList (cycleStart: number, cycleEnd: number) {
-    const r0 = 0
     const list: VN[] = []
 
-    if ((r0 >= cycleStart && r0 < cycleEnd) ||
-    (this.rAges.r1 > cycleStart && this.rAges.r1 <= cycleEnd)) {
-      list.push({ position: 'R1', vn: this.r1 })
+    if ((this.r.r1.start >= cycleStart && this.r.r1.start < cycleEnd) ||
+    (this.r.r1.end > cycleStart && this.r.r1.end <= cycleEnd)) {
+      list.push({ position: 'R1', vn: this.r.r1.vn })
     }
 
-    if ((this.rAges.r1 >= cycleStart && this.rAges.r1 < cycleEnd) ||
-    (this.rAges.r2 > cycleStart && this.rAges.r2 <= cycleEnd)) {
-      list.push({ position: 'R2', vn: this.r2 })
+    if ((this.r.r2.start >= cycleStart && this.r.r2.start < cycleEnd) ||
+    (this.r.r2.end > cycleStart && this.r.r2.end <= cycleEnd)) {
+      list.push({ position: 'R2', vn: this.r.r2.vn })
     }
 
-    if ((this.rAges.r2 >= cycleStart && this.rAges.r2 < cycleEnd) ||
-    (this.rAges.r3 > cycleStart && this.rAges.r3 <= cycleEnd)) {
-      list.push({ position: 'R3', vn: this.r3 })
+    if ((this.r.r3.start >= cycleStart && this.r.r3.start < cycleEnd) ||
+    (this.r.r3.end > cycleStart && this.r.r3.end <= cycleEnd)) {
+      list.push({ position: 'R3', vn: this.r.r3.vn })
     }
 
-    if ((this.rAges.r3 >= cycleStart && this.rAges.r3 < cycleEnd) ||
-    this.rAges.r3 <= cycleEnd){
-      list.push({ position: 'R4', vn: this.r4 })
+    if ((this.r.r4.start >= cycleStart && this.r.r4.start < cycleEnd) ||
+    this.r.r4.start <= cycleEnd){
+      list.push({ position: 'R4', vn: this.r.r4.vn })
     }
 
     return list
@@ -354,10 +345,10 @@ export class NumericMap {
    */
   get achievements () {
     return [
-      { vn: this.r1, start: 0, end: this.rAges.r1 },
-      { vn: this.r2, start: this.rAges.r1, end: this.rAges.r2 },
-      { vn: this.r3, start: this.rAges.r2, end: this.rAges.r3 },
-      { vn: this.r4, start: this.rAges.r3, end: Infinity },
+      { vn: this.r.r1.vn, start: this.r.r1.start, end: this.r.r1.end },
+      { vn: this.r.r2.vn, start: this.r.r2.start, end: this.r.r2.end },
+      { vn: this.r.r3.vn, start: this.r.r3.start, end: this.r.r3.end },
+      { vn: this.r.r4.vn, start: this.r.r4.start, end: this.r.r4.end },
     ]
   }
   
@@ -618,30 +609,7 @@ export class NumericMap {
       end: number
     }
   }
-  /**
-   * PRIMEIRA REALIZAÇÃO
-   */
-  r1: FinalSingleDigitT = 0
-  /**
-   * SEGUNDA REALIZAÇÃO
-   */
-  r2: FinalSingleDigitT = 0
-  /**
-   * TERCEIRA REALIZAÇÃO
-   */
-  r3: FinalSingleDigitT = 0
-  /**
-   * QUARTA REALIZAÇÃO
-   */
-  r4: FinalSingleDigitT = 0
-  /**
-   * IDADE FINAL DA R1
-   */
-  rAges: {r1: number, r2: number, r3: number  } = {
-    r1: 0,
-    r2: 0,
-    r3: 0,
-  }
+
   /**
    * IDADE
    */
