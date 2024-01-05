@@ -18,16 +18,12 @@ export function Home () {
   const birthdayState = useState('')
   const birthday = birthdayState[0]
 
+  const todayState = useState(new Date().toISOString().split('T')[0])
+  const today = todayState[0]
+
   const [result, setResult] = useState({} as NumericMap)
   const [advancedResult, setAdvancedResult] = useState({} as AdvancedTecniques)
   const [hasResult, setHasResult] = useState(false)
-  // const [size, setSize] = useState('lg' as Breakpoint)
-
-  /*
-   * const advancedMap = useState(false)
-   * const advancedTecniques = useState(false)
-   */
-
 
   /**
    * Calculates the map
@@ -39,7 +35,7 @@ export function Home () {
       setAdvancedResult({} as AdvancedTecniques)
       setHasResult(false)
     } else {
-      const map = new NumericMap(name, birthday)
+      const map = new NumericMap(name, birthday, today)
       const advanced = new AdvancedTecniques(map)
       
       setResult(map)
@@ -54,6 +50,7 @@ export function Home () {
         name={nameState}
         birthday={birthdayState}
         calculate={calculate}
+        today={todayState}
       />
       {hasResult
         ? (
@@ -65,17 +62,7 @@ export function Home () {
         )
         : <></>
       }
-      {/*  "xs" | "sm" | "md" | "lg" | "xl" */}
       <Spacer/>
-      {/* <div style={{ textAlign: 'center' }}>
-        <ButtonGroup sx={{ paddingBottom: 2 }}>
-          <Button variant={ size=== 'xs' ? 'contained' : 'outlined'} onClick={() => setSize('xs')}>pp</Button>
-          <Button variant={ size=== 'sm' ? 'contained' : 'outlined'} onClick={() => setSize('sm')}>p</Button>
-          <Button variant={ size=== 'md' ? 'contained' : 'outlined'} onClick={() => setSize('md')}>m</Button>
-          <Button variant={ size=== 'lg' ? 'contained' : 'outlined'} onClick={() => setSize('lg')}>g</Button>
-          <Button variant={ size=== 'xl' ? 'contained' : 'outlined'} onClick={() => setSize('xl')}>gg</Button>
-        </ButtonGroup>
-      </div> */}
     </Container>
   )
 }

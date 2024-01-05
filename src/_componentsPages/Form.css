@@ -4,7 +4,11 @@
 .MuiFormLabel-root, .MuiOutlinedInput-notchedOutline {
   font-size: 1.4em;
 }
-.clean-button {
+.action-button {
   cursor: pointer;
   padding: 5px 0 1px 0;
+}
+
+.form-button {
+  padding: 15px 22px;
 }

@@ -7,7 +7,6 @@ export function AdvancedGrid ({ children, i }: { children: ReactNode | JSX.Eleme
     <Grid2
       container
       className='advanced-grid'
-      key={i}
       sx={{ backgroundColor: i % 2 === 0 ? 'hsl(266 62% 96% / 1)' : 'hsl(266 62% 90% / 1)', padding: '0.3em' }}
     >
       {children}

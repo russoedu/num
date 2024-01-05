@@ -25,6 +25,7 @@ export enum Cycle {
 export type FormInput = {
   name: [string, React.Dispatch<React.SetStateAction<string>>],
   birthday: [string, React.Dispatch<React.SetStateAction<string>>],
+  today: [string, React.Dispatch<React.SetStateAction<string>>],
   calculate: (clean?: boolean) => void
 }
 
@@ -230,7 +231,7 @@ export type CyclesT = {
 
 export type ExpressionVibrationT = { title: string, more: string }
 
-export type SpontaneousAccomplishmentT = {
+export type AchievementsT = {
   position: 'CD' | 'MO' | 'EU',
   start: number,
   end: number,

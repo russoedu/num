@@ -1,4 +1,5 @@
 import DeleteIcon from '@mui/icons-material/HighlightOff'
+import RestartAltIcon from '@mui/icons-material/RestartAlt'
 import { Button, InputAdornment, TextField } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 import { useEffect, useState } from 'react'
@@ -10,9 +11,10 @@ import './Form.css'
  * The main form component
  * @returns Form component
  */
-export function Form ({ name, birthday, calculate }: FormInput) {
+export function Form ({ name, birthday, today, calculate }: FormInput) {
   const [formName, setName] = name
   const [formBirthday, setBirthday] = birthday
+  const [formToday, setToday] = today
   const [hasData, setHasData] = useState(false)
 
   /**
@@ -21,6 +23,7 @@ export function Form ({ name, birthday, calculate }: FormInput) {
   function reset () {
     setName('')
     setBirthday('')
+    setToday(new Date().toISOString().split('T')[0])
     setHasData(false)
     calculate(true)
   }
@@ -34,17 +37,21 @@ export function Form ({ name, birthday, calculate }: FormInput) {
       setName(event.target.value.toUpperCase())
     } else if (event.target.id === 'birthDay') {
       setBirthday(event.target.value)
+    } else if (event.target.id === 'year') {
+      setToday(event.target.value)
     }
   }
 
   /**
    * Cleans the name or the birthday
    */
-  function cleanInput (event: React.MouseEvent<HTMLDivElement>) {
+  function inputAction (event: React.MouseEvent<HTMLDivElement>) {
     if (event.currentTarget.id === 'resetName') {
       setName('')
     } else if (event.currentTarget.id === 'resetBirthDay') {
       setBirthday('')
+    } else if (event.currentTarget.id === 'resetToday') {
+      setToday(new Date().toISOString().split('T')[0])
     }
   }
 
@@ -52,7 +59,9 @@ export function Form ({ name, birthday, calculate }: FormInput) {
    * Checks if both the name and birthday are filled to calculate it or to hide the maps
    */
   useEffect(() => {
-    const isValid = formName !== '' && _date.isValid(formBirthday)
+    const isValid = formName !== '' && formToday !== '' &&
+      _date.isValid(formBirthday) && _date.isValid(formToday)
+
     if(isValid) {
       calculate()
       setHasData(true)
@@ -60,12 +69,12 @@ export function Form ({ name, birthday, calculate }: FormInput) {
       calculate(true)
       setHasData(false)
     }
-  }, [formName, formBirthday])
+  }, [formName, formBirthday, formToday])
 
   return (
-    <Grid container spacing={3} columns={{ xs: 6, md: 12 }} sx={{ flexGrow: 2 }}>
+    <Grid container spacing={3} columns={{ xs: 6, md: 12 }}>
       <Grid xs={6}>
-        <TextField 
+        <TextField
           id='name'
           className='input'
           value={formName}
@@ -75,19 +84,20 @@ export function Form ({ name, birthday, calculate }: FormInput) {
           autoComplete='off'
           autoFocus
           type='text'
+          focused
+          fullWidth
           InputProps={{
             endAdornment: <InputAdornment position='start'>
-              <div id='resetName' onClick={cleanInput}>
-                <DeleteIcon id='clean-name' className='clean-button'/>
+              <div id='resetName' onClick={inputAction}>
+                <DeleteIcon id='clean-name' className='action-button'/>
               </div>
             </InputAdornment>,
           }}
-          focused
-          fullWidth
+          
         />
       </Grid>
       <Grid xs={6}>
-        <TextField 
+        <TextField
           id='birthDay'
           className='input'
           value={formBirthday}
@@ -96,20 +106,44 @@ export function Form ({ name, birthday, calculate }: FormInput) {
           variant='outlined'
           autoComplete='off'
           type='date'
+          focused
+          fullWidth
           InputProps={{
             endAdornment: <InputAdornment position='start'>
-              <div id='resetBirthDay' onClick={cleanInput}>
-                <DeleteIcon className='clean-button'/>
+              <div id='resetBirthDay' onClick={inputAction}>
+                <DeleteIcon className='action-button'/>
               </div>
             </InputAdornment>,
           }}
-          focused
-          fullWidth
+          
         />
       </Grid>
 
-      <Grid xs={12} md={6} lg={3} mdOffset={6} lgOffset={9}>
+      <Grid xs={6}>
+        <TextField
+          id='year'
+          className='input'
+          value={formToday}
+          onChange={handleChange}
+          label='Data do cálculo'
+          variant='outlined'
+          autoComplete='off'
+          type='date'
+          focused
+          fullWidth
+          InputProps={{
+            endAdornment: <InputAdornment position='start'>
+              <div id='resetToday' onClick={inputAction}>
+                <RestartAltIcon className='action-button'/>
+              </div>
+            </InputAdornment>,
+          }}
+        />
+      </Grid>
+
+      <Grid xs={6}>
         <Button
+          className='form-button'
           size='large'
           variant='contained'
           onClick={reset}

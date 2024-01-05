@@ -1,7 +1,7 @@
 import { _array } from '../_helpers/_array'
 import { _number } from '../_helpers/_number'
 import { _tec } from '../_helpers/_tec'
-import { Cycle, CycleInterpretationT, CycleInterpretationVns, ExpressionVibrationT, FinalSingleDigitT, LanguageStyleT, MultiplicitesT, MultiplicityMultipleT, MultiplicityT, MultiplicityType, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultT, PercentageT, PyramidT, Relation, RiskT, SingleDigitT, SpontaneousAccomplishmentT as SpontaneousAchievementsT, VN, VicesAndReciclerDataT, vnOwnerPractitioner } from '../_helpers/types'
+import { Cycle, CycleInterpretationT, CycleInterpretationVns, ExpressionVibrationT, FinalSingleDigitT, LanguageStyleT, MultiplicitesT, MultiplicityMultipleT, MultiplicityT, MultiplicityType, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultT, PercentageT, PyramidT, Relation, RiskT, SingleDigitT, AchievementsT, VN, VicesAndReciclerDataT, vnOwnerPractitioner } from '../_helpers/types'
 import { NumericMap } from './NumericMap'
 
 export class AdvancedTecniques {
@@ -90,12 +90,12 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 15 – REALIZAÇÃO ESPONTÂNEA
    */
-  tec15RealizacaoEspontanea: SpontaneousAchievementsT[]
+  tec15RealizacaoEspontanea: AchievementsT[]
 
   /**
    * TÉCNICA 16 – CONQUISTA ESPONTÂNEA
    */
-
+  tec16ConquistaEspontanea: AchievementsT[]
   /**
    * TÉCNICA 17 – RENASCIMENTO
    */
@@ -163,6 +163,7 @@ export class AdvancedTecniques {
     this.tec13PotenciaisViciosReciclador3aLeitura = this.#tec13PotenciaisViciosReciclador3aLeitura()
     this.tec14Pureza = this.#tec14Pureza()
     this.tec15RealizacaoEspontanea = this.#tec15RealizacaoEspontanea()
+    this.tec16ConquistaEspontanea = this.#tec16ConquistaEspontanea()
   }
 
   /**
@@ -799,7 +800,7 @@ export class AdvancedTecniques {
    * @returns Spontaneous Achievements interpretation results
    */
   #tec15RealizacaoEspontanea () {
-    const result: SpontaneousAchievementsT[] = []
+    const result: AchievementsT[] = []
 
     const positions = ['CD', 'MO', 'EU'] as ('CD' | 'MO' | 'EU')[]
 
@@ -827,8 +828,28 @@ export class AdvancedTecniques {
       }
     }
     
-
     return result
+  }
+
+  #tec16ConquistaEspontanea () {
+    const result = []
+    // TODO not enough info
+    if (this.#map.d1 === this.#map.r1) {
+      result.push({
+        position: 'R1',
+        start:    0,
+        end:      Math.min(this.#map.rAges.r1, 28),
+      })
+    }
+    if (this.#map.d1 === this.#map.r2 && this.#map.rAges.r1 < 28) {
+      result.push({
+        position: 'R1',
+        start:    0,
+        end:      Math.min(this.#map.rAges.r1, 28),
+      })
+    }
+    
+    return []
   }
 
   /* #region Support methods */

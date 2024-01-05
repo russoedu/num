@@ -9,7 +9,7 @@ export default defineConfig({
     include: [
       '@emotion/react', 
       '@emotion/styled', 
-      '@emotion/styled_default', 
+      '@emotion/styled_default',
       '@mui/material/Tooltip',
       '@mui/material/Unstable_Grid2',
       '@mui/icons-material/HighlightOff',
