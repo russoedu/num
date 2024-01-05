@@ -43,7 +43,10 @@ export class NumericMap {
     this.r2 = _number.sum(this.#daySum + this.#yearSum, true)
     this.r3 = _number.sum(this.r1 + this.r2, true)
     this.r4 = _number.sum(this.#monthSum + this.#yearSum, true)
-
+    this.rAges.r1 = 36 - this.cd
+    this.rAges.r2 = this.rAges.r1 + 10
+    this.rAges.r3 = this.rAges.r2 + 10
+    
     this.personalYear = this.#interestYear()
 
     this.tec0Cycles = {
