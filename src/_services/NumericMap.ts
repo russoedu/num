@@ -5,12 +5,15 @@ import { _number } from '../_helpers/_number'
 import { FinalSingleDigitT, SingleDigitT, consonants, vowels, Consonants, Vowels, letterValues, VN, VnCountSingleDigit, VnCountFinalDigit, CyclesT, PersonalYearT } from '../_helpers/types'
 
 export class NumericMap {
-  constructor (name: string, birthday: string) {
+  constructor (name: string, birthday: string, today: string) {
     if (!_date.isValid(birthday)) throw new Error('birthday is not a valid date')
 
     this.name = _name.normalise(name)
-    const [year, month, day] = birthday.split('-').map(d => Number(d))
-    this.birthday = { year, month, day }
+    const [birthdayYear, birthdayMonth, birthdayDay] = birthday.split('-').map(d => Number(d))
+    this.birthday = { year: birthdayYear, month: birthdayMonth, day: birthdayDay }
+
+    const [todayYear, todayMonth, todayDay] = today.split('-').map(d => Number(d))
+    this.today = { year: todayYear, month: todayMonth, day: todayDay }
 
     this.age = this.#age()
 
@@ -34,16 +37,12 @@ export class NumericMap {
     this.d2 = _number.sum(Math.abs(this.#yearSum - this.#monthSum))
     this.dm = _number.sum(Math.abs(this.d1 - this.d2))
 
+    this.r = this.#r()
+
     this.r1 = _number.sum(this.#daySum + this.#monthSum, true)
-
     this.r2 = _number.sum(this.#daySum + this.#yearSum, true)
-
     this.r3 = _number.sum(this.r1 + this.r2, true)
     this.r4 = _number.sum(this.#monthSum + this.#yearSum, true)
-
-    this.rAges.r1 = 36 - this.cd
-    this.rAges.r2 = this.rAges.r1 + 10
-    this.rAges.r3 = this.rAges.r2 + 10
 
     this.personalYear = this.#interestYear()
 
@@ -463,19 +462,49 @@ export class NumericMap {
     return _number.sum(nameSum, true)
   }
 
+  #r () {
+    const rAge = 36 - this.cd
+    const r1 = _number.sum(this.#daySum + this.#monthSum, true)
+    const r2 = _number.sum(this.#daySum + this.#yearSum, true)
+    const r3 = _number.sum(r1 + r2, true)
+    const r4 = _number.sum(this.#monthSum + this.#yearSum, true)
+
+    const r = {
+      r1: {
+        vn:    r1,
+        start: 0,
+        end:   rAge,
+      },
+      r2: {
+        vn:    r2,
+        start: rAge,
+        end:   rAge + 10,
+      },
+      r3: {
+        vn:    r3,
+        start: rAge + 10,
+        end:   rAge + 20,
+      },
+      r4: {
+        vn:    r4,
+        start: rAge + 20,
+        end:   Infinity,
+      },
+    }
+
+    return r
+  }
   /**
    * Retrieves the current age depending on the current day
    * @returns The current age
    */
   #age () {
-    const today = new Date()
+    const month = this.today.month
 
-    const month = today.getMonth() + 1
-
-    let years = (today.getFullYear() - this.birthday.year)
+    let years = (this.today.year - this.birthday.year)
 
     if (month < this.birthday.month || 
-        month == this.birthday.month && today.getDate() < this.birthday.day) {
+        month == this.birthday.month && this.today.day < this.birthday.day) {
       years--
     }
 
@@ -485,11 +514,12 @@ export class NumericMap {
   #interestYear () {
     const day       = this.birthday.day
     const month     = this.birthday.month - 1
-    const year      = new Date().getFullYear()
+    const year      = this.today.year
     
     const birthdayThisYear = new Date(year, month, day)
-
-    const interestYear = new Date() >= birthdayThisYear ? year : year - 1
+    const today = new Date(year, this.today.month - 1, this.today.day)
+    
+    const interestYear = today >= birthdayThisYear ? year : year - 1
 
     const start = new Date(interestYear, month, day)
     const end = new Date(interestYear + 1, month, day)
@@ -513,6 +543,12 @@ export class NumericMap {
     year: number
   }
 
+  today:  {
+    day: number,
+    month: number,
+    year: number
+  }
+  
   /**
    * MOTIVAÇÃO – ALMA /PERSONALIDADE – QUEM É
    */
@@ -554,6 +590,31 @@ export class NumericMap {
    */
   c3: SingleDigitT = 0
   
+  /**
+   * REALIZAÇÕES
+   */
+  r: {
+    r1: {
+      vn:FinalSingleDigitT,
+      start: number,
+      end: number
+    },
+    r2: {
+      vn:FinalSingleDigitT,
+      start: number,
+      end: number
+    },
+    r3: {
+      vn:FinalSingleDigitT,
+      start: number,
+      end: number
+    },
+    r4: {
+      vn:FinalSingleDigitT,
+      start: number,
+      end: number
+    }
+  }
   /**
    * PRIMEIRA REALIZAÇÃO
    */
