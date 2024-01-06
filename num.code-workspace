@@ -6,7 +6,7 @@
       "dist": true,
       ".github": true,
       
-      ".eslintrc.cjs": true,
+      // ".eslintrc.cjs": true,
       ".gitignore": true,
       "package-lock.json": true,
       "tsconfig*": true,

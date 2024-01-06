@@ -12,7 +12,7 @@ const userConfig: UserConfig = {
     clearMocks:   true,
     restoreMocks: true,
     include:      ['**/*.{test,spec}.ts*'],
-    reporters:    ['junit'],
+    reporters:    ['junit', 'basic'],
     outputFile:   './report/junit.xml',
     coverage:     {
       provider:         'v8',

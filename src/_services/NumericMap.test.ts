@@ -1,11 +1,10 @@
-import { describe, expect, test, vi } from 'vitest'
+import { describe, expect, test } from 'vitest'
 import { NumericMap } from './NumericMap'
-import { beforeEach } from 'node:test'
 
 describe('NumericMap', () => {
   describe('map', () => {
     test('map 1', () => {
-      const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', new Date().toISOString().split('T')[0])
+      const nm = new NumericMap('EDUARDÓ RUSSO', '1979-03-17', '2024-01-02')
 
       expect(nm).toEqual(expect.objectContaining({
         name:     'EDUARDO RUSSO',
@@ -14,6 +13,12 @@ describe('NumericMap', () => {
           year:  1979,
           month: 3,
           day:   17,
+        },
+
+        today: {
+          year:  2024,
+          month: 1,
+          day:   2,
         },
 
         mo: 6,
@@ -30,7 +35,7 @@ describe('NumericMap', () => {
         d2: 5,
         dm: 0,
 
-        r: {
+        achievements: {
           r1: {
             vn:    11,
             start: 0,
@@ -162,7 +167,7 @@ describe('NumericMap', () => {
       }))
     })
     test('map 2', () => {
-      const nm = new NumericMap('DINAURA MOZZI', '1950-12-26', new Date().toISOString().split('T')[0])
+      const nm = new NumericMap('DINAURA MOZZI', '1950-12-26', '2024-01-02')
       
       expect(nm).toEqual(expect.objectContaining({
         name:     'DINAURA MOZZI',
@@ -171,6 +176,12 @@ describe('NumericMap', () => {
           year:  1950,
           month: 12,
           day:   26,
+        },
+
+        today: {
+          year:  2024,
+          month: 1,
+          day:   2,
         },
 
         mo: 11,
@@ -187,7 +198,7 @@ describe('NumericMap', () => {
         d2: 3,
         dm: 2,
         
-        r: {
+        achievements: {
           r1: {
             vn:    11,
             start: 0,
@@ -310,9 +321,6 @@ describe('NumericMap', () => {
         },
       }))
     })
-    beforeEach(() => {
-      vi.useFakeTimers({ now: new Date('2024-01-02') })
-    })
   })
   describe('personal year', () => {
     test('today is birthday', () => {
@@ -361,6 +369,229 @@ describe('NumericMap', () => {
       const nm = new NumericMap('NAME LAST', '1979-08-26', '2014-03-01')
 
       expect(nm.personalYear.vn).toBe(22)
+    })
+  })
+  describe('getters', () => {
+    test('vns', () => {
+      const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
+
+      expect(nm.vns).toEqual([6, 1, 1, 7, 5, 5, 0, 3, 8, 8, 11, 7, 9, 11])
+    })
+    test('vnsPosition', () => {
+      const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
+
+      expect(nm.vnsPosition).toEqual([
+        { position: 'MO', vn: 6 },
+        { position: 'EU', vn: 1 },
+        { position: 'CD', vn: 1 },
+        { position: 'EX', vn: 7 },
+        { position: 'D1', vn: 5 },
+        { position: 'D2', vn: 5 },
+        { position: 'DM', vn: 0 },
+        { position: 'C1', vn: 3 },
+        { position: 'C2', vn: 8 },
+        { position: 'C3', vn: 8 },
+        { position: 'R1', vn: 11 },
+        { position: 'R2', vn: 7 },
+        { position: 'R3', vn: 9 },
+        { position: 'R4', vn: 11 },
+      ])
+    })
+    test('fixedVNs', () => {
+      const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
+
+      expect(nm.fixedVNs).toEqual([6, 1, 1, 7, 0])
+    })
+    test('fixedMainVNs', () => {
+      const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
+
+      expect(nm.fixedMainVNs).toEqual([6, 1, 1, 0])
+    })
+    test('fixedVNsPosition', () => {
+      const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
+
+      expect(nm.fixedVNsPosition).toEqual([
+        { position: 'MO', vn: 6 },
+        { position: 'EU', vn: 1 },
+        { position: 'CD', vn: 1 },
+        { position: 'EX', vn: 7 },
+        { position: 'DM', vn: 0 },
+      ])
+    })
+    test('fixedMainVNsPosition', () => {
+      const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
+
+      expect(nm.fixedMainVNsPosition).toEqual([
+        { position: 'MO', vn: 6 },
+        { position: 'EU', vn: 1 },
+        { position: 'CD', vn: 1 },
+        { position: 'DM', vn: 0 },
+      ])
+    })
+    test('firstCycleVNsPosition', () => {
+      const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
+
+      expect(nm.firstCycleVNsPosition).toEqual([
+        { position: 'MO', vn: 6 },
+        { position: 'EU', vn: 1 },
+        { position: 'CD', vn: 1 },
+        { position: 'EX', vn: 7 },
+        { position: 'DM', vn: 0 },
+        { position: 'D1', vn: 5 },
+        { position: 'C1', vn: 3 },
+        { position: 'R1', vn: 11 },
+      ])
+    })
+    test('firstCycleOnlyVNsPosition', () => {
+      const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
+
+      expect(nm.firstCycleOnlyVNsPosition).toEqual([
+        { position: 'D1', vn: 5 },
+        { position: 'C1', vn: 3 },
+        { position: 'R1', vn: 11 },
+      ])
+    })
+    test('firstCycleVNs', () => {
+      const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
+
+      expect(nm.firstCycleVNs).toEqual([6, 1, 1, 7, 0, 5, 3, 11])
+    })
+    test('secondCycleVNsPosition', () => {
+      const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
+
+      expect(nm.secondCycleVNsPosition).toEqual([
+        { position: 'MO', vn: 6 },
+        { position: 'EU', vn: 1 },
+        { position: 'CD', vn: 1 },
+        { position: 'EX', vn: 7 },
+        { position: 'DM', vn: 0 },
+        { position: 'D2', vn: 5 },
+        { position: 'C2', vn: 8 },
+        { position: 'R1', vn: 11 },
+        { position: 'R2', vn: 7 },
+        { position: 'R3', vn: 9 },
+        { position: 'R4', vn: 11 },
+      ])
+    })
+    test('secondCycleOnlyVNsPosition', () => {
+      const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
+
+      expect(nm.secondCycleOnlyVNsPosition).toEqual([
+        { position: 'D2', vn: 5 },
+        { position: 'C2', vn: 8 },
+        { position: 'R1', vn: 11 },
+        { position: 'R2', vn: 7 },
+        { position: 'R3', vn: 9 },
+        { position: 'R4', vn: 11 },
+      ])
+    })
+    test('secondCycleVNs', () => {
+      const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
+
+      expect(nm.secondCycleVNs).toEqual([6, 1, 1, 7, 0, 5, 8, 11, 7, 9, 11])
+    })
+    test('thirdCycleVNsPosition', () => {
+      const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
+
+      expect(nm.thirdCycleVNsPosition).toEqual([
+        { position: 'MO', vn: 6 },
+        { position: 'EU', vn: 1 },
+        { position: 'CD', vn: 1 },
+        { position: 'EX', vn: 7 },
+        { position: 'DM', vn: 0 },
+        { position: 'C3', vn: 8 },
+        { position: 'R4', vn: 11 },
+      ])
+    })
+    test('thirdCycleOnlyVNsPosition', () => {
+      const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
+
+      expect(nm.thirdCycleOnlyVNsPosition).toEqual([
+        { position: 'C3', vn: 8 },
+        { position: 'R4', vn: 11 },
+      ])
+    })
+    test('thirdCycleVNs', () => {
+      const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
+
+      expect(nm.thirdCycleVNs).toEqual([6, 1, 1, 7, 0, 8, 11])
+    })
+    test('cycle - first limit', () => {
+      const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2007-03-16')
+
+      expect(nm.cycle).toEqual({
+        cycle:     '1º Ciclo - 0/28 anos',
+        index:     1,
+        vnNumbers: [
+          { position: 'MO', vn: 6 },
+          { position: 'EU', vn: 1 },
+          { position: 'CD', vn: 1 },
+          { position: 'EX', vn: 7 },
+          { position: 'DM', vn: 0 },
+          { position: 'D1', vn: 5 },
+          { position: 'C1', vn: 3 },
+          { position: 'R1', vn: 11 },
+        ],
+      })
+    })
+    test('cycle - after first limit', () => {
+      const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2007-03-17')
+
+      expect(nm.cycle).toEqual({
+        cycle:     '2º Ciclo - 28/56 anos',
+        index:     2,
+        vnNumbers: [
+          { position: 'MO', vn: 6 },
+          { position: 'EU', vn: 1 },
+          { position: 'CD', vn: 1 },
+          { position: 'EX', vn: 7 },
+          { position: 'DM', vn: 0 },
+          { position: 'D2', vn: 5 },
+          { position: 'C2', vn: 8 },
+          { position: 'R1', vn: 11 },
+          { position: 'R2', vn: 7 },
+          { position: 'R3', vn: 9 },
+          { position: 'R4', vn: 11 },
+        ],
+      })
+    })
+    test('cycle - second limit', () => {
+      const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2035-03-16')
+
+      expect(nm.cycle).toEqual({
+        cycle:     '2º Ciclo - 28/56 anos',
+        index:     2,
+        vnNumbers: [
+          { position: 'MO', vn: 6 },
+          { position: 'EU', vn: 1 },
+          { position: 'CD', vn: 1 },
+          { position: 'EX', vn: 7 },
+          { position: 'DM', vn: 0 },
+          { position: 'D2', vn: 5 },
+          { position: 'C2', vn: 8 },
+          { position: 'R1', vn: 11 },
+          { position: 'R2', vn: 7 },
+          { position: 'R3', vn: 9 },
+          { position: 'R4', vn: 11 },
+        ],
+      })
+    })
+    test('cycle - after second limit', () => {
+      const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2035-03-17')
+
+      expect(nm.cycle).toEqual({
+        cycle:     '3º Ciclo - + 56 anos',
+        index:     3,
+        vnNumbers: [
+          { position: 'MO', vn: 6 },
+          { position: 'EU', vn: 1 },
+          { position: 'CD', vn: 1 },
+          { position: 'EX', vn: 7 },
+          { position: 'DM', vn: 0 },
+          { position: 'C3', vn: 8 },
+          { position: 'R4', vn: 11 },
+        ],
+      })
     })
   })
 })

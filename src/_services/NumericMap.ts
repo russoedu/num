@@ -198,6 +198,13 @@ export class NumericMap {
   }
 
   /**
+   * List of the first cycle (0 to 28 years old) numbers in the map
+   */
+  get firstCycleVNs () {
+    return this.firstCycleVNsPosition.map(vnp => vnp.vn)
+  }
+
+  /**
    * List of the second cycle (28 to 56 years old) numbers and VNs in the map
    */
   get secondCycleVNsPosition () {
@@ -228,6 +235,13 @@ export class NumericMap {
     ] as VN[]
 
     return list
+  }
+
+  /**
+   * List of the second cycle (28 to 56 years old) numbers in the map
+   */
+  get secondCycleVNs () {
+    return this.secondCycleVNsPosition.map(vnp => vnp.vn)
   }
 
   /**
@@ -262,6 +276,13 @@ export class NumericMap {
   }
 
   /**
+   * List of the third cycle (28 to 56 years old) numbers in the map
+   */
+  get thirdCycleVNs () {
+    return this.thirdCycleVNsPosition.map(vnp => vnp.vn)
+  }
+
+  /**
    * The list of VNs in the cycle
    * @param cycleStart - The start of the life cycle
    * @param cycleEnd - The end of the life cycle
@@ -291,28 +312,6 @@ export class NumericMap {
     }
 
     return list
-  }
-  
-  /**
-   * List of the first cycle (0 to 28 years old) numbers in the map
-   */
-  get firstCycleVNs () {
-    return this.firstCycleVNsPosition.map(vnp => vnp.vn)
-  }
-  
-  /**
-   * List of the second cycle (28 to 56 years old) numbers in the map
-   */
-  get secondCycleVNs () {
-    return this.secondCycleVNsPosition.map(vnp => vnp.vn)
-
-  }
-  
-  /**
-   * List of the third cycle (28 to 56 years old) numbers in the map
-   */
-  get thirdCycleVNs () {
-    return this.thirdCycleVNsPosition.map(vnp => vnp.vn)
   }
 
   /**
