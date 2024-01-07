@@ -2,11 +2,12 @@ import { _array } from '../_helpers/_array'
 import { _date } from '../_helpers/_date'
 import { _name } from '../_helpers/_name'
 import { _number } from '../_helpers/_number'
-import { FinalSingleDigitT, SingleDigitT, consonants, vowels, Consonants, Vowels, letterValues, VN, VnCountSingleDigit, VnCountFinalDigit, CyclesT, PersonalYearT } from '../_helpers/types'
+import { FinalSingleDigitT, SingleDigitT, consonants, vowels, Consonants, Vowels, letterValues, VN, VnCountSingleDigit, VnCountFinalDigit, CyclesT, PersonalYearT, PositionT } from '../_helpers/types'
 
 export class NumericMap {
   constructor (name: string, birthday: string, today: string) {
     if (!_date.isValid(birthday)) throw new Error('birthday is not a valid date')
+    if (!_date.isValid(today)) throw new Error('today is not a valid date')
 
     this.name = _name.normalise(name)
     const [birthdayYear, birthdayMonth, birthdayDay] = birthday.split('-').map(d => Number(d))
@@ -343,12 +344,7 @@ export class NumericMap {
    * The achievements compiled into an array
    */
   get achievementsArray () {
-    return [
-      { vn: this.achievements.r1.vn, start: this.achievements.r1.start, end: this.achievements.r1.end },
-      { vn: this.achievements.r2.vn, start: this.achievements.r2.start, end: this.achievements.r2.end },
-      { vn: this.achievements.r3.vn, start: this.achievements.r3.start, end: this.achievements.r3.end },
-      { vn: this.achievements.r4.vn, start: this.achievements.r4.start, end: this.achievements.r4.end },
-    ]
+    return Object.entries(this.achievements).map(achievement => achievement[1])
   }
   
   /**
@@ -405,11 +401,11 @@ export class NumericMap {
    */
   digitCount (number: FinalSingleDigitT|FinalSingleDigitT[]) {
     const num = typeof number === 'number' ? [number] : number
-    const matchingPositions: string[] = this.vnsPosition
+    const matchingPositions: PositionT[] = this.vnsPosition
       .filter(vn => num.includes(vn.vn))
       .map(vn =>vn.position)
 
-    const singleDigitCount: { positions: string[], count: number } = { positions: [], count: 0 }
+    const singleDigitCount: { positions: PositionT[], count: number } = { positions: [], count: 0 }
 
     for (const position of matchingPositions) {
       singleDigitCount.positions.push(position)

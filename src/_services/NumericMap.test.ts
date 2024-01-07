@@ -2,6 +2,36 @@ import { describe, expect, test } from 'vitest'
 import { NumericMap } from './NumericMap'
 
 describe('NumericMap', () => {
+  describe('constructor', () => {
+    test('invalid birthday date', () => {
+      let map: any
+      let err: any
+
+      try {
+        map = new NumericMap('E', 'a', '2017-11-14')
+      } catch (error) {
+        err = error
+      }
+
+      expect(map).toBeUndefined()
+      expect(err).toBeInstanceOf(Error)
+      expect(err.message).toBe('birthday is not a valid date')
+    })
+    test('invalid today date', () => {
+      let map: any
+      let err: any
+
+      try {
+        map = new NumericMap('E', '2017-11-14', 'a')
+      } catch (error) {
+        err = error
+      }
+
+      expect(map).toBeUndefined()
+      expect(err).toBeInstanceOf(Error)
+      expect(err.message).toBe('today is not a valid date')
+    })
+  })
   describe('map', () => {
     test('map 1', () => {
       const nm = new NumericMap('EDUARDÓ RUSSO', '1979-03-17', '2024-01-02')
@@ -371,6 +401,50 @@ describe('NumericMap', () => {
       expect(nm.personalYear.vn).toBe(22)
     })
   })
+  describe('personal year', () => {
+    test('number', () => {
+      let nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
+
+      expect(nm.digitCount(0)).toEqual({ positions: ['DM'], count: 1 })
+      expect(nm.digitCount(1)).toEqual({ positions: ['EU', 'CD'], count: 2 })
+      expect(nm.digitCount(2)).toEqual({ positions: [], count: 0 })
+      expect(nm.digitCount(11)).toEqual({ positions: ['R1', 'R4'], count: 2 })
+      expect(nm.digitCount(3)).toEqual({ positions: ['C1'], count: 1 })
+      expect(nm.digitCount(4)).toEqual({ positions: [], count: 0 })
+      expect(nm.digitCount(22)).toEqual({ positions: [], count: 0 })
+      expect(nm.digitCount(5)).toEqual({ positions: ['D1', 'D2'], count: 2 })
+      expect(nm.digitCount(6)).toEqual({ positions: ['MO'], count: 1 })
+      expect(nm.digitCount(7)).toEqual({ positions: ['EX', 'R2'], count: 2 })
+      expect(nm.digitCount(8)).toEqual({ positions: ['C2', 'C3'], count: 2 })
+      expect(nm.digitCount(9)).toEqual({ positions: ['R3'], count: 1 })
+  
+      nm = new NumericMap('DINAURA MOZZI', '1950-12-26', '2024-01-02')
+  
+      expect(nm.digitCount(0)).toEqual({ positions: [], count: 0 })
+      expect(nm.digitCount(1)).toEqual({ positions: [], count: 0 })
+      expect(nm.digitCount(2)).toEqual({ positions: ['DM'], count: 1 })
+      expect(nm.digitCount(11)).toEqual({ positions: ['MO', 'EU', 'R1'], count: 3 })
+      expect(nm.digitCount(3)).toEqual({ positions: ['D2', 'C1'], count: 2 })
+      expect(nm.digitCount(4)).toEqual({ positions: [], count: 0 })
+      expect(nm.digitCount(22)).toEqual({ positions: ['EX'], count: 1 })
+      expect(nm.digitCount(5)).toEqual({ positions: ['D1', 'R2'], count: 2 })
+      expect(nm.digitCount(6)).toEqual({ positions: ['C3'], count: 1 })
+      expect(nm.digitCount(7)).toEqual({ positions: ['R3'], count: 1 })
+      expect(nm.digitCount(8)).toEqual({ positions: ['CD', 'C2'], count: 2 })
+      expect(nm.digitCount(9)).toEqual({ positions: ['R4'], count: 1 })
+    })
+    test('array of numbers', () => {
+      let nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
+
+      expect(nm.digitCount([2, 11])).toEqual({ positions: ['R1', 'R4'], count: 2 })
+      expect(nm.digitCount([4, 22])).toEqual({ positions: [], count: 0 })
+  
+      nm = new NumericMap('DINAURA MOZZI', '1950-12-26', '2024-01-02')
+  
+      expect(nm.digitCount([2, 11])).toEqual({ positions: ['MO', 'EU', 'DM', 'R1'], count: 4 })
+      expect(nm.digitCount([4, 22])).toEqual({ positions: ['EX'], count: 1 })
+    })
+  })
   describe('getters', () => {
     test('vns', () => {
       const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
@@ -592,6 +666,104 @@ describe('NumericMap', () => {
           { position: 'R4', vn: 11 },
         ],
       })
+    })
+    test('cycle - third', () => {
+      const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2055-10-17')
+
+      expect(nm.cycle).toEqual({
+        cycle:     '3º Ciclo - + 56 anos',
+        index:     3,
+        vnNumbers: [
+          { position: 'MO', vn: 6 },
+          { position: 'EU', vn: 1 },
+          { position: 'CD', vn: 1 },
+          { position: 'EX', vn: 7 },
+          { position: 'DM', vn: 0 },
+          { position: 'C3', vn: 8 },
+          { position: 'R4', vn: 11 },
+        ],
+      })
+    })
+    test('achievementsArray', () => {
+      const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
+
+      expect(nm.achievementsArray).toEqual([
+        { vn: 11, start: 0, end: 35 },
+        { vn: 7, start: 35, end: 45 },
+        { vn: 9, start: 45, end: 55 },
+        { vn: 11, start: 55, end: Infinity },
+      ])
+    })
+    test('uniqueVNs', () => {
+      let nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
+
+      expect(nm.uniqueVNs.sort()).toEqual([0, 1, 11, 3, 5, 6, 7, 8, 9])
+
+      nm = new NumericMap('DINAURA MOZZI', '1950-12-26', '2024-01-02')
+
+      expect(nm.uniqueVNs.sort()).toEqual([11, 2, 22, 3, 5, 6, 7, 8, 9])
+    })
+    test('singleDigitCount', () => {
+      let nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
+
+      expect(nm.singleDigitCount).toEqual([
+        { vn: 1, positions: ['EU', 'CD'], count: 2 },
+        { vn: 2, positions: ['R1', 'R4'], count: 2 },
+        { vn: 3, positions: ['C1'], count: 1 },
+        { vn: 4, positions: [], count: 0 },
+        { vn: 5, positions: ['D1', 'D2'], count: 2 },
+        { vn: 6, positions: ['MO'], count: 1 },
+        { vn: 7, positions: ['EX', 'R2'], count: 2 },
+        { vn: 8, positions: ['C2', 'C3'], count: 2 },
+        { vn: 9, positions: ['R3'], count: 1 },
+      ])
+
+      nm = new NumericMap('DINAURA MOZZI', '1950-12-26', '2024-01-02')
+
+      expect(nm.singleDigitCount).toEqual([
+        { vn: 1, positions: [], count: 0 },
+        { vn: 2, positions: ['MO', 'EU', 'DM', 'R1'], count: 4 },
+        { vn: 3, positions: ['D2', 'C1'], count: 2 },
+        { vn: 4, positions: ['EX'], count: 1 },
+        { vn: 5, positions: ['D1', 'R2'], count: 2 },
+        { vn: 6, positions: ['C3'], count: 1 },
+        { vn: 7, positions: ['R3'], count: 1 },
+        { vn: 8, positions: ['CD', 'C2'], count: 2 },
+        { vn: 9, positions: ['R4'], count: 1 },
+      ])
+    })
+    test('finalDigitCount', () => {
+      let nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
+
+      expect(nm.finalDigitCount).toEqual([
+        { vn: 1, positions: ['EU', 'CD'], count: 2 },
+        { vn: 2, positions: [], count: 0 },
+        { vn: 11, positions: ['R1', 'R4'], count: 2 },
+        { vn: 3, positions: ['C1'], count: 1 },
+        { vn: 4, positions: [], count: 0 },
+        { vn: 22, positions: [], count: 0 },
+        { vn: 5, positions: ['D1', 'D2'], count: 2 },
+        { vn: 6, positions: ['MO'], count: 1 },
+        { vn: 7, positions: ['EX', 'R2'], count: 2 },
+        { vn: 8, positions: ['C2', 'C3'], count: 2 },
+        { vn: 9, positions: ['R3'], count: 1 },
+      ])
+
+      nm = new NumericMap('DINAURA MOZZI', '1950-12-26', '2024-01-02')
+
+      expect(nm.finalDigitCount).toEqual([
+        { vn: 1, positions: [], count: 0 },
+        { vn: 2, positions: ['DM'], count: 1 },
+        { vn: 11, positions: ['MO', 'EU', 'R1'], count: 3 },
+        { vn: 3, positions: ['D2', 'C1'], count: 2 },
+        { vn: 4, positions: [], count: 0 },
+        { vn: 22, positions: ['EX'], count: 1 },
+        { vn: 5, positions: ['D1', 'R2'], count: 2 },
+        { vn: 6, positions: ['C3'], count: 1 },
+        { vn: 7, positions: ['R3'], count: 1 },
+        { vn: 8, positions: ['CD', 'C2'], count: 2 },
+        { vn: 9, positions: ['R4'], count: 1 },
+      ])
     })
   })
 })

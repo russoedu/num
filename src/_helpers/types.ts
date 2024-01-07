@@ -29,6 +29,15 @@ export type FormInput = {
   calculate: (clean?: boolean) => void
 }
 
+export type PositionT = 'MO'|'EU'|'CD'|'DM'|'EX'|'C1'|'C2'|'C3'|'D1'|'D2'|'R1'|'R2'|'R3'|'R4'
+export type PositionA = ['MO', 'EU', 'CD', 'DM', 'EX', 'C1', 'C2', 'C3', 'D1', 'D2', 'R1', 'R2', 'R3', 'R4']
+export const FixedPositions = [
+  'MO',
+  'EU',
+  'CD',
+  'EX',
+  'DM',
+]
 export type SingleDigitT = 0|1|2|3|4|5|6|7|8|9
 export type SingleDigitA = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 export type FinalSingleDigitT = 0|1|2|11|3|4|22|5|6|7|8|9
@@ -65,7 +74,7 @@ export type PyramidResultT = {
 }
 
 export type PyramidT = {
-  position: string,
+  position: PositionT,
   results:PyramidResultT[]
 }
 
@@ -91,7 +100,7 @@ export type PersonalYearT = {
 
 export type MultiplicityMultipleT = {
   vn: FinalSingleDigitT,
-  positions: string[]
+  positions: PositionT[]
   type: MultiplicityTypeT
 }
 
@@ -114,28 +123,21 @@ export type PercentageResultT = {
   percentage: PercentageT[],
   result: string
 }
-export const FixedPositions = [
-  'MO',
-  'EU',
-  'CD',
-  'EX',
-  'DM',
-]
 
 export type VN = {
   vn: FinalSingleDigitT,
-  position: string,
+  position: PositionT,
 }
 
 export type VnCountSingleDigit = {
   vn: SingleDigitT,
-  positions: string[],
+  positions: PositionT[],
   count: number,
 }
 
 export type VnCountFinalDigit = {
   vn: FinalSingleDigitT,
-  positions: string[],
+  positions: PositionT[],
   count: number,
 }
 
