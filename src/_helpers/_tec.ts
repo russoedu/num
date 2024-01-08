@@ -5,7 +5,7 @@ class Tecniques {
     const index: { [key in FinalSingleDigitT]: string } = {
       0:  'Terá uma vida atribulada, agidata e movimentada. Deverá aceitar a movimentação e atribulação, aproveitando esses fatos para produzir expansão, crescimentoe desenvolvimento na vida',
       1:  'força / determinação / autoconfiança / iniciativa / coragem / ousadia / liderança / conquistas / independência',
-      2:  'união / parceria/ flexibilidade / concessão / facilidade de adaptação / colaboração / cooperação',
+      2:  'união / parceria / flexibilidade / concessão / facilidade de adaptação / colaboração / cooperação',
       3:  'imaginação / criatividade / comunicação / sociabilidade / crescimento / expansão / valorização da estética / beleza',
       4:  'ordem / disciplina / dedicação / resistência / honestidade / estabilidade / persistência / trabalho intenso / segurança',
       5:  'liberdade / independência / mudanças / versatilidade / desprendimento / ousadia / coragem / transformações',

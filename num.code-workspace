@@ -6,11 +6,12 @@
       "dist": true,
       ".github": true,
       
-      // ".eslintrc.cjs": true,
+      ".eslintrc.cjs": true,
       ".gitignore": true,
       "package-lock.json": true,
       "tsconfig*": true,
       "vite.config.ts": true,
+      "vitest.config.ts": true,
       "index.html": true,
       "copyPublic.js": true,
     },

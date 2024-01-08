@@ -5,144 +5,6 @@ import { Cycle, CycleInterpretationT, CycleInterpretationVns, ExpressionVibratio
 import { NumericMap } from './NumericMap'
 
 export class AdvancedTecniques {
-  #map: NumericMap
-
-  /**
-   * TÉCNICA 1 – PIRAMIDE
-   */
-  tec1Piramide: PyramidT[]
-
-  /**
-   * TÉCNICA 2 – AUSÊNCIAS – AUS 
-   */
-  tec2Ausencia: SingleDigitT[]
-  /**
-   * TÉCNICA 3 – NOSSO MAPA ATUAL
-   */
-
-  /**
-   * TÉCNICA 4 – DUPLICIDADES OU MAIS 
-   */
-  tec4Multiplicidades: MultiplicitesT
-
-  /**
-   * TÉCNICA 5 – POTENCIAIS – COMO REAGEM
-   */
-  tec5PotenciaisComoReagem: PercentageResultT
-
-  /**
-   * TÉCNICA 6 – POTENCIAIS – COMO SENTEM
-   */
-  tec6PotenciaisComoSentem: PercentageResultT
-
-  /**
-   * TÉCNICA 7 – RISCOS - PRIMEIRA LEITURA
-   */
-  tec7Riscos1aLeitura: PercentageResultT
-
-  /**
-   * TÉCNICA 7 – RISCOS - SEGUNDA LEITURA
-   */
-  tec7Riscos2aLeitura: PercentageResultT
-
-  /**
-   * TÉCNICA 8 – ADEQUAÇÃO DA LINGUAGEM
-   */
-  tec8AdequacaoDaLinguagem: LanguageStyleT[]
-
-  /**
-   * TÉCNICA 9 – VIBRAÇÃO DA EXPRESSÃO
-   */
-  tec9VibracaoDaExpressao: ExpressionVibrationT
-
-  /**
-   * TÉCNICA 10 – INTERPRETANDO O 1º CICLO DE VIDA
-   */
-  tec10InterpretacaoDoPrimeiroCiclo: CycleInterpretationT[]
-  /**
-   * TÉCNICA 11 – DONOS E PRATICANTES – RISCOS 
-   */
-  tec11DonosPraticantes: OwnersAndPractitionersT
-
-  /**
-   * TÉCNICA 12 – CONJUNÇÃO CD X MO OU MO X CD
-   */
-  tec12ConjuncaoCdMoOuMoCd: string
-
-  /**
-   * TÉCNICA 13 – POTENCIAIS – VÍCIOS – RECICLADOR DE ENERGIAS E RISCOS - PRIMEIRA LEITURA 
-   */
-  tec13PotenciaisViciosReciclador1aLeitura: PercentageResultT
-  /**
-   * TÉCNICA 13 – POTENCIAIS – VÍCIOS – RECICLADOR DE ENERGIAS E RISCOS - SEGUNDA LEITURA 
-   */
-  tec13PotenciaisViciosReciclador2aLeitura: string
-  /**
-   * TÉCNICA 13 – POTENCIAIS – VÍCIOS – RECICLADOR DE ENERGIAS E RISCOS - TERCEIRA LEITURA 
-   */
-  tec13PotenciaisViciosReciclador3aLeitura: VicesAndReciclerDataT[]
-
-  /**
-   * TÉCNICA 14 – PUREZA
-   */
-  tec14Pureza: FinalSingleDigitT | false
-
-  /**
-   * TÉCNICA 15 – REALIZAÇÃO ESPONTÂNEA
-   */
-  tec15RealizacaoEspontanea: AchievementsT[]
-
-  /**
-   * TÉCNICA 16 – CONQUISTA ESPONTÂNEA
-   */
-  tec16ConquistaEspontanea: AchievementsT[]
-  /**
-   * TÉCNICA 17 – RENASCIMENTO
-   */
-
-  /**
-   * TÉCNICA 18 – MOMENTO DECISIVO FORTE
-   */
-
-  /**
-   * TÉCNICA 19 – AVP (AUSÊNCIA DE VIBRAÇÃO POSITIVA) – RISCOS 
-   */
-
-  /**
-   * TÉCNICA 20 – OPOSIÇÕES FORTES – RISCOS 
-   */
-
-  /**
-   * TÉCNICA 21 – BLOQUEIO VIBRACIONAL – RISCOS 
-   */
-
-  /**
-   * TÉCNICA 22 – INTERFERÊNCIA NO MAPA – RISCOS 
-   */
-
-  /**
-   * TÉCNICA 23 – PRÁTICA AFETIVA
-   */
-
-  /**
-   * TÉCNICA 24 – FERTILIDADE E FILHOS – PAIS E PROVEDORES – FORMAÇÃO DOS FILHOS
-   */
-
-  /**
-   * TÉCNICA 25 – SEXUALIDADE
-   */
-
-
-
-
-
-  /*
-   *   cd: string,
-   *   mo: string,
-   *   dm: string,
-   *   eu: string,
-   * }
-   */
   constructor (map: NumericMap) {
     this.#map = map
 
@@ -980,4 +842,134 @@ export class AdvancedTecniques {
     return resultList
   }
   /* #endregion */
+
+  /**
+   * The numeric map
+   */
+  #map: NumericMap
+
+  /**
+   * TÉCNICA 1 – PIRAMIDE
+   */
+  tec1Piramide: PyramidT[]
+
+  /**
+   * TÉCNICA 2 – AUSÊNCIAS – AUS 
+   */
+  tec2Ausencia: SingleDigitT[]
+  /**
+   * TÉCNICA 3 – NOSSO MAPA ATUAL
+   */
+
+  /**
+   * TÉCNICA 4 – DUPLICIDADES OU MAIS 
+   */
+  tec4Multiplicidades: MultiplicitesT
+
+  /**
+   * TÉCNICA 5 – POTENCIAIS – COMO REAGEM
+   */
+  tec5PotenciaisComoReagem: PercentageResultT
+
+  /**
+   * TÉCNICA 6 – POTENCIAIS – COMO SENTEM
+   */
+  tec6PotenciaisComoSentem: PercentageResultT
+
+  /**
+   * TÉCNICA 7 – RISCOS - PRIMEIRA LEITURA
+   */
+  tec7Riscos1aLeitura: PercentageResultT
+
+  /**
+   * TÉCNICA 7 – RISCOS - SEGUNDA LEITURA
+   */
+  tec7Riscos2aLeitura: PercentageResultT
+
+  /**
+   * TÉCNICA 8 – ADEQUAÇÃO DA LINGUAGEM
+   */
+  tec8AdequacaoDaLinguagem: LanguageStyleT[]
+
+  /**
+   * TÉCNICA 9 – VIBRAÇÃO DA EXPRESSÃO
+   */
+  tec9VibracaoDaExpressao: ExpressionVibrationT
+
+  /**
+   * TÉCNICA 10 – INTERPRETANDO O 1º CICLO DE VIDA
+   */
+  tec10InterpretacaoDoPrimeiroCiclo: CycleInterpretationT[]
+  /**
+   * TÉCNICA 11 – DONOS E PRATICANTES – RISCOS 
+   */
+  tec11DonosPraticantes: OwnersAndPractitionersT
+
+  /**
+   * TÉCNICA 12 – CONJUNÇÃO CD X MO OU MO X CD
+   */
+  tec12ConjuncaoCdMoOuMoCd: string
+
+  /**
+   * TÉCNICA 13 – POTENCIAIS – VÍCIOS – RECICLADOR DE ENERGIAS E RISCOS - PRIMEIRA LEITURA 
+   */
+  tec13PotenciaisViciosReciclador1aLeitura: PercentageResultT
+  /**
+   * TÉCNICA 13 – POTENCIAIS – VÍCIOS – RECICLADOR DE ENERGIAS E RISCOS - SEGUNDA LEITURA 
+   */
+  tec13PotenciaisViciosReciclador2aLeitura: string
+  /**
+   * TÉCNICA 13 – POTENCIAIS – VÍCIOS – RECICLADOR DE ENERGIAS E RISCOS - TERCEIRA LEITURA 
+   */
+  tec13PotenciaisViciosReciclador3aLeitura: VicesAndReciclerDataT[]
+
+  /**
+   * TÉCNICA 14 – PUREZA
+   */
+  tec14Pureza: FinalSingleDigitT | false
+
+  /**
+   * TÉCNICA 15 – REALIZAÇÃO ESPONTÂNEA
+   */
+  tec15RealizacaoEspontanea: AchievementsT[]
+
+  /**
+   * TÉCNICA 16 – CONQUISTA ESPONTÂNEA
+   */
+  tec16ConquistaEspontanea: AchievementsT[]
+  /**
+   * TÉCNICA 17 – RENASCIMENTO
+   */
+
+  /**
+   * TÉCNICA 18 – MOMENTO DECISIVO FORTE
+   */
+
+  /**
+   * TÉCNICA 19 – AVP (AUSÊNCIA DE VIBRAÇÃO POSITIVA) – RISCOS 
+   */
+
+  /**
+   * TÉCNICA 20 – OPOSIÇÕES FORTES – RISCOS 
+   */
+
+  /**
+   * TÉCNICA 21 – BLOQUEIO VIBRACIONAL – RISCOS 
+   */
+
+  /**
+   * TÉCNICA 22 – INTERFERÊNCIA NO MAPA – RISCOS 
+   */
+
+  /**
+   * TÉCNICA 23 – PRÁTICA AFETIVA
+   */
+
+  /**
+   * TÉCNICA 24 – FERTILIDADE E FILHOS – PAIS E PROVEDORES – FORMAÇÃO DOS FILHOS
+   */
+
+  /**
+   * TÉCNICA 25 – SEXUALIDADE
+   */
 }
