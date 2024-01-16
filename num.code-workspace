@@ -2,8 +2,8 @@
   "settings": {
     "files.exclude": {
       "node_modules": true,
-      // "public": true,
-      // "dist": true,
+      "public": true,
+      "dist": true,
       ".github": true,
       
       ".eslintrc.cjs": true,
@@ -13,7 +13,7 @@
       "vite.config.ts": true,
       "vitest.config.ts": true,
       "index.html": true,
-      // "copyPublic.js": true,
+      "copyPublic.js": true,
     },
     "debug.javascript.terminalOptions": {
       "skipFiles": [

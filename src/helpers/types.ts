@@ -4,8 +4,6 @@ export enum MainView {
   MAP,
   CYCLE
 }
-export const appName = 'Numerologia Pitagórica 2.0.0'
-
 export const purple = '#894fd6'
 export type ThemeT = {
   mode:         PaletteMode,

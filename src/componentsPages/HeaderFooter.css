@@ -11,3 +11,13 @@
   color: white;
   font-size: 14px!important;
 }
+
+.header-logo img {
+  padding-top: 8px;
+}
+
+.header-logo span {
+  position: relative;
+  top: -10px;
+  left: 10px;
+}

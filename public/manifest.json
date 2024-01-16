@@ -1,6 +1,6 @@
 {
-  "name": "Numerologia Pitagórica",
-  "short_name": "num pi",
+  "name": "NumPi",
+  "short_name": "NumPi",
   "theme_color": "#894fd6",
   "background_color": "#fff",
   "display": "standalone",

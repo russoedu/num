@@ -2,12 +2,11 @@ import { ThemeProvider } from '@emotion/react'
 import { createTheme, CssBaseline, StyledEngineProvider } from '@mui/material'
 import fontColorContrast from 'font-color-contrast'
 import { StrictMode } from 'react'
-import { Helmet, HelmetProvider } from 'react-helmet-async'
 import { Footer } from './componentsPages/Footer'
 import { Header } from './componentsPages/Header'
 import { Home } from './pages/Home'
 import './App.css'
-import { appName, purple, ThemeT } from './helpers/types'
+import { purple, ThemeT } from './helpers/types'
 
 export function App () {
   const tm: ThemeT = {
@@ -36,22 +35,15 @@ export function App () {
   
   return (
     <StrictMode>
-      <HelmetProvider>
-        <ThemeProvider theme={theme}>
-          <StyledEngineProvider injectFirst>
-            <CssBaseline>
-              <Helmet>
-                <meta charSet='utf-8' />
-                <title>{appName}</title>
-                <link rel='canonical' href='http://mysite.com/example' />
-              </Helmet>
-              <Header/>
-              <Home/>
-              <Footer/>
-            </CssBaseline>
-          </StyledEngineProvider>
-        </ThemeProvider>
-      </HelmetProvider>
+      <ThemeProvider theme={theme}>
+        <StyledEngineProvider injectFirst>
+          <CssBaseline>
+            <Header/>
+            <Home/>
+            <Footer/>
+          </CssBaseline>
+        </StyledEngineProvider>
+      </ThemeProvider>
     </StrictMode>
   )
 }
