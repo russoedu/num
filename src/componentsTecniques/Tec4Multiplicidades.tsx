@@ -13,7 +13,7 @@ export function Tec4Multiplicidades ({ result }: { result: AdvancedTecniques }) 
   return (
     <>
       <AdvancedTitle>
-        Multiplicidades
+        Técnica 4 - Multiplicidades
       </AdvancedTitle>
       <Grid2 container className='tec-content'>
         {
@@ -23,16 +23,16 @@ export function Tec4Multiplicidades ({ result }: { result: AdvancedTecniques }) 
                 {
                   tec4Multiplicidades.data.map((p, i) => (
                     <>
-                      <AdvancedGrid i={i}>
+                      <AdvancedGrid i={i} key={'mult-' + i}>
                         <Grid2 xs={12} sm={5} md={3}>
                           <Typography variant='h6'>
                             {p.type}
                           </Typography>
                         </Grid2>
                         <Grid2 container xs={12} sm={7} md={9}>
-                          {p.multiples.map(m => (
+                          {p.multiples.map((m, j) => (
                             <>
-                              <Grid2 xs={2} md={1}>
+                              <Grid2 xs={2} md={1} key={'mult-vn-' + j}>
                                 <Typography variant='h5' className='vn'>
                                   {m.vn}
                                 </Typography>

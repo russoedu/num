@@ -15,7 +15,7 @@ export function Tec7Riscos ({ result }: { result: AdvancedTecniques }) {
   return (
     <>
       <AdvancedTitle margin={false}>
-        Riscos
+        Técnica 7 - Riscos
       </AdvancedTitle>
       <AdvancedSubTitle>
         1ª leitura

@@ -12,7 +12,7 @@ export function Tec12ConjuncaoCdMoOuMoCd ({ result }: { result: AdvancedTecnique
   return (
     <>
       <AdvancedTitle>
-        Conjunção CD x MO e MO x CD
+        Técnica 12 - Conjunção CD x MO e MO x CD
       </AdvancedTitle>
       <Grid2 container className='tec-content'>
         <AdvancedGrid i={0}>

@@ -13,7 +13,7 @@ export function Tec6PotenciaisComoSentem ({ result }: { result: AdvancedTecnique
   return (
     <>
       <AdvancedTitle>
-        Potenciais como sentem
+        Técnica 6 - Potenciais como sentem
       </AdvancedTitle>
       <Typography variant='h5' sx={{ paddingBottom: 1 }}>
         {tec6PotenciaisComoSentem.result}

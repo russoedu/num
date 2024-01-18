@@ -127,7 +127,9 @@ export type VnPositionT = {
   position: PositionT,
 }
 
-export type VnPositionCycleT = VnPositionT & {
+export type VnPositionCycleT = {
+  vn: VN,
+  position: PositionT,
   start: number,
   end: number,
 }
@@ -146,7 +148,7 @@ export type VnCountFinalDigit = {
 
 export enum Relation {
   'ADORACAO_EU' = 'Adoração e identificação',
-  'FORTISSIMA_C1' = 'Identificação',
+  'FORTISSIMA_C1' = 'Fortíssima identificação',
   'FORTE_MO' = 'Igualdade, grande aproximação',
   'MEDIA_CD_R1' = 'Aproximação',
   'DIFICULDADE_D1_DM' = 'Dificuldade',
@@ -237,7 +239,13 @@ export type CyclesT = {
 export type ExpressionVibrationT = { title: string, more: string }
 
 export type AchievementsT = {
-  position: 'CD' | 'MO' | 'EU',
+  position: 'CD' | 'MO' | 'EU' ,
+  start: number,
+  end: number,
+}
+
+export type ConquestsT = {
+  position: 'D1' | 'D2' | 'DM',
   start: number,
   end: number,
 }

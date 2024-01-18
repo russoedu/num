@@ -16,7 +16,7 @@ export function Tec13PotenciaisViciosReciclador ({ result }: { result: AdvancedT
   return (
     <>
       <AdvancedTitle margin={false}>
-        Potenciais, vícios e reciclador de energias
+        Técnica 13 - Potenciais, vícios e reciclador de energias
       </AdvancedTitle>
       <AdvancedSubTitle>
         1ª leitura

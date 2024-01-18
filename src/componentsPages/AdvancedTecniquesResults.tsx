@@ -15,6 +15,7 @@ import { Tec9VibracaoDaExpressao } from '../componentsTecniques/i-Tec9VibracaoDa
 import { AdvancedTecniques } from '../services/AdvancedTecniques'
 import './AdvancedTecniquesResults.css'
 import { Tec15RealizacaoEspontanea } from '../componentsTecniques/Tec15RealizacaoEspontanea'
+import { Tec16ConquistaEspontanea } from '../componentsTecniques/Tec16ConquistaEspontanea'
 /**
  * The main form component
  * @param result - The advanced techniques result
@@ -54,6 +55,7 @@ export function AdvancedTecniquesResults ({ result }: { result: AdvancedTecnique
       <Tec13PotenciaisViciosReciclador result={result}/>
 
       <Tec15RealizacaoEspontanea result={result}/>
+      <Tec16ConquistaEspontanea result={result}/>
     </Paper>
   )
 }

@@ -425,7 +425,7 @@ describe('AdvancedTecniques', () => {
             value: 28,
           },
         ],
-        result: 'Exigência / solidão / violência / agressão e Desprendimento / incerteza / insegurança',
+        result: 'Acomodação / dependência / depressão e Desprendimento / incerteza / insegurança',
       })
     })
     test('map 2', () => {
@@ -465,7 +465,7 @@ describe('AdvancedTecniques', () => {
             value: 63,
           },
         ],
-        result: 'CP e CP',
+        result: 'SC e CP',
       })
     })
     test('map 2', () => {
@@ -484,7 +484,7 @@ describe('AdvancedTecniques', () => {
             value: 49,
           },
         ],
-        result: 'CP e CP',
+        result: 'SC e CP',
       })
     })
   })
@@ -535,7 +535,7 @@ describe('AdvancedTecniques', () => {
         },
         {
           person:   'dos irmãos e/ou irmãs, tios e/ou tias e primos e/ou primas',
-          relation: 'Identificação',
+          relation: 'Fortíssima identificação',
         },
         {
           person:   'dos avôs e/ou avós',
@@ -559,7 +559,7 @@ describe('AdvancedTecniques', () => {
         },
         {
           person:   'dos irmãos e/ou irmãs, tios e/ou tias e primos e/ou primas',
-          relation: 'Identificação',
+          relation: 'Fortíssima identificação',
         },
         {
           person:   'dos avôs e/ou avós',
@@ -713,7 +713,7 @@ describe('AdvancedTecniques', () => {
             value: 21,
           },
         ],
-        result: 'Honestidade e Espiritualidade',
+        result: 'Colaboração / participação e Espiritualidade',
       })
     })
     test('map 2', () => {
@@ -736,7 +736,7 @@ describe('AdvancedTecniques', () => {
             value: 28,
           },
         ],
-        result: 'Honestidade e Honestidade',
+        result: 'Colaboração / participação e Honestidade',
       })
     })
   })
@@ -806,6 +806,31 @@ describe('AdvancedTecniques', () => {
     })
     test('map 2', () => {
       expect(am2.tec15RealizacaoEspontanea).toEqual([
+      ])
+    })
+  })
+  describe('tec16ConquistaEspontanea', () => {
+    test('map without', () => {
+      expect(am1.tec16ConquistaEspontanea).toEqual([])
+    })
+    test('map with', () => {
+      const m = new NumericMap('', '1979-03-17', '2021-01-07')
+      m.challenges = {
+        d1: { vn: 1, start: 0, end: 28 },
+        d2: { vn: 2, start: 28, end: 56 },
+        dm: { vn: 3, start: 56, end: Infinity },
+      }
+      m.achievements = {
+        r1: { vn: 1, start: 0, end: 30 },
+        r2: { vn: 2, start: 30, end: 40 },
+        r3: { vn: 2, start: 40, end: 50 },
+        r4: { vn: 3, start: 50, end: Infinity },
+      }
+      const am = new AdvancedTecniques(m)
+      expect(am.tec16ConquistaEspontanea).toEqual([
+        { position: 'D1', start: 0, end: 28 },
+        { position: 'D2', start: 30, end: 50 },
+        { position: 'DM', start: 56, end: Infinity },
       ])
     })
   })

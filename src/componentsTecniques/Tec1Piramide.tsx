@@ -10,7 +10,7 @@ export function Tec1Piramide ({ result }: { result: AdvancedTecniques }) {
   return (
     <>
       <AdvancedTitle>
-        Pirâmide
+        Técnica 1 - Pirâmide
       </AdvancedTitle>
       <Grid2 container className='tec-content'>
         {result.tec1Piramide.map((p, i) => (

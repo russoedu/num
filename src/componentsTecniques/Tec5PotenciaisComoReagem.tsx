@@ -13,7 +13,7 @@ export function Tec5PotenciaisComoReagem ({ result }: { result: AdvancedTecnique
   return (
     <>
       <AdvancedTitle>
-        Potenciais como reagem
+        Técnica 5 - Potenciais como reagem
       </AdvancedTitle>
       <Typography variant='h5' sx={{ paddingBottom: 1 }}>
         {tec5PotenciaisComoReagem.result}

@@ -13,7 +13,7 @@ export function Tec8AdequacaoDaLinguagem ({ result }: { result: AdvancedTecnique
   return (
     <>
       <AdvancedTitle>
-        Adequação da linguagem
+        Técnica 8 - Adequação da linguagem
       </AdvancedTitle>
       <Grid2 container className='tec-content'>
         {

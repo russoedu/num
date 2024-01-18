@@ -6,29 +6,29 @@ import { AdvancedTecniques } from '../services/AdvancedTecniques'
 import './Tec.css'
 import { Spacer } from '../components/Spacer'
 
-export function Tec15RealizacaoEspontanea ({ result }: { result: AdvancedTecniques }) {
-  const tec15RealizacaoEspontanea = result.tec15RealizacaoEspontanea
+export function Tec16ConquistaEspontanea ({ result }: { result: AdvancedTecniques }) {
+  const tec16ConquistaEspontanea = result.tec16ConquistaEspontanea
   
   return (
     <>
       <AdvancedTitle>
-        Técnica 15 - Realização Espontânea
+        Técnica 16 - Conquista Espontânea
       </AdvancedTitle>
       <Grid2 container className='tec-content'>
         {
-          tec15RealizacaoEspontanea.length > 0
+          tec16ConquistaEspontanea.length > 0
             ? (
-              tec15RealizacaoEspontanea.map((re, i) => (
+              tec16ConquistaEspontanea.map((ce, i) => (
                 <AdvancedGrid i={i} key={i}>
                   <Typography variant='h6'>
-                    Realização {re.position === 'MO' ? ' da' : ' do'}
+                    Conquista do
                   </Typography>
                   &nbsp;
                   <Typography variant='h5' className='vn'>
-                    {re.position}
+                    {ce.position}
                   </Typography>
                   &nbsp;
-                  {re.end === Infinity
+                  {ce.end === Infinity
                     ? (
                       <>
                         <Typography variant='h6'>
@@ -36,7 +36,7 @@ export function Tec15RealizacaoEspontanea ({ result }: { result: AdvancedTecniqu
                         </Typography>
                         &nbsp;
                         <Typography variant='h5' className='vn'>
-                          {re.start}
+                          {ce.start}
                         </Typography>
                         &nbsp;
                         <Typography variant='h6'>
@@ -51,7 +51,7 @@ export function Tec15RealizacaoEspontanea ({ result }: { result: AdvancedTecniqu
                         </Typography>
                         &nbsp;
                         <Typography variant='h5' className='vn'>
-                          {re.start}
+                          {ce.start}
                         </Typography>
                         &nbsp;
                         <Typography variant='h6'>
@@ -59,7 +59,7 @@ export function Tec15RealizacaoEspontanea ({ result }: { result: AdvancedTecniqu
                         </Typography>
                         &nbsp;
                         <Typography variant='h5' className='vn'>
-                          {re.end}
+                          {ce.end}
                         </Typography>
                         &nbsp;
                         <Typography variant='h6'>
@@ -72,7 +72,7 @@ export function Tec15RealizacaoEspontanea ({ result }: { result: AdvancedTecniqu
             )
             : (
               <Typography variant='h5' className='vn'>
-                Não há realizações espontânes no mapa
+                Não há conquistas espontânes no mapa
               </Typography>
             )
         }
@@ -81,7 +81,7 @@ export function Tec15RealizacaoEspontanea ({ result }: { result: AdvancedTecniqu
         --- no outro programa há um comentário relacionado ao zero, mas não encontrei nada na apostila ---
       </Typography>
       <Typography variant='h6'>
-        --- como lidar com 11 e 22? Converto os dois (fixa e R) pra 2 e 4? ---
+        --- como lidar com 11 e 22? (Desafios não tem 11 e 22, então assumi que converto os Rs pra 2 e 4) ---
       </Typography>
       <Spacer/>
     </>

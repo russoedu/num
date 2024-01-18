@@ -12,7 +12,7 @@ export function Tec10InterpretacaoDoPrimeiroCiclo ({ result }: { result: Advance
   return (
     <>
       <AdvancedTitle>
-        Interpretando o 1º ciclo de vida
+        Técnica 10 - Interpretando o 1º ciclo de vida
       </AdvancedTitle>
       <Grid2 container className='tec-content'>
         {

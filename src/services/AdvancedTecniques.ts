@@ -1,7 +1,7 @@
 import { _array } from '../helpers/_array'
 import { _number } from '../helpers/_number'
 import { _tec } from '../helpers/_tec'
-import { Cycle, CycleInterpretationT, CycleInterpretationVns, ExpressionVibrationT, VN, LanguageStyleT, MultiplicitesT, MultiplicityMultipleT, MultiplicityT, MultiplicityType, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultT, PercentageT, PyramidT, Relation, RiskT, VnSingleDigitT, AchievementsT, VnPositionT, VicesAndReciclerDataT, vnOwnerPractitioner } from '../helpers/types'
+import { Cycle, CycleInterpretationT, CycleInterpretationVns, ExpressionVibrationT, VN, LanguageStyleT, MultiplicitesT, MultiplicityMultipleT, MultiplicityT, MultiplicityType, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultT, PercentageT, PyramidT, Relation, RiskT, VnSingleDigitT, AchievementsT, VicesAndReciclerDataT, vnOwnerPractitioner, ConquestsT, VnPositionCycleT } from '../helpers/types'
 import { NumericMap } from './NumericMap'
 
 export class AdvancedTecniques {
@@ -667,14 +667,14 @@ export class AdvancedTecniques {
     const positions = ['CD', 'MO', 'EU'] as ('CD' | 'MO' | 'EU')[]
 
     for (const position of positions) {
-      const p = position === 'MO'
+      const vn = position === 'MO'
         ? this.#map.mo
         : position === 'CD'
           ? this.#map.cd
           : this.#map.eu
 
       for (const achievement of this.#map.achievementsArray) {
-        if (achievement.vn === p) {
+        if (achievement.vn === vn) {
           const existing = result.find(r => r.position === position)
   
           if (typeof existing !== 'undefined' && existing.end === achievement.start) {
@@ -694,26 +694,28 @@ export class AdvancedTecniques {
   }
 
   #tec16ConquistaEspontanea () {
-    const result = [
-      {
-        position:     '1º Desafio - D1',
-        vn:           this.#map.d1,
-        achievements: this.#map.achievementCycleList(0, 28)
-          .filter(a => _number.matchFull(a.vn, this.#map.d1)),
-      },
-      {
-        position:     '2º Desafio - D2',
-        vn:           this.#map.d2,
-        achievements: this.#map.achievementCycleList(28, 56)
-          .filter(a => _number.matchFull(a.vn, this.#map.d2)),
-      },
-      {
-        position:     'Desafio Maior - DM',
-        vn:           this.#map.dm,
-        achievements: this.#map.achievementCycleList(0, Infinity)
-          .filter(a => _number.matchFull(a.vn, this.#map.dm)),
-      },
-    ]
+    const result: ConquestsT[] = []
+    const positions = ['D1', 'D2', 'DM'] as ('D1' | 'D2' | 'DM')[]
+    
+    for (const position of positions) {
+      const challenge = this.#map.challenges[position.toLowerCase() as 'd1' | 'd2' | 'dm']
+
+      for (const achievement of this.#map.achievementCycleListExtra(challenge.start, challenge.end)) {
+        if (_number.vnToSingleVn(achievement.vn) === challenge.vn) {
+          const existing = result.find(r => r.position === position)
+  
+          if (typeof existing !== 'undefined' && existing.end === achievement.start) {
+            existing.end = achievement.end
+          } else {
+            result.push({
+              position: position,
+              start:    Math.max(achievement.start, challenge.start),
+              end:      Math.min(achievement.end, challenge.end),
+            })
+          }
+        }
+      }
+    }
     
     return result
   }
@@ -726,7 +728,7 @@ export class AdvancedTecniques {
    */
   #multiples (cycle: Cycle) {
     let multiplicityData: VN[] = []
-    let vnPositions: VnPositionT[] = []
+    let vnPositions: VnPositionCycleT[] = []
 
     const multiples: MultiplicityMultipleT[] = []
 
@@ -830,10 +832,10 @@ export class AdvancedTecniques {
    * @returns The percetages that should be considered
    */
   #getResults (percentage: PercentageT[]) {
-    const resultList: PercentageT[] = [percentage[0]]
-
     percentage
       .sort((a, b) => b.value - a.value)
+
+    const resultList: PercentageT[] = [percentage[0]]
 
     for (let i = 1; i < percentage.length; i++) {
       if (percentage[0].value - percentage[i].value < 10) {
@@ -938,7 +940,7 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 16 – CONQUISTA ESPONTÂNEA
    */
-  tec16ConquistaEspontanea: any[]
+  tec16ConquistaEspontanea: ConquestsT[]
   /**
    * TÉCNICA 17 – RENASCIMENTO
    */

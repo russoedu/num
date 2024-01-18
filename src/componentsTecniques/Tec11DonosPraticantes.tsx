@@ -13,7 +13,7 @@ export function Tec11DonosPraticantes ({ result }: { result: AdvancedTecniques }
   return (
     <>
       <AdvancedTitle>
-        Donos e praticantes
+        Técnica 11 - Donos e praticantes
       </AdvancedTitle>
 
       <Grid2 container className='tec-content'>

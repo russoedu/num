@@ -12,7 +12,7 @@ export function Tec9VibracaoDaExpressao ({ result }: { result: AdvancedTecniques
   return (
     <>
       <AdvancedTitle>
-        Vibração da expressão
+        Técnica 9 - Vibração da expressão
       </AdvancedTitle>
       <Grid2 container className='tec-content'>
         <AdvancedGrid i={0}>

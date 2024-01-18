@@ -38,7 +38,8 @@ export class NumericMap {
     this.d2 = _number.sum(Math.abs(this.#yearSum - this.#monthSum))
     this.dm = _number.sum(Math.abs(this.d1 - this.d2))
 
-    this.achievements = this.#r()
+    this.challenges = this.#challenges(this.d1, this.d2, this.dm)
+    this.achievements = this.#achievements()
 
     this.personalYear = this.#interestYear()
 
@@ -145,12 +146,12 @@ export class NumericMap {
    */
   get fixedVNsPosition () {
     return  [
-      { position: 'MO', vn: this.mo },
-      { position: 'EU', vn: this.eu },
-      { position: 'CD', vn: this.cd },
-      { position: 'EX', vn: this.ex },
-      { position: 'DM', vn: this.dm },
-    ] as VnPositionT[]
+      { position: 'MO', vn: this.mo, start: 0, end: Infinity },
+      { position: 'EU', vn: this.eu, start: 0, end: Infinity },
+      { position: 'CD', vn: this.cd, start: 0, end: Infinity },
+      { position: 'EX', vn: this.ex, start: 0, end: Infinity },
+      { position: 'DM', vn: this.dm, start: 0, end: Infinity },
+    ] as VnPositionCycleT[]
   }
 
   /**
@@ -158,26 +159,26 @@ export class NumericMap {
    */
   get fixedMainVNsPosition () {
     return  [
-      { position: 'MO', vn: this.mo },
-      { position: 'EU', vn: this.eu },
-      { position: 'CD', vn: this.cd },
-      { position: 'DM', vn: this.dm },
-    ] as VnPositionT[]
+      { position: 'MO', vn: this.mo, start: 0, end: Infinity },
+      { position: 'EU', vn: this.eu, start: 0, end: Infinity },
+      { position: 'CD', vn: this.cd, start: 0, end: Infinity },
+      { position: 'DM', vn: this.dm, start: 0, end: Infinity },
+    ] as VnPositionCycleT[]
   }
 
   /**
    * List of the first cycle (0 to 28 years old) numbers and VNs in the map
    */
   get firstCycleVNsPosition () {
-    const cycleStart = 0
-    const cycleEnd = 28
+    const start = 0
+    const end = 28
 
-    const list =  [
+    const list: VnPositionCycleT[] =  [
       ...this.fixedVNsPosition,
-      { position: 'D1', vn: this.d1 },
-      { position: 'C1', vn: this.c1 },
-      ...this.achievementCycleList(cycleStart, cycleEnd),
-    ] as VnPositionT[]
+      { position: 'D1', vn: this.d1, start, end },
+      { position: 'C1', vn: this.c1, start, end },
+      ...this.achievementCycleList(start, end),
+    ]
 
     return list
   }
@@ -186,14 +187,14 @@ export class NumericMap {
    * List of the first cycle (0 to 28 years old) numbers and VNs in the map, excluding the fixed ones
    */
   get firstCycleOnlyVNsPosition () {
-    const cycleStart = 0
-    const cycleEnd = 28
+    const start = 0
+    const end = 28
 
-    const list =  [
-      { position: 'D1', vn: this.d1 },
-      { position: 'C1', vn: this.c1 },
-      ...this.achievementCycleList(cycleStart, cycleEnd),
-    ] as VnPositionT[]
+    const list: VnPositionCycleT[] =  [
+      { position: 'D1', vn: this.d1, start, end },
+      { position: 'C1', vn: this.c1, start, end },
+      ...this.achievementCycleList(start, end),
+    ]
 
     return list
   }
@@ -209,15 +210,15 @@ export class NumericMap {
    * List of the second cycle (28 to 56 years old) numbers and VNs in the map
    */
   get secondCycleVNsPosition () {
-    const cycleStart = 28
-    const cycleEnd = 56
+    const start = 28
+    const end = 56
 
-    const list =  [
+    const list: VnPositionCycleT[] =  [
       ...this.fixedVNsPosition,
-      { position: 'D2', vn: this.d2 },
-      { position: 'C2', vn: this.c2 },
-      ...this.achievementCycleList(cycleStart, cycleEnd),
-    ] as VnPositionT[]
+      { position: 'D2', vn: this.d2, start, end },
+      { position: 'C2', vn: this.c2, start, end },
+      ...this.achievementCycleList(start, end),
+    ]
 
     return list
   }
@@ -226,14 +227,14 @@ export class NumericMap {
    * List of the second cycle (28 to 56 years old) numbers and VNs in the map, excluding the fixed ones
    */
   get secondCycleOnlyVNsPosition () {
-    const cycleStart = 28
-    const cycleEnd = 56
+    const start = 28
+    const end = 56
 
-    const list =  [
-      { position: 'D2', vn: this.d2 },
-      { position: 'C2', vn: this.c2 },
-      ...this.achievementCycleList(cycleStart, cycleEnd),
-    ] as VnPositionT[]
+    const list: VnPositionCycleT[] =  [
+      { position: 'D2', vn: this.d2, start, end },
+      { position: 'C2', vn: this.c2, start, end },
+      ...this.achievementCycleList(start, end),
+    ]
 
     return list
   }
@@ -249,14 +250,14 @@ export class NumericMap {
    * List of the third cycle (28 to 56 years old) numbers and VNs in the map
    */
   get thirdCycleVNsPosition () {
-    const cycleStart = 56
-    const cycleEnd = Infinity
+    const start = 56
+    const end = Infinity
 
-    const list =  [
+    const list: VnPositionCycleT[] =  [
       ...this.fixedVNsPosition,
-      { position: 'C3', vn: this.c3 },
-      ...this.achievementCycleList(cycleStart, cycleEnd),
-    ] as VnPositionT[]
+      { position: 'C3', vn: this.c3, start, end },
+      ...this.achievementCycleList(start, end),
+    ]
     
     return list
   }
@@ -265,13 +266,13 @@ export class NumericMap {
    * List of the third cycle (28 to 56 years old) numbers and VNs in the map, excluding the fixed ones
    */
   get thirdCycleOnlyVNsPosition () {
-    const cycleStart = 56
-    const cycleEnd = Infinity
+    const start = 56
+    const end = Infinity
 
-    const list =  [
-      { position: 'C3', vn: this.c3 },
-      ...this.achievementCycleList(cycleStart, cycleEnd),
-    ] as VnPositionT[]
+    const list: VnPositionCycleT[] =  [
+      { position: 'C3', vn: this.c3, start, end },
+      ...this.achievementCycleList(start, end),
+    ]
     
     return list
   }
@@ -290,10 +291,12 @@ export class NumericMap {
    * @returns The list of VNs
    */
   achievementCycleList (cycleStart: number, cycleEnd: number) {
-    const list: VnPositionT[] = this.achievementCycleListExtra(cycleStart, cycleEnd)
+    const list: VnPositionCycleT[] = this.achievementCycleListExtra(cycleStart, cycleEnd)
       .map(v => ({
         position: v.position,
         vn:       v.vn,
+        start:    cycleStart,
+        end:      cycleEnd,
       }))
 
     return list
@@ -339,7 +342,7 @@ export class NumericMap {
     }
 
     if ((this.achievements.r4.start >= cycleStart && this.achievements.r4.start < cycleEnd) ||
-    this.achievements.r4.start <= cycleEnd){
+    (this.achievements.r4.end > cycleStart && this.achievements.r4.start <= cycleEnd)){
       list.push({
         position: 'R4',
         vn:       this.achievements.r4.vn,
@@ -487,14 +490,47 @@ export class NumericMap {
     return _number.sum(nameSum, true)
   }
 
-  #r () {
+  /**
+   * The list of challenges with the VN, start and end
+   * @param d1 - The 1st challenge
+   * @param d2 - The 2nd challenge
+   * @param dm - The main challenge
+   * @returns The list of challenges
+   */
+  #challenges (d1: VnSingleDigitT, d2: VnSingleDigitT, dm: VnSingleDigitT) {
+    const challenges = {
+      d1: {
+        vn:    d1,
+        start: 0,
+        end:   28,
+      },
+      d2: {
+        vn:    d2,
+        start: 28,
+        end:   56,
+      },
+      dm: {
+        vn:    dm,
+        start: 56,
+        end:   Infinity,
+      },
+    }
+
+    return challenges
+  }
+
+  /**
+   * The list of achievements with the VN, start and end
+   * @returns The list of achievements
+   */
+  #achievements () {
     const rAge = 36 - this.cd
     const r1 = _number.sum(this.#daySum + this.#monthSum, true)
     const r2 = _number.sum(this.#daySum + this.#yearSum, true)
     const r3 = _number.sum(r1 + r2, true)
     const r4 = _number.sum(this.#monthSum + this.#yearSum, true)
 
-    const r = {
+    const achievements = {
       r1: {
         vn:    r1,
         start: 0,
@@ -517,8 +553,9 @@ export class NumericMap {
       },
     }
 
-    return r
+    return achievements
   }
+
   /**
    * Retrieves the current age depending on the current day
    * @returns The current age
@@ -594,6 +631,26 @@ export class NumericMap {
    * PRIMEIRO DESAFIO
    */
   d1: VnSingleDigitT = 0
+  /**
+   * DESAFIOS
+   */
+  challenges: {
+    d1: {
+        vn: VnSingleDigitT;
+        start: number;
+        end: number;
+    };
+    d2: {
+        vn: VnSingleDigitT;
+        start: number;
+        end: number;
+    };
+    dm: {
+        vn: VnSingleDigitT;
+        start: number;
+        end: number;
+    };
+  }
   /**
    * SEGUNDO DESAFIO
    */

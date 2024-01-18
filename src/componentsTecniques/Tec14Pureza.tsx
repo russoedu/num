@@ -13,7 +13,7 @@ export function Tec14Pureza ({ result }: { result: AdvancedTecniques }) {
   return (
     <>
       <AdvancedTitle>
-        Pureza
+        Técnica 14 - Pureza
       </AdvancedTitle>
       <Grid2 container className='tec-content'>
         <AdvancedGrid i={0}>
