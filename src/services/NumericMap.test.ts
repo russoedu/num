@@ -38,33 +38,43 @@ describe('NumericMap', () => {
 
       expect(nm).toEqual(expect.objectContaining({
         name:     'EDUARDO RUSSO',
-        age:      44,
         birthday: {
           year:  1979,
           month: 3,
           day:   17,
         },
-
         today: {
           year:  2024,
           month: 1,
           day:   2,
         },
-
-        mo: 6,
-        eu: 1,
-        ex: 7,
-
-        cd: 1,
-        
-        c1: 3,
-        c2: 8,
-        c3: 8,
-        
-        d1: 5,
-        d2: 5,
-        dm: 0,
-
+        mo:         6,
+        cd:         1,
+        eu:         1,
+        ex:         7,
+        d1:         5,
+        challenges: {
+          d1: {
+            vn:    5,
+            start: 0,
+            end:   28,
+          },
+          d2: {
+            vn:    5,
+            start: 28,
+            end:   56,
+          },
+          dm: {
+            vn:    0,
+            start: 56,
+            end:   Infinity,
+          },
+        },
+        d2:           5,
+        dm:           0,
+        c1:           3,
+        c2:           8,
+        c3:           8,
         achievements: {
           r1: {
             vn:    11,
@@ -87,26 +97,21 @@ describe('NumericMap', () => {
             end:   Infinity,
           },
         },
-
+        age:          44,
         personalYear: {
           vn:    9,
-          start: new Date('2023-03-17'),
-          end:   new Date('2024-03-17'),
+          start: new Date('2023-03-17T00:00:00.000Z'),
+          end:   new Date('2024-03-17T00:00:00.000Z'),
         },
-
         tec0Cycles: {
-          age: 44,
-          
-          c1End: 28,
-          c2End: 56,
-          c3End: 88,
-
-          r1End: 35,
-          r2End: 45,
-          r3End: 55,
-          
-          cycle: 2,
-          
+          c1End:  28,
+          c2End:  56,
+          c3End:  88,
+          r1End:  35,
+          r2End:  45,
+          r3End:  55,
+          age:    44,
+          cycle:  2,
           cycles: [
             {
               name: 'Fixas',
@@ -114,22 +119,32 @@ describe('NumericMap', () => {
                 {
                   position: 'MO',
                   vn:       6,
+                  start:    0,
+                  end:      Infinity,
                 },
                 {
                   position: 'EU',
                   vn:       1,
+                  start:    0,
+                  end:      Infinity,
                 },
                 {
                   position: 'CD',
                   vn:       1,
+                  start:    0,
+                  end:      Infinity,
                 },
                 {
                   position: 'EX',
                   vn:       7,
+                  start:    0,
+                  end:      Infinity,
                 },
                 {
                   position: 'DM',
                   vn:       0,
+                  start:    0,
+                  end:      Infinity,
                 },
               ],
             },
@@ -139,14 +154,20 @@ describe('NumericMap', () => {
                 {
                   position: 'D1',
                   vn:       5,
+                  start:    0,
+                  end:      28,
                 },
                 {
                   position: 'C1',
                   vn:       3,
+                  start:    0,
+                  end:      28,
                 },
                 {
                   position: 'R1',
                   vn:       11,
+                  start:    0,
+                  end:      28,
                 },
               ],
             },
@@ -156,26 +177,38 @@ describe('NumericMap', () => {
                 {
                   position: 'D2',
                   vn:       5,
+                  start:    28,
+                  end:      56,
                 },
                 {
                   position: 'C2',
                   vn:       8,
+                  start:    28,
+                  end:      56,
                 },
                 {
                   position: 'R1',
                   vn:       11,
+                  start:    28,
+                  end:      56,
                 },
                 {
                   position: 'R2',
                   vn:       7,
+                  start:    28,
+                  end:      56,
                 },
                 {
                   position: 'R3',
                   vn:       9,
+                  start:    28,
+                  end:      56,
                 },
                 {
                   position: 'R4',
                   vn:       11,
+                  start:    28,
+                  end:      56,
                 },
               ],
             },
@@ -185,10 +218,14 @@ describe('NumericMap', () => {
                 {
                   position: 'C3',
                   vn:       8,
+                  start:    56,
+                  end:      Infinity,
                 },
                 {
                   position: 'R4',
                   vn:       11,
+                  start:    56,
+                  end:      Infinity,
                 },
               ],
             },
@@ -201,33 +238,43 @@ describe('NumericMap', () => {
       
       expect(nm).toEqual(expect.objectContaining({
         name:     'DINAURA MOZZI',
-        age:      73,
         birthday: {
           year:  1950,
           month: 12,
           day:   26,
         },
-
         today: {
           year:  2024,
           month: 1,
           day:   2,
         },
-
-        mo: 11,
-        eu: 11,
-        ex: 22,
-        
-        cd: 8,
-        
-        c1: 3,
-        c2: 8,
-        c3: 6,
-        
-        d1: 5,
-        d2: 3,
-        dm: 2,
-        
+        mo:         11,
+        cd:         8,
+        eu:         11,
+        ex:         22,
+        d1:         5,
+        challenges: {
+          d1: {
+            vn:    5,
+            start: 0,
+            end:   28,
+          },
+          d2: {
+            vn:    3,
+            start: 28,
+            end:   56,
+          },
+          dm: {
+            vn:    2,
+            start: 56,
+            end:   Infinity,
+          },
+        },
+        d2:           3,
+        dm:           2,
+        c1:           3,
+        c2:           8,
+        c3:           6,
         achievements: {
           r1: {
             vn:    11,
@@ -250,13 +297,12 @@ describe('NumericMap', () => {
             end:   Infinity,
           },
         },
-        
+        age:          73,
         personalYear: {
           vn:    9,
-          start: new Date('2023-12-26'),
-          end:   new Date('2024-12-26'),
+          start: new Date('2023-12-26T00:00:00.000Z'),
+          end:   new Date('2024-12-26T00:00:00.000Z'),
         },
-        
         tec0Cycles: {
           c1End:  28,
           c2End:  56,
@@ -273,22 +319,32 @@ describe('NumericMap', () => {
                 {
                   position: 'MO',
                   vn:       11,
+                  start:    0,
+                  end:      Infinity,
                 },
                 {
                   position: 'EU',
                   vn:       11,
+                  start:    0,
+                  end:      Infinity,
                 },
                 {
                   position: 'CD',
                   vn:       8,
+                  start:    0,
+                  end:      Infinity,
                 },
                 {
                   position: 'EX',
                   vn:       22,
+                  start:    0,
+                  end:      Infinity,
                 },
                 {
                   position: 'DM',
                   vn:       2,
+                  start:    0,
+                  end:      Infinity,
                 },
               ],
             },
@@ -298,14 +354,20 @@ describe('NumericMap', () => {
                 {
                   position: 'D1',
                   vn:       5,
+                  start:    0,
+                  end:      28,
                 },
                 {
                   position: 'C1',
                   vn:       3,
+                  start:    0,
+                  end:      28,
                 },
                 {
                   position: 'R1',
                   vn:       11,
+                  start:    0,
+                  end:      28,
                 },
               ],
             },
@@ -315,22 +377,32 @@ describe('NumericMap', () => {
                 {
                   position: 'D2',
                   vn:       3,
+                  start:    28,
+                  end:      56,
                 },
                 {
                   position: 'C2',
                   vn:       8,
+                  start:    28,
+                  end:      56,
                 },
                 {
                   position: 'R2',
                   vn:       5,
+                  start:    28,
+                  end:      56,
                 },
                 {
                   position: 'R3',
                   vn:       7,
+                  start:    28,
+                  end:      56,
                 },
                 {
                   position: 'R4',
                   vn:       9,
+                  start:    28,
+                  end:      56,
                 },
               ],
             },
@@ -340,10 +412,14 @@ describe('NumericMap', () => {
                 {
                   position: 'C3',
                   vn:       6,
+                  start:    56,
+                  end:      Infinity,
                 },
                 {
                   position: 'R4',
                   vn:       9,
+                  start:    56,
+                  end:      Infinity,
                 },
               ],
             },
@@ -485,44 +561,44 @@ describe('NumericMap', () => {
       const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
 
       expect(nm.fixedVNsPosition).toEqual([
-        { position: 'MO', vn: 6 },
-        { position: 'EU', vn: 1 },
-        { position: 'CD', vn: 1 },
-        { position: 'EX', vn: 7 },
-        { position: 'DM', vn: 0 },
+        { position: 'MO', vn: 6, start: 0, end: Infinity },
+        { position: 'EU', vn: 1, start: 0, end: Infinity },
+        { position: 'CD', vn: 1, start: 0, end: Infinity },
+        { position: 'EX', vn: 7, start: 0, end: Infinity },
+        { position: 'DM', vn: 0, start: 0, end: Infinity },
       ])
     })
     test('fixedMainVNsPosition', () => {
       const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
 
       expect(nm.fixedMainVNsPosition).toEqual([
-        { position: 'MO', vn: 6 },
-        { position: 'EU', vn: 1 },
-        { position: 'CD', vn: 1 },
-        { position: 'DM', vn: 0 },
+        { position: 'MO', vn: 6, start: 0, end: Infinity },
+        { position: 'EU', vn: 1, start: 0, end: Infinity },
+        { position: 'CD', vn: 1, start: 0, end: Infinity },
+        { position: 'DM', vn: 0, start: 0, end: Infinity },
       ])
     })
     test('firstCycleVNsPosition', () => {
       const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
 
       expect(nm.firstCycleVNsPosition).toEqual([
-        { position: 'MO', vn: 6 },
-        { position: 'EU', vn: 1 },
-        { position: 'CD', vn: 1 },
-        { position: 'EX', vn: 7 },
-        { position: 'DM', vn: 0 },
-        { position: 'D1', vn: 5 },
-        { position: 'C1', vn: 3 },
-        { position: 'R1', vn: 11 },
+        { position: 'MO', vn: 6, start: 0, end: Infinity },
+        { position: 'EU', vn: 1, start: 0, end: Infinity },
+        { position: 'CD', vn: 1, start: 0, end: Infinity },
+        { position: 'EX', vn: 7, start: 0, end: Infinity },
+        { position: 'DM', vn: 0, start: 0, end: Infinity },
+        { position: 'D1', vn: 5, start: 0, end: 28 },
+        { position: 'C1', vn: 3, start: 0, end: 28 },
+        { position: 'R1', vn: 11, start: 0, end: 28 },
       ])
     })
     test('firstCycleOnlyVNsPosition', () => {
       const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
 
       expect(nm.firstCycleOnlyVNsPosition).toEqual([
-        { position: 'D1', vn: 5 },
-        { position: 'C1', vn: 3 },
-        { position: 'R1', vn: 11 },
+        { position: 'D1', vn: 5, start: 0, end: 28 },
+        { position: 'C1', vn: 3, start: 0, end: 28 },
+        { position: 'R1', vn: 11, start: 0, end: 28 },
       ])
     })
     test('firstCycleVNs', () => {
@@ -534,29 +610,29 @@ describe('NumericMap', () => {
       const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
 
       expect(nm.secondCycleVNsPosition).toEqual([
-        { position: 'MO', vn: 6 },
-        { position: 'EU', vn: 1 },
-        { position: 'CD', vn: 1 },
-        { position: 'EX', vn: 7 },
-        { position: 'DM', vn: 0 },
-        { position: 'D2', vn: 5 },
-        { position: 'C2', vn: 8 },
-        { position: 'R1', vn: 11 },
-        { position: 'R2', vn: 7 },
-        { position: 'R3', vn: 9 },
-        { position: 'R4', vn: 11 },
+        { position: 'MO', vn: 6, start: 0, end: Infinity },
+        { position: 'EU', vn: 1, start: 0, end: Infinity },
+        { position: 'CD', vn: 1, start: 0, end: Infinity },
+        { position: 'EX', vn: 7, start: 0, end: Infinity },
+        { position: 'DM', vn: 0, start: 0, end: Infinity },
+        { position: 'D2', vn: 5, start: 28, end: 56 },
+        { position: 'C2', vn: 8, start: 28, end: 56 },
+        { position: 'R1', vn: 11, start: 28, end: 56 },
+        { position: 'R2', vn: 7, start: 28, end: 56 },
+        { position: 'R3', vn: 9, start: 28, end: 56 },
+        { position: 'R4', vn: 11, start: 28, end: 56 },
       ])
     })
     test('secondCycleOnlyVNsPosition', () => {
       const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
 
       expect(nm.secondCycleOnlyVNsPosition).toEqual([
-        { position: 'D2', vn: 5 },
-        { position: 'C2', vn: 8 },
-        { position: 'R1', vn: 11 },
-        { position: 'R2', vn: 7 },
-        { position: 'R3', vn: 9 },
-        { position: 'R4', vn: 11 },
+        { position: 'D2', vn: 5, start: 28, end: 56 },
+        { position: 'C2', vn: 8, start: 28, end: 56 },
+        { position: 'R1', vn: 11, start: 28, end: 56 },
+        { position: 'R2', vn: 7, start: 28, end: 56 },
+        { position: 'R3', vn: 9, start: 28, end: 56 },
+        { position: 'R4', vn: 11, start: 28, end: 56 },
       ])
     })
     test('secondCycleVNs', () => {
@@ -568,21 +644,21 @@ describe('NumericMap', () => {
       const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
 
       expect(nm.thirdCycleVNsPosition).toEqual([
-        { position: 'MO', vn: 6 },
-        { position: 'EU', vn: 1 },
-        { position: 'CD', vn: 1 },
-        { position: 'EX', vn: 7 },
-        { position: 'DM', vn: 0 },
-        { position: 'C3', vn: 8 },
-        { position: 'R4', vn: 11 },
+        { position: 'MO', vn: 6, start: 0, end: Infinity },
+        { position: 'EU', vn: 1, start: 0, end: Infinity },
+        { position: 'CD', vn: 1, start: 0, end: Infinity },
+        { position: 'EX', vn: 7, start: 0, end: Infinity },
+        { position: 'DM', vn: 0, start: 0, end: Infinity },
+        { position: 'C3', vn: 8, start: 56, end: Infinity },
+        { position: 'R4', vn: 11, start: 56, end: Infinity },
       ])
     })
     test('thirdCycleOnlyVNsPosition', () => {
       const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
 
       expect(nm.thirdCycleOnlyVNsPosition).toEqual([
-        { position: 'C3', vn: 8 },
-        { position: 'R4', vn: 11 },
+        { position: 'C3', vn: 8, start: 56, end: Infinity },
+        { position: 'R4', vn: 11, start: 56, end: Infinity },
       ])
     })
     test('thirdCycleVNs', () => {
@@ -597,14 +673,14 @@ describe('NumericMap', () => {
         cycle:     '1º Ciclo - 0/28 anos',
         index:     1,
         vnNumbers: [
-          { position: 'MO', vn: 6 },
-          { position: 'EU', vn: 1 },
-          { position: 'CD', vn: 1 },
-          { position: 'EX', vn: 7 },
-          { position: 'DM', vn: 0 },
-          { position: 'D1', vn: 5 },
-          { position: 'C1', vn: 3 },
-          { position: 'R1', vn: 11 },
+          { position: 'MO', vn: 6, start: 0, end: Infinity },
+          { position: 'EU', vn: 1, start: 0, end: Infinity },
+          { position: 'CD', vn: 1, start: 0, end: Infinity },
+          { position: 'EX', vn: 7, start: 0, end: Infinity },
+          { position: 'DM', vn: 0, start: 0, end: Infinity },
+          { position: 'D1', vn: 5, start: 0, end: 28 },
+          { position: 'C1', vn: 3, start: 0, end: 28 },
+          { position: 'R1', vn: 11, start: 0, end: 28 },
         ],
       })
     })
@@ -615,17 +691,17 @@ describe('NumericMap', () => {
         cycle:     '2º Ciclo - 28/56 anos',
         index:     2,
         vnNumbers: [
-          { position: 'MO', vn: 6 },
-          { position: 'EU', vn: 1 },
-          { position: 'CD', vn: 1 },
-          { position: 'EX', vn: 7 },
-          { position: 'DM', vn: 0 },
-          { position: 'D2', vn: 5 },
-          { position: 'C2', vn: 8 },
-          { position: 'R1', vn: 11 },
-          { position: 'R2', vn: 7 },
-          { position: 'R3', vn: 9 },
-          { position: 'R4', vn: 11 },
+          { position: 'MO', vn: 6, start: 0, end: Infinity },
+          { position: 'EU', vn: 1, start: 0, end: Infinity },
+          { position: 'CD', vn: 1, start: 0, end: Infinity },
+          { position: 'EX', vn: 7, start: 0, end: Infinity },
+          { position: 'DM', vn: 0, start: 0, end: Infinity },
+          { position: 'D2', vn: 5, start: 28, end: 56 },
+          { position: 'C2', vn: 8, start: 28, end: 56 },
+          { position: 'R1', vn: 11, start: 28, end: 56 },
+          { position: 'R2', vn: 7, start: 28, end: 56 },
+          { position: 'R3', vn: 9, start: 28, end: 56 },
+          { position: 'R4', vn: 11, start: 28, end: 56 },
         ],
       })
     })
@@ -636,17 +712,17 @@ describe('NumericMap', () => {
         cycle:     '2º Ciclo - 28/56 anos',
         index:     2,
         vnNumbers: [
-          { position: 'MO', vn: 6 },
-          { position: 'EU', vn: 1 },
-          { position: 'CD', vn: 1 },
-          { position: 'EX', vn: 7 },
-          { position: 'DM', vn: 0 },
-          { position: 'D2', vn: 5 },
-          { position: 'C2', vn: 8 },
-          { position: 'R1', vn: 11 },
-          { position: 'R2', vn: 7 },
-          { position: 'R3', vn: 9 },
-          { position: 'R4', vn: 11 },
+          { position: 'MO', vn: 6, start: 0, end: Infinity },
+          { position: 'EU', vn: 1, start: 0, end: Infinity },
+          { position: 'CD', vn: 1, start: 0, end: Infinity },
+          { position: 'EX', vn: 7, start: 0, end: Infinity },
+          { position: 'DM', vn: 0, start: 0, end: Infinity },
+          { position: 'D2', vn: 5, start: 28, end: 56 },
+          { position: 'C2', vn: 8, start: 28, end: 56 },
+          { position: 'R1', vn: 11, start: 28, end: 56 },
+          { position: 'R2', vn: 7, start: 28, end: 56 },
+          { position: 'R3', vn: 9, start: 28, end: 56 },
+          { position: 'R4', vn: 11, start: 28, end: 56 },
         ],
       })
     })
@@ -657,13 +733,13 @@ describe('NumericMap', () => {
         cycle:     '3º Ciclo - + 56 anos',
         index:     3,
         vnNumbers: [
-          { position: 'MO', vn: 6 },
-          { position: 'EU', vn: 1 },
-          { position: 'CD', vn: 1 },
-          { position: 'EX', vn: 7 },
-          { position: 'DM', vn: 0 },
-          { position: 'C3', vn: 8 },
-          { position: 'R4', vn: 11 },
+          { position: 'MO', vn: 6, start: 0, end: Infinity },
+          { position: 'EU', vn: 1, start: 0, end: Infinity },
+          { position: 'CD', vn: 1, start: 0, end: Infinity },
+          { position: 'EX', vn: 7, start: 0, end: Infinity },
+          { position: 'DM', vn: 0, start: 0, end: Infinity },
+          { position: 'C3', vn: 8, start: 56, end: Infinity },
+          { position: 'R4', vn: 11, start: 56, end: Infinity },
         ],
       })
     })
@@ -674,13 +750,13 @@ describe('NumericMap', () => {
         cycle:     '3º Ciclo - + 56 anos',
         index:     3,
         vnNumbers: [
-          { position: 'MO', vn: 6 },
-          { position: 'EU', vn: 1 },
-          { position: 'CD', vn: 1 },
-          { position: 'EX', vn: 7 },
-          { position: 'DM', vn: 0 },
-          { position: 'C3', vn: 8 },
-          { position: 'R4', vn: 11 },
+          { position: 'MO', vn: 6, start: 0, end: Infinity },
+          { position: 'EU', vn: 1, start: 0, end: Infinity },
+          { position: 'CD', vn: 1, start: 0, end: Infinity },
+          { position: 'EX', vn: 7, start: 0, end: Infinity },
+          { position: 'DM', vn: 0, start: 0, end: Infinity },
+          { position: 'C3', vn: 8, start: 56, end: Infinity },
+          { position: 'R4', vn: 11, start: 56, end: Infinity },
         ],
       })
     })

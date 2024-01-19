@@ -756,13 +756,19 @@ export class AdvancedTecniques {
     for (const num of multiplicity) {
       const multiplicatedVNsPosition = vnPositions
         .filter(vnp => _number.match(vnp.vn, num as VnSingleDigitT))
-        .map(vnp => vnp.position)
 
-      multiples.push({
-        positions: multiplicatedVNsPosition,
-        vn:        num,
-        type:      MultiplicityType[multiplicatedVNsPosition.length - 2],
-      })
+      const positions = multiplicatedVNsPosition.map(m => m.position)
+      const difCycles = (positions.includes('R1') && (positions.includes('R2') || positions.includes('R3') || positions.includes('R4'))) ||
+      (positions.includes('R2') && (positions.includes('R3') || positions.includes('R4'))) ||
+      (positions.includes('R3') && positions.includes('R4')) ? 1 : 0
+      const count = multiplicatedVNsPosition.length - 2 - difCycles
+      
+      if (count >= 0) {
+        multiples.push({
+          positions: multiplicatedVNsPosition.map(vnp => vnp.position),
+          vn:        num,
+          type:      MultiplicityType[count],
+        })}
     }
 
     return multiples

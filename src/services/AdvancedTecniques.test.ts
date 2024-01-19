@@ -292,22 +292,6 @@ describe('AdvancedTecniques', () => {
                 vn:   7,
                 type: 'D',
               },
-              {
-                positions: [
-                  'R1',
-                  'R4',
-                ],
-                vn:   2,
-                type: 'D',
-              },
-              {
-                positions: [
-                  'R1',
-                  'R4',
-                ],
-                vn:   11,
-                type: 'D',
-              },
             ],
           },
           {
