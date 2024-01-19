@@ -23,39 +23,21 @@ import { Tec16ConquistaEspontanea } from '../componentsTecniques/Tec16ConquistaE
 export function AdvancedTecniquesResults ({ result }: { result: AdvancedTecniques }) {
   return (
     <Paper variant='elevation' elevation={3} sx={{ padding: 1, marginTop: 5 }} >
-      <Tec8AdequacaoDaLinguagem result={result}/>
-      <Tec11DonosPraticantes result={result}/>
-      <Tec14Pureza result={result}/>
-      <Tec4Multiplicidades result={result}/>
-      
-      {/* 19 */}
-      {/* 20 */}
-      
       <Tec1Piramide result={result}/>
-      <Tec12ConjuncaoCdMoOuMoCd result={result}/>
-      
-      {/* NÍVEL II – TÍTULO 5 – VÁLVULA DE ESCAPE/ REFÚGIO – EU */}
-      {/* NÍVEL II – TÍTULO 6 – PEDÁGIO – DM */}
-
-      <Tec9VibracaoDaExpressao result={result}/>
-
-      {/* VIBRAÇÕES NUMÉRICAS DOMINANTES */}
-      {/* Comparar as fixas e interpretar (não é uma técnica, colocar como observação) */}
-      {/* IMPOSIÇÃO /  CONVOCADA – MO ou CD ou EU */}
-
       <Tec2Ausencias result={result}/>
-
-      {/* NÍVEL II – TÍTULO 2 – POVO DIFERENCIADO */}
-      {/* TÉC. 13 –  3ª leitura – POTENCIAIS / VÍCIOS / RECICLADOR DE ENERGIA */}
-
+      <Tec4Multiplicidades result={result}/>
       <Tec5PotenciaisComoReagem result={result}/>
       <Tec6PotenciaisComoSentem result={result}/>
       <Tec7Riscos result={result}/>
+      <Tec8AdequacaoDaLinguagem result={result}/>
+      <Tec9VibracaoDaExpressao result={result}/>
       <Tec10InterpretacaoDoPrimeiroCiclo result={result}/>
+      <Tec11DonosPraticantes result={result}/>
+      <Tec12ConjuncaoCdMoOuMoCd result={result}/>
       <Tec13PotenciaisViciosReciclador result={result}/>
-
+      <Tec14Pureza result={result}/>
       <Tec15RealizacaoEspontanea result={result}/>
-      <Tec16ConquistaEspontanea result={result}/>
+      <Tec16ConquistaEspontanea result={result}/>      
     </Paper>
   )
 }
