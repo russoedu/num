@@ -818,6 +818,49 @@ describe('AdvancedTecniques', () => {
       ])
     })
   })
+  describe('tec17Renascimento', () => {
+    test('map without', () => {
+      expect(am1.tec17Renascimento).toEqual([])
+    })
+    test('map with', () => {
+      const m = new NumericMap('', '1979-03-17', '2021-01-07')
+
+      m.achievements = {
+        r1: { vn: 1, start: 0, end: 30 },
+        r2: { vn: 2, start: 30, end: 40 },
+        r3: { vn: 1, start: 40, end: 50 },
+        r4: { vn: 1, start: 50, end: Infinity },
+      }
+      const am = new AdvancedTecniques(m)
+      expect(am.tec17Renascimento).toEqual([
+        { position: 'R3', age: 40 },
+        { position: 'R4', age: 50 },
+      ])
+    })
+  })
+  describe('tec18MomentoDecisivoForte', () => {
+    test('map without', () => {
+      expect(am2.tec18MomentoDecisivoForte).toEqual([])
+    })
+    test('map with CD 8', () => {
+      expect(am1.tec18MomentoDecisivoForte).toEqual([
+        { position: 'CD', vn: 8 },
+      ])
+    })
+    test('map with all possibilities', () => {
+      const m = new NumericMap('', '1979-03-17', '2021-01-07')
+
+      m.cd = 9
+      m.d1 = 0
+      m.d2 = 0
+      const am = new AdvancedTecniques(m)
+      expect(am.tec18MomentoDecisivoForte).toEqual([
+        { position: 'CD', vn: 9 },
+        { position: 'D1', vn: 0 },
+        { position: 'D2', vn: 0 },
+      ])
+    })
+  })
 
   let map1 = new NumericMap('DAINARI MOZZU', '1950-12-26', '2021-01-07')
   let am1 = new AdvancedTecniques(map1)

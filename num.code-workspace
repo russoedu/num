@@ -12,7 +12,6 @@
       "tsconfig*": true,
       "vite.config.ts": true,
       "vitest.config.ts": true,
-      "index.html": true,
       "copyPublic.js": true,
     },
     "debug.javascript.terminalOptions": {

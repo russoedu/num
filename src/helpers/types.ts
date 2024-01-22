@@ -36,7 +36,7 @@ export const FixedPositions = [
   'EX',
   'DM',
 ]
-export type VnSingleDigitT = 0|1|2|3|4|5|6|7|8|9
+export type SingleDigitVN = 0|1|2|3|4|5|6|7|8|9
 export type SingleDigitA = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 export type VN = 0|1|2|11|3|4|22|5|6|7|8|9
 export type FinalSingleDigitA = [0, 1, 2, 11, 3, 4, 22, 5, 6, 7, 8, 9]
@@ -135,7 +135,7 @@ export type VnPositionCycleT = {
 }
 
 export type VnCountSingleDigit = {
-  vn: VnSingleDigitT,
+  vn: SingleDigitVN,
   positions: PositionT[],
   count: number,
 }
@@ -164,16 +164,16 @@ export enum Person {
 
 export const CycleInterpretationVns = [
   {
-    vn:     1 as VnSingleDigitT,
+    vn:     1 as SingleDigitVN,
     person: Person.PAI },
   {
-    vn:     2 as VnSingleDigitT,
+    vn:     2 as SingleDigitVN,
     person: Person.MAE },
   {
-    vn:     3 as VnSingleDigitT,
+    vn:     3 as SingleDigitVN,
     person: Person.IRMAO },
   {
-    vn:     4 as VnSingleDigitT,
+    vn:     4 as SingleDigitVN,
     person: Person.AVO },
 ]
 
@@ -248,4 +248,14 @@ export type ConquestsT = {
   position: 'D1' | 'D2' | 'DM',
   start: number,
   end: number,
+}
+
+export type RebirthT = {
+  position: 'R2' | 'R3' | 'R4',
+  age: number
+}
+
+export type StrongDecisiveMomementPositionT = {
+  position: 'CD'|'D1'|'D2',
+  vn: SingleDigitVN
 }

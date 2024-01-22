@@ -2,7 +2,7 @@ import { _array } from '../helpers/_array'
 import { _date } from '../helpers/_date'
 import { _name } from '../helpers/_name'
 import { _number } from '../helpers/_number'
-import { Consonants, CyclesT, PersonalYearT, PositionT, VN, VnCountFinalDigit, VnCountSingleDigit, VnPositionCycleT, VnPositionT, VnSingleDigitT, Vowels, consonants, letterValues, vowels } from '../helpers/types'
+import { Consonants, CyclesT, PersonalYearT, PositionT, VN, VnCountFinalDigit, VnCountSingleDigit, VnPositionCycleT, VnPositionT, SingleDigitVN, Vowels, consonants, letterValues, vowels } from '../helpers/types'
 
 export class NumericMap {
   constructor (name: string, birthday: string, today: string) {
@@ -497,7 +497,7 @@ export class NumericMap {
    * @param dm - The main challenge
    * @returns The list of challenges
    */
-  #challenges (d1: VnSingleDigitT, d2: VnSingleDigitT, dm: VnSingleDigitT) {
+  #challenges (d1: SingleDigitVN, d2: SingleDigitVN, dm: SingleDigitVN) {
     const challenges = {
       d1: {
         vn:    d1,
@@ -630,23 +630,23 @@ export class NumericMap {
   /**
    * PRIMEIRO DESAFIO
    */
-  d1: VnSingleDigitT = 0
+  d1: SingleDigitVN = 0
   /**
    * DESAFIOS
    */
   challenges: {
     d1: {
-        vn: VnSingleDigitT;
+        vn: SingleDigitVN;
         start: number;
         end: number;
     };
     d2: {
-        vn: VnSingleDigitT;
+        vn: SingleDigitVN;
         start: number;
         end: number;
     };
     dm: {
-        vn: VnSingleDigitT;
+        vn: SingleDigitVN;
         start: number;
         end: number;
     };
@@ -654,23 +654,23 @@ export class NumericMap {
   /**
    * SEGUNDO DESAFIO
    */
-  d2: VnSingleDigitT = 0
+  d2: SingleDigitVN = 0
   /**
    * DESAFIO MAIOR – O QUE VEIO APRENDER COM DIFICULDADE
    */
-  dm: VnSingleDigitT = 0
+  dm: SingleDigitVN = 0
   /**
    * PRIMEIRO CICLO
    */
-  c1: VnSingleDigitT = 0
+  c1: SingleDigitVN = 0
   /**
    * SEGUNDO CICLO
    */
-  c2: VnSingleDigitT = 0
+  c2: SingleDigitVN = 0
   /**
    * TERCEIRO CICLO
    */
-  c3: VnSingleDigitT = 0
+  c3: SingleDigitVN = 0
   
   /**
    * REALIZAÇÕES

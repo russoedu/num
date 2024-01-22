@@ -1,4 +1,4 @@
-import { VN, VnSingleDigitT } from './types'
+import { VN, SingleDigitVN } from './types'
 
 class Num {
   /**
@@ -6,14 +6,14 @@ class Num {
    * @param num - The number to be summed
    * @returns The sum of each number digit
    */
-  sum (num: number): VnSingleDigitT
+  sum (num: number): SingleDigitVN
   /**
    * Sums the digits of the number until it is a single digit (1 - 9)
    * @param num - The number to be summed
    * @param final - If true, the results can also be 11 or 22, else, 11 and 22 wil be summed again (to 2 or 4)
    * @returns The sum of each number digit
    */
-  sum (num: number, final: false): VnSingleDigitT
+  sum (num: number, final: false): SingleDigitVN
   /**
    * Sums the digits of the number until it is a single digit (1 - 9, 11 or 22)
    * @param num - The number to be summed
@@ -28,7 +28,7 @@ class Num {
    * @param final - If true, the results can also be 11 or 22, else, 11 and 22 wil be summed again (to 2 or 4)
    * @returns The sum of each number digit
    */
-  sum (num: number, final: boolean): VN|VnSingleDigitT
+  sum (num: number, final: boolean): VN|SingleDigitVN
   
   sum (num: number, final = false) {
     let sum: any = 0
@@ -54,7 +54,7 @@ class Num {
    * @param n2 - The single digit VN to be checked
    * @returns True if the VNs are the same
    */
-  match (n1: VN, n2: VnSingleDigitT) {
+  match (n1: VN, n2: SingleDigitVN) {
     const result =  n1 === n2 ||
     (n1 === 11 && n2 === 2) ||
     (n1 === 22 && n2 === 4)
@@ -82,7 +82,7 @@ class Num {
    * @param vn - The VN to be converted
    * @returns The single digit VN
    */
-  vnToSingleVn (vn: VN): VnSingleDigitT {
+  vnToSingleVn (vn: VN): SingleDigitVN {
     return vn === 11
       ? 2
       : vn === 22

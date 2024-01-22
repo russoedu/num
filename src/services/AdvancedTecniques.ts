@@ -1,7 +1,7 @@
 import { _array } from '../helpers/_array'
 import { _number } from '../helpers/_number'
 import { _tec } from '../helpers/_tec'
-import { Cycle, CycleInterpretationT, CycleInterpretationVns, ExpressionVibrationT, VN, LanguageStyleT, MultiplicitesT, MultiplicityMultipleT, MultiplicityT, MultiplicityType, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultT, PercentageT, PyramidT, Relation, RiskT, VnSingleDigitT, AchievementsT, VicesAndReciclerDataT, vnOwnerPractitioner, ConquestsT, VnPositionCycleT } from '../helpers/types'
+import { Cycle, CycleInterpretationT, CycleInterpretationVns, ExpressionVibrationT, VN, LanguageStyleT, MultiplicitesT, MultiplicityMultipleT, MultiplicityT, MultiplicityType, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultT, PercentageT, PyramidT, Relation, RiskT, SingleDigitVN, AchievementsT, VicesAndReciclerDataT, vnOwnerPractitioner, ConquestsT, VnPositionCycleT, RebirthT, StrongDecisiveMomementPositionT } from '../helpers/types'
 import { NumericMap } from './NumericMap'
 
 export class AdvancedTecniques {
@@ -26,6 +26,8 @@ export class AdvancedTecniques {
     this.tec14Pureza = this.#tec14Pureza()
     this.tec15RealizacaoEspontanea = this.#tec15RealizacaoEspontanea()
     this.tec16ConquistaEspontanea = this.#tec16ConquistaEspontanea()
+    this.tec17Renascimento = this.#tec17Renascimento()
+    this.tec18MomentoDecisivoForte = this.#tec18MomentoDecisivoForte()
   }
 
   /**
@@ -63,7 +65,7 @@ export class AdvancedTecniques {
     const unique = this.#map.uniqueVNs
     const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-    return _array.notInArray(numbers, unique) as VnSingleDigitT[]
+    return _array.notInArray(numbers, unique) as SingleDigitVN[]
   }
 
   /**
@@ -693,6 +695,10 @@ export class AdvancedTecniques {
     return result
   }
 
+  /**
+   * Spontaneous Achievements interpretation
+   * @returns Spontaneous Achievements interpretation results
+   */
   #tec16ConquistaEspontanea () {
     const result: ConquestsT[] = []
     const positions = ['D1', 'D2', 'DM'] as ('D1' | 'D2' | 'DM')[]
@@ -717,6 +723,58 @@ export class AdvancedTecniques {
       }
     }
     
+    return result
+  }
+
+  /**
+   * Rebirth interpretation
+   * @returns Rebirth interpretation results
+   */
+  #tec17Renascimento () {
+    const result: RebirthT[] = []
+    const positions = ['R2', 'R3', 'R4'] as ('R2' | 'R3' | 'R4')[]
+
+    for (const position of positions) {
+      const achievement = this.#map.achievements[position.toLowerCase() as 'r2' | 'r3' | 'r4']
+
+      if (achievement.vn === 1) {
+        result.push({
+          position,
+          age: achievement.start,
+        })
+      }
+    }
+    
+    return result
+  }
+
+  /**
+   * Strong Decisive Momement
+   * @returns Strong Decisive Momement results
+   */
+  #tec18MomentoDecisivoForte () {
+    const result: StrongDecisiveMomementPositionT[] = []
+
+    if (this.#map.cd === 7 || this.#map.cd === 8 || this.#map.cd === 9) {
+      result.push({
+        position: 'CD',
+        vn:       this.#map.cd,
+      })
+    }
+
+    if (this.#map.d1 === 0) {
+      result.push({
+        position: 'D1',
+        vn:       this.#map.d1,
+      })
+    }
+    if (this.#map.d2 === 0) {
+      result.push({
+        position: 'D2',
+        vn:       this.#map.d2,
+      })
+    }
+
     return result
   }
 
@@ -755,7 +813,7 @@ export class AdvancedTecniques {
 
     for (const num of multiplicity) {
       const multiplicatedVNsPosition = vnPositions
-        .filter(vnp => _number.match(vnp.vn, num as VnSingleDigitT))
+        .filter(vnp => _number.match(vnp.vn, num as SingleDigitVN))
 
       const positions = multiplicatedVNsPosition.map(m => m.position)
       const difCycles = (positions.includes('R1') && (positions.includes('R2') || positions.includes('R3') || positions.includes('R4'))) ||
@@ -866,7 +924,7 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 2 – AUSÊNCIAS – AUS 
    */
-  tec2Ausencia: VnSingleDigitT[]
+  tec2Ausencia: SingleDigitVN[]
   /**
    * TÉCNICA 3 – NOSSO MAPA ATUAL
    */
@@ -950,11 +1008,12 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 17 – RENASCIMENTO
    */
+  tec17Renascimento: RebirthT[]
 
   /**
    * TÉCNICA 18 – MOMENTO DECISIVO FORTE
    */
-
+  tec18MomentoDecisivoForte: StrongDecisiveMomementPositionT[]
   /**
    * TÉCNICA 19 – AVP (AUSÊNCIA DE VIBRAÇÃO POSITIVA) – RISCOS 
    */

@@ -1,7 +1,7 @@
 {
   "name": "numerologia",
   "private": true,
-  "version": "0.0.56",
+  "version": "0.0.57",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -45,7 +45,7 @@
     "typedoc-plugin-markdown": "^3.17.1",
     "typedoc-plugin-missing-exports": "^2.2.0",
     "typescript": "^5.3.3",
-    "vite": "^5.0.11",
+    "vite": "^5.0.12",
     "vitest": "^1.2.1"
   }
 }
