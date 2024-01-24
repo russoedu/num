@@ -390,18 +390,18 @@ describe('NumericMap', () => {
                   position: 'R2',
                   vn:       5,
                   start:    28,
-                  end:      56,
+                  end:      38,
                 },
                 {
                   position: 'R3',
                   vn:       7,
-                  start:    28,
-                  end:      56,
+                  start:    38,
+                  end:      48,
                 },
                 {
                   position: 'R4',
                   vn:       9,
-                  start:    28,
+                  start:    48,
                   end:      56,
                 },
               ],
@@ -617,10 +617,10 @@ describe('NumericMap', () => {
         { position: 'DM', vn: 0, start: 0, end: Infinity },
         { position: 'D2', vn: 5, start: 28, end: 56 },
         { position: 'C2', vn: 8, start: 28, end: 56 },
-        { position: 'R1', vn: 11, start: 28, end: 56 },
-        { position: 'R2', vn: 7, start: 28, end: 56 },
-        { position: 'R3', vn: 9, start: 28, end: 56 },
-        { position: 'R4', vn: 11, start: 28, end: 56 },
+        { position: 'R1', vn: 11, start: 28, end: 35 },
+        { position: 'R2', vn: 7, start: 35, end: 45 },
+        { position: 'R3', vn: 9, start: 45, end: 55 },
+        { position: 'R4', vn: 11, start: 55, end: 56 },
       ])
     })
     test('secondCycleOnlyVNsPosition', () => {
@@ -629,10 +629,10 @@ describe('NumericMap', () => {
       expect(nm.secondCycleOnlyVNsPosition).toEqual([
         { position: 'D2', vn: 5, start: 28, end: 56 },
         { position: 'C2', vn: 8, start: 28, end: 56 },
-        { position: 'R1', vn: 11, start: 28, end: 56 },
-        { position: 'R2', vn: 7, start: 28, end: 56 },
-        { position: 'R3', vn: 9, start: 28, end: 56 },
-        { position: 'R4', vn: 11, start: 28, end: 56 },
+        { position: 'R1', vn: 11, start: 28, end: 35 },
+        { position: 'R2', vn: 7, start: 35, end: 45 },
+        { position: 'R3', vn: 9, start: 45, end: 55 },
+        { position: 'R4', vn: 11, start: 55, end: 56 },
       ])
     })
     test('secondCycleVNs', () => {
@@ -698,10 +698,10 @@ describe('NumericMap', () => {
           { position: 'DM', vn: 0, start: 0, end: Infinity },
           { position: 'D2', vn: 5, start: 28, end: 56 },
           { position: 'C2', vn: 8, start: 28, end: 56 },
-          { position: 'R1', vn: 11, start: 28, end: 56 },
-          { position: 'R2', vn: 7, start: 28, end: 56 },
-          { position: 'R3', vn: 9, start: 28, end: 56 },
-          { position: 'R4', vn: 11, start: 28, end: 56 },
+          { position: 'R1', vn: 11, start: 28, end: 35 },
+          { position: 'R2', vn: 7, start: 35, end: 45 },
+          { position: 'R3', vn: 9, start: 45, end: 55 },
+          { position: 'R4', vn: 11, start: 55, end: 56 },
         ],
       })
     })
@@ -719,10 +719,10 @@ describe('NumericMap', () => {
           { position: 'DM', vn: 0, start: 0, end: Infinity },
           { position: 'D2', vn: 5, start: 28, end: 56 },
           { position: 'C2', vn: 8, start: 28, end: 56 },
-          { position: 'R1', vn: 11, start: 28, end: 56 },
-          { position: 'R2', vn: 7, start: 28, end: 56 },
-          { position: 'R3', vn: 9, start: 28, end: 56 },
-          { position: 'R4', vn: 11, start: 28, end: 56 },
+          { position: 'R1', vn: 11, start: 28, end: 35 },
+          { position: 'R2', vn: 7, start: 35, end: 45 },
+          { position: 'R3', vn: 9, start: 45, end: 55 },
+          { position: 'R4', vn: 11, start: 55, end: 56 },
         ],
       })
     })
