@@ -12,7 +12,7 @@ describe('AdvancedTecniques', () => {
           results:  [
             {
               vn:          8,
-              description: 'objetividade / organização / praticidade / retidão / honestidade / valorização das conquistas materiais / autoridade/ justiça',
+              description: 'objetividade / organização / praticidade / retidão / honestidade / valorização das conquistas materiais / autoridade / justiça',
             },
           ],
         },
@@ -110,7 +110,7 @@ describe('AdvancedTecniques', () => {
             },
             {
               vn:          8,
-              description: 'objetividade / organização / praticidade / retidão / honestidade / valorização das conquistas materiais / autoridade/ justiça',
+              description: 'objetividade / organização / praticidade / retidão / honestidade / valorização das conquistas materiais / autoridade / justiça',
             },
             {
               vn:          9,
@@ -861,6 +861,7 @@ describe('AdvancedTecniques', () => {
       ])
     })
   })
+
 
   let map1 = new NumericMap('DAINARI MOZZU', '1950-12-26', '2021-01-07')
   let am1 = new AdvancedTecniques(map1)

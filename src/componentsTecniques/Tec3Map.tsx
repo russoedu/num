@@ -70,14 +70,16 @@ export function Tec3Map ({ result }: { result: NumericMap }) {
         <Grid xs={8}>
           <Divider sx={{ paddingTop: 1 }}/>
           <Box sx={{ paddingTop: 1 }}>
-            <Typography variant='h6' display='inline' sx={{ paddingRight: 1 }}>
-          Ano Pessoal
+            <Typography variant='h6' display='inline'>
+              Ano Pessoal (AP)
             </Typography>
-            <Typography variant='h5' display='inline' color={purple} sx={{ fontWeight: 'bold', paddingRight: 1 }}>
+            &nbsp;
+            <Typography variant='h5' display='inline' className='vn'>
               {result.personalYear.vn}
             </Typography>
-            <Typography variant='h6' display='inline' sx={{ paddingRight: 1 }}>
-          de {result.personalYear.start.toLocaleDateString()} a {result.personalYear.end.toLocaleDateString()}
+            &nbsp;
+            <Typography variant='h6' display='inline'>
+              de {result.personalYear.start.toLocaleDateString()} a {result.personalYear.end.toLocaleDateString()}
             </Typography>
           </Box>
         </Grid>

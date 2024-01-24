@@ -285,30 +285,29 @@ export class NumericMap {
   }
 
   /**
-   * The list of achievements in the cycle
-   * @param cycleStart - The start of the life cycle
-   * @param cycleEnd - The end of the life cycle
-   * @returns The list of VNs
+   * List of the third cycle (28 to 56 years old) numbers and VNs in the map
    */
-  achievementCycleList (cycleStart: number, cycleEnd: number) {
-    const list: VnPositionCycleT[] = this.achievementCycleListExtra(cycleStart, cycleEnd)
-      .map(v => ({
-        position: v.position,
-        vn:       v.vn,
-        start:    cycleStart,
-        end:      cycleEnd,
-      }))
+  get allCyclesVNsPosition () {
+    const start = 0
+    const end = Infinity
 
+    const list: VnPositionCycleT[] =  [
+      ...this.fixedVNsPosition,
+      { position: 'C1', vn: this.c1, start: 0, end: 28 },
+      { position: 'C2', vn: this.c2, start: 28, end: 56 },
+      { position: 'C3', vn: this.c3, start: 56, end: Infinity },
+      ...this.achievementCycleList(start, end),
+    ]
+    
     return list
   }
-
   /**
    * The list of achievements in the cycle and the start and end of the cycle
    * @param cycleStart - The start of the life cycle
    * @param cycleEnd - The end of the life cycle
    * @returns The list of VNs
    */
-  achievementCycleListExtra (cycleStart: number, cycleEnd: number) {
+  achievementCycleList (cycleStart: number, cycleEnd: number) {
     const list: VnPositionCycleT[] = []
 
     if ((this.achievements.r1.start >= cycleStart && this.achievements.r1.start < cycleEnd) ||

@@ -1,7 +1,7 @@
 import { _array } from '../helpers/_array'
 import { _number } from '../helpers/_number'
 import { _tec } from '../helpers/_tec'
-import { Cycle, CycleInterpretationT, CycleInterpretationVns, ExpressionVibrationT, VN, LanguageStyleT, MultiplicitesT, MultiplicityMultipleT, MultiplicityT, MultiplicityType, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultT, PercentageT, PyramidT, Relation, RiskT, SingleDigitVN, AchievementsT, VicesAndReciclerDataT, vnOwnerPractitioner, ConquestsT, VnPositionCycleT, RebirthT, StrongDecisiveMomementPositionT } from '../helpers/types'
+import { Cycle, CycleInterpretationT, CycleInterpretationVns, ExpressionVibrationT, VN, LanguageStyleT, MultiplicitesT, MultiplicityMultipleT, MultiplicityT, MultiplicityType, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultT, PercentageT, PyramidT, Relation, RiskT, SingleDigitVN, AchievementsT, VicesAndReciclerDataT, vnOwnerPractitioner, ConquestsT, VnPositionCycleT, RebirthT, StrongDecisiveMomementPositionT, MissingPositiveVibration } from '../helpers/types'
 import { NumericMap } from './NumericMap'
 
 export class AdvancedTecniques {
@@ -28,6 +28,7 @@ export class AdvancedTecniques {
     this.tec16ConquistaEspontanea = this.#tec16ConquistaEspontanea()
     this.tec17Renascimento = this.#tec17Renascimento()
     this.tec18MomentoDecisivoForte = this.#tec18MomentoDecisivoForte()
+    this.tec19AusenciaDeVibracaoPositiva = this.#tec19AusenciaDeVibracaoPositiva()
   }
 
   /**
@@ -706,7 +707,7 @@ export class AdvancedTecniques {
     for (const position of positions) {
       const challenge = this.#map.challenges[position.toLowerCase() as 'd1' | 'd2' | 'dm']
 
-      for (const achievement of this.#map.achievementCycleListExtra(challenge.start, challenge.end)) {
+      for (const achievement of this.#map.achievementCycleList(challenge.start, challenge.end)) {
         if (_number.vnToSingleVn(achievement.vn) === challenge.vn) {
           const existing = result.find(r => r.position === position)
   
@@ -776,6 +777,39 @@ export class AdvancedTecniques {
     }
 
     return result
+  }
+
+  /**
+   * Missing Positive Vibration
+   * @returns Missing Positive Vibration results
+   */
+  #tec19AusenciaDeVibracaoPositiva () {
+    const result: MissingPositiveVibration[] = []
+
+    const receivedVns1 = this.#map.allCyclesVNsPosition.filter(f => f.position !== 'D1' && f.vn === this.#map.d1)
+    const receivedAge1 = receivedVns1.reduce((p, c) => Math.min(p, c.start), Infinity)
+
+    if(receivedVns1.length === 0) {
+      result.push({
+        position:     'D1',
+        vn:           this.#map.d1,
+        missingFrom:  0,
+        missingUntil: Infinity,
+      })
+    } else if (receivedAge1 > 0){
+      const missingUntil = receivedVns1.reduce((p, c) => Math.max(p, c.end), 0)
+      result.push({
+        position:    'D1',
+        vn:          this.#map.d1,
+        missingFrom: receivedAge1,
+        missingUntil,
+      })
+    }
+
+    console.log(result)
+    
+    return result
+    
   }
 
   /* #region Support methods */
@@ -1017,7 +1051,7 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 19 – AVP (AUSÊNCIA DE VIBRAÇÃO POSITIVA) – RISCOS 
    */
-
+  tec19AusenciaDeVibracaoPositiva: MissingPositiveVibration[]
   /**
    * TÉCNICA 20 – OPOSIÇÕES FORTES – RISCOS 
    */

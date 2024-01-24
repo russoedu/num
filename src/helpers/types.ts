@@ -259,3 +259,10 @@ export type StrongDecisiveMomementPositionT = {
   position: 'CD'|'D1'|'D2',
   vn: SingleDigitVN
 }
+
+export type MissingPositiveVibration = {
+  position: 'D1' | 'D2' | 'DM',
+  vn: VN,
+  missingFrom: number,
+  missingUntil: number,
+}

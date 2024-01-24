@@ -11,7 +11,7 @@ class Tecniques {
       5:  'liberdade / independência / mudanças / versatilidade / desprendimento / ousadia / coragem / transformações',
       6:  'tranquilidade / calma / afetuosidade / valorização do lar / conciliação / cooperação / harmonia',
       7:  'introspecção / autocontrole / intelectualidade / perfeccionismo / seletividade / prática espiritual / intuição / exigências',
-      8:  'objetividade / organização / praticidade / retidão / honestidade / valorização das conquistas materiais / autoridade/ justiça',
+      8:  'objetividade / organização / praticidade / retidão / honestidade / valorização das conquistas materiais / autoridade / justiça',
       9:  'solícito / impessoal / compreensivo / prestativo / determinação / sem preconceitos / prática espiritual / intuição / sentimental / ajudar e amparar o próximo indistintamente',
       11: 'praticar a espiritualidade / sabendo utilizar o potencial de reciclador de energias / intuição',
       22: 'praticar a espiritualidade / saber transmitir às pessoas aquilo que aprender e desenvolver / não reter ou ocultar nenhuma informação em qualquer área da vida / utilizar a magia de maneira correta / precocidade e sabedoria nata.',

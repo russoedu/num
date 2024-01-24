@@ -18,31 +18,33 @@ export function Tec18MomentoDecisivoForte ({ result }: { result: AdvancedTecniqu
         {
           tec18MomentoDecisivoForte.length > 0
             ? (
-              tec18MomentoDecisivoForte.map((mdf, i) => (
-                <AdvancedGrid i={i} key={i}>
-                  <Typography variant='h6'>
-                    Momento Decisivo Forte no
-                  </Typography>
-                  &nbsp;
-                  <Typography variant='h5' className='vn'>
-                    {mdf.position}
-                  </Typography>
-                  &nbsp;
-                  <Typography variant='h6'>
-                    com VN
-                  </Typography>
-                  &nbsp;
-                  <Typography variant='h5' className='vn'>
-                    {mdf.vn}
-                  </Typography>
-                </AdvancedGrid>
-              ))
+              <>
+                <Typography variant='h5' className='vn'>
+                  Momento Decisivo Forte entre 27 e 29 anos que termina quando terminar o AP 9 nesse período de idade.
+                </Typography>
+              </>
             )
             : (
               <Typography variant='h5' className='vn'>
                 Não há momento decisivo forte
               </Typography>
             )
+        }
+        {
+          tec18MomentoDecisivoForte.map((mdf, i) => (
+            <AdvancedGrid i={i} key={i}>
+              <Grid2 xs={12} sm={1}>
+                <Typography variant='h6'>
+                  {mdf.position}
+                </Typography>
+              </Grid2>
+              <Grid2 xs={12} sm={1}>
+                <Typography variant='h5' className='vn'>
+                  {mdf.vn}
+                </Typography>
+              </Grid2>
+            </AdvancedGrid>
+          ))
         }
       </Grid2>
       <Spacer/>

@@ -1,7 +1,7 @@
 {
   "name": "numerologia",
   "private": true,
-  "version": "0.0.57",
+  "version": "0.0.58",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -14,8 +14,8 @@
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.15.5",
-    "@mui/material": "^5.15.5",
+    "@mui/icons-material": "^5.15.6",
+    "@mui/material": "^5.15.6",
     "emotion": "^11.0.0",
     "font-color-contrast": "^11.1.0",
     "react": "^18.2.0",
@@ -29,8 +29,8 @@
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
     "@types/react-helmet": "^6.1.11",
-    "@typescript-eslint/eslint-plugin": "^6.19.0",
-    "@typescript-eslint/parser": "^6.19.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.1",
+    "@typescript-eslint/parser": "^6.19.1",
     "@vitejs/plugin-react": "^4.2.1",
     "@vitest/coverage-v8": "^1.2.1",
     "eslint": "^8.56.0",
