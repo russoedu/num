@@ -794,21 +794,26 @@ describe('AdvancedTecniques', () => {
     })
   })
   describe('tec16ConquistaEspontanea', () => {
-    test('map without', () => {
-      expect(am1.tec16ConquistaEspontanea).toEqual([])
+    test('map 1 with', () => {
+      expect(am1.tec16ConquistaEspontanea).toEqual([
+        { position: 'DM', start: 0, end: 28 },
+      ])
+    })
+    test('map 2 without', () => {
+      expect(am2.tec16ConquistaEspontanea).toEqual([])
     })
     test('map with', () => {
       const m = new NumericMap('', '1979-03-17', '2021-01-07')
       m.challenges = {
-        d1: { vn: 1, start: 0, end: 28 },
-        d2: { vn: 2, start: 28, end: 56 },
-        dm: { vn: 3, start: 56, end: Infinity },
+        D1: { vn: 1, start: 0, end: 28 },
+        D2: { vn: 2, start: 28, end: 56 },
+        DM: { vn: 3, start: 56, end: Infinity },
       }
       m.achievements = {
-        r1: { vn: 1, start: 0, end: 30 },
-        r2: { vn: 2, start: 30, end: 40 },
-        r3: { vn: 2, start: 40, end: 50 },
-        r4: { vn: 3, start: 50, end: Infinity },
+        R1: { vn: 1, start: 0, end: 30 },
+        R2: { vn: 2, start: 30, end: 40 },
+        R3: { vn: 2, start: 40, end: 50 },
+        R4: { vn: 3, start: 50, end: Infinity },
       }
       const am = new AdvancedTecniques(m)
       expect(am.tec16ConquistaEspontanea).toEqual([
@@ -826,10 +831,10 @@ describe('AdvancedTecniques', () => {
       const m = new NumericMap('', '1979-03-17', '2021-01-07')
 
       m.achievements = {
-        r1: { vn: 1, start: 0, end: 30 },
-        r2: { vn: 2, start: 30, end: 40 },
-        r3: { vn: 1, start: 40, end: 50 },
-        r4: { vn: 1, start: 50, end: Infinity },
+        R1: { vn: 1, start: 0, end: 30 },
+        R2: { vn: 2, start: 30, end: 40 },
+        R3: { vn: 1, start: 40, end: 50 },
+        R4: { vn: 1, start: 50, end: Infinity },
       }
       const am = new AdvancedTecniques(m)
       expect(am.tec17Renascimento).toEqual([
@@ -850,9 +855,9 @@ describe('AdvancedTecniques', () => {
     test('map with all possibilities', () => {
       const m = new NumericMap('', '1979-03-17', '2021-01-07')
 
-      m.cd = 9
-      m.d1 = 0
-      m.d2 = 0
+      m.CD = 9
+      m.D1 = 0
+      m.D2 = 0
       const am = new AdvancedTecniques(m)
       expect(am.tec18MomentoDecisivoForte).toEqual([
         { position: 'CD', vn: 9 },

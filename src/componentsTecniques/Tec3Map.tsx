@@ -26,24 +26,24 @@ export function Tec3Map ({ result }: { result: NumericMap }) {
         </Grid>
         <ResultGrid
           data={[
-            { title: 'MO', value: result.mo },
-            { title: 'EU', value: result.eu },
-            { title: 'EX', value: result.ex },
+            { title: 'MO', value: result.MO },
+            { title: 'EU', value: result.EU },
+            { title: 'EX', value: result.EX },
           ]}
           xs={1}
         />
         <ResultGrid
           data={[
-            { title: 'CD', value: result.cd },
+            { title: 'CD', value: result.CD },
           ]}
           xs={1}
         />
         <Divider className='divider-sm'/>
         <ResultGrid
           data={[
-            { title: 'C1', value: result.c1, age: '0/28' },
-            { title: 'C2', value: result.c2, age: '28/56' },
-            { title: 'C3', value: result.c3, age: '+56' },
+            { title: 'C1', value: result.C1, age: '0/28' },
+            { title: 'C2', value: result.C2, age: '28/56' },
+            { title: 'C3', value: result.C3, age: '+56' },
           ]}
           xs={2}
         />
@@ -51,19 +51,19 @@ export function Tec3Map ({ result }: { result: NumericMap }) {
         <Divider className='divider-sm'/>
         <ResultGrid
           data={[
-            { title: 'D1', value: result.d1, age: '0/28' },
-            { title: 'D2', value: result.d2, age: '28/56' },
-            { title: 'DM', value: result.dm },
+            { title: 'D1', value: result.D1, age: '0/28' },
+            { title: 'D2', value: result.D2, age: '28/56' },
+            { title: 'DM', value: result.DM },
           ]}
           xs={2}
         />
         <Divider className='divider-sm'/>
         <ResultGrid
           data={[
-            { title: 'R1', value: result.achievements.r1.vn, age: `${result.achievements.r1.start}/${result.achievements.r1.end}` },
-            { title: 'R2', value: result.achievements.r2.vn, age: `${result.achievements.r2.start}/${result.achievements.r2.end}` },
-            { title: 'R3', value: result.achievements.r3.vn, age: `${result.achievements.r3.start}/${result.achievements.r3.end}` },
-            { title: 'R4', value: result.achievements.r4.vn, age: `+${result.achievements.r4.start}` },
+            { title: 'R1', value: result.achievements.R1.vn, age: `${result.achievements.R1.start}/${result.achievements.R1.end}` },
+            { title: 'R2', value: result.achievements.R2.vn, age: `${result.achievements.R2.start}/${result.achievements.R2.end}` },
+            { title: 'R3', value: result.achievements.R3.vn, age: `${result.achievements.R3.start}/${result.achievements.R3.end}` },
+            { title: 'R4', value: result.achievements.R4.vn, age: `+${result.achievements.R4.start}` },
           ]}
           xs={2}
         />

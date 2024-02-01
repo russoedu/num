@@ -19,7 +19,7 @@ export function Tec4Multiplicidades ({ result }: { result: AdvancedTecniques }) 
         {
           tec4Multiplicidades.data.length > 0
             ? (
-              <>
+              <div className='empty' key={'tec-content-x'}>
                 {
                   tec4Multiplicidades.data.map((p, i) => (
                     <>
@@ -31,8 +31,8 @@ export function Tec4Multiplicidades ({ result }: { result: AdvancedTecniques }) 
                         </Grid2>
                         <Grid2 container xs={12} sm={7} md={9}>
                           {p.multiples.map((m, j) => (
-                            <>
-                              <Grid2 xs={2} md={1} key={'mult-vn-' + j}>
+                            <div className='empty' key={'mult-vn-' + j}>
+                              <Grid2 xs={2} md={1}>
                                 <Typography variant='h5' className='vn'>
                                   {m.vn}
                                 </Typography>
@@ -47,7 +47,7 @@ export function Tec4Multiplicidades ({ result }: { result: AdvancedTecniques }) 
                                   {_array.join(m.positions)}
                                 </Typography>
                               </Grid2>
-                            </>
+                            </div>
                           ))}
                         </Grid2>
                       </AdvancedGrid>
@@ -57,7 +57,7 @@ export function Tec4Multiplicidades ({ result }: { result: AdvancedTecniques }) 
                 <Typography variant='h6'>
                   {tec4Multiplicidades.comments}
                 </Typography>
-              </>
+              </div>
             )
             : (
               <AdvancedGrid i={0}>

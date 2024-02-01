@@ -222,12 +222,12 @@ export const vnOwnerPractitioner: { [key in VN]: VN[]} = {
 }
 
 export type CyclesT = {
-  c1End: number,
-  c2End: number,
-  c3End: number,
-  r1End: number,
-  r2End: number,
-  r3End: number,
+  C1End: number,
+  C2End: number,
+  C3End: number,
+  R1End: number,
+  R2End: number,
+  R3End: number,
   age: number,
   cycle: number,
   cycles: {
@@ -264,5 +264,5 @@ export type MissingPositiveVibration = {
   position: 'D1' | 'D2' | 'DM',
   vn: VN,
   missingFrom: number,
-  missingUntil: number,
+  receivedAge: number,
 }

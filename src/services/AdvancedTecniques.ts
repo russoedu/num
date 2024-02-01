@@ -39,19 +39,19 @@ export class AdvancedTecniques {
     const pyramid: PyramidT[] = [
       {
         position: 'CD',
-        results:  _tec.piramide(this.#map.cd),
+        results:  _tec.piramide(this.#map.CD),
       },
       {
         position: 'MO',
-        results:  _tec.piramide(this.#map.mo),
+        results:  _tec.piramide(this.#map.MO),
       },
       {
         position: 'DM',
-        results:  _tec.piramide(this.#map.dm),
+        results:  _tec.piramide(this.#map.DM),
       },
       {
         position: 'EU',
-        results:  _tec.piramide(this.#map.eu),
+        results:  _tec.piramide(this.#map.EU),
       },
     ]
 
@@ -284,8 +284,8 @@ export class AdvancedTecniques {
     return [
       {
         reason:  'CD ',
-        vn:      this.#map.cd,
-        content: this.#styleFromTec14(this.#map.cd),
+        vn:      this.#map.CD,
+        content: this.#styleFromTec14(this.#map.CD),
       },
     ]
   }
@@ -295,7 +295,7 @@ export class AdvancedTecniques {
    * @returns Expression vibration results
    */
   #tec9VibracaoDaExpressao () {
-    const ex = this.#map.ex
+    const ex = this.#map.EX
 
     if ([1, 4, 7, 8].includes(ex)) {
       return {
@@ -324,31 +324,31 @@ export class AdvancedTecniques {
     const int: CycleInterpretationT[] = []
 
     for (const vn of CycleInterpretationVns) {
-      if (this.#map.eu === vn.vn) {
+      if (this.#map.EU === vn.vn) {
         int.push({
           person:   vn.person,
           relation: Relation.ADORACAO_EU,
         })
       }
-      if (this.#map.c1 === vn.vn) {
+      if (this.#map.C1 === vn.vn) {
         int.push({
           person:   vn.person,
           relation: Relation.FORTISSIMA_C1,
         })
       }
-      if (this.#map.mo === vn.vn) {
+      if (this.#map.MO === vn.vn) {
         int.push({
           person:   vn.person,
           relation: Relation.FORTE_MO,
         })
       }
-      if (this.#map.cd === vn.vn || this.#map.achievements.r1.vn === vn.vn) {
+      if (this.#map.CD === vn.vn || this.#map.achievements.R1.vn === vn.vn) {
         int.push({
           person:   vn.person,
           relation: Relation.MEDIA_CD_R1,
         })
       }
-      if (this.#map.d1 === vn.vn || this.#map.dm === vn.vn) {
+      if (this.#map.D1 === vn.vn || this.#map.DM === vn.vn) {
         int.push({
           person:   vn.person,
           relation: Relation.DIFICULDADE_D1_DM,
@@ -416,8 +416,8 @@ export class AdvancedTecniques {
    * @returns CD x MO or MO x CD conjuction results
    */
   #tec12ConjuncaoCdMoOuMoCd () {
-    const small = Math.min(this.#map.cd, this.#map.mo).toString()
-    const big = Math.max(this.#map.cd, this.#map.mo).toString()
+    const small = Math.min(this.#map.CD, this.#map.MO).toString()
+    const big = Math.max(this.#map.CD, this.#map.MO).toString()
 
     const concat = small + big
 
@@ -648,9 +648,9 @@ export class AdvancedTecniques {
    * @returns Purity interpretation results
    */
   #tec14Pureza () {
-    const cd = _number.sum(this.#map.cd)
-    const mo = _number.sum(this.#map.mo)
-    const dm = _number.sum(this.#map.dm)
+    const cd = _number.sum(this.#map.CD)
+    const mo = _number.sum(this.#map.MO)
+    const dm = _number.sum(this.#map.DM)
 
     if (cd === mo) return cd
     if (cd === dm) return cd
@@ -671,10 +671,10 @@ export class AdvancedTecniques {
 
     for (const position of positions) {
       const vn = position === 'MO'
-        ? this.#map.mo
+        ? this.#map.MO
         : position === 'CD'
-          ? this.#map.cd
-          : this.#map.eu
+          ? this.#map.CD
+          : this.#map.EU
 
       for (const achievement of this.#map.achievementsArray) {
         if (achievement.vn === vn) {
@@ -702,10 +702,10 @@ export class AdvancedTecniques {
    */
   #tec16ConquistaEspontanea () {
     const result: ConquestsT[] = []
-    const positions = ['D1', 'D2', 'DM'] as ('D1' | 'D2' | 'DM')[]
+    const positions = ['D1', 'D2', 'DM'] as ['D1', 'D2', 'DM']
     
     for (const position of positions) {
-      const challenge = this.#map.challenges[position.toLowerCase() as 'd1' | 'd2' | 'dm']
+      const challenge = this.#map.challenges[position]
 
       for (const achievement of this.#map.achievementCycleList(challenge.start, challenge.end)) {
         if (_number.vnToSingleVn(achievement.vn) === challenge.vn) {
@@ -733,10 +733,10 @@ export class AdvancedTecniques {
    */
   #tec17Renascimento () {
     const result: RebirthT[] = []
-    const positions = ['R2', 'R3', 'R4'] as ('R2' | 'R3' | 'R4')[]
+    const positions = ['R2', 'R3', 'R4'] as ['R2', 'R3', 'R4']
 
     for (const position of positions) {
-      const achievement = this.#map.achievements[position.toLowerCase() as 'r2' | 'r3' | 'r4']
+      const achievement = this.#map.achievements[position]
 
       if (achievement.vn === 1) {
         result.push({
@@ -756,23 +756,23 @@ export class AdvancedTecniques {
   #tec18MomentoDecisivoForte () {
     const result: StrongDecisiveMomementPositionT[] = []
 
-    if (this.#map.cd === 7 || this.#map.cd === 8 || this.#map.cd === 9) {
+    if (this.#map.CD === 7 || this.#map.CD === 8 || this.#map.CD === 9) {
       result.push({
         position: 'CD',
-        vn:       this.#map.cd,
+        vn:       this.#map.CD,
       })
     }
 
-    if (this.#map.d1 === 0) {
+    if (this.#map.D1 === 0) {
       result.push({
         position: 'D1',
-        vn:       this.#map.d1,
+        vn:       this.#map.D1,
       })
     }
-    if (this.#map.d2 === 0) {
+    if (this.#map.D2 === 0) {
       result.push({
         position: 'D2',
-        vn:       this.#map.d2,
+        vn:       this.#map.D2,
       })
     }
 
@@ -786,27 +786,157 @@ export class AdvancedTecniques {
   #tec19AusenciaDeVibracaoPositiva () {
     const result: MissingPositiveVibration[] = []
 
-    const receivedVns1 = this.#map.allCyclesVNsPosition.filter(f => f.position !== 'D1' && f.vn === this.#map.d1)
-    const receivedAge1 = receivedVns1.reduce((p, c) => Math.min(p, c.start), Infinity)
+    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9] as [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-    if(receivedVns1.length === 0) {
+    // List of VNs that are not in the map, (11 and 22 are converted for this check)
+    const notReceivedVns = _array.vnNotInArray(numbers, this.#map.uniqueVNs)
+    notReceivedVns.forEach(vn => {
       result.push({
-        position:     'D1',
-        vn:           this.#map.d1,
-        missingFrom:  0,
-        missingUntil: Infinity,
+        position:    '' as any,
+        vn,
+        missingFrom: 0,
+        receivedAge: Infinity,
       })
-    } else if (receivedAge1 > 0){
-      const missingUntil = receivedVns1.reduce((p, c) => Math.max(p, c.end), 0)
-      result.push({
-        position:    'D1',
-        vn:          this.#map.d1,
-        missingFrom: receivedAge1,
-        missingUntil,
-      })
+    })
+
+    // List of all VNs but the challenges
+    const receivedVns = this.#map.allCyclesVNsPosition
+      .filter(received => !(['D1', 'D2', 'DM'].includes(received.position)))
+    for (const c in this.#map.challenges) {
+      const challenge = this.#map.challenges[c as 'D1' | 'D2' | 'DM']
+      
+      const receivedVns1 = receivedVns
+        .filter(received => 
+          _number.match(received.vn, challenge.vn) &&
+          received.start > challenge.start,
+        )
+        .map(received => ({ ...received, vn: _number.vnToSingleVn(received.vn) }))
+        .sort((a, b) => a.vn === b.vn ? a.start - b.start : a.vn-b.vn)
+      if (receivedVns1.length === 0) {
+        result.push({
+          position:    'D1',
+          vn:          challenge.vn,
+          missingFrom: 0,
+          receivedAge: Infinity,
+        })
+      } else {
+        // Remove duplicated later received VNs
+        for (let i = receivedVns1.length - 1; i >= 0; i--) {
+          const receivedVnM = receivedVns1[i]
+          if (i > 0) {
+            const receivedVnMPrev = receivedVns1[i - 1]
+            if (receivedVnMPrev.vn === receivedVnM.vn) {
+              receivedVns1.splice(i, 1)
+            }
+          }
+        }
+        
+      }
     }
 
-    console.log(result)
+    /*
+     * const notReceived1 = ([1,2,3,4,5,6,7,8,9] as SingleDigitVN[])
+     *   .filter(vn => receivedVns1.map(rv => rv.vn).includes(vn))
+     */
+
+    /*
+     * for (const notReceivedVn of notReceived1) {
+     *   result.push({
+     *     position:    'D1',
+     *     vn:          notReceivedVn,
+     *     missingFrom: 0,
+     *     receivedAge: Infinity,
+     *   })
+     * }
+     * for (const receivedVn of receivedVns1) {
+     *   if (receivedVn.start > this.#map.challenges.D1.start) {
+     *     result.push({
+     *       position:    'D1',
+     *       vn:          _number.vnToSingleVn(receivedVn.vn),
+     *       missingFrom: 0,
+     *       receivedAge: receivedVn.start,
+     *     })
+     *   }
+     * }
+     */
+
+    /*
+     * const receivedVns2 = this.#map.allCyclesVNsPosition
+     *   .filter(f => f.position !== 'D2' && _number.match(f.vn, this.#map.D2))
+     *   .map(received => ({ ...received, vn: _number.vnToSingleVn(received.vn) }))
+     *   .sort((a, b) => a.vn === b.vn ? a.start - b.start : a.vn-b.vn)
+     * for (let i = receivedVns2.length - 1; i >= 0; i--) {
+     *   const receivedVnM = receivedVns2[i]
+     *   if (i > 0) {
+     *     const receivedVnMPrev = receivedVns2[i - 1]
+     *     if (receivedVnMPrev.vn === receivedVnM.vn) {
+     *       receivedVns2.splice(i, 1)
+     *     }
+     *   }
+     * }
+     * const notReceived2 = ([1,2,3,4,5,6,7,8,9] as SingleDigitVN[])
+     *   .filter(vn => receivedVns2.map(rv => rv.vn).includes(vn))
+     */
+
+    /*
+     * const receivedVnsM = this.#map.allCyclesVNsPosition
+     *   .filter(acvp => acvp.position !== 'DM' && _number.match(acvp.vn, this.#map.DM))
+     *   .map(acvp => ({ ...acvp, vn: _number.vnToSingleVn(acvp.vn) }))
+     *   .sort((a, b) => a.vn === b.vn ? a.start - b.start : a.vn-b.vn)
+     * for (let i = receivedVnsM.length - 1; i >= 0; i--) {
+     *   const receivedVnM = receivedVnsM[i]
+     *   if (i > 0) {
+     *     const receivedVnMPrev = receivedVnsM[i - 1]
+     *     if (receivedVnMPrev.vn === receivedVnM.vn) {
+     *       receivedVnsM.splice(i, 1)
+     *     }
+     *   }
+     * }
+     * const notReceivedM = ([1,2,3,4,5,6,7,8,9] as SingleDigitVN[])
+     *   .filter(vn => receivedVnsM.map(rv => rv.vn).includes(vn))
+     */
+
+    /*
+     * for (const notReceivedVn of notReceived2) {
+     *   result.push({
+     *     position:    'D2',
+     *     vn:          notReceivedVn,
+     *     missingFrom: 0,
+     *     receivedAge: Infinity,
+     *   })
+     * }
+     * for (const receivedVn of receivedVns2) {
+     *   if (receivedVn.start > this.#map.challenges.D2.start) {
+     *     result.push({
+     *       position:    'D2',
+     *       vn:          _number.vnToSingleVn(receivedVn.vn),
+     *       missingFrom: 0,
+     *       receivedAge: receivedVn.start,
+     *     })
+     *   }
+     * }
+     */
+
+    /*
+     * for (const notReceivedVn of notReceivedM) {
+     *   result.push({
+     *     position:    'DM',
+     *     vn:          notReceivedVn,
+     *     missingFrom: 0,
+     *     receivedAge: Infinity,
+     *   })
+     * }
+     * for (const receivedVn of receivedVnsM) {
+     *   if (receivedVn.start > this.#map.challenges.DM.start) {
+     *     result.push({
+     *       position:    'DM',
+     *       vn:          _number.vnToSingleVn(receivedVn.vn),
+     *       missingFrom: 0,
+     *       receivedAge: receivedVn.start,
+     *     })
+     *   }
+     * }
+     */
     
     return result
     

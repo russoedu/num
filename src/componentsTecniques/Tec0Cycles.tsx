@@ -10,14 +10,14 @@ import { CSSProperties } from 'react'
  */
 export function Tec0Cycles ({ result }: { result: NumericMap }) {
   const cycles = result.tec0Cycles
-  const initialCyclesWidth = `${cycles.c1End * 100 / cycles.c3End}%`
-  const finalCycleWidth = `${(cycles.c3End - cycles.c2End) * 100 / cycles.c3End}%`
+  const initialCyclesWidth = `${cycles.C1End * 100 / cycles.C3End}%`
+  const finalCycleWidth = `${(cycles.C3End - cycles.C2End) * 100 / cycles.C3End}%`
 
-  const firstRealWidth = `${cycles.r1End * 100 / cycles.c3End }%`
-  const realWidth = `${10 * 100 / cycles.c3End}%`
-  const finalRealWidth = `${(cycles.c3End - cycles.r3End) * 100 / cycles.c3End}%`
+  const firstRealWidth = `${cycles.R1End * 100 / cycles.C3End }%`
+  const realWidth = `${10 * 100 / cycles.C3End}%`
+  const finalRealWidth = `${(cycles.C3End - cycles.R3End) * 100 / cycles.C3End}%`
   
-  const agePosition = `${(cycles.age * 100) / cycles.c3End}%`
+  const agePosition = `${(cycles.age * 100) / cycles.C3End}%`
 
   function overlay (cycle: number): CSSProperties {
     return result.tec0Cycles.cycle === cycle

@@ -1,5 +1,5 @@
 import { _number } from './_number'
-import { VN } from './types'
+import { SingleDigitVN, VN } from './types'
 
 class ArrayHelper {
   /**
@@ -21,6 +21,17 @@ class ArrayHelper {
     return arrToFilter.filter(item => filter.indexOf(item) === -1)
   }
 
+  /**
+   * Filters a SingleDigitVN array, returning a new array with all the values not present in the filter array
+   * @param arrToFilter - The SingleDigitVN array to be filtered
+   * @param filter - The VNs array with the values to be filtered (excluded)
+   * @returns The SingleDigitVN array filtered
+   */
+  vnNotInArray (arrToFilter: SingleDigitVN[], filter: VN[]): SingleDigitVN[] {
+    const singleDigitVnFilter = filter.map(f => _number.vnToSingleVn(f))
+    
+    return arrToFilter.filter(item => singleDigitVnFilter.indexOf(item) === -1)
+  }
   /**
    * Returns a new array with the values in the array that occurs more than once
    * @param arr - The array to be checked

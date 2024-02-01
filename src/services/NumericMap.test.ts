@@ -48,50 +48,50 @@ describe('NumericMap', () => {
           month: 1,
           day:   2,
         },
-        mo:         6,
-        cd:         1,
-        eu:         1,
-        ex:         7,
-        d1:         5,
+        MO:         6,
+        CD:         1,
+        EU:         1,
+        EX:         7,
+        D1:         5,
         challenges: {
-          d1: {
+          D1: {
             vn:    5,
             start: 0,
             end:   28,
           },
-          d2: {
+          D2: {
             vn:    5,
             start: 28,
             end:   56,
           },
-          dm: {
+          DM: {
             vn:    0,
-            start: 56,
+            start: 0,
             end:   Infinity,
           },
         },
-        d2:           5,
-        dm:           0,
-        c1:           3,
-        c2:           8,
-        c3:           8,
+        D2:           5,
+        DM:           0,
+        C1:           3,
+        C2:           8,
+        C3:           8,
         achievements: {
-          r1: {
+          R1: {
             vn:    11,
             start: 0,
             end:   35,
           },
-          r2: {
+          R2: {
             vn:    7,
             start: 35,
             end:   45,
           },
-          r3: {
+          R3: {
             vn:    9,
             start: 45,
             end:   55,
           },
-          r4: {
+          R4: {
             vn:    11,
             start: 55,
             end:   Infinity,
@@ -104,12 +104,12 @@ describe('NumericMap', () => {
           end:   new Date('2024-03-17T00:00:00.000Z'),
         },
         tec0Cycles: {
-          c1End:  28,
-          c2End:  56,
-          c3End:  88,
-          r1End:  35,
-          r2End:  45,
-          r3End:  55,
+          C1End:  28,
+          C2End:  56,
+          C3End:  88,
+          R1End:  35,
+          R2End:  45,
+          R3End:  55,
           age:    44,
           cycle:  2,
           cycles: [
@@ -248,50 +248,50 @@ describe('NumericMap', () => {
           month: 1,
           day:   2,
         },
-        mo:         11,
-        cd:         8,
-        eu:         11,
-        ex:         22,
-        d1:         5,
+        MO:         11,
+        CD:         8,
+        EU:         11,
+        EX:         22,
+        D1:         5,
         challenges: {
-          d1: {
+          D1: {
             vn:    5,
             start: 0,
             end:   28,
           },
-          d2: {
+          D2: {
             vn:    3,
             start: 28,
             end:   56,
           },
-          dm: {
+          DM: {
             vn:    2,
-            start: 56,
+            start: 0,
             end:   Infinity,
           },
         },
-        d2:           3,
-        dm:           2,
-        c1:           3,
-        c2:           8,
-        c3:           6,
+        D2:           3,
+        DM:           2,
+        C1:           3,
+        C2:           8,
+        C3:           6,
         achievements: {
-          r1: {
+          R1: {
             vn:    11,
             start: 0,
             end:   28,
           },
-          r2: {
+          R2: {
             vn:    5,
             start: 28,
             end:   38,
           },
-          r3: {
+          R3: {
             vn:    7,
             start: 38,
             end:   48,
           },
-          r4: {
+          R4: {
             vn:    9,
             start: 48,
             end:   Infinity,
@@ -304,12 +304,12 @@ describe('NumericMap', () => {
           end:   new Date('2024-12-26T00:00:00.000Z'),
         },
         tec0Cycles: {
-          c1End:  28,
-          c2End:  56,
-          c3End:  146,
-          r1End:  28,
-          r2End:  38,
-          r3End:  48,
+          C1End:  28,
+          C2End:  56,
+          C3End:  146,
+          R1End:  28,
+          R2End:  38,
+          R3End:  48,
           age:    73,
           cycle:  3,
           cycles: [
