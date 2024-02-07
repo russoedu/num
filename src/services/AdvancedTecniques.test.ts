@@ -1,12 +1,13 @@
 import { describe, expect, test } from 'vitest'
 import { NumericMap } from './NumericMap'
 import { AdvancedTecniques } from './AdvancedTecniques'
-import { beforeEach } from 'node:test'
 
 describe('AdvancedTecniques', () => {
   describe('tec1Piramide', () => {
     test('map 1', () => {
-      expect(am1.tec1Piramide).toEqual([
+      const map = new NumericMap('DAINARI MOZZU', '1950-12-26', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      expect(am.tec1Piramide).toEqual([
         {
           position: 'CD',
           results:  [
@@ -46,7 +47,10 @@ describe('AdvancedTecniques', () => {
       ])
     })
     test('map 2', () => {
-      expect(am2.tec1Piramide).toEqual([
+      const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec1Piramide).toEqual([
         {
           position: 'CD',
           results:  [
@@ -132,15 +136,24 @@ describe('AdvancedTecniques', () => {
   })
   describe('tec2Ausencia', () => {
     test('map 1', () => {
-      expect(am1.tec2Ausencia).toEqual([1, 4])
+      const map = new NumericMap('DAINARI MOZZU', '1950-12-26', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+
+      expect(am.tec2Ausencia).toEqual([1, 4])
     })
     test('map 2', () => {
-      expect(am2.tec2Ausencia).toEqual([2, 4])
+      const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+
+      expect(am.tec2Ausencia).toEqual([2, 4])
     })
   })
   describe('tec4Multiplicidades', () => {
     test('map 1', () => {
-      expect(am1.tec4Multiplicidades).toEqual({
+      const map = new NumericMap('DAINARI MOZZU', '1950-12-26', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec4Multiplicidades).toEqual({
         data: [
           {
             type:      'Fixas',
@@ -245,7 +258,10 @@ describe('AdvancedTecniques', () => {
       })
     })
     test('map 2', () => {
-      expect(am2.tec4Multiplicidades).toEqual({
+      const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec4Multiplicidades).toEqual({
         data: [
           {
             type:      'Fixas',
@@ -314,7 +330,10 @@ describe('AdvancedTecniques', () => {
   })
   describe('tec5PotenciaisComoReagem', () => {
     test('map 1', () => {
-      expect(am1.tec5PotenciaisComoReagem).toEqual({
+      const map = new NumericMap('DAINARI MOZZU', '1950-12-26', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec5PotenciaisComoReagem).toEqual({
         percentage: [
           {
             name:  'Espiritualidade',
@@ -337,7 +356,10 @@ describe('AdvancedTecniques', () => {
       })
     })
     test('map 2', () => {
-      expect(am2.tec5PotenciaisComoReagem).toEqual({
+      const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec5PotenciaisComoReagem).toEqual({
         percentage: [
           {
             name:  'Espiritualidade',
@@ -362,7 +384,10 @@ describe('AdvancedTecniques', () => {
   })
   describe('tec6PotenciaisComoSentem', () => {
     test('map 1', () => {
-      expect(am1.tec6PotenciaisComoSentem).toEqual({
+      const map = new NumericMap('DAINARI MOZZU', '1950-12-26', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec6PotenciaisComoSentem).toEqual({
         percentage: [
           {
             name:  'Emoção',
@@ -377,7 +402,10 @@ describe('AdvancedTecniques', () => {
       })
     })
     test('map 2', () => {
-      expect(am2.tec6PotenciaisComoSentem).toEqual({
+      const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec6PotenciaisComoSentem).toEqual({
         percentage: [
           {
             name:  'Emoção',
@@ -394,7 +422,10 @@ describe('AdvancedTecniques', () => {
   })
   describe('tec7Riscos1aLeitura', () => {
     test('map 1', () => {
-      expect(am1.tec7Riscos1aLeitura).toEqual({
+      const map = new NumericMap('DAINARI MOZZU', '1950-12-26', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec7Riscos1aLeitura).toEqual({
         percentage: [
           {
             name:  'Acomodação / dependência / depressão',
@@ -413,7 +444,10 @@ describe('AdvancedTecniques', () => {
       })
     })
     test('map 2', () => {
-      expect(am2.tec7Riscos1aLeitura).toEqual({
+      const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec7Riscos1aLeitura).toEqual({
         percentage: [
           {
             name:  'Exigência / solidão / violência / agressão',
@@ -434,7 +468,10 @@ describe('AdvancedTecniques', () => {
   })
   describe('tec7Riscos2aLeitura', () => {
     test('map 1', () => {
-      expect(am1.tec7Riscos2aLeitura).toEqual({
+      const map = new NumericMap('DAINARI MOZZU', '1950-12-26', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec7Riscos2aLeitura).toEqual({
         percentage: [
           {
             name:  'SC',
@@ -453,7 +490,10 @@ describe('AdvancedTecniques', () => {
       })
     })
     test('map 2', () => {
-      expect(am2.tec7Riscos2aLeitura).toEqual({
+      const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec7Riscos2aLeitura).toEqual({
         percentage: [
           {
             name:  'SC',
@@ -474,7 +514,10 @@ describe('AdvancedTecniques', () => {
   })
   describe('tec8AdequacaoDaLinguagem', () => {
     test('map 1', () => {
-      expect(am1.tec8AdequacaoDaLinguagem).toEqual([
+      const map = new NumericMap('DAINARI MOZZU', '1950-12-26', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec8AdequacaoDaLinguagem).toEqual([
         {
           reason:  'Pureza de',
           vn:      2,
@@ -483,7 +526,10 @@ describe('AdvancedTecniques', () => {
       ])
     })
     test('map 2', () => {
-      expect(am2.tec8AdequacaoDaLinguagem).toEqual([
+      const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec8AdequacaoDaLinguagem).toEqual([
         {
           reason:  'Multiplicidade fixa de',
           vn:      1,
@@ -494,13 +540,19 @@ describe('AdvancedTecniques', () => {
   })
   describe('tec9VibracaoDaExpressao', () => {
     test('map 1', () => {
-      expect(am1.tec9VibracaoDaExpressao).toEqual({
+      const map = new NumericMap('DAINARI MOZZU', '1950-12-26', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec9VibracaoDaExpressao).toEqual({
         title: 'Calma e delicadeza',
         more:  '',
       })
     })
     test('map 2', () => {
-      expect(am2.tec9VibracaoDaExpressao).toEqual({
+      const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec9VibracaoDaExpressao).toEqual({
         title: 'Bons ouvintes',
         more:  'Falam pouco, com objetividade e clareza',
       })
@@ -508,7 +560,10 @@ describe('AdvancedTecniques', () => {
   })
   describe('tec10InterpretacaoDoPrimeiroCiclo', () => {
     test('map 1', () => {
-      expect(am1.tec10InterpretacaoDoPrimeiroCiclo).toEqual([
+      const map = new NumericMap('DAINARI MOZZU', '1950-12-26', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec10InterpretacaoDoPrimeiroCiclo).toEqual([
         {
           person:   'do pai',
           relation: 'Não previsto convívio significativo',
@@ -528,7 +583,10 @@ describe('AdvancedTecniques', () => {
       ])
     })
     test('map 2', () => {
-      expect(am2.tec10InterpretacaoDoPrimeiroCiclo).toEqual([
+      const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec10InterpretacaoDoPrimeiroCiclo).toEqual([
         {
           person:   'do pai',
           relation: 'Adoração e identificação',
@@ -554,7 +612,10 @@ describe('AdvancedTecniques', () => {
   })
   describe('tec11DonosPraticantes', () => {
     test('map 1', () => {
-      expect(am1.tec11DonosPraticantes).toEqual({
+      const map = new NumericMap('DAINARI MOZZU', '1950-12-26', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec11DonosPraticantes).toEqual({
         normal: [
           {
             vn:         2,
@@ -610,7 +671,10 @@ describe('AdvancedTecniques', () => {
       })
     })
     test('map 2', () => {
-      expect(am2.tec11DonosPraticantes).toEqual({
+      const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec11DonosPraticantes).toEqual({
         normal: [
           {
             vn:         1,
@@ -670,15 +734,24 @@ describe('AdvancedTecniques', () => {
   })
   describe('tec12ConjuncaoCdMoOuMoCd', () => {
     test('map 1', () => {
-      expect(am1.tec12ConjuncaoCdMoOuMoCd).toBe('União baseada na justiça / retidão / verdade / prática da espiritualidade')
+      const map = new NumericMap('DAINARI MOZZU', '1950-12-26', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('União baseada na justiça / retidão / verdade / prática da espiritualidade')
     })
     test('map 2', () => {
-      expect(am2.tec12ConjuncaoCdMoOuMoCd).toBe('Liderança com afetividade / emoção / conciliação')
+      const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Liderança com afetividade / emoção / conciliação')
     })
   })
   describe('tec13PotenciaisViciosReciclador1aLeitura', () => {
     test('map 1', () => {
-      expect(am1.tec13PotenciaisViciosReciclador1aLeitura).toEqual({
+      const map = new NumericMap('DAINARI MOZZU', '1950-12-26', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec13PotenciaisViciosReciclador1aLeitura).toEqual({
         percentage: [
           {
             name:  'Colaboração / participação',
@@ -701,7 +774,10 @@ describe('AdvancedTecniques', () => {
       })
     })
     test('map 2', () => {
-      expect(am2.tec13PotenciaisViciosReciclador1aLeitura).toEqual({
+      const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec13PotenciaisViciosReciclador1aLeitura).toEqual({
         percentage: [
           {
             name:  'Colaboração / participação',
@@ -726,18 +802,30 @@ describe('AdvancedTecniques', () => {
   })
   describe('tec13PotenciaisViciosReciclador2aLeitura', () => {
     test('map 1', () => {
-      expect(am1.tec13PotenciaisViciosReciclador2aLeitura).toBe('Conquistas diversas não é potencial')
+      const map = new NumericMap('DAINARI MOZZU', '1950-12-26', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec13PotenciaisViciosReciclador2aLeitura).toBe('Conquistas diversas não é potencial')
     })
     test('map 2', () => {
-      expect(am2.tec13PotenciaisViciosReciclador2aLeitura).toBe('Conquistas diversas não é potencial')
+      const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec13PotenciaisViciosReciclador2aLeitura).toBe('Conquistas diversas não é potencial')
     })
     test('map 3', () => {
+      const map3 = new NumericMap('AS', '0025-12-02', '2021-01-07')
+      const am3 = new AdvancedTecniques(map3)
+
       expect(am3.tec13PotenciaisViciosReciclador2aLeitura).toBe('Conquistas diversas é potencial com 84%')
     })
   })
   describe('tec13PotenciaisViciosReciclador3aLeitura', () => {
     test('map 1', () => {
-      expect(am1.tec13PotenciaisViciosReciclador3aLeitura).toEqual([
+      const map = new NumericMap('DAINARI MOZZU', '1950-12-26', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec13PotenciaisViciosReciclador3aLeitura).toEqual([
         {
           name:       'Vícios',
           percentage: 42,
@@ -751,7 +839,10 @@ describe('AdvancedTecniques', () => {
       ])
     })
     test('map 2', () => {
-      expect(am2.tec13PotenciaisViciosReciclador3aLeitura).toEqual([
+      const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec13PotenciaisViciosReciclador3aLeitura).toEqual([
         {
           name:       'Vícios',
           percentage: 35,
@@ -767,15 +858,24 @@ describe('AdvancedTecniques', () => {
   })
   describe('tec14Pureza', () => {
     test('map 1', () => {
-      expect(am1.tec14Pureza).toBe(2)
+      const map = new NumericMap('DAINARI MOZZU', '1950-12-26', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec14Pureza).toBe(2)
     })
     test('map 2', () => {
-      expect(am2.tec14Pureza).toBeFalsy()
+      const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec14Pureza).toBeFalsy()
     })
   })
   describe('tec15RealizacaoEspontanea', () => {
     test('map 1', () => {
-      expect(am1.tec15RealizacaoEspontanea).toEqual([
+      const map = new NumericMap('DAINARI MOZZU', '1950-12-26', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec15RealizacaoEspontanea).toEqual([
         {
           position: 'MO',
           start:    0,
@@ -789,66 +889,82 @@ describe('AdvancedTecniques', () => {
       ])
     })
     test('map 2', () => {
-      expect(am2.tec15RealizacaoEspontanea).toEqual([
+      const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec15RealizacaoEspontanea).toEqual([
       ])
     })
   })
   describe('tec16ConquistaEspontanea', () => {
     test('map 1 with', () => {
-      expect(am1.tec16ConquistaEspontanea).toEqual([
+      const map = new NumericMap('DAINARI MOZZU', '1950-12-26', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec16ConquistaEspontanea).toEqual([
         { position: 'DM', start: 0, end: 28 },
       ])
     })
     test('map 2 without', () => {
-      expect(am2.tec16ConquistaEspontanea).toEqual([])
+      const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec16ConquistaEspontanea).toEqual([])
     })
     test('map with', () => {
       const m = new NumericMap('', '1979-03-17', '2021-01-07')
-      m.challenges = {
-        D1: { vn: 1, start: 0, end: 28 },
-        D2: { vn: 2, start: 28, end: 56 },
-        DM: { vn: 3, start: 56, end: Infinity },
-      }
-      m.achievements = {
-        R1: { vn: 1, start: 0, end: 30 },
-        R2: { vn: 2, start: 30, end: 40 },
-        R3: { vn: 2, start: 40, end: 50 },
-        R4: { vn: 3, start: 50, end: Infinity },
-      }
+      m.CD = 6
+      m.D1 = 1
+      m.D2 = 2
+      m.DM = 3
+
+      m.R1 = 1
+      m.R2 = 2
+      m.R3 = 2
+      m.R4 = 3
+      
       const am = new AdvancedTecniques(m)
       expect(am.tec16ConquistaEspontanea).toEqual([
         { position: 'D1', start: 0, end: 28 },
         { position: 'D2', start: 30, end: 50 },
-        { position: 'DM', start: 56, end: Infinity },
+        { position: 'DM', start: 50, end: Infinity },
       ])
     })
   })
   describe('tec17Renascimento', () => {
     test('map without', () => {
-      expect(am1.tec17Renascimento).toEqual([])
+      const map = new NumericMap('DAINARI MOZZU', '1950-12-26', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec17Renascimento).toEqual([])
     })
     test('map with', () => {
       const m = new NumericMap('', '1979-03-17', '2021-01-07')
 
-      m.achievements = {
-        R1: { vn: 1, start: 0, end: 30 },
-        R2: { vn: 2, start: 30, end: 40 },
-        R3: { vn: 1, start: 40, end: 50 },
-        R4: { vn: 1, start: 50, end: Infinity },
-      }
+      m.R1 = 1
+      m.R2 = 2
+      m.R3 = 1
+      m.R4 = 1
+      
       const am = new AdvancedTecniques(m)
       expect(am.tec17Renascimento).toEqual([
-        { position: 'R3', age: 40 },
-        { position: 'R4', age: 50 },
+        { position: 'R3', age: 45 },
+        { position: 'R4', age: 55 },
       ])
     })
   })
   describe('tec18MomentoDecisivoForte', () => {
     test('map without', () => {
-      expect(am2.tec18MomentoDecisivoForte).toEqual([])
+      const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec18MomentoDecisivoForte).toEqual([])
     })
     test('map with CD 8', () => {
-      expect(am1.tec18MomentoDecisivoForte).toEqual([
+      const map = new NumericMap('DAINARI MOZZU', '1950-12-26', '2021-01-07')
+      const am = new AdvancedTecniques(map)
+      
+      expect(am.tec18MomentoDecisivoForte).toEqual([
         { position: 'CD', vn: 8 },
       ])
     })
@@ -866,21 +982,219 @@ describe('AdvancedTecniques', () => {
       ])
     })
   })
+  describe('tec19AusenciaDeVibracaoPositiva', () => {
+    test('map 1', () => {
+      const map = new NumericMap('', '1979-03-17', '2021-01-07')
 
+      map.MO = 11
+      map.EU = 11
+      map.CD = 8
+      map.EX = 22
+      map.C1 = 3
+      map.C2 = 8
+      map.C3 = 6
+      map.D1 = 5
+      map.D2 = 3
+      map.DM = 2
+      map.R1 = 11
+      map.R2 = 5
+      map.R3 = 7
+      map.R4 = 9
+      const am = new AdvancedTecniques(map)
+      expect(am.tec19AusenciaDeVibracaoPositiva).toEqual([
+        {
+          position:    'D1',
+          vn:          5,
+          missingFrom: 0,
+          receivedAge: 28,
+        },
+      ])
+    })
+    test('map 2', () => {
+      const map = new NumericMap('', '1979-03-17', '2021-01-07')
 
-  let map1 = new NumericMap('DAINARI MOZZU', '1950-12-26', '2021-01-07')
-  let am1 = new AdvancedTecniques(map1)
-  let map2 = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
-  let am2 = new AdvancedTecniques(map2)
-  let map3 = new NumericMap('AS', '0025-12-02', '2021-01-07')
-  let am3 = new AdvancedTecniques(map3)
+      map.MO = 5
+      map.EU = 22
+      map.CD = 4
+      map.EX = 9
+      map.C1 = 3
+      map.C2 = 8
+      map.C3 = 2
+      map.D1 = 5
+      map.D2 = 1
+      map.DM = 4
+      map.R1 = 11
+      map.R2 = 1
+      map.R3 = 3
+      map.R4 = 5
+      const am = new AdvancedTecniques(map)
+      expect(am.tec19AusenciaDeVibracaoPositiva).toEqual([
+        {
+          position:    'D2',
+          vn:          1,
+          missingFrom: 0,
+          receivedAge: 32,
+        },
+      ])
+    })
+    test('map 3', () => {
+      const map = new NumericMap('', '1979-03-17', '2021-01-07')
 
-  beforeEach(() => {
-    map1 = new NumericMap('DAINARI MOZZU', '1950-12-26', '2021-01-07')
-    am1 = new AdvancedTecniques(map1)
-    map2 = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
-    am2 = new AdvancedTecniques(map2)
-    map3 = new NumericMap('AS', '0025-12-02', '2021-01-07')
-    am3 = new AdvancedTecniques(map3)
+      map.MO = 9
+      map.EU = 9
+      map.CD = 6
+      map.EX = 9
+      map.C1 = 3
+      map.C2 = 6
+      map.C3 = 6
+      map.D1 = 3
+      map.D2 = 3
+      map.DM = 0
+      map.R1 = 9
+      map.R2 = 3
+      map.R3 = 3
+      map.R4 = 9
+      const am = new AdvancedTecniques(map)
+      expect(am.tec19AusenciaDeVibracaoPositiva).toEqual([
+        {
+          position:    'DM',
+          vn:          1,
+          missingFrom: 0,
+          receivedAge: Infinity,
+        },
+        {
+          position:    'DM',
+          vn:          2,
+          missingFrom: 0,
+          receivedAge: Infinity,
+        },
+        {
+          position:    'DM',
+          vn:          4,
+          missingFrom: 0,
+          receivedAge: Infinity,
+        },
+        {
+          position:    'DM',
+          vn:          5,
+          missingFrom: 0,
+          receivedAge: Infinity,
+        },
+        {
+          position:    'DM',
+          vn:          7,
+          missingFrom: 0,
+          receivedAge: Infinity,
+        },
+        {
+          position:    'DM',
+          vn:          8,
+          missingFrom: 0,
+          receivedAge: Infinity,
+        },
+      ])
+    })
+    test('map 4', () => {
+      const map = new NumericMap('', '1979-03-17', '2021-01-07')
+
+      map.MO = 6
+      map.EU = 1
+      map.CD = 1
+      map.EX = 7
+      map.C1 = 3
+      map.C2 = 8
+      map.C3 = 8
+      map.D1 = 5
+      map.D2 = 5
+      map.DM = 0
+      map.R1 = 11
+      map.R2 = 7
+      map.R3 = 9
+      map.R4 = 11
+      const am = new AdvancedTecniques(map)
+      expect(am.tec19AusenciaDeVibracaoPositiva).toEqual([
+        {
+          position:    'D1',
+          vn:          5,
+          missingFrom: 0,
+          receivedAge: Infinity,
+        },
+        {
+          position:    'D2',
+          vn:          5,
+          missingFrom: 0,
+          receivedAge: Infinity,
+        },
+        {
+          position:    'DM',
+          vn:          4,
+          missingFrom: 0,
+          receivedAge: Infinity,
+        },
+        {
+          position:    'DM',
+          vn:          5,
+          missingFrom: 0,
+          receivedAge: Infinity,
+        },
+        {
+          position:    'DM',
+          vn:          8,
+          missingFrom: 0,
+          receivedAge: 28,
+        },
+        {
+          position:    'DM',
+          vn:          9,
+          missingFrom: 0,
+          receivedAge: 45,
+        },
+      ])
+    })
+    test('map 5', () => {
+      const map = new NumericMap('', '1979-03-17', '2021-01-07')
+
+      map.MO = 6
+      map.EU = 4
+      map.CD = 22
+      map.EX = 1
+      map.C1 = 7
+      map.C2 = 7
+      map.C3 = 8
+      map.D1 = 0
+      map.D2 = 1
+      map.DM = 1
+      map.R1 = 5
+      map.R2 = 6
+      map.R3 = 11
+      map.R4 = 6
+      const am = new AdvancedTecniques(map)
+      expect(am.tec19AusenciaDeVibracaoPositiva).toEqual([
+        {
+          position:    'D1',
+          vn:          2,
+          missingFrom: 0,
+          receivedAge: 24,
+        },
+        {
+          position:    'D1',
+          vn:          3,
+          missingFrom: 0,
+          receivedAge: Infinity,
+        },
+        {
+          position:    'D1',
+          vn:          8,
+          missingFrom: 0,
+          receivedAge: 56,
+        },
+        {
+          position:    'D1',
+          vn:          9,
+          missingFrom: 0,
+          receivedAge: Infinity,
+        },
+      ])
+    })
   })
 })

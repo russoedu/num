@@ -1,7 +1,7 @@
 import { _array } from '../helpers/_array'
 import { _number } from '../helpers/_number'
 import { _tec } from '../helpers/_tec'
-import { Cycle, CycleInterpretationT, CycleInterpretationVns, ExpressionVibrationT, VN, LanguageStyleT, MultiplicitesT, MultiplicityMultipleT, MultiplicityT, MultiplicityType, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultT, PercentageT, PyramidT, Relation, RiskT, SingleDigitVN, AchievementsT, VicesAndReciclerDataT, vnOwnerPractitioner, ConquestsT, VnPositionCycleT, RebirthT, StrongDecisiveMomementPositionT, MissingPositiveVibration } from '../helpers/types'
+import { Cycle, CycleInterpretationT, CycleInterpretationVns, ExpressionVibrationT, VN, LanguageStyleT, MultiplicitesT, MultiplicityMultipleT, MultiplicityT, MultiplicityType, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultT, PercentageT, PyramidT, Relation, RiskT, SingleDigitVN, AchievementsT, VicesAndReciclerDataT, vnOwnerPractitioner, ConquestsT, VnPositionCycleT, RebirthT, StrongDecisiveMomementPositionT, MissingPositiveVibration, SingleDigitVnPositionCycleT } from '../helpers/types'
 import { NumericMap } from './NumericMap'
 
 export class AdvancedTecniques {
@@ -784,161 +784,23 @@ export class AdvancedTecniques {
    * @returns Missing Positive Vibration results
    */
   #tec19AusenciaDeVibracaoPositiva () {
-    const result: MissingPositiveVibration[] = []
-
-    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9] as [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-    // List of VNs that are not in the map, (11 and 22 are converted for this check)
-    const notReceivedVns = _array.vnNotInArray(numbers, this.#map.uniqueVNs)
-    notReceivedVns.forEach(vn => {
-      result.push({
-        position:    '' as any,
-        vn,
-        missingFrom: 0,
-        receivedAge: Infinity,
-      })
-    })
-
-    // List of all VNs but the challenges
-    const receivedVns = this.#map.allCyclesVNsPosition
-      .filter(received => !(['D1', 'D2', 'DM'].includes(received.position)))
-    for (const c in this.#map.challenges) {
-      const challenge = this.#map.challenges[c as 'D1' | 'D2' | 'DM']
+    const allReceivedVns: VnPositionCycleT[] = this.#tec19AllReceivedVns
+    const avp: MissingPositiveVibration[] = []
       
-      const receivedVns1 = receivedVns
-        .filter(received => 
-          _number.match(received.vn, challenge.vn) &&
-          received.start > challenge.start,
-        )
-        .map(received => ({ ...received, vn: _number.vnToSingleVn(received.vn) }))
-        .sort((a, b) => a.vn === b.vn ? a.start - b.start : a.vn-b.vn)
-      if (receivedVns1.length === 0) {
-        result.push({
-          position:    'D1',
-          vn:          challenge.vn,
-          missingFrom: 0,
-          receivedAge: Infinity,
-        })
-      } else {
-        // Remove duplicated later received VNs
-        for (let i = receivedVns1.length - 1; i >= 0; i--) {
-          const receivedVnM = receivedVns1[i]
-          if (i > 0) {
-            const receivedVnMPrev = receivedVns1[i - 1]
-            if (receivedVnMPrev.vn === receivedVnM.vn) {
-              receivedVns1.splice(i, 1)
-            }
-          }
+    for (const c in this.#map.challenges) {
+      const ch = this.#map.challenges[c as 'D1' | 'D2' | 'DM']
+      for (const rec of allReceivedVns) {
+        if (_number.match(rec.vn, ch.vn) && rec.start > ch.start) {
+          avp.push({
+            position:    c as 'D1' | 'D2' | 'DM',
+            vn:          rec.vn,
+            receivedAge: rec.start,
+          })
         }
-        
       }
     }
-
-    /*
-     * const notReceived1 = ([1,2,3,4,5,6,7,8,9] as SingleDigitVN[])
-     *   .filter(vn => receivedVns1.map(rv => rv.vn).includes(vn))
-     */
-
-    /*
-     * for (const notReceivedVn of notReceived1) {
-     *   result.push({
-     *     position:    'D1',
-     *     vn:          notReceivedVn,
-     *     missingFrom: 0,
-     *     receivedAge: Infinity,
-     *   })
-     * }
-     * for (const receivedVn of receivedVns1) {
-     *   if (receivedVn.start > this.#map.challenges.D1.start) {
-     *     result.push({
-     *       position:    'D1',
-     *       vn:          _number.vnToSingleVn(receivedVn.vn),
-     *       missingFrom: 0,
-     *       receivedAge: receivedVn.start,
-     *     })
-     *   }
-     * }
-     */
-
-    /*
-     * const receivedVns2 = this.#map.allCyclesVNsPosition
-     *   .filter(f => f.position !== 'D2' && _number.match(f.vn, this.#map.D2))
-     *   .map(received => ({ ...received, vn: _number.vnToSingleVn(received.vn) }))
-     *   .sort((a, b) => a.vn === b.vn ? a.start - b.start : a.vn-b.vn)
-     * for (let i = receivedVns2.length - 1; i >= 0; i--) {
-     *   const receivedVnM = receivedVns2[i]
-     *   if (i > 0) {
-     *     const receivedVnMPrev = receivedVns2[i - 1]
-     *     if (receivedVnMPrev.vn === receivedVnM.vn) {
-     *       receivedVns2.splice(i, 1)
-     *     }
-     *   }
-     * }
-     * const notReceived2 = ([1,2,3,4,5,6,7,8,9] as SingleDigitVN[])
-     *   .filter(vn => receivedVns2.map(rv => rv.vn).includes(vn))
-     */
-
-    /*
-     * const receivedVnsM = this.#map.allCyclesVNsPosition
-     *   .filter(acvp => acvp.position !== 'DM' && _number.match(acvp.vn, this.#map.DM))
-     *   .map(acvp => ({ ...acvp, vn: _number.vnToSingleVn(acvp.vn) }))
-     *   .sort((a, b) => a.vn === b.vn ? a.start - b.start : a.vn-b.vn)
-     * for (let i = receivedVnsM.length - 1; i >= 0; i--) {
-     *   const receivedVnM = receivedVnsM[i]
-     *   if (i > 0) {
-     *     const receivedVnMPrev = receivedVnsM[i - 1]
-     *     if (receivedVnMPrev.vn === receivedVnM.vn) {
-     *       receivedVnsM.splice(i, 1)
-     *     }
-     *   }
-     * }
-     * const notReceivedM = ([1,2,3,4,5,6,7,8,9] as SingleDigitVN[])
-     *   .filter(vn => receivedVnsM.map(rv => rv.vn).includes(vn))
-     */
-
-    /*
-     * for (const notReceivedVn of notReceived2) {
-     *   result.push({
-     *     position:    'D2',
-     *     vn:          notReceivedVn,
-     *     missingFrom: 0,
-     *     receivedAge: Infinity,
-     *   })
-     * }
-     * for (const receivedVn of receivedVns2) {
-     *   if (receivedVn.start > this.#map.challenges.D2.start) {
-     *     result.push({
-     *       position:    'D2',
-     *       vn:          _number.vnToSingleVn(receivedVn.vn),
-     *       missingFrom: 0,
-     *       receivedAge: receivedVn.start,
-     *     })
-     *   }
-     * }
-     */
-
-    /*
-     * for (const notReceivedVn of notReceivedM) {
-     *   result.push({
-     *     position:    'DM',
-     *     vn:          notReceivedVn,
-     *     missingFrom: 0,
-     *     receivedAge: Infinity,
-     *   })
-     * }
-     * for (const receivedVn of receivedVnsM) {
-     *   if (receivedVn.start > this.#map.challenges.DM.start) {
-     *     result.push({
-     *       position:    'DM',
-     *       vn:          _number.vnToSingleVn(receivedVn.vn),
-     *       missingFrom: 0,
-     *       receivedAge: receivedVn.start,
-     *     })
-     *   }
-     * }
-     */
     
-    return result
+    return avp
     
   }
 
@@ -1073,7 +935,51 @@ export class AdvancedTecniques {
 
     return resultList
   }
+
+  /**
+   * List of all VNs and when it was received
+   */
+  get #tec19AllReceivedVns () {
+    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9] as [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    
+    // List of VNs (11 and 22 are converted) in the map at a certain age
+    const receivedVns: SingleDigitVnPositionCycleT[] = this.#map.allCyclesVNsPosition
+      .map(arv => ({ ...arv, vn: _number.vnToSingleVn(arv.vn) }))
+      .filter(received => !(['D1', 'D2', 'DM'].includes(received.position)))
+      
+    // List of VNs that are not in the map, (11 and 22 are converted for this check)
+    const neverReceivedVns: SingleDigitVnPositionCycleT[] = _array
+      .vnNotInArray(numbers, receivedVns.map(rv => rv.vn))
+      .map(vn => ({
+        position: '' as any,
+        vn,
+        start:    Infinity,
+        end:      Infinity,
+      }))
+
+
+    // Push both arrays and sort by VN and start
+    const allReceivedVns = [
+      ...neverReceivedVns,
+      ...receivedVns,
+    ]
+      .sort((a, b) => a.vn === b.vn ? a.start - b.start : a.vn-b.vn)
+
+    // Removes all but the first entry of each VN
+    for (let i = allReceivedVns.length - 1; i >= 0; i--) {
+      const receivedVnM = allReceivedVns[i]
+      if (i > 0) {
+        const receivedVnMPrev = allReceivedVns[i - 1]
+        if (receivedVnMPrev.vn === receivedVnM.vn) {
+          allReceivedVns.splice(i, 1)
+        }
+      }
+    }
+    
+    return allReceivedVns
+  }
   /* #endregion */
+
 
   /**
    * The numeric map

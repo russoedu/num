@@ -9,20 +9,21 @@ export class NumericMap {
     if (!_date.isValid(birthday)) throw new Error('birthday is not a valid date')
     if (!_date.isValid(today)) throw new Error('today is not a valid date')
 
-    this.name = _name.normalise(name)
     const [birthdayYear, birthdayMonth, birthdayDay] = birthday.split('-').map(d => Number(d))
+    const [todayYear, todayMonth, todayDay] = today.split('-').map(d => Number(d))
+
+    this.name = _name.normalise(name)
     this.birthday = { year: birthdayYear, month: birthdayMonth, day: birthdayDay }
 
-    const [todayYear, todayMonth, todayDay] = today.split('-').map(d => Number(d))
     this.today = { year: todayYear, month: todayMonth, day: todayDay }
-
     this.age = this.#age()
+
+    const { vowelsInName, consonantsInName } = this.#lettersInName()
 
     this.#daySum = _number.sum(this.birthday.day)
     this.#monthSum = _number.sum(this.birthday.month)
     this.#yearSum = _number.sum(this.birthday.year)
     
-    const { vowelsInName, consonantsInName } = this.#lettersInName()
 
     this.MO = this.#countName(vowelsInName)
     this.EU = this.#countName(consonantsInName)
@@ -38,39 +39,13 @@ export class NumericMap {
     this.D2 = _number.sum(Math.abs(this.#yearSum - this.#monthSum))
     this.DM = _number.sum(Math.abs(this.D1 - this.D2))
 
-    this.challenges = this.#challenges(this.D1, this.D2, this.DM)
-    this.achievements = this.#achievements()
+    this.R1 = _number.sum(this.#daySum + this.#monthSum, true)
+    this.R2 = _number.sum(this.#daySum + this.#yearSum, true)
+    this.R3 = _number.sum(this.R1 + this.R2, true)
+    this.R4 = _number.sum(this.#monthSum + this.#yearSum, true)
 
     this.personalYear = this.#interestYear()
-
-    this.tec0Cycles = {
-      C1End:  28,
-      C2End:  56,
-      C3End:  Math.max(76, this.age * 2),
-      R1End:  this.achievements.R1.end,
-      R2End:  this.achievements.R2.end,
-      R3End:  this.achievements.R3.end,
-      age:    this.age,
-      cycle:  this.cycle.index,
-      cycles: [
-        {
-          name: 'Fixas',
-          vns:  this.fixedVNsPosition,
-        },
-        {
-          name: '1º Ciclo (0/28 anos)',
-          vns:  this.firstCycleOnlyVNsPosition,
-        },
-        {
-          name: '2º Ciclo (28/56 anos)',
-          vns:  this.secondCycleOnlyVNsPosition,
-        },
-        {
-          name: '3º Ciclo (+ 56 anos)',
-          vns:  this.thirdCycleOnlyVNsPosition,
-        },
-      ],
-    }
+    this.tec0Cycles = this.#tec0Cycles()
   }
 
   /**
@@ -493,25 +468,21 @@ export class NumericMap {
 
   /**
    * The list of challenges with the VN, start and end
-   * @param D1 - The 1st challenge
-   * @param D2 - The 2nd challenge
-   * @param DM - The main challenge
-   * @returns The list of challenges
    */
-  #challenges (D1: SingleDigitVN, D2: SingleDigitVN, DM: SingleDigitVN) {
+  get challenges () {
     const challenges = {
       D1: {
-        vn:    D1,
+        vn:    this.D1,
         start: 0,
         end:   28,
       },
       D2: {
-        vn:    D2,
+        vn:    this.D2,
         start: 28,
         end:   56,
       },
       DM: {
-        vn:    DM,
+        vn:    this.DM,
         start: 0,
         end:   Infinity,
       },
@@ -522,33 +493,28 @@ export class NumericMap {
 
   /**
    * The list of achievements with the VN, start and end
-   * @returns The list of achievements
    */
-  #achievements () {
+  get achievements () {
     const rAge = 36 - this.CD
-    const R1 = _number.sum(this.#daySum + this.#monthSum, true)
-    const R2 = _number.sum(this.#daySum + this.#yearSum, true)
-    const R3 = _number.sum(R1 + R2, true)
-    const R4 = _number.sum(this.#monthSum + this.#yearSum, true)
 
     const achievements = {
       R1: {
-        vn:    R1,
+        vn:    this.R1,
         start: 0,
         end:   rAge,
       },
       R2: {
-        vn:    R2,
+        vn:    this.R2,
         start: rAge,
         end:   rAge + 10,
       },
       R3: {
-        vn:    R3,
+        vn:    this.R3,
         start: rAge + 10,
         end:   rAge + 20,
       },
       R4: {
-        vn:    R4,
+        vn:    this.R4,
         start: rAge + 20,
         end:   Infinity,
       },
@@ -599,6 +565,43 @@ export class NumericMap {
     } as PersonalYearT
   }
 
+  /**
+   * Creates and retrieves the cycles objects
+   * @returns The cycles
+   */
+  #tec0Cycles () {
+    const cycles: CyclesT = {
+      C1End:  28,
+      C2End:  56,
+      C3End:  Math.max(76, this.age * 2),
+      R1End:  this.achievements.R1.end,
+      R2End:  this.achievements.R2.end,
+      R3End:  this.achievements.R3.end,
+      age:    this.age,
+      cycle:  this.cycle.index,
+      cycles: [
+        {
+          name: 'Fixas',
+          vns:  this.fixedVNsPosition,
+        },
+        {
+          name: '1º Ciclo (0/28 anos)',
+          vns:  this.firstCycleOnlyVNsPosition,
+        },
+        {
+          name: '2º Ciclo (28/56 anos)',
+          vns:  this.secondCycleOnlyVNsPosition,
+        },
+        {
+          name: '3º Ciclo (+ 56 anos)',
+          vns:  this.thirdCycleOnlyVNsPosition,
+        },
+      ],
+    }
+
+    return cycles
+  }
+
   name: string
   birthday: {
     day: number,
@@ -628,30 +631,11 @@ export class NumericMap {
    * EXPRESSÃO – O QUE APARENTA SER
    */
   EX: VN = 0
+  
   /**
    * PRIMEIRO DESAFIO
    */
   D1: SingleDigitVN = 0
-  /**
-   * DESAFIOS
-   */
-  challenges: {
-    D1: {
-        vn: SingleDigitVN;
-        start: number;
-        end: number;
-    };
-    D2: {
-        vn: SingleDigitVN;
-        start: number;
-        end: number;
-    };
-    DM: {
-        vn: SingleDigitVN;
-        start: number;
-        end: number;
-    };
-  }
   /**
    * SEGUNDO DESAFIO
    */
@@ -674,30 +658,21 @@ export class NumericMap {
   C3: SingleDigitVN = 0
   
   /**
-   * REALIZAÇÕES
+   * PRIMEIRA REAL
    */
-  achievements: {
-    R1: {
-      vn:VN,
-      start: number,
-      end: number
-    },
-    R2: {
-      vn:VN,
-      start: number,
-      end: number
-    },
-    R3: {
-      vn:VN,
-      start: number,
-      end: number
-    },
-    R4: {
-      vn:VN,
-      start: number,
-      end: number
-    }
-  }
+  R1: VN = 0
+  /**
+   * SEGUNDA REAL
+   */
+  R2: VN = 0
+  /**
+   * TERCEIRA REAL
+   */
+  R3: VN = 0
+  /**
+   * QUARTA REAL
+   */
+  R4: VN = 0
 
   /**
    * IDADE

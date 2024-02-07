@@ -41,7 +41,6 @@ export type SingleDigitA = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 export type VN = 0|1|2|11|3|4|22|5|6|7|8|9
 export type FinalSingleDigitA = [0, 1, 2, 11, 3, 4, 22, 5, 6, 7, 8, 9]
 
-
 export const letterValues = {
   ' ': 0,
   A:   1, B:   2, C:   3, D:   4, E:   5, F:   6, G:   7, H:   8, I:   9,
@@ -129,6 +128,13 @@ export type VnPositionT = {
 
 export type VnPositionCycleT = {
   vn: VN,
+  position: PositionT,
+  start: number,
+  end: number,
+}
+
+export type SingleDigitVnPositionCycleT = {
+  vn: SingleDigitVN,
   position: PositionT,
   start: number,
   end: number,
@@ -263,6 +269,5 @@ export type StrongDecisiveMomementPositionT = {
 export type MissingPositiveVibration = {
   position: 'D1' | 'D2' | 'DM',
   vn: VN,
-  missingFrom: number,
   receivedAge: number,
 }

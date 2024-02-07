@@ -97,6 +97,10 @@ describe('NumericMap', () => {
             end:   Infinity,
           },
         },
+        R1:           11,
+        R2:           7,
+        R3:           9,
+        R4:           11,
         age:          44,
         personalYear: {
           vn:    9,
@@ -297,6 +301,10 @@ describe('NumericMap', () => {
             end:   Infinity,
           },
         },
+        R1:           11,
+        R2:           5,
+        R3:           7,
+        R4:           9,
         age:          73,
         personalYear: {
           vn:    9,
