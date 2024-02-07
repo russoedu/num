@@ -1005,7 +1005,6 @@ describe('AdvancedTecniques', () => {
         {
           position:    'D1',
           vn:          5,
-          missingFrom: 0,
           receivedAge: 28,
         },
       ])
@@ -1032,7 +1031,6 @@ describe('AdvancedTecniques', () => {
         {
           position:    'D2',
           vn:          1,
-          missingFrom: 0,
           receivedAge: 32,
         },
       ])
@@ -1059,37 +1057,31 @@ describe('AdvancedTecniques', () => {
         {
           position:    'DM',
           vn:          1,
-          missingFrom: 0,
           receivedAge: Infinity,
         },
         {
           position:    'DM',
           vn:          2,
-          missingFrom: 0,
           receivedAge: Infinity,
         },
         {
           position:    'DM',
           vn:          4,
-          missingFrom: 0,
           receivedAge: Infinity,
         },
         {
           position:    'DM',
           vn:          5,
-          missingFrom: 0,
           receivedAge: Infinity,
         },
         {
           position:    'DM',
           vn:          7,
-          missingFrom: 0,
           receivedAge: Infinity,
         },
         {
           position:    'DM',
           vn:          8,
-          missingFrom: 0,
           receivedAge: Infinity,
         },
       ])
@@ -1116,37 +1108,31 @@ describe('AdvancedTecniques', () => {
         {
           position:    'D1',
           vn:          5,
-          missingFrom: 0,
           receivedAge: Infinity,
         },
         {
           position:    'D2',
           vn:          5,
-          missingFrom: 0,
           receivedAge: Infinity,
         },
         {
           position:    'DM',
           vn:          4,
-          missingFrom: 0,
           receivedAge: Infinity,
         },
         {
           position:    'DM',
           vn:          5,
-          missingFrom: 0,
           receivedAge: Infinity,
         },
         {
           position:    'DM',
           vn:          8,
-          missingFrom: 0,
           receivedAge: 28,
         },
         {
           position:    'DM',
           vn:          9,
-          missingFrom: 0,
           receivedAge: 45,
         },
       ])
@@ -1173,25 +1159,21 @@ describe('AdvancedTecniques', () => {
         {
           position:    'D1',
           vn:          2,
-          missingFrom: 0,
           receivedAge: 24,
         },
         {
           position:    'D1',
           vn:          3,
-          missingFrom: 0,
           receivedAge: Infinity,
         },
         {
           position:    'D1',
           vn:          8,
-          missingFrom: 0,
           receivedAge: 56,
         },
         {
           position:    'D1',
           vn:          9,
-          missingFrom: 0,
           receivedAge: Infinity,
         },
       ])
