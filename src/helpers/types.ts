@@ -20,6 +20,11 @@ export enum Cycle {
   THIRD = '3º Ciclo (+ 56 anos)',
 }
 
+export enum CycleType {
+  FIXED = 'fixas',
+  CYCLE = 'ciclos',
+}
+
 export type FormInput = {
   name: [string, React.Dispatch<React.SetStateAction<string>>],
   birthday: [string, React.Dispatch<React.SetStateAction<string>>],
@@ -124,6 +129,14 @@ export type PercentageResultT = {
 export type VnPositionT = {
   vn: VN,
   position: PositionT,
+}
+
+export type VnPositionTypeT = {
+  vn: VN,
+  position: PositionT,
+  type: CycleType,
+  start: number,
+  end: number,
 }
 
 export type VnPositionCycleT = {
@@ -270,4 +283,17 @@ export type MissingPositiveVibration = {
   position: 'D1' | 'D2' | 'DM',
   vn: VN,
   receivedAge: number,
+}
+
+export type StrongOpositionItemT = {
+  pair: [VN, VN],
+  message: string
+}
+
+export type StrongOpositionT = {
+  pair: [VN, VN],
+  message: string
+  type: CycleType,
+  start: number,
+  end: number,
 }

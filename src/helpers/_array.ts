@@ -69,6 +69,21 @@ class ArrayHelper {
 
     return joinned
   }
+
+  /**
+   * Finds the intersection of two lists and returns the Single Digit VN intersection
+   * @param a - List of Single Digit VN
+   * @param b - List of VNs
+   * @returns The intersection (converting the VNs to SingleDigit)
+   */
+  intersect (a: VN[], b: VN[]) {
+    const setA = new Set(a)
+    const setB = new Set(b)
+
+    const intersection = new Set([...setA].filter(x => setB.has(x)))
+    
+    return Array.from(intersection)
+  }
 }
 
 const _array = new ArrayHelper()

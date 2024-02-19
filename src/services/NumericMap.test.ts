@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'vitest'
 import { NumericMap } from './NumericMap'
+import { CycleType } from '../helpers/types'
 
 describe('NumericMap', () => {
   describe('constructor', () => {
@@ -553,6 +554,26 @@ describe('NumericMap', () => {
         { position: 'R2', vn: 7 },
         { position: 'R3', vn: 9 },
         { position: 'R4', vn: 11 },
+      ])
+    })
+    test('vnsPositionType', () => {
+      const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
+
+      expect(nm.allCyclesVNsPosition).toEqual([
+        { position: 'MO', vn: 6, type: CycleType.FIXED, start: 0, end: Infinity },
+        { position: 'EU', vn: 1, type: CycleType.FIXED, start: 0, end: Infinity },
+        { position: 'CD', vn: 1, type: CycleType.FIXED, start: 0, end: Infinity },
+        { position: 'EX', vn: 7, type: CycleType.FIXED, start: 0, end: Infinity },
+        { position: 'D1', vn: 5, type: CycleType.CYCLE, start: 0, end: 28 },
+        { position: 'D2', vn: 5, type: CycleType.CYCLE, start: 28, end: 56 },
+        { position: 'DM', vn: 0, type: CycleType.FIXED, start: 0, end: Infinity },
+        { position: 'C1', vn: 3, type: CycleType.CYCLE, start: 0, end: 28 },
+        { position: 'C2', vn: 8, type: CycleType.CYCLE, start: 28, end: 56 },
+        { position: 'C3', vn: 8, type: CycleType.CYCLE, start: 56, end: Infinity },
+        { position: 'R1', vn: 11, type: CycleType.CYCLE, start: 0, end: 35 },
+        { position: 'R2', vn: 7, type: CycleType.CYCLE, start: 35, end: 45 },
+        { position: 'R3', vn: 9, type: CycleType.CYCLE, start: 45, end: 55 },
+        { position: 'R4', vn: 11, type: CycleType.CYCLE, start: 55, end: Infinity },
       ])
     })
     test('fixedVNs', () => {

@@ -1,7 +1,7 @@
 import { _array } from '../helpers/_array'
 import { _number } from '../helpers/_number'
 import { _tec } from '../helpers/_tec'
-import { Cycle, CycleInterpretationT, CycleInterpretationVns, ExpressionVibrationT, VN, LanguageStyleT, MultiplicitesT, MultiplicityMultipleT, MultiplicityT, MultiplicityType, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultT, PercentageT, PyramidT, Relation, RiskT, SingleDigitVN, AchievementsT, VicesAndReciclerDataT, vnOwnerPractitioner, ConquestsT, VnPositionCycleT, RebirthT, StrongDecisiveMomementPositionT, MissingPositiveVibration, SingleDigitVnPositionCycleT } from '../helpers/types'
+import { Cycle, CycleInterpretationT, CycleInterpretationVns, ExpressionVibrationT, VN, LanguageStyleT, MultiplicitesT, MultiplicityMultipleT, MultiplicityT, MultiplicityType, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultT, PercentageT, PyramidT, Relation, RiskT, SingleDigitVN, AchievementsT, VicesAndReciclerDataT, vnOwnerPractitioner, ConquestsT, VnPositionCycleT, RebirthT, StrongDecisiveMomementPositionT, MissingPositiveVibration, SingleDigitVnPositionCycleT, StrongOpositionT, StrongOpositionItemT, CycleType } from '../helpers/types'
 import { NumericMap } from './NumericMap'
 
 export class AdvancedTecniques {
@@ -29,6 +29,7 @@ export class AdvancedTecniques {
     this.tec17Renascimento = this.#tec17Renascimento()
     this.tec18MomentoDecisivoForte = this.#tec18MomentoDecisivoForte()
     this.tec19AusenciaDeVibracaoPositiva = this.#tec19AusenciaDeVibracaoPositiva()
+    this.tec20OposicoesFortes = this.#tec20OposicoesFortes()
   }
 
   /**
@@ -801,9 +802,71 @@ export class AdvancedTecniques {
     }
     
     return avp
-    
   }
 
+  /**
+   * Strong Oposition
+   * @returns Strong Oposition results
+   */
+  #tec20OposicoesFortes () {
+    const ofList: StrongOpositionT[] = []
+    const vnsPositionType = this.#map.allCyclesVNsPosition
+    const mapVns = this.#map.uniqueVNs
+    const strongOpositionsList: StrongOpositionItemT[] = [
+      { pair: [1, 2], message: 'Independência x Associar-se' },
+      { pair: [1, 11], message: 'Independência x Associar-se' },
+      { pair: [1, 9], message: 'Para si X Doar' },
+      { pair: [2, 8], message: 'Dar (compartilhar) x Possuir' },
+      { pair: [11, 8], message: 'Dar (compartilhar) x Possuir' },
+      { pair: [4, 5], message: 'Manter x Vivenciar' },
+      { pair: [22, 5], message: 'Manter x Vivenciar' },
+      { pair: [4, 9], message: 'Manter x Doar' },
+      { pair: [22, 9], message: 'Manter x Doar' },
+      { pair: [7, 8], message: 'Espiritualidade x Posses materiais' },
+      { pair: [8, 9], message: 'Posses materiais x Espiritualidade' },
+    ]
+
+    for (const oposition of strongOpositionsList) {
+      const hasStrongOposition = _array.intersect(oposition.pair, mapVns).length === 2
+      
+      if (hasStrongOposition) {
+        /**
+         * List of positions with the first number of the pair, with the fixed ones first and ordered by the cycle start
+         */
+        const num1List = this.#tec20PairNumList(oposition.pair[0])
+        
+        /**
+         * List of positions with the second number of the pair, with the fixed ones first and ordered by the cycle start
+         */
+        const num2List = this.#tec20PairNumList(oposition.pair[1])
+        
+        let done1 = false
+        let done2 = false
+        for (const n1 of num1List) {
+          if (done1) break
+          for (const n2 of num2List) {
+            if (done2) break
+            if (n1.type === CycleType.FIXED && n2.type === CycleType.FIXED) {
+              ofList.push({
+                pair:    oposition.pair,
+                message: oposition.message,
+                type:    CycleType.FIXED,
+                start:   0,
+                end:     Infinity,
+              })
+              done1 = true
+              done2 = true
+            } else if (n1.type === CycleType.FIXED) {
+              console.log(n2)
+            }
+          }
+        }
+        console.log(done1);
+      }
+    }
+
+    return ofList
+  }
   /* #region Support methods */
   /**
    * Calculates the multiplicity for the cycle
@@ -978,6 +1041,43 @@ export class AdvancedTecniques {
     
     return allReceivedVns
   }
+
+  /**
+   * Filters the list of positions by the number
+   * @param num - The number of the pair to be found
+   * @returns The list of matching positions. If any of them is fixed, just this one, else, the list ordered by cycle start
+   */
+  #tec20PairNumList (num: number) {
+    const vnsPositionType = this.#map.allCyclesVNsPosition
+
+    const pairNumList = vnsPositionType
+      .filter(vpt => num === vpt.vn)
+      .sort((a, b) => {
+        if (a.type === CycleType.FIXED && b.type === CycleType.CYCLE) {
+          return -1
+        } else if (a.type === CycleType.CYCLE && b.type === CycleType.FIXED) {
+          return 1
+        }
+
+        return a.start - b.start !== 0
+          ? a.start - b.start
+          : a.end - b.end
+      })
+
+    // If there's a fixed value, removes the rest
+    if (pairNumList[0].type === CycleType.FIXED) {
+      pairNumList.splice(1, pairNumList.length - 1)
+    } else {
+        for (let i = pairNumList.length - 1; i >= 1; i--) {
+          if (pairNumList[i].start <= pairNumList[i - 1].end) {
+            pairNumList[i - 1].end = Math.max(pairNumList[i].end, pairNumList[i - 1].end)
+            pairNumList.pop()
+          }
+      }
+    }
+
+    return pairNumList
+  }
   /* #endregion */
 
 
@@ -1091,7 +1191,7 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 20 – OPOSIÇÕES FORTES – RISCOS 
    */
-
+  tec20OposicoesFortes: StrongOpositionT[]
   /**
    * TÉCNICA 21 – BLOQUEIO VIBRACIONAL – RISCOS 
    */

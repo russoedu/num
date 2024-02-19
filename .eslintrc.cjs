@@ -2,7 +2,7 @@ module.exports = {
   root: true,
   env: { browser: true, es2020: true },
   extends: [
-    'eslint:recommended',
+    'eslint:standard',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
     'plugin:react/recommended',
@@ -13,7 +13,6 @@ module.exports = {
   plugins: ['react-refresh', 'eslint-plugin-tsdoc', '@typescript-eslint', 'eslint-plugin-vitest'],
   globals: {
     React:   true,
-    JSX:     true,
     process: true,
   },
   rules: {

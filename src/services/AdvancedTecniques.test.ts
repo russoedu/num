@@ -1179,4 +1179,201 @@ describe('AdvancedTecniques', () => {
       ])
     })
   })
+  describe.skip('tec20OposicoesFortes', () => {
+    test('map 1', () => {
+      const map = new NumericMap('', '1979-03-17', '2021-01-07')
+
+      map.MO = 11
+      map.EU = 11
+      map.CD = 8
+      map.EX = 22
+      map.C1 = 3
+      map.C2 = 8
+      map.C3 = 6
+      map.D1 = 5
+      map.D2 = 3
+      map.DM = 2
+      map.R1 = 11
+      map.R2 = 5
+      map.R3 = 7
+      map.R4 = 9
+      const am = new AdvancedTecniques(map)
+      expect(am.tec20OposicoesFortes).toEqual([
+        {
+          position:    'D1',
+          vn:          5,
+          receivedAge: 28,
+        },
+      ])
+    })
+    test('map 2', () => {
+      const map = new NumericMap('', '1979-03-17', '2021-01-07')
+
+      map.MO = 5
+      map.EU = 22
+      map.CD = 4
+      map.EX = 9
+      map.C1 = 3
+      map.C2 = 8
+      map.C3 = 2
+      map.D1 = 5
+      map.D2 = 1
+      map.DM = 4
+      map.R1 = 11
+      map.R2 = 1
+      map.R3 = 3
+      map.R4 = 5
+      const am = new AdvancedTecniques(map)
+      expect(am.tec19AusenciaDeVibracaoPositiva).toEqual([
+        {
+          position:    'D2',
+          vn:          1,
+          receivedAge: 32,
+        },
+      ])
+    })
+    test('map 3', () => {
+      const map = new NumericMap('', '1979-03-17', '2021-01-07')
+
+      map.MO = 9
+      map.EU = 9
+      map.CD = 6
+      map.EX = 9
+      map.C1 = 3
+      map.C2 = 6
+      map.C3 = 6
+      map.D1 = 3
+      map.D2 = 3
+      map.DM = 0
+      map.R1 = 9
+      map.R2 = 3
+      map.R3 = 3
+      map.R4 = 9
+      const am = new AdvancedTecniques(map)
+      expect(am.tec19AusenciaDeVibracaoPositiva).toEqual([
+        {
+          position:    'DM',
+          vn:          1,
+          receivedAge: Infinity,
+        },
+        {
+          position:    'DM',
+          vn:          2,
+          receivedAge: Infinity,
+        },
+        {
+          position:    'DM',
+          vn:          4,
+          receivedAge: Infinity,
+        },
+        {
+          position:    'DM',
+          vn:          5,
+          receivedAge: Infinity,
+        },
+        {
+          position:    'DM',
+          vn:          7,
+          receivedAge: Infinity,
+        },
+        {
+          position:    'DM',
+          vn:          8,
+          receivedAge: Infinity,
+        },
+      ])
+    })
+    test('map 4', () => {
+      const map = new NumericMap('', '1979-03-17', '2021-01-07')
+
+      map.MO = 6
+      map.EU = 1
+      map.CD = 1
+      map.EX = 7
+      map.C1 = 3
+      map.C2 = 8
+      map.C3 = 8
+      map.D1 = 5
+      map.D2 = 5
+      map.DM = 0
+      map.R1 = 11
+      map.R2 = 7
+      map.R3 = 9
+      map.R4 = 11
+      const am = new AdvancedTecniques(map)
+      expect(am.tec19AusenciaDeVibracaoPositiva).toEqual([
+        {
+          position:    'D1',
+          vn:          5,
+          receivedAge: Infinity,
+        },
+        {
+          position:    'D2',
+          vn:          5,
+          receivedAge: Infinity,
+        },
+        {
+          position:    'DM',
+          vn:          4,
+          receivedAge: Infinity,
+        },
+        {
+          position:    'DM',
+          vn:          5,
+          receivedAge: Infinity,
+        },
+        {
+          position:    'DM',
+          vn:          8,
+          receivedAge: 28,
+        },
+        {
+          position:    'DM',
+          vn:          9,
+          receivedAge: 45,
+        },
+      ])
+    })
+    test('map 5', () => {
+      const map = new NumericMap('', '1979-03-17', '2021-01-07')
+
+      map.MO = 6
+      map.EU = 4
+      map.CD = 22
+      map.EX = 1
+      map.C1 = 7
+      map.C2 = 7
+      map.C3 = 8
+      map.D1 = 0
+      map.D2 = 1
+      map.DM = 1
+      map.R1 = 5
+      map.R2 = 6
+      map.R3 = 11
+      map.R4 = 6
+      const am = new AdvancedTecniques(map)
+      expect(am.tec19AusenciaDeVibracaoPositiva).toEqual([
+        {
+          position:    'D1',
+          vn:          2,
+          receivedAge: 24,
+        },
+        {
+          position:    'D1',
+          vn:          3,
+          receivedAge: Infinity,
+        },
+        {
+          position:    'D1',
+          vn:          8,
+          receivedAge: 56,
+        },
+        {
+          position:    'D1',
+          vn:          9,
+          receivedAge: Infinity,
+        },
+      ])
+    })
+  })
 })

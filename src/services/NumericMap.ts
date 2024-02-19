@@ -2,7 +2,7 @@ import { _array } from '../helpers/_array'
 import { _date } from '../helpers/_date'
 import { _name } from '../helpers/_name'
 import { _number } from '../helpers/_number'
-import { Consonants, CyclesT, PersonalYearT, PositionT, VN, VnCountFinalDigit, VnCountSingleDigit, VnPositionCycleT, VnPositionT, SingleDigitVN, Vowels, consonants, letterValues, vowels } from '../helpers/types'
+import { Consonants, CyclesT, PersonalYearT, PositionT, VN, VnCountFinalDigit, VnCountSingleDigit, VnPositionCycleT, VnPositionT, SingleDigitVN, Vowels, consonants, letterValues, vowels, VnPositionTypeT, CycleType } from '../helpers/types'
 
 export class NumericMap {
   constructor (name: string, birthday: string, today: string) {
@@ -91,6 +91,7 @@ export class NumericMap {
       { position: 'R4', vn: this.achievements.R4.vn },
     ] as VnPositionT[]
   }
+
   /**
    * List of fixed numbers in the map
    */
@@ -260,24 +261,29 @@ export class NumericMap {
   }
 
   /**
-   * List of all cycles numbers and VNs in the map
+   * List of VNs and numbers in the map
    */
   get allCyclesVNsPosition () {
     const start = 0
     const end = Infinity
-
-    const list: VnPositionCycleT[] =  [
-      ...this.fixedVNsPosition,
-      { position: 'C1', vn: this.C1, start: 0, end: 28 },
-      { position: 'C2', vn: this.C2, start: 28, end: 56 },
-      { position: 'C3', vn: this.C3, start: 56, end: Infinity },
-      { position: 'D1', vn: this.D1, start: 0, end: 28 },
-      { position: 'D2', vn: this.D2, start: 28, end: 56 },
-      ...this.achievementCycleList(start, end),
+    const list: VnPositionTypeT[] = [
+      { position: 'MO', vn: this.MO, type: CycleType.FIXED, start: 0, end: Infinity },
+      { position: 'EU', vn: this.EU, type: CycleType.FIXED, start: 0, end: Infinity },
+      { position: 'CD', vn: this.CD, type: CycleType.FIXED, start: 0, end: Infinity },
+      { position: 'EX', vn: this.EX, type: CycleType.FIXED, start: 0, end: Infinity },
+      { position: 'D1', vn: this.D1, type: CycleType.CYCLE, start: 0, end: 28 },
+      { position: 'D2', vn: this.D2, type: CycleType.CYCLE, start: 28, end: 56 },
+      { position: 'DM', vn: this.DM, type: CycleType.FIXED, start: 0, end: Infinity },
+      { position: 'C1', vn: this.C1, type: CycleType.CYCLE, start: 0, end: 28 },
+      { position: 'C2', vn: this.C2, type: CycleType.CYCLE, start: 28, end: 56 },
+      { position: 'C3', vn: this.C3, type: CycleType.CYCLE, start: 56, end: Infinity },
+      ...this.achievementCycleList(start, end)
+        .map(e => ({ ...e, type: CycleType.CYCLE })),
     ]
-    
+
     return list
   }
+
   /**
    * The list of achievements in the cycle and the start and end of the cycle
    * @param cycleStart - The start of the life cycle
