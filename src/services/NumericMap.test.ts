@@ -468,8 +468,8 @@ describe('NumericMap', () => {
         age:          77,
         personalYear: {
           vn:    6,
-          start: new Date('2023-07-09T23:00:00.000Z'),
-          end:   new Date('2024-07-09T23:00:00.000Z'),
+          start: new Date('2023-07-10T00:00:00.000Z'),
+          end:   new Date('2024-07-10T00:00:00.000Z'),
         },
         tec0Cycles: {
           C1End: 28,
