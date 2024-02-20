@@ -11,7 +11,6 @@ export function Header () {
       <Toolbar className='header-footer-toolbar' variant='dense'>
         <Typography className='header-logo' variant='h6' color='inherit' component='div'>
           <img src='logo.svg' alt='NumPi' height={52}/>
-          
         </Typography>
       </Toolbar>
     </AppBar>

@@ -810,7 +810,6 @@ export class AdvancedTecniques {
    */
   #tec20OposicoesFortes () {
     const ofList: StrongOpositionT[] = []
-    const vnsPositionType = this.#map.allCyclesVNsPosition
     const mapVns = this.#map.uniqueVNs
     const strongOpositionsList: StrongOpositionItemT[] = [
       { pair: [1, 2], message: 'Independência x Associar-se' },
@@ -856,8 +855,14 @@ export class AdvancedTecniques {
               })
               done1 = true
               done2 = true
-            } else if (n1.type === CycleType.FIXED) {
-              console.log(n2)
+            } else {
+              ofList.push({
+                pair:    oposition.pair,
+                message: oposition.message,
+                type:    CycleType.CYCLE,
+                start:   Math.max(n1.start, n2.start),
+                end:     Math.min(n1.end, n2.end),
+              })
             }
           }
         }

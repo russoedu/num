@@ -1179,7 +1179,7 @@ describe('AdvancedTecniques', () => {
       ])
     })
   })
-  describe.skip('tec20OposicoesFortes', () => {
+  describe('tec20OposicoesFortes', () => {
     test('map 1', () => {
       const map = new NumericMap('', '1979-03-17', '2021-01-07')
 
@@ -1200,13 +1200,68 @@ describe('AdvancedTecniques', () => {
       const am = new AdvancedTecniques(map)
       expect(am.tec20OposicoesFortes).toEqual([
         {
-          position:    'D1',
-          vn:          5,
-          receivedAge: 28,
+          pair: [
+            2,
+            8,
+          ],
+          message: "Dar (compartilhar) x Possuir",
+          type: "fixas",
+          start: 0,
+          end: Infinity,
+        },
+        {
+          pair: [
+            11,
+            8,
+          ],
+          message: "Dar (compartilhar) x Possuir",
+          type: "fixas",
+          start: 0,
+          end: Infinity,
+        },
+        {
+          pair: [
+            22,
+            5,
+          ],
+          message: "Manter x Vivenciar",
+          type: "ciclos",
+          start: 0,
+          end: 38,
+        },
+        {
+          pair: [
+            22,
+            9,
+          ],
+          message: "Manter x Doar",
+          type: "ciclos",
+          start: 48,
+          end: Infinity,
+        },
+        {
+          pair: [
+            7,
+            8,
+          ],
+          message: "Espiritualidade x Posses materiais",
+          type: "ciclos",
+          start: 38,
+          end: 48,
+        },
+        {
+          pair: [
+            8,
+            9,
+          ],
+          message: "Posses materiais x Espiritualidade",
+          type: "ciclos",
+          start: 48,
+          end: Infinity,
         },
       ])
     })
-    test('map 2', () => {
+    test.skip('map 2', () => {
       const map = new NumericMap('', '1979-03-17', '2021-01-07')
 
       map.MO = 5
@@ -1232,7 +1287,7 @@ describe('AdvancedTecniques', () => {
         },
       ])
     })
-    test('map 3', () => {
+    test.skip('map 3', () => {
       const map = new NumericMap('', '1979-03-17', '2021-01-07')
 
       map.MO = 9
@@ -1283,7 +1338,7 @@ describe('AdvancedTecniques', () => {
         },
       ])
     })
-    test('map 4', () => {
+    test.skip('map 4', () => {
       const map = new NumericMap('', '1979-03-17', '2021-01-07')
 
       map.MO = 6
@@ -1334,7 +1389,7 @@ describe('AdvancedTecniques', () => {
         },
       ])
     })
-    test('map 5', () => {
+    test.skip('map 5', () => {
       const map = new NumericMap('', '1979-03-17', '2021-01-07')
 
       map.MO = 6

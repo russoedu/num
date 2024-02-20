@@ -9,6 +9,7 @@ import { Tec17Renascimento } from '../componentsTecniques/Tec17Renascimento'
 import { Tec18MomentoDecisivoForte } from '../componentsTecniques/Tec18MomentoDecisivoForte'
 import { Tec19AusenciaDeVibracaoPositiva } from '../componentsTecniques/Tec19AusenciaDeVibracaoPositiva'
 import { Tec1Piramide } from '../componentsTecniques/Tec1Piramide'
+import { Tec20OposicoesFortes } from '../componentsTecniques/Tec20OposicoesFortes'
 import { Tec2Ausencias } from '../componentsTecniques/Tec2Ausencias'
 import { Tec4Multiplicidades } from '../componentsTecniques/Tec4Multiplicidades'
 import { Tec5PotenciaisComoReagem } from '../componentsTecniques/Tec5PotenciaisComoReagem'
@@ -44,6 +45,7 @@ export function AdvancedTecniquesResults ({ result }: { result: AdvancedTecnique
       <Tec17Renascimento result={result}/>
       <Tec18MomentoDecisivoForte result={result}/>
       <Tec19AusenciaDeVibracaoPositiva result={result}/>
+      <Tec20OposicoesFortes result={result}/>
     </Paper>
   )
 }
