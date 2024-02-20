@@ -436,6 +436,210 @@ describe('NumericMap', () => {
         },
       }))
     })
+    test('map 3', () => {
+      const nm = new NumericMap('ELIO PIERPAOLO RUSSO', '1946-07-10', '2024-01-02')
+      
+      expect(nm).toEqual(expect.objectContaining({
+        name:     'ELIO PIERPAOLO RUSSO',
+        birthday: {
+          year:  1946,
+          month: 7,
+          day:   10,
+        },
+        today: {
+          year:  2024,
+          month: 1,
+          day:   2,
+        },
+        MO:         2,
+        CD:         1,
+        EU:         4,
+        EX:         6,
+        D1:         6,
+        D2:         5,
+        DM:         1,
+        C1:           7,
+        C2:           1,
+        C3:           2,
+        R1:           8,
+        R2:           3,
+        R3:           11,
+        R4:           9,
+        age:          77,
+        personalYear: {
+          vn:    6,
+          start: new Date('2023-07-09T23:00:00.000Z'),
+          end:   new Date('2024-07-09T23:00:00.000Z'),
+        },
+        tec0Cycles: {
+          C1End: 28,
+          C2End: 56,
+          C3End: 154,
+          R1End: 35,
+          R2End: 45,
+          R3End: 55,
+          age: 77,
+          cycle: 3,
+          cycles: [
+            {
+              name: "Fixas",
+              vns: [
+                {
+                  position: "MO",
+                  vn: 2,
+                  start: 0,
+                  end: Infinity,
+                },
+                {
+                  position: "EU",
+                  vn: 4,
+                  start: 0,
+                  end: Infinity,
+                },
+                {
+                  position: "CD",
+                  vn: 1,
+                  start: 0,
+                  end: Infinity,
+                },
+                {
+                  position: "EX",
+                  vn: 6,
+                  start: 0,
+                  end: Infinity,
+                },
+                {
+                  position: "DM",
+                  vn: 1,
+                  start: 0,
+                  end: Infinity,
+                },
+              ],
+            },
+            {
+              name: "1º Ciclo (0/28 anos)",
+              vns: [
+                {
+                  position: "D1",
+                  vn: 6,
+                  start: 0,
+                  end: 28,
+                },
+                {
+                  position: "C1",
+                  vn: 7,
+                  start: 0,
+                  end: 28,
+                },
+                {
+                  position: "R1",
+                  vn: 8,
+                  start: 0,
+                  end: 28,
+                },
+              ],
+            },
+            {
+              name: "2º Ciclo (28/56 anos)",
+              vns: [
+                {
+                  position: "D2",
+                  vn: 5,
+                  start: 28,
+                  end: 56,
+                },
+                {
+                  position: "C2",
+                  vn: 1,
+                  start: 28,
+                  end: 56,
+                },
+                {
+                  position: "R1",
+                  vn: 8,
+                  start: 28,
+                  end: 35,
+                },
+                {
+                  position: "R2",
+                  vn: 3,
+                  start: 35,
+                  end: 45,
+                },
+                {
+                  position: "R3",
+                  vn: 11,
+                  start: 45,
+                  end: 55,
+                },
+                {
+                  position: "R4",
+                  vn: 9,
+                  start: 55,
+                  end: 56,
+                },
+              ],
+            },
+            {
+              name: "3º Ciclo (+ 56 anos)",
+              vns: [
+                {
+                  position: "C3",
+                  vn: 2,
+                  start: 56,
+                  end: Infinity,
+                },
+                {
+                  position: "R4",
+                  vn: 9,
+                  start: 56,
+                  end: Infinity,
+                },
+              ],
+            },
+          ],
+        },
+      }))
+      expect(nm.challenges).toEqual({
+        D1: {
+          vn:    6,
+          start: 0,
+          end:   28,
+        },
+        D2: {
+          vn:    5,
+          start: 28,
+          end:   56,
+        },
+        DM: {
+          vn:    1,
+          start: 0,
+          end:   Infinity,
+        },
+      })
+      expect(nm.achievements).toEqual({
+        R1: {
+          vn:    8,
+          start: 0,
+          end:   35,
+        },
+        R2: {
+          vn:    3,
+          start: 35,
+          end:   45,
+        },
+        R3: {
+          vn:    11,
+          start: 45,
+          end:   55,
+        },
+        R4: {
+          vn:    9,
+          start: 55,
+          end:   Infinity,
+        },
+      },)
+    })
   })
   describe('personal year', () => {
     test('today is birthday', () => {

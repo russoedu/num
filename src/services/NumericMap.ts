@@ -441,12 +441,16 @@ export class NumericMap {
    */
   #lettersInName () {
     const vowelsInName = this.name
-      .split('')
-      .filter(char => vowels.includes(char)) as Vowels[]
+      .trim()
+      .split(' ')
+      .map(name => name.split(''))
+      .map(name => name.filter(char => vowels.includes(char))) as Vowels[][]
 
     const consonantsInName = this.name
-      .split('')
-      .filter(char => consonants.includes(char)) as Consonants[]
+      .trim()
+      .split(' ')
+      .map(name => name.split(''))
+      .map(name => name.filter(char => consonants.includes(char))) as Consonants[][]
 
     return {
       vowelsInName,
@@ -459,17 +463,23 @@ export class NumericMap {
    * @param lettersInName - The list of vowels or consonantes in the name
    * @returns The sum of the letters
    */
-  #countName (lettersInName: Consonants[]|Vowels[]) {
-    let nameSum = 0
+  #countName (lettersInName: Consonants[][]|Vowels[][]) {
+    const sumArr: number[] = []
 
-    for (let j = 0; j < lettersInName.length; j++) {
-      const ch = lettersInName[j]
-      const chValue = letterValues[ch]
+    for (let ni = 0; ni < lettersInName.length; ni++) {
+      const name = lettersInName[ni]
+      let nameSum = 0
+      for (let li = 0; li < name.length; li++) {
+        const letter = name[li]
+        const chValue = letterValues[letter]
 
-      nameSum += chValue
+        nameSum += chValue
+      }
+      sumArr.push(_number.sum(nameSum, false))
     }
 
-    return _number.sum(nameSum, true)
+    const sum = sumArr.reduce((c, p) => c + p, 0)
+    return _number.sum(sum, true)
   }
 
   /**
