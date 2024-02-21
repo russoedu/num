@@ -9,7 +9,7 @@ import { Spacer } from '../components/Spacer'
 
 export function Tec11DonosPraticantes ({ result }: { result: AdvancedTecniques }) {
   const tec11DonosPraticantes = result.tec11DonosPraticantes
-  
+
   return (
     <>
       <AdvancedTitle>

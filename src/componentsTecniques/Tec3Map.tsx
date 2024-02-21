@@ -14,7 +14,7 @@ export function Tec3Map ({ result }: { result: NumericMap }) {
     <>
       <Grid container spacing={1} columns={{ xs: 2, sm: 4, md: 8 }}>
         <Grid xs={8}>
-          <Box  sx={{ paddingBottom: 1 }}>
+          <Box sx={{ paddingBottom: 1 }}>
             <Typography variant='h5' display='inline' color={purple} sx={{ fontWeight: 'bold', paddingRight: 1 }}>
               {result.age}
             </Typography>

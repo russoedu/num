@@ -8,7 +8,7 @@ import { Spacer } from '../components/Spacer'
 
 export function Tec15RealizacaoEspontanea ({ result }: { result: AdvancedTecniques }) {
   const tec15RealizacaoEspontanea = result.tec15RealizacaoEspontanea
-  
+
   return (
     <>
       <AdvancedTitle>

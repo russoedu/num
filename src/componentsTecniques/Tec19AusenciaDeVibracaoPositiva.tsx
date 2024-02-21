@@ -8,7 +8,7 @@ import { Spacer } from '../components/Spacer'
 
 export function Tec19AusenciaDeVibracaoPositiva ({ result }: { result: AdvancedTecniques }) {
   const tec19AusenciaDeVibracaoPositiva = result.tec19AusenciaDeVibracaoPositiva
-  
+
   return (
     <>
       <AdvancedTitle>
@@ -21,7 +21,7 @@ export function Tec19AusenciaDeVibracaoPositiva ({ result }: { result: AdvancedT
               tec19AusenciaDeVibracaoPositiva.map((avp, i) => (
                 <AdvancedGrid i={i} key={i}>
                   <Typography variant='h6'>
-                    AVP do 
+                    AVP do
                   </Typography>
                   &nbsp;
                   <Typography variant='h5' className='vn'>
@@ -29,7 +29,7 @@ export function Tec19AusenciaDeVibracaoPositiva ({ result }: { result: AdvancedT
                   </Typography>
                   &nbsp;
                   <Typography variant='h6'>
-                    na 
+                    na
                   </Typography>
                   &nbsp;
                   <Typography variant='h5' className='vn'>

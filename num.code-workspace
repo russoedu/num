@@ -4,7 +4,7 @@
       "node_modules": true,
       "public": true,
       "dist": true,
-      ".github": true,
+      // ".github": true,
       
       ".eslintrc.cjs": true,
       ".gitignore": true,

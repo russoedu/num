@@ -9,24 +9,29 @@ import { CycleType, StrongOpositionT } from '../helpers/types'
 
 export function Tec20OposicoesFortes ({ result }: { result: AdvancedTecniques }) {
   const tec20OposicoesFortes = result.tec20OposicoesFortes
-  
-  function getOpositionString(oposition: StrongOpositionT) {
-    let result = ''
+
+  function getOpositionType (oposition: StrongOpositionT) {
     if (oposition.type === CycleType.FIXED) {
-      result = 'fixa'
+      return 'fixa'
     } else {
-      result = 'no ciclo, '
+      return 'no ciclo'
+    }
+  }
+
+  function getOpositionAge (oposition: StrongOpositionT) {
+    if (oposition.type === CycleType.FIXED) {
+      return ''
+    } else {
       if (oposition.start === 0) {
-        result += `do nascimento até os ${oposition.end} anos`
+        return `até os ${oposition.end} anos`
       } else if (oposition.end === Infinity) {
-        result += `a partir dos ${oposition.start} anos`
+        return `a partir dos ${oposition.start} anos`
       } else {
-        result += `dos ${oposition.start} até os ${oposition.end} anos`
+        return `dos ${oposition.start} até os ${oposition.end} anos`
       }
     }
-
-    return result
   }
+
   return (
     <>
       <AdvancedTitle>
@@ -38,19 +43,23 @@ export function Tec20OposicoesFortes ({ result }: { result: AdvancedTecniques })
             ? (
               tec20OposicoesFortes.map((p, i) => (
                 <AdvancedGrid i={i} key={i}>
-                  <Grid2 xs={2} sm={1} md={1}>
-                    <Typography variant='h5' className='vn'>
+                  <Grid2 xs={2} sm={2} md={2}>
+                    <Typography variant='h5' className='vn' display={'contents'}>
                       {p.pair[0]}
                     </Typography>
-                  </Grid2>
-                  <Grid2 xs={2} sm={1} md={1}>
-                    <Typography variant='h5' className='vn'>
+                    &nbsp;X&nbsp;
+                    <Typography variant='h5' className='vn' display={'contents'}>
                       {p.pair[1]}
                     </Typography>
                   </Grid2>
-                  <Grid2 xs={8} sm={10} md={10}>
+                  <Grid2 xs={3} sm={2} md={2}>
+                    <Typography variant='h5' fontWeight='bold'>
+                      { getOpositionType(p) }
+                    </Typography>
+                  </Grid2>
+                  <Grid2 xs={7} sm={8} md={8}>
                     <Typography variant='h6'>
-                  { getOpositionString(p) }
+                      { getOpositionAge(p) }
                     </Typography>
                   </Grid2>
                 </AdvancedGrid>

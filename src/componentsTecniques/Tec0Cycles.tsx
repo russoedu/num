@@ -13,10 +13,10 @@ export function Tec0Cycles ({ result }: { result: NumericMap }) {
   const initialCyclesWidth = `${cycles.C1End * 100 / cycles.C3End}%`
   const finalCycleWidth = `${(cycles.C3End - cycles.C2End) * 100 / cycles.C3End}%`
 
-  const firstRealWidth = `${cycles.R1End * 100 / cycles.C3End }%`
+  const firstRealWidth = `${cycles.R1End * 100 / cycles.C3End}%`
   const realWidth = `${10 * 100 / cycles.C3End}%`
   const finalRealWidth = `${(cycles.C3End - cycles.R3End) * 100 / cycles.C3End}%`
-  
+
   const agePosition = `${(cycles.age * 100) / cycles.C3End}%`
 
   function overlay (cycle: number): CSSProperties {
@@ -24,7 +24,7 @@ export function Tec0Cycles ({ result }: { result: NumericMap }) {
       ? { backgroundColor: '#000', mixBlendMode: 'overlay' }
       : { backgroundColor: 'transparent' }
   }
-  
+
   return (
     <>
       <div className='cycleRealsContainer'>

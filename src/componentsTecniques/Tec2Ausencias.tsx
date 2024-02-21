@@ -17,7 +17,8 @@ export function Tec2Ausencias ({ result }: { result: AdvancedTecniques }) {
       </AdvancedTitle>
       <Grid2 container className='tec-content'>
         <AdvancedGrid i={0}>
-          <Typography variant='h5' dangerouslySetInnerHTML={{ __html:
+          <Typography variant='h5' dangerouslySetInnerHTML={{
+            __html:
                tec2Ausencia.length > 0
                  ? _array.join(
                    tec2Ausencia,

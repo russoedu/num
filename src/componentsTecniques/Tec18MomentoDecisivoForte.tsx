@@ -8,7 +8,7 @@ import { Spacer } from '../components/Spacer'
 
 export function Tec18MomentoDecisivoForte ({ result }: { result: AdvancedTecniques }) {
   const tec18MomentoDecisivoForte = result.tec18MomentoDecisivoForte
-  
+
   return (
     <>
       <AdvancedTitle>
