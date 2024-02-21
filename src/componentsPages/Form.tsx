@@ -62,7 +62,7 @@ export function Form ({ name, birthday, today, calculate }: FormInput) {
     const isValid = formName !== '' && formToday !== '' &&
       _date.isValid(formBirthday) && _date.isValid(formToday)
 
-    if(isValid) {
+    if (isValid) {
       calculate()
       setHasData(true)
     } else {
@@ -93,7 +93,7 @@ export function Form ({ name, birthday, today, calculate }: FormInput) {
               </div>
             </InputAdornment>,
           }}
-          
+
         />
       </Grid>
       <Grid xs={6}>
@@ -115,7 +115,7 @@ export function Form ({ name, birthday, today, calculate }: FormInput) {
               </div>
             </InputAdornment>,
           }}
-          
+
         />
       </Grid>
 

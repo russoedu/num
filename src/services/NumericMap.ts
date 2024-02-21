@@ -23,18 +23,17 @@ export class NumericMap {
     this.#daySum = _number.sum(this.birthday.day)
     this.#monthSum = _number.sum(this.birthday.month)
     this.#yearSum = _number.sum(this.birthday.year)
-    
 
     this.MO = this.#countName(vowelsInName)
     this.EU = this.#countName(consonantsInName)
     this.EX = _number.sum(this.MO + this.EU, true)
 
     this.CD = _number.sum(this.#daySum + this.#monthSum + this.#yearSum, true)
-    
+
     this.C1 = _number.sum(this.#monthSum)
     this.C2 = _number.sum(this.#daySum)
     this.C3 = _number.sum(this.#yearSum)
-    
+
     this.D1 = _number.sum(Math.abs(this.#daySum - this.#monthSum))
     this.D2 = _number.sum(Math.abs(this.#yearSum - this.#monthSum))
     this.DM = _number.sum(Math.abs(this.D1 - this.D2))
@@ -44,7 +43,7 @@ export class NumericMap {
     this.R3 = _number.sum(this.R1 + this.R2, true)
     this.R4 = _number.sum(this.#monthSum + this.#yearSum, true)
 
-    this.personalYear = this.#interestYear()
+    this.personalYear = this.#personalYear()
     this.tec0Cycles = this.#tec0Cycles()
   }
 
@@ -52,7 +51,7 @@ export class NumericMap {
    * List of numbers in the map
    */
   get vns () {
-    return  [
+    return [
       this.MO,
       this.EU,
       this.CD,
@@ -74,7 +73,7 @@ export class NumericMap {
    * List of VNs and numbers in the map
    */
   get vnsPosition () {
-    return  [
+    return [
       { position: 'MO', vn: this.MO },
       { position: 'EU', vn: this.EU },
       { position: 'CD', vn: this.CD },
@@ -96,7 +95,7 @@ export class NumericMap {
    * List of fixed numbers in the map
    */
   get fixedVNs () {
-    return  [
+    return [
       this.MO,
       this.EU,
       this.CD,
@@ -109,7 +108,7 @@ export class NumericMap {
    * List of fixed numbers in the map excluding EX
    */
   get fixedMainVNs () {
-    return  [
+    return [
       this.MO,
       this.EU,
       this.CD,
@@ -121,7 +120,7 @@ export class NumericMap {
    * List of fixed numbers and VNs in the map
    */
   get fixedVNsPosition () {
-    return  [
+    return [
       { position: 'MO', vn: this.MO, start: 0, end: Infinity },
       { position: 'EU', vn: this.EU, start: 0, end: Infinity },
       { position: 'CD', vn: this.CD, start: 0, end: Infinity },
@@ -134,7 +133,7 @@ export class NumericMap {
    * List of fixed numbers and VNs in the map excluding EX
    */
   get fixedMainVNsPosition () {
-    return  [
+    return [
       { position: 'MO', vn: this.MO, start: 0, end: Infinity },
       { position: 'EU', vn: this.EU, start: 0, end: Infinity },
       { position: 'CD', vn: this.CD, start: 0, end: Infinity },
@@ -149,7 +148,7 @@ export class NumericMap {
     const start = 0
     const end = 28
 
-    const list: VnPositionCycleT[] =  [
+    const list: VnPositionCycleT[] = [
       ...this.fixedVNsPosition,
       { position: 'D1', vn: this.D1, start, end },
       { position: 'C1', vn: this.C1, start, end },
@@ -166,7 +165,7 @@ export class NumericMap {
     const start = 0
     const end = 28
 
-    const list: VnPositionCycleT[] =  [
+    const list: VnPositionCycleT[] = [
       { position: 'D1', vn: this.D1, start, end },
       { position: 'C1', vn: this.C1, start, end },
       ...this.achievementCycleList(start, end),
@@ -189,7 +188,7 @@ export class NumericMap {
     const start = 28
     const end = 56
 
-    const list: VnPositionCycleT[] =  [
+    const list: VnPositionCycleT[] = [
       ...this.fixedVNsPosition,
       { position: 'D2', vn: this.D2, start, end },
       { position: 'C2', vn: this.C2, start, end },
@@ -206,7 +205,7 @@ export class NumericMap {
     const start = 28
     const end = 56
 
-    const list: VnPositionCycleT[] =  [
+    const list: VnPositionCycleT[] = [
       { position: 'D2', vn: this.D2, start, end },
       { position: 'C2', vn: this.C2, start, end },
       ...this.achievementCycleList(start, end),
@@ -229,12 +228,12 @@ export class NumericMap {
     const start = 56
     const end = Infinity
 
-    const list: VnPositionCycleT[] =  [
+    const list: VnPositionCycleT[] = [
       ...this.fixedVNsPosition,
       { position: 'C3', vn: this.C3, start, end },
       ...this.achievementCycleList(start, end),
     ]
-    
+
     return list
   }
 
@@ -245,11 +244,11 @@ export class NumericMap {
     const start = 56
     const end = Infinity
 
-    const list: VnPositionCycleT[] =  [
+    const list: VnPositionCycleT[] = [
       { position: 'C3', vn: this.C3, start, end },
       ...this.achievementCycleList(start, end),
     ]
-    
+
     return list
   }
 
@@ -324,7 +323,7 @@ export class NumericMap {
     }
 
     if ((this.achievements.R4.start >= cycleStart && this.achievements.R4.start < cycleEnd) ||
-    (this.achievements.R4.end > cycleStart && this.achievements.R4.start <= cycleEnd)){
+    (this.achievements.R4.end > cycleStart && this.achievements.R4.start <= cycleEnd)) {
       list.push({
         position: 'R4',
         vn:       this.achievements.R4.vn,
@@ -351,7 +350,7 @@ export class NumericMap {
         cycle:     '2º Ciclo - 28/56 anos',
         index:     2,
         vnNumbers: this.secondCycleVNsPosition,
-      } 
+      }
     } else {
       return {
         cycle:     '3º Ciclo - + 56 anos',
@@ -367,7 +366,7 @@ export class NumericMap {
   get achievementsArray () {
     return Object.entries(this.achievements).map(achievement => achievement[1])
   }
-  
+
   /**
    * List of unique numbers in the map
    */
@@ -424,7 +423,7 @@ export class NumericMap {
     const num = typeof number === 'number' ? [number] : number
     const matchingPositions: PositionT[] = this.vnsPosition
       .filter(vn => num.includes(vn.vn))
-      .map(vn =>vn.position)
+      .map(vn => vn.position)
 
     const singleDigitCount: { positions: PositionT[], count: number } = { positions: [], count: 0 }
 
@@ -479,6 +478,7 @@ export class NumericMap {
     }
 
     const sum = sumArr.reduce((c, p) => c + p, 0)
+
     return _number.sum(sum, true)
   }
 
@@ -548,30 +548,30 @@ export class NumericMap {
 
     let years = (this.today.year - this.birthday.year)
 
-    if (month < this.birthday.month || 
-        month == this.birthday.month && this.today.day < this.birthday.day) {
+    if (month < this.birthday.month ||
+        (month === this.birthday.month && this.today.day < this.birthday.day)) {
       years--
     }
 
     return years
   }
 
-  #interestYear () {
-    const day       = this.birthday.day
-    const month     = this.birthday.month - 1
-    const year      = this.today.year
-    
-    const birthdayThisYear = new Date(year, month, day)
-    const today = new Date(year, this.today.month - 1, this.today.day)
-    
-    const interestYear = today >= birthdayThisYear ? year : year - 1
+  #personalYear () {
+    const day = this.birthday.day
+    const month = this.birthday.month - 1
+    const year = this.today.year
 
-    const start = new Date(interestYear, month, day)
-    const end = new Date(interestYear + 1, month, day)
+    const birthdayThisYear = new Date(year, month, day)
+    const today = new Date(year, this.today.month - 1, this.today.day, 0, 0, 0, 0)
+
+    const personalYear = today >= birthdayThisYear ? year : year - 1
+
+    const start = new Date(personalYear, month, day)
+    const end = new Date(personalYear + 1, month, day)
     const vn = _number.sum(
       this.#daySum +
-      this.#monthSum + 
-      _number.sum(interestYear),
+      this.#monthSum +
+      _number.sum(personalYear),
       true)
 
     return {
@@ -625,12 +625,12 @@ export class NumericMap {
     year: number
   }
 
-  today:  {
+  today: {
     day: number,
     month: number,
     year: number
   }
-  
+
   /**
    * MOTIVAÇÃO – ALMA /PERSONALIDADE – QUEM É
    */
@@ -647,7 +647,7 @@ export class NumericMap {
    * EXPRESSÃO – O QUE APARENTA SER
    */
   EX: VN = 0
-  
+
   /**
    * PRIMEIRO DESAFIO
    */
@@ -672,7 +672,7 @@ export class NumericMap {
    * TERCEIRO CICLO
    */
   C3: SingleDigitVN = 0
-  
+
   /**
    * PRIMEIRA REAL
    */

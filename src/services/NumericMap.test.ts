@@ -37,7 +37,7 @@ describe('NumericMap', () => {
     test('map 1', () => {
       const nm = new NumericMap('EDUARDÓ RUSSO', '1979-03-17', '2024-01-02')
 
-      expect(nm).toEqual(expect.objectContaining({
+      expect(nm).toEqual({
         name:     'EDUARDO RUSSO',
         birthday: {
           year:  1979,
@@ -49,55 +49,16 @@ describe('NumericMap', () => {
           month: 1,
           day:   2,
         },
-        MO:         6,
-        CD:         1,
-        EU:         1,
-        EX:         7,
-        D1:         5,
-        challenges: {
-          D1: {
-            vn:    5,
-            start: 0,
-            end:   28,
-          },
-          D2: {
-            vn:    5,
-            start: 28,
-            end:   56,
-          },
-          DM: {
-            vn:    0,
-            start: 0,
-            end:   Infinity,
-          },
-        },
+        MO:           6,
+        CD:           1,
+        EU:           1,
+        EX:           7,
+        D1:           5,
         D2:           5,
         DM:           0,
         C1:           3,
         C2:           8,
         C3:           8,
-        achievements: {
-          R1: {
-            vn:    11,
-            start: 0,
-            end:   35,
-          },
-          R2: {
-            vn:    7,
-            start: 35,
-            end:   45,
-          },
-          R3: {
-            vn:    9,
-            start: 45,
-            end:   55,
-          },
-          R4: {
-            vn:    11,
-            start: 55,
-            end:   Infinity,
-          },
-        },
         R1:           11,
         R2:           7,
         R3:           9,
@@ -236,12 +197,51 @@ describe('NumericMap', () => {
             },
           ],
         },
-      }))
+      })
+      expect(nm.challenges).toEqual({
+        D1: {
+          vn:    5,
+          start: 0,
+          end:   28,
+        },
+        D2: {
+          vn:    5,
+          start: 28,
+          end:   56,
+        },
+        DM: {
+          vn:    0,
+          start: 0,
+          end:   Infinity,
+        },
+      })
+      expect(nm.achievements).toEqual({
+        R1: {
+          vn:    11,
+          start: 0,
+          end:   35,
+        },
+        R2: {
+          vn:    7,
+          start: 35,
+          end:   45,
+        },
+        R3: {
+          vn:    9,
+          start: 45,
+          end:   55,
+        },
+        R4: {
+          vn:    11,
+          start: 55,
+          end:   Infinity,
+        },
+      })
     })
     test('map 2', () => {
       const nm = new NumericMap('DINAURA MOZZI', '1950-12-26', '2024-01-02')
-      
-      expect(nm).toEqual(expect.objectContaining({
+
+      expect(nm).toEqual({
         name:     'DINAURA MOZZI',
         birthday: {
           year:  1950,
@@ -253,55 +253,16 @@ describe('NumericMap', () => {
           month: 1,
           day:   2,
         },
-        MO:         11,
-        CD:         8,
-        EU:         11,
-        EX:         22,
-        D1:         5,
-        challenges: {
-          D1: {
-            vn:    5,
-            start: 0,
-            end:   28,
-          },
-          D2: {
-            vn:    3,
-            start: 28,
-            end:   56,
-          },
-          DM: {
-            vn:    2,
-            start: 0,
-            end:   Infinity,
-          },
-        },
+        MO:           11,
+        CD:           8,
+        EU:           11,
+        EX:           22,
+        D1:           5,
         D2:           3,
         DM:           2,
         C1:           3,
         C2:           8,
         C3:           6,
-        achievements: {
-          R1: {
-            vn:    11,
-            start: 0,
-            end:   28,
-          },
-          R2: {
-            vn:    5,
-            start: 28,
-            end:   38,
-          },
-          R3: {
-            vn:    7,
-            start: 38,
-            end:   48,
-          },
-          R4: {
-            vn:    9,
-            start: 48,
-            end:   Infinity,
-          },
-        },
         R1:           11,
         R2:           5,
         R3:           7,
@@ -434,13 +395,52 @@ describe('NumericMap', () => {
             },
           ],
         },
-      }))
+      })
+      expect(nm.challenges).toEqual({
+        D1: {
+          vn:    5,
+          start: 0,
+          end:   28,
+        },
+        D2: {
+          vn:    3,
+          start: 28,
+          end:   56,
+        },
+        DM: {
+          vn:    2,
+          start: 0,
+          end:   Infinity,
+        },
+      })
+      expect(nm.achievements).toEqual({
+        R1: {
+          vn:    11,
+          start: 0,
+          end:   28,
+        },
+        R2: {
+          vn:    5,
+          start: 28,
+          end:   38,
+        },
+        R3: {
+          vn:    7,
+          start: 38,
+          end:   48,
+        },
+        R4: {
+          vn:    9,
+          start: 48,
+          end:   Infinity,
+        },
+      })
     })
     test('map 3', () => {
-      const nm = new NumericMap('ELIO PIERPAOLO RUSSO', '1946-07-10', '2024-01-02')
-      
+      const nm = new NumericMap('EILO PILOERPAO OSSUR', '1946-07-10', '2024-01-02')
+
       expect(nm).toEqual(expect.objectContaining({
-        name:     'ELIO PIERPAOLO RUSSO',
+        name:     'EILO PILOERPAO OSSUR',
         birthday: {
           year:  1946,
           month: 7,
@@ -451,13 +451,13 @@ describe('NumericMap', () => {
           month: 1,
           day:   2,
         },
-        MO:         2,
-        CD:         1,
-        EU:         4,
-        EX:         6,
-        D1:         6,
-        D2:         5,
-        DM:         1,
+        MO:           2,
+        CD:           1,
+        EU:           4,
+        EX:           6,
+        D1:           6,
+        D2:           5,
+        DM:           1,
         C1:           7,
         C2:           1,
         C3:           2,
@@ -468,132 +468,132 @@ describe('NumericMap', () => {
         age:          77,
         personalYear: {
           vn:    6,
-          start: new Date('2023-07-10T00:00:00.000Z'),
-          end:   new Date('2024-07-10T00:00:00.000Z'),
+          start: new Date(2023, 6, 10),
+          end:   new Date(2024, 6, 10),
         },
         tec0Cycles: {
-          C1End: 28,
-          C2End: 56,
-          C3End: 154,
-          R1End: 35,
-          R2End: 45,
-          R3End: 55,
-          age: 77,
-          cycle: 3,
+          C1End:  28,
+          C2End:  56,
+          C3End:  154,
+          R1End:  35,
+          R2End:  45,
+          R3End:  55,
+          age:    77,
+          cycle:  3,
           cycles: [
             {
-              name: "Fixas",
-              vns: [
+              name: 'Fixas',
+              vns:  [
                 {
-                  position: "MO",
-                  vn: 2,
-                  start: 0,
-                  end: Infinity,
+                  position: 'MO',
+                  vn:       2,
+                  start:    0,
+                  end:      Infinity,
                 },
                 {
-                  position: "EU",
-                  vn: 4,
-                  start: 0,
-                  end: Infinity,
+                  position: 'EU',
+                  vn:       4,
+                  start:    0,
+                  end:      Infinity,
                 },
                 {
-                  position: "CD",
-                  vn: 1,
-                  start: 0,
-                  end: Infinity,
+                  position: 'CD',
+                  vn:       1,
+                  start:    0,
+                  end:      Infinity,
                 },
                 {
-                  position: "EX",
-                  vn: 6,
-                  start: 0,
-                  end: Infinity,
+                  position: 'EX',
+                  vn:       6,
+                  start:    0,
+                  end:      Infinity,
                 },
                 {
-                  position: "DM",
-                  vn: 1,
-                  start: 0,
-                  end: Infinity,
-                },
-              ],
-            },
-            {
-              name: "1º Ciclo (0/28 anos)",
-              vns: [
-                {
-                  position: "D1",
-                  vn: 6,
-                  start: 0,
-                  end: 28,
-                },
-                {
-                  position: "C1",
-                  vn: 7,
-                  start: 0,
-                  end: 28,
-                },
-                {
-                  position: "R1",
-                  vn: 8,
-                  start: 0,
-                  end: 28,
+                  position: 'DM',
+                  vn:       1,
+                  start:    0,
+                  end:      Infinity,
                 },
               ],
             },
             {
-              name: "2º Ciclo (28/56 anos)",
-              vns: [
+              name: '1º Ciclo (0/28 anos)',
+              vns:  [
                 {
-                  position: "D2",
-                  vn: 5,
-                  start: 28,
-                  end: 56,
+                  position: 'D1',
+                  vn:       6,
+                  start:    0,
+                  end:      28,
                 },
                 {
-                  position: "C2",
-                  vn: 1,
-                  start: 28,
-                  end: 56,
+                  position: 'C1',
+                  vn:       7,
+                  start:    0,
+                  end:      28,
                 },
                 {
-                  position: "R1",
-                  vn: 8,
-                  start: 28,
-                  end: 35,
-                },
-                {
-                  position: "R2",
-                  vn: 3,
-                  start: 35,
-                  end: 45,
-                },
-                {
-                  position: "R3",
-                  vn: 11,
-                  start: 45,
-                  end: 55,
-                },
-                {
-                  position: "R4",
-                  vn: 9,
-                  start: 55,
-                  end: 56,
+                  position: 'R1',
+                  vn:       8,
+                  start:    0,
+                  end:      28,
                 },
               ],
             },
             {
-              name: "3º Ciclo (+ 56 anos)",
-              vns: [
+              name: '2º Ciclo (28/56 anos)',
+              vns:  [
                 {
-                  position: "C3",
-                  vn: 2,
-                  start: 56,
-                  end: Infinity,
+                  position: 'D2',
+                  vn:       5,
+                  start:    28,
+                  end:      56,
                 },
                 {
-                  position: "R4",
-                  vn: 9,
-                  start: 56,
-                  end: Infinity,
+                  position: 'C2',
+                  vn:       1,
+                  start:    28,
+                  end:      56,
+                },
+                {
+                  position: 'R1',
+                  vn:       8,
+                  start:    28,
+                  end:      35,
+                },
+                {
+                  position: 'R2',
+                  vn:       3,
+                  start:    35,
+                  end:      45,
+                },
+                {
+                  position: 'R3',
+                  vn:       11,
+                  start:    45,
+                  end:      55,
+                },
+                {
+                  position: 'R4',
+                  vn:       9,
+                  start:    55,
+                  end:      56,
+                },
+              ],
+            },
+            {
+              name: '3º Ciclo (+ 56 anos)',
+              vns:  [
+                {
+                  position: 'C3',
+                  vn:       2,
+                  start:    56,
+                  end:      Infinity,
+                },
+                {
+                  position: 'R4',
+                  vn:       9,
+                  start:    56,
+                  end:      Infinity,
                 },
               ],
             },
@@ -638,7 +638,7 @@ describe('NumericMap', () => {
           start: 55,
           end:   Infinity,
         },
-      },)
+      })
     })
   })
   describe('personal year', () => {
@@ -681,7 +681,7 @@ describe('NumericMap', () => {
     })
     test('AP 4', () => {
       const nm = new NumericMap('NAME LAST', '1979-03-26', '2010-03-01')
-      
+
       expect(nm.personalYear.vn).toBe(4)
     })
     test('AP 22', () => {
@@ -706,9 +706,9 @@ describe('NumericMap', () => {
       expect(nm.vnCount(7)).toEqual({ positions: ['EX', 'R2'], count: 2 })
       expect(nm.vnCount(8)).toEqual({ positions: ['C2', 'C3'], count: 2 })
       expect(nm.vnCount(9)).toEqual({ positions: ['R3'], count: 1 })
-  
+
       nm = new NumericMap('DINAURA MOZZI', '1950-12-26', '2024-01-02')
-  
+
       expect(nm.vnCount(0)).toEqual({ positions: [], count: 0 })
       expect(nm.vnCount(1)).toEqual({ positions: [], count: 0 })
       expect(nm.vnCount(2)).toEqual({ positions: ['DM'], count: 1 })
@@ -727,9 +727,9 @@ describe('NumericMap', () => {
 
       expect(nm.vnCount([2, 11])).toEqual({ positions: ['R1', 'R4'], count: 2 })
       expect(nm.vnCount([4, 22])).toEqual({ positions: [], count: 0 })
-  
+
       nm = new NumericMap('DINAURA MOZZI', '1950-12-26', '2024-01-02')
-  
+
       expect(nm.vnCount([2, 11])).toEqual({ positions: ['MO', 'EU', 'DM', 'R1'], count: 4 })
       expect(nm.vnCount([4, 22])).toEqual({ positions: ['EX'], count: 1 })
     })

@@ -29,9 +29,10 @@ class ArrayHelper {
    */
   vnNotInArray (arrToFilter: SingleDigitVN[], filter: VN[]): SingleDigitVN[] {
     const singleDigitVnFilter = filter.map(f => _number.vnToSingleVn(f))
-    
+
     return arrToFilter.filter(item => singleDigitVnFilter.indexOf(item) === -1)
   }
+
   /**
    * Returns a new array with the values in the array that occurs more than once
    * @param arr - The array to be checked
@@ -43,7 +44,7 @@ class ArrayHelper {
   }
 
   /**
-   * Returns a new array with the FinalSingleDigitT in the array that occurs more than once. 2 also counts 11 and 4 also counts 22 
+   * Returns a new array with the FinalSingleDigitT in the array that occurs more than once. 2 also counts 11 and 4 also counts 22
    * @param arr - The array to be checked
    * @returns A new array with the list of duplicated values
    */
@@ -81,7 +82,7 @@ class ArrayHelper {
     const setB = new Set(b)
 
     const intersection = new Set([...setA].filter(x => setB.has(x)))
-    
+
     return Array.from(intersection)
   }
 }

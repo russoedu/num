@@ -37,7 +37,7 @@ export function Home () {
     } else {
       const map = new NumericMap(name, birthday, today)
       const advanced = new AdvancedTecniques(map)
-      
+
       setResult(map)
       setAdvancedResult(advanced)
       setHasResult(true)

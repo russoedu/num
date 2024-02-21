@@ -12,7 +12,7 @@ import './MapOrCycle.css'
  */
 export function MapOrCycle ({ result }: { result: NumericMap }) {
   const [values, setValue] = useState(MainView.MAP)
-  
+
   const handleChange = (_event: React.SyntheticEvent, newValue: MainView) => {
     setValue(newValue)
   }

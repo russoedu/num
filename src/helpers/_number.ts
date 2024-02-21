@@ -21,7 +21,7 @@ class Num {
    * @returns The sum of each number digit
    */
   sum (num: number, final: true): VN
-  
+
   /**
    * Sums the digits of the number until it is a single digit (1 - 9). If final is true, 11 and 22 are also possible
    * @param num - The number to be summed
@@ -29,22 +29,21 @@ class Num {
    * @returns The sum of each number digit
    */
   sum (num: number, final: boolean): VN|SingleDigitVN
-  
+
   sum (num: number, final = false) {
     let sum: any = 0
 
-    if (num > 9 && (final !== true || (num != 11 && num != 22))) {
+    if (num > 9 && (final !== true || (num !== 11 && num !== 22))) {
       while (num) {
         sum += num % 10
         num = Math.floor(num / 10)
       }
 
       sum = this.sum(sum, final)
-
     } else {
       sum = num
     }
-    
+
     return sum
   }
 
@@ -56,7 +55,7 @@ class Num {
    */
   match (n1: VN, n2: SingleDigitVN) {
     if (n2 === 0) return true
-    const result =  n1 === n2 ||
+    const result = n1 === n2 ||
     (n1 === 11 && n2 === 2) ||
     (n1 === 22 && n2 === 4)
 
@@ -71,7 +70,7 @@ class Num {
    * @returns True if the VNs are the same
    */
   matchFull (n1: VN, n2: VN) {
-    const result =  n1 === n2 ||
+    const result = n1 === n2 ||
     (n1 === 11 && n2 === 2) || (n1 === 2 && n2 === 11) ||
     (n1 === 22 && n2 === 4) || (n1 === 4 && n2 === 22)
 

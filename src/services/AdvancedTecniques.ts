@@ -146,11 +146,10 @@ export class AdvancedTecniques {
     const result = percentage[0].value - percentage[1].value > 10
       ? percentage[0].name
       : percentage[1].value - percentage[2].value > 0
-        ? `${ percentage[0].name } e ${ percentage[1].name }`
+        ? `${percentage[0].name} e ${percentage[1].name}`
         : percentage[2].value - percentage[3].value > 0
-          ? `${ percentage[0].name }, ${ percentage[1].name } e ${ percentage[2].name }`
-          : `${ percentage[0].name }, ${ percentage[1].name }, ${ percentage[2].name } e ${ percentage[2].name }`
-
+          ? `${percentage[0].name}, ${percentage[1].name} e ${percentage[2].name}`
+          : `${percentage[0].name}, ${percentage[1].name}, ${percentage[2].name} e ${percentage[2].name}`
 
     return {
       percentage,
@@ -177,8 +176,7 @@ export class AdvancedTecniques {
 
     const result = percentage[0].value - percentage[1].value > 10
       ? percentage[0].name
-      : `${ percentage[0].name } e ${ percentage[1].name }`
-
+      : `${percentage[0].name} e ${percentage[1].name}`
 
     return {
       percentage,
@@ -303,7 +301,6 @@ export class AdvancedTecniques {
         title: 'Bons ouvintes',
         more:  'Falam pouco, com objetividade e clareza',
       }
-
     } else if ([3, 5, 9].includes(ex)) {
       return {
         title: 'Bons falantes',
@@ -375,7 +372,6 @@ export class AdvancedTecniques {
     const unique = this.#map.uniqueVNs
     const hasZero = unique.includes(0)
 
-
     if (!unique.includes(2) && unique.includes(11)) {
       unique.push(2)
     }
@@ -390,7 +386,6 @@ export class AdvancedTecniques {
     for (const vn of unique) {
       normal.push(this.#ownerAndPractitionersSupport(vn))
     }
-
 
     if (hasZero) {
       const zeroAge: OwnersAndPractitionersDataT[] = []
@@ -607,9 +602,8 @@ export class AdvancedTecniques {
   #tec13PotenciaisViciosReciclador2aLeitura () {
     const percentage = this.#map.vnCount([1, 3, 4, 5, 7, 8, 9]).count * 7
 
-
     return percentage >= 80
-      ? `Conquistas diversas é potencial com ${ percentage }%`
+      ? `Conquistas diversas é potencial com ${percentage}%`
       : 'Conquistas diversas não é potencial'
   }
 
@@ -644,6 +638,7 @@ export class AdvancedTecniques {
 
     return data
   }
+
   /**
    * Purity interpretation
    * @returns Purity interpretation results
@@ -656,7 +651,6 @@ export class AdvancedTecniques {
     if (cd === mo) return cd
     if (cd === dm) return cd
     if (mo === dm) return mo
-    
 
     return false
   }
@@ -680,20 +674,20 @@ export class AdvancedTecniques {
       for (const achievement of this.#map.achievementsArray) {
         if (achievement.vn === vn) {
           const existing = result.find(r => r.position === position)
-  
+
           if (typeof existing !== 'undefined' && existing.end === achievement.start) {
             existing.end = achievement.end
           } else {
             result.push({
-              position: position,
-              start:    achievement.start,
-              end:      achievement.end,
+              position,
+              start: achievement.start,
+              end:   achievement.end,
             })
           }
         }
       }
     }
-    
+
     return result
   }
 
@@ -704,27 +698,27 @@ export class AdvancedTecniques {
   #tec16ConquistaEspontanea () {
     const result: ConquestsT[] = []
     const positions = ['D1', 'D2', 'DM'] as ['D1', 'D2', 'DM']
-    
+
     for (const position of positions) {
       const challenge = this.#map.challenges[position]
 
       for (const achievement of this.#map.achievementCycleList(challenge.start, challenge.end)) {
         if (_number.vnToSingleVn(achievement.vn) === challenge.vn) {
           const existing = result.find(r => r.position === position)
-  
+
           if (typeof existing !== 'undefined' && existing.end === achievement.start) {
             existing.end = achievement.end
           } else {
             result.push({
-              position: position,
-              start:    Math.max(achievement.start, challenge.start),
-              end:      Math.min(achievement.end, challenge.end),
+              position,
+              start: Math.max(achievement.start, challenge.start),
+              end:   Math.min(achievement.end, challenge.end),
             })
           }
         }
       }
     }
-    
+
     return result
   }
 
@@ -746,7 +740,7 @@ export class AdvancedTecniques {
         })
       }
     }
-    
+
     return result
   }
 
@@ -787,7 +781,7 @@ export class AdvancedTecniques {
   #tec19AusenciaDeVibracaoPositiva () {
     const allReceivedVns: VnPositionCycleT[] = this.#tec19AllReceivedVns
     const avp: MissingPositiveVibration[] = []
-      
+
     for (const c in this.#map.challenges) {
       const ch = this.#map.challenges[c as 'D1' | 'D2' | 'DM']
       for (const rec of allReceivedVns) {
@@ -800,7 +794,7 @@ export class AdvancedTecniques {
         }
       }
     }
-    
+
     return avp
   }
 
@@ -827,18 +821,18 @@ export class AdvancedTecniques {
 
     for (const oposition of strongOpositionsList) {
       const hasStrongOposition = _array.intersect(oposition.pair, mapVns).length === 2
-      
+
       if (hasStrongOposition) {
         /**
          * List of positions with the first number of the pair, with the fixed ones first and ordered by the cycle start
          */
         const num1List = this.#tec20PairNumList(oposition.pair[0])
-        
+
         /**
          * List of positions with the second number of the pair, with the fixed ones first and ordered by the cycle start
          */
         const num2List = this.#tec20PairNumList(oposition.pair[1])
-        
+
         let done1 = false
         let done2 = false
         for (const n1 of num1List) {
@@ -855,7 +849,11 @@ export class AdvancedTecniques {
               })
               done1 = true
               done2 = true
-            } else {
+            } else if (
+              // n1 started before
+              (n1.start <= n2.start && n1.end >= n2.start) ||
+              // n2 started before
+              (n2.start <= n1.start && n2.end >= n1.start)) {
               ofList.push({
                 pair:    oposition.pair,
                 message: oposition.message,
@@ -866,12 +864,13 @@ export class AdvancedTecniques {
             }
           }
         }
-        console.log(done1);
+        console.log(done1)
       }
     }
 
     return ofList
   }
+
   /* #region Support methods */
   /**
    * Calculates the multiplicity for the cycle
@@ -912,15 +911,18 @@ export class AdvancedTecniques {
       const positions = multiplicatedVNsPosition.map(m => m.position)
       const difCycles = (positions.includes('R1') && (positions.includes('R2') || positions.includes('R3') || positions.includes('R4'))) ||
       (positions.includes('R2') && (positions.includes('R3') || positions.includes('R4'))) ||
-      (positions.includes('R3') && positions.includes('R4')) ? 1 : 0
+      (positions.includes('R3') && positions.includes('R4'))
+        ? 1
+        : 0
       const count = multiplicatedVNsPosition.length - 2 - difCycles
-      
+
       if (count >= 0) {
         multiples.push({
           positions: multiplicatedVNsPosition.map(vnp => vnp.position),
           vn:        num,
           type:      MultiplicityType[count],
-        })}
+        })
+      }
     }
 
     return multiples
@@ -1009,12 +1011,12 @@ export class AdvancedTecniques {
    */
   get #tec19AllReceivedVns () {
     const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9] as [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    
+
     // List of VNs (11 and 22 are converted) in the map at a certain age
     const receivedVns: SingleDigitVnPositionCycleT[] = this.#map.allCyclesVNsPosition
       .map(arv => ({ ...arv, vn: _number.vnToSingleVn(arv.vn) }))
       .filter(received => !(['D1', 'D2', 'DM'].includes(received.position)))
-      
+
     // List of VNs that are not in the map, (11 and 22 are converted for this check)
     const neverReceivedVns: SingleDigitVnPositionCycleT[] = _array
       .vnNotInArray(numbers, receivedVns.map(rv => rv.vn))
@@ -1025,13 +1027,12 @@ export class AdvancedTecniques {
         end:      Infinity,
       }))
 
-
     // Push both arrays and sort by VN and start
     const allReceivedVns = [
       ...neverReceivedVns,
       ...receivedVns,
     ]
-      .sort((a, b) => a.vn === b.vn ? a.start - b.start : a.vn-b.vn)
+      .sort((a, b) => a.vn === b.vn ? a.start - b.start : a.vn - b.vn)
 
     // Removes all but the first entry of each VN
     for (let i = allReceivedVns.length - 1; i >= 0; i--) {
@@ -1043,7 +1044,7 @@ export class AdvancedTecniques {
         }
       }
     }
-    
+
     return allReceivedVns
   }
 
@@ -1073,18 +1074,18 @@ export class AdvancedTecniques {
     if (pairNumList[0].type === CycleType.FIXED) {
       pairNumList.splice(1, pairNumList.length - 1)
     } else {
-        for (let i = pairNumList.length - 1; i >= 1; i--) {
-          if (pairNumList[i].start <= pairNumList[i - 1].end) {
-            pairNumList[i - 1].end = Math.max(pairNumList[i].end, pairNumList[i - 1].end)
-            pairNumList.pop()
-          }
+      // Group the entries with overlapping ends and starts
+      for (let i = pairNumList.length - 1; i >= 1; i--) {
+        if (pairNumList[i].start <= pairNumList[i - 1].end) {
+          pairNumList[i - 1].end = Math.max(pairNumList[i].end, pairNumList[i - 1].end)
+          pairNumList.pop()
+        }
       }
     }
 
     return pairNumList
   }
   /* #endregion */
-
 
   /**
    * The numeric map
@@ -1097,7 +1098,7 @@ export class AdvancedTecniques {
   tec1Piramide: PyramidT[]
 
   /**
-   * TÉCNICA 2 – AUSÊNCIAS – AUS 
+   * TÉCNICA 2 – AUSÊNCIAS – AUS
    */
   tec2Ausencia: SingleDigitVN[]
   /**
@@ -1105,7 +1106,7 @@ export class AdvancedTecniques {
    */
 
   /**
-   * TÉCNICA 4 – DUPLICIDADES OU MAIS 
+   * TÉCNICA 4 – DUPLICIDADES OU MAIS
    */
   tec4Multiplicidades: MultiplicitesT
 
@@ -1144,7 +1145,7 @@ export class AdvancedTecniques {
    */
   tec10InterpretacaoDoPrimeiroCiclo: CycleInterpretationT[]
   /**
-   * TÉCNICA 11 – DONOS E PRATICANTES – RISCOS 
+   * TÉCNICA 11 – DONOS E PRATICANTES – RISCOS
    */
   tec11DonosPraticantes: OwnersAndPractitionersT
 
@@ -1154,15 +1155,15 @@ export class AdvancedTecniques {
   tec12ConjuncaoCdMoOuMoCd: string
 
   /**
-   * TÉCNICA 13 – POTENCIAIS – VÍCIOS – RECICLADOR DE ENERGIAS E RISCOS - PRIMEIRA LEITURA 
+   * TÉCNICA 13 – POTENCIAIS – VÍCIOS – RECICLADOR DE ENERGIAS E RISCOS - PRIMEIRA LEITURA
    */
   tec13PotenciaisViciosReciclador1aLeitura: PercentageResultT
   /**
-   * TÉCNICA 13 – POTENCIAIS – VÍCIOS – RECICLADOR DE ENERGIAS E RISCOS - SEGUNDA LEITURA 
+   * TÉCNICA 13 – POTENCIAIS – VÍCIOS – RECICLADOR DE ENERGIAS E RISCOS - SEGUNDA LEITURA
    */
   tec13PotenciaisViciosReciclador2aLeitura: string
   /**
-   * TÉCNICA 13 – POTENCIAIS – VÍCIOS – RECICLADOR DE ENERGIAS E RISCOS - TERCEIRA LEITURA 
+   * TÉCNICA 13 – POTENCIAIS – VÍCIOS – RECICLADOR DE ENERGIAS E RISCOS - TERCEIRA LEITURA
    */
   tec13PotenciaisViciosReciclador3aLeitura: VicesAndReciclerDataT[]
 
@@ -1190,19 +1191,19 @@ export class AdvancedTecniques {
    */
   tec18MomentoDecisivoForte: StrongDecisiveMomementPositionT[]
   /**
-   * TÉCNICA 19 – AVP (AUSÊNCIA DE VIBRAÇÃO POSITIVA) – RISCOS 
+   * TÉCNICA 19 – AVP (AUSÊNCIA DE VIBRAÇÃO POSITIVA) – RISCOS
    */
   tec19AusenciaDeVibracaoPositiva: MissingPositiveVibration[]
   /**
-   * TÉCNICA 20 – OPOSIÇÕES FORTES – RISCOS 
+   * TÉCNICA 20 – OPOSIÇÕES FORTES – RISCOS
    */
   tec20OposicoesFortes: StrongOpositionT[]
   /**
-   * TÉCNICA 21 – BLOQUEIO VIBRACIONAL – RISCOS 
+   * TÉCNICA 21 – BLOQUEIO VIBRACIONAL – RISCOS
    */
 
   /**
-   * TÉCNICA 22 – INTERFERÊNCIA NO MAPA – RISCOS 
+   * TÉCNICA 22 – INTERFERÊNCIA NO MAPA – RISCOS
    */
 
   /**

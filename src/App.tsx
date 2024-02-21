@@ -32,7 +32,7 @@ export function App () {
       },
     },
   )
-  
+
   return (
     <StrictMode>
       <ThemeProvider theme={theme}>

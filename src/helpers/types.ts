@@ -6,11 +6,11 @@ export enum MainView {
 }
 export const purple = '#894fd6'
 export type ThemeT = {
-  mode:         PaletteMode,
+  mode: PaletteMode,
   highContrast: boolean,
-  colour:       string,
-  width:        number,
-  height:       number,
+  colour: string,
+  width: number,
+  height: number,
 }
 
 export enum Cycle {
@@ -48,9 +48,32 @@ export type FinalSingleDigitA = [0, 1, 2, 11, 3, 4, 22, 5, 6, 7, 8, 9]
 
 export const letterValues = {
   ' ': 0,
-  A:   1, B:   2, C:   3, D:   4, E:   5, F:   6, G:   7, H:   8, I:   9,
-  J:   1, K:   2, L:   3, M:   4, N:   5, O:   6, P:   7, Q:   8, R:   9,
-  S:   1, T:   2, U:   3, V:   4, W:   5, X:   6, Y:   7, Z:   8,
+  A:   1,
+  B:   2,
+  C:   3,
+  D:   4,
+  E:   5,
+  F:   6,
+  G:   7,
+  H:   8,
+  I:   9,
+  J:   1,
+  K:   2,
+  L:   3,
+  M:   4,
+  N:   5,
+  O:   6,
+  P:   7,
+  Q:   8,
+  R:   9,
+  S:   1,
+  T:   2,
+  U:   3,
+  V:   4,
+  W:   5,
+  X:   6,
+  Y:   7,
+  Z:   8,
 }
 
 export enum LetterType {
@@ -80,12 +103,11 @@ export type PyramidT = {
   results:PyramidResultT[]
 }
 
-export type MultiplicityTypeT = 
-  'D'  | // Duplicidade: a pessoa controla sozinha
-  'T'  | // Triplicidade: a pessoa precisa de orientação
+export type MultiplicityTypeT =
+  'D' | // Duplicidade: a pessoa controla sozinha
+  'T' | // Triplicidade: a pessoa precisa de orientação
   'Qd' | // Quadruplicidade: a pessoa necessita de orientação
-  'Qt'  // Quintuplicidade: a pessoa necessita de orientação
-
+  'Qt' // Quintuplicidade: a pessoa necessita de orientação
 
 export const MultiplicityType: MultiplicityTypeT[] = [
   'D',
@@ -97,7 +119,7 @@ export const MultiplicityType: MultiplicityTypeT[] = [
 export type PersonalYearT = {
   vn: VN,
   start: Date,
-  end:   Date,
+  end: Date,
 }
 
 export type MultiplicityMultipleT = {
@@ -184,16 +206,20 @@ export enum Person {
 export const CycleInterpretationVns = [
   {
     vn:     1 as SingleDigitVN,
-    person: Person.PAI },
+    person: Person.PAI,
+  },
   {
     vn:     2 as SingleDigitVN,
-    person: Person.MAE },
+    person: Person.MAE,
+  },
   {
     vn:     3 as SingleDigitVN,
-    person: Person.IRMAO },
+    person: Person.IRMAO,
+  },
   {
     vn:     4 as SingleDigitVN,
-    person: Person.AVO },
+    person: Person.AVO,
+  },
 ]
 
 export type CycleInterpretationT = {
@@ -258,7 +284,7 @@ export type CyclesT = {
 export type ExpressionVibrationT = { title: string, more: string }
 
 export type AchievementsT = {
-  position: 'CD' | 'MO' | 'EU' ,
+  position: 'CD' | 'MO' | 'EU',
   start: number,
   end: number,
 }
