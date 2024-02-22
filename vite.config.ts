@@ -7,8 +7,8 @@ export default defineConfig({
   base:         '/num/',
   optimizeDeps: {
     include: [
-      '@emotion/react', 
-      '@emotion/styled', 
+      '@emotion/react',
+      '@emotion/styled',
       '@emotion/styled_default',
       '@mui/material/Tooltip',
       '@mui/material/Unstable_Grid2',

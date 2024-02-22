@@ -69,7 +69,7 @@ export function Form ({ name, birthday, today, calculate }: FormInput) {
       calculate(true)
       setHasData(false)
     }
-  }, [formName, formBirthday, formToday])
+  }, [formName, formBirthday, formToday, calculate])
 
   return (
     <Grid container spacing={3} columns={{ xs: 6, md: 12 }}>

@@ -1,8 +1,15 @@
 {
   "name": "numerologia",
-  "private": true,
-  "version": "0.0.69",
+  "version": "0.0.70",
+  "description": "Numerologia calculation app",
   "type": "module",
+  "author": {
+    "name": "Eduardo Russo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/russoedu/num.git"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && node copyPublic.js",

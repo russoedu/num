@@ -14,6 +14,7 @@ module.exports = {
   globals: {
     React:   true,
     process: true,
+    vitest: true
   },
   rules: {
     'react-refresh/only-export-components': [
@@ -22,14 +23,14 @@ module.exports = {
     ],
     'tsdoc/syntax':          'error',
     'no-dupe-class-members': 'off',
-    'no-redeclare':          'off',
-    'no-throw-literal':      'off',
-    'no-unused-expressions': 'off',
-    'no-var':                2,
-    'prefer-const':          2,
-    'no-extra-boolean-cast': 'off',
+    'no-redeclare':          'error',
+    'no-throw-literal':      'error',
+    'no-unused-expressions': 'error',
+    'no-var':                'error',
+    'prefer-const':          'error',
+    'no-extra-boolean-cast': 'error',
     'object-curly-spacing':  [
-      2,
+      'off',
       'always',
     ],
     'no-useless-escape': 'off',

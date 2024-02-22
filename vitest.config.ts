@@ -4,7 +4,6 @@ import type { UserConfig } from 'vitest/config'
 
 // function
 
-
 const userConfig: UserConfig = {
   test: {
     globals:      true,
@@ -14,6 +13,7 @@ const userConfig: UserConfig = {
     include:      ['**/*.{test,spec}.ts*'],
     reporters:    ['junit', 'basic'],
     outputFile:   './report/junit.xml',
+    setupFiles:   ['./src/_vitest/init.ts'],
     coverage:     {
       provider:         'v8',
       reporter:         ['html', 'cobertura', 'text', 'text-summary'],

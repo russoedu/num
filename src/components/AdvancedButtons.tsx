@@ -6,7 +6,7 @@ export function Advancedbuttons ({ advancedTecniques, advancedMap }: {
 }) {
   const [showAdvancedTecniques, setShowAdvancedTecniques] = advancedTecniques
   const [showAdvancedMap, setShowAdvancedMap] = advancedMap
-  
+
   function handleTecniques () {
     setShowAdvancedMap(false)
     setShowAdvancedTecniques(true)
@@ -16,7 +16,6 @@ export function Advancedbuttons ({ advancedTecniques, advancedMap }: {
     setShowAdvancedMap(true)
     setShowAdvancedTecniques(false)
   }
-
 
   return (
     <Box sx={{ padding: 3, marginTop: 5, textAlign: 'center' }}>

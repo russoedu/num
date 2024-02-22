@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 import './AdvancedGrid.css'
 
 export function AdvancedGrid ({ children, i }: { children: ReactNode | JSX.Element|JSX.Element[], i: number}) {
-  return(
+  return (
     <Grid2
       container
       className='advanced-grid'

@@ -20,8 +20,7 @@ export function ResultGrid ({ data, xs }: { data: ResultValueT[], xs: number }) 
                 </Typography>
               </td>
               {typeof d.age !== 'undefined'
-                ? 
-                <td key={d.title}>
+                ? <td key={d.title}>
                   <Typography variant='body2' align='right' paddingLeft={4}>
                     {d.age} anos
                   </Typography>
