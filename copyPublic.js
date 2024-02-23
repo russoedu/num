@@ -1,6 +1,7 @@
+/* v8 ignore start */
+
 import { cpSync, readdirSync } from 'fs'
 import { join } from 'path'
-
 
 console.log(`**** Copying public files ****
 `)
@@ -14,3 +15,5 @@ for (const file of publicFiles) {
 
 console.log(`
 **** Copyied ${publicFiles.length} public file(s) ****`)
+
+/* v8 ignore end */

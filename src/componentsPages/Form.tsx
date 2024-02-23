@@ -69,7 +69,8 @@ export function Form ({ name, birthday, today, calculate }: FormInput) {
       calculate(true)
       setHasData(false)
     }
-  }, [formName, formBirthday, formToday, calculate])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formName, formBirthday, formToday])
 
   return (
     <Grid container spacing={3} columns={{ xs: 6, md: 12 }}>

@@ -1,3 +1,5 @@
+/* v8 ignore start */
+
 import { PaletteMode } from '@mui/material'
 
 export enum MainView {
@@ -323,3 +325,5 @@ export type StrongOpositionT = {
   start: number,
   end: number,
 }
+
+/* v8 ignore end */

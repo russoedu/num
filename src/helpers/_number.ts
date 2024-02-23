@@ -70,6 +70,7 @@ class Num {
    * @returns True if the VNs are the same
    */
   matchFull (n1: VN, n2: VN) {
+    if (n1 === 0 || n2 === 0) return true
     const result = n1 === n2 ||
     (n1 === 11 && n2 === 2) || (n1 === 2 && n2 === 11) ||
     (n1 === 22 && n2 === 4) || (n1 === 4 && n2 === 22)

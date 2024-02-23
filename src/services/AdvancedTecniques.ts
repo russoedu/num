@@ -1,7 +1,7 @@
 import { _array } from '../helpers/_array'
 import { _number } from '../helpers/_number'
 import { _tec } from '../helpers/_tec'
-import { Cycle, CycleInterpretationT, CycleInterpretationVns, ExpressionVibrationT, VN, LanguageStyleT, MultiplicitesT, MultiplicityMultipleT, MultiplicityT, MultiplicityType, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultT, PercentageT, PyramidT, Relation, RiskT, SingleDigitVN, AchievementsT, VicesAndReciclerDataT, vnOwnerPractitioner, ConquestsT, VnPositionCycleT, RebirthT, StrongDecisiveMomementPositionT, MissingPositiveVibration, SingleDigitVnPositionCycleT, StrongOpositionT, StrongOpositionItemT, CycleType } from '../helpers/types'
+import { AchievementsT, ConquestsT, Cycle, CycleInterpretationT, CycleInterpretationVns, CycleType, ExpressionVibrationT, LanguageStyleT, MissingPositiveVibration, MultiplicitesT, MultiplicityT, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultT, PercentageT, PyramidT, RebirthT, Relation, RiskT, SingleDigitVN, StrongDecisiveMomementPositionT, StrongOpositionItemT, StrongOpositionT, VN, VicesAndReciclerDataT, VnPositionCycleT } from '../helpers/types'
 import { NumericMap } from './NumericMap'
 
 export class AdvancedTecniques {
@@ -79,19 +79,19 @@ export class AdvancedTecniques {
     const data: MultiplicityT[] = [
       {
         type:      Cycle.FIXED,
-        multiples: this.#multiples(Cycle.FIXED),
+        multiples: _tec.multiples(this.#map, Cycle.FIXED),
       },
       {
         type:      Cycle.FIRST,
-        multiples: this.#multiples(Cycle.FIRST),
+        multiples: _tec.multiples(this.#map, Cycle.FIRST),
       },
       {
         type:      Cycle.SECOND,
-        multiples: this.#multiples(Cycle.SECOND),
+        multiples: _tec.multiples(this.#map, Cycle.SECOND),
       },
       {
         type:      Cycle.THIRD,
-        multiples: this.#multiples(Cycle.THIRD),
+        multiples: _tec.multiples(this.#map, Cycle.THIRD),
       },
     ]
 
@@ -204,7 +204,7 @@ export class AdvancedTecniques {
       },
     ]
 
-    const result = _array.join(this.#getResults(percentage).map(r => r.name))
+    const result = _array.join(_tec.getResults(percentage).map(r => r.name))
 
     return {
       percentage,
@@ -233,7 +233,7 @@ export class AdvancedTecniques {
       },
     ]
 
-    const result = _array.join(this.#getResults(percentage).map(r => r.name))
+    const result = _array.join(_tec.getResults(percentage).map(r => r.name))
 
     return {
       percentage,
@@ -253,7 +253,7 @@ export class AdvancedTecniques {
         {
           reason:  'Pureza de',
           vn:      tec14,
-          content: this.#styleFromTec14(tec14),
+          content: _tec.styleFromTec14(tec14),
         },
       ]
     }
@@ -264,7 +264,7 @@ export class AdvancedTecniques {
       return fixedMultiples.map(vn => ({
         reason:  'Multiplicidade fixa de',
         vn,
-        content: this.#styleFromTec14(vn),
+        content: _tec.styleFromTec14(vn),
       }))
     }
 
@@ -275,7 +275,7 @@ export class AdvancedTecniques {
       return cycleMultiples.map(vn => ({
         reason:  'Multiplicidade de',
         vn,
-        content: this.#styleFromTec14(vn),
+        content: _tec.styleFromTec14(vn),
       }))
     }
 
@@ -284,7 +284,7 @@ export class AdvancedTecniques {
       {
         reason:  'CD ',
         vn:      this.#map.CD,
-        content: this.#styleFromTec14(this.#map.CD),
+        content: _tec.styleFromTec14(this.#map.CD),
       },
     ]
   }
@@ -384,7 +384,7 @@ export class AdvancedTecniques {
     }
 
     for (const vn of unique) {
-      normal.push(this.#ownerAndPractitionersSupport(vn))
+      normal.push(_tec.ownerAndPractitionersSupport(this.#map, vn))
     }
 
     if (hasZero) {
@@ -392,7 +392,7 @@ export class AdvancedTecniques {
 
       for (const vn of this.#tec2Ausencia()) {
         if (!unique.includes(vn)) {
-          zeroAge.push(this.#ownerAndPractitionersSupport(vn))
+          zeroAge.push(_tec.ownerAndPractitionersSupport(this.#map, vn))
         }
       }
 
@@ -583,7 +583,7 @@ export class AdvancedTecniques {
       .filter(fixed => [7, 9, 11, 22].includes(fixed))
       .length > 0
 
-    const resultList = this.#getResults(percentage).map(r => r.name)
+    const resultList = _tec.getResults(percentage).map(r => r.name)
 
     if (!resultList.includes('Espiritualidade') && hasEspiritualityOnFixes) {
       resultList.push('Espiritualidade')
@@ -779,7 +779,7 @@ export class AdvancedTecniques {
    * @returns Missing Positive Vibration results
    */
   #tec19AusenciaDeVibracaoPositiva () {
-    const allReceivedVns: VnPositionCycleT[] = this.#tec19AllReceivedVns
+    const allReceivedVns: VnPositionCycleT[] = _tec.tec19AllReceivedVns(this.#map)
     const avp: MissingPositiveVibration[] = []
 
     for (const c in this.#map.challenges) {
@@ -826,12 +826,12 @@ export class AdvancedTecniques {
         /**
          * List of positions with the first number of the pair, with the fixed ones first and ordered by the cycle start
          */
-        const num1List = this.#tec20PairNumList(oposition.pair[0])
+        const num1List = _tec.tec20PairNumList(this.#map, oposition.pair[0])
 
         /**
          * List of positions with the second number of the pair, with the fixed ones first and ordered by the cycle start
          */
-        const num2List = this.#tec20PairNumList(oposition.pair[1])
+        const num2List = _tec.tec20PairNumList(this.#map, oposition.pair[1])
 
         let done1 = false
         let done2 = false
@@ -870,222 +870,6 @@ export class AdvancedTecniques {
 
     return ofList
   }
-
-  /* #region Support methods */
-  /**
-   * Calculates the multiplicity for the cycle
-   * @param cycle - The cycle to be calculated
-   * @returns The VN, its positions and the multiplicity type
-   */
-  #multiples (cycle: Cycle) {
-    let multiplicityData: VN[] = []
-    let vnPositions: VnPositionCycleT[] = []
-
-    const multiples: MultiplicityMultipleT[] = []
-
-    switch (cycle) {
-    case Cycle.FIXED:
-      multiplicityData = this.#map.fixedVNs
-      vnPositions = this.#map.fixedVNsPosition
-      break
-    case Cycle.FIRST:
-      multiplicityData = this.#map.firstCycleVNs
-      vnPositions = this.#map.firstCycleVNsPosition
-      break
-    case Cycle.SECOND:
-      multiplicityData = this.#map.secondCycleVNs
-      vnPositions = this.#map.secondCycleVNsPosition
-      break
-    case Cycle.THIRD:
-      multiplicityData = this.#map.thirdCycleVNs
-      vnPositions = this.#map.thirdCycleVNsPosition
-      break
-    }
-
-    const multiplicity = _array.duplicatedFinalSingleDigitT(multiplicityData)
-
-    for (const num of multiplicity) {
-      const multiplicatedVNsPosition = vnPositions
-        .filter(vnp => _number.match(vnp.vn, num as SingleDigitVN))
-
-      const positions = multiplicatedVNsPosition.map(m => m.position)
-      const difCycles = (positions.includes('R1') && (positions.includes('R2') || positions.includes('R3') || positions.includes('R4'))) ||
-      (positions.includes('R2') && (positions.includes('R3') || positions.includes('R4'))) ||
-      (positions.includes('R3') && positions.includes('R4'))
-        ? 1
-        : 0
-      const count = multiplicatedVNsPosition.length - 2 - difCycles
-
-      if (count >= 0) {
-        multiples.push({
-          positions: multiplicatedVNsPosition.map(vnp => vnp.position),
-          vn:        num,
-          type:      MultiplicityType[count],
-        })
-      }
-    }
-
-    return multiples
-  }
-
-  /**
-   * The content for each VN
-   * @param vn - The number to retrieve the content
-   * @returns The content
-   */
-  #styleFromTec14 (vn: VN): string {
-    const style = [
-      {
-        numbers: [1],
-        style:   'Rapidez, não se prender a detalhes',
-      },
-      {
-        numbers: [2, 6],
-        style:   'Calma / pausadamente / revelar com cuidado',
-      },
-      {
-        numbers: [3, 5],
-        style:   'Bom humor / criatividade',
-      },
-      {
-        numbers: [4, 8],
-        style:   'Segurança / precisão e clareza',
-      },
-      {
-        numbers: [7, 9, 11, 22],
-        style:   'Profundidade / qualidade / holisticamente',
-      },
-    ]
-
-    const result: string = style
-      .find(st => st.numbers.includes(vn as VN))
-      ?.style as string
-
-    return result
-  }
-
-  /**
-   * Calculates the percentage and support for a VN
-   * @param vn - The VN to be checked
-   * @returns The VN, the percentage and the support level
-   */
-  #ownerAndPractitionersSupport (vn: VN) {
-    const numbers = vnOwnerPractitioner[vn]
-    const percentage = this.#map.vnCount(numbers).count * 7
-
-    const support = percentage <= 21
-      ? 'pouca'
-      : percentage <= 56
-        ? 'média'
-        : 'muita'
-
-    return {
-      vn,
-      percentage,
-      support,
-    } as OwnersAndPractitionersDataT
-  }
-
-  /**
-   * Compares the percetages with the highest value and extract the list of the ones that are less than 10% smaller
-   * @param percentage - The list of percetages sum and name
-   * @returns The percetages that should be considered
-   */
-  #getResults (percentage: PercentageT[]) {
-    percentage
-      .sort((a, b) => b.value - a.value)
-
-    const resultList: PercentageT[] = [percentage[0]]
-
-    for (let i = 1; i < percentage.length; i++) {
-      if (percentage[0].value - percentage[i].value < 10) {
-        resultList.push(percentage[i])
-      }
-    }
-
-    return resultList
-  }
-
-  /**
-   * List of all VNs and when it was received
-   */
-  get #tec19AllReceivedVns () {
-    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9] as [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-    // List of VNs (11 and 22 are converted) in the map at a certain age
-    const receivedVns: SingleDigitVnPositionCycleT[] = this.#map.allCyclesVNsPosition
-      .map(arv => ({ ...arv, vn: _number.vnToSingleVn(arv.vn) }))
-      .filter(received => !(['D1', 'D2', 'DM'].includes(received.position)))
-
-    // List of VNs that are not in the map, (11 and 22 are converted for this check)
-    const neverReceivedVns: SingleDigitVnPositionCycleT[] = _array
-      .vnNotInArray(numbers, receivedVns.map(rv => rv.vn))
-      .map(vn => ({
-        position: '' as any,
-        vn,
-        start:    Infinity,
-        end:      Infinity,
-      }))
-
-    // Push both arrays and sort by VN and start
-    const allReceivedVns = [
-      ...neverReceivedVns,
-      ...receivedVns,
-    ]
-      .sort((a, b) => a.vn === b.vn ? a.start - b.start : a.vn - b.vn)
-
-    // Removes all but the first entry of each VN
-    for (let i = allReceivedVns.length - 1; i >= 0; i--) {
-      const receivedVnM = allReceivedVns[i]
-      if (i > 0) {
-        const receivedVnMPrev = allReceivedVns[i - 1]
-        if (receivedVnMPrev.vn === receivedVnM.vn) {
-          allReceivedVns.splice(i, 1)
-        }
-      }
-    }
-
-    return allReceivedVns
-  }
-
-  /**
-   * Filters the list of positions by the number
-   * @param num - The number of the pair to be found
-   * @returns The list of matching positions. If any of them is fixed, just this one, else, the list ordered by cycle start
-   */
-  #tec20PairNumList (num: number) {
-    const vnsPositionType = this.#map.allCyclesVNsPosition
-
-    const pairNumList = vnsPositionType
-      .filter(vpt => num === vpt.vn)
-      .sort((a, b) => {
-        if (a.type === CycleType.FIXED && b.type === CycleType.CYCLE) {
-          return -1
-        } else if (a.type === CycleType.CYCLE && b.type === CycleType.FIXED) {
-          return 1
-        }
-
-        return a.start - b.start !== 0
-          ? a.start - b.start
-          : a.end - b.end
-      })
-
-    // If there's a fixed value, removes the rest
-    if (pairNumList[0].type === CycleType.FIXED) {
-      pairNumList.splice(1, pairNumList.length - 1)
-    } else {
-      // Group the entries with overlapping ends and starts
-      for (let i = pairNumList.length - 1; i >= 1; i--) {
-        if (pairNumList[i].start <= pairNumList[i - 1].end) {
-          pairNumList[i - 1].end = Math.max(pairNumList[i].end, pairNumList[i - 1].end)
-          pairNumList.pop()
-        }
-      }
-    }
-
-    return pairNumList
-  }
-  /* #endregion */
 
   /**
    * The numeric map

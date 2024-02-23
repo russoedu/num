@@ -5,13 +5,22 @@ class DateService {
    * @returns True if the date is valid
    */
   isValid (date: string) {
-    const d = new Date(date)
+    const dateRegEx = /(\d{4})-(\d{2})-(\d{2})/
 
-    return (
+    const exec = dateRegEx.exec(date)
+
+    if (exec === null) return false
+
+    const [_null, year, month, day] = exec.map(v => Number(v))
+    const d = new Date(year, month, day)
+
+    const result = (
       typeof d === 'object' &&
       d instanceof Date &&
       !isNaN(d.getTime())
     )
+
+    return result
   }
 }
 
