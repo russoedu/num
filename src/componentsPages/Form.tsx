@@ -1,6 +1,6 @@
 import DeleteIcon from '@mui/icons-material/HighlightOff'
 import RestartAltIcon from '@mui/icons-material/RestartAlt'
-import { Button, InputAdornment, TextField } from '@mui/material'
+import { Button, InputAdornment, Switch, TextField } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 import { useEffect, useState } from 'react'
 import { _date } from '../helpers/_date'
@@ -11,11 +11,12 @@ import './Form.css'
  * The main form component
  * @returns Form component
  */
-export function Form ({ name, birthday, today, calculate }: FormInput) {
+export function Form ({ name, birthday, today, calculate, debug }: FormInput) {
   const [formName, setName] = name
   const [formBirthday, setBirthday] = birthday
   const [formToday, setToday] = today
   const [hasData, setHasData] = useState(false)
+  const [formDebug, setDebug] = debug
 
   /**
    * Resets the map
@@ -26,6 +27,11 @@ export function Form ({ name, birthday, today, calculate }: FormInput) {
     setToday(new Date().toISOString().split('T')[0])
     setHasData(false)
     calculate(true)
+  }
+  function switchDebug () {
+    setDebug(!formDebug)
+    setName(formName === '' ? 'X' : formName)
+    setBirthday(formBirthday === '' ? '1979-03-10' : formBirthday)
   }
 
   /**
@@ -141,8 +147,7 @@ export function Form ({ name, birthday, today, calculate }: FormInput) {
           }}
         />
       </Grid>
-
-      <Grid xs={6}>
+      <Grid xs={5}>
         <Button
           className='form-button'
           size='large'
@@ -153,6 +158,15 @@ export function Form ({ name, birthday, today, calculate }: FormInput) {
         >
           Limpar
         </Button>
+      </Grid>
+      <Grid xs={1}>
+        <Switch
+          className='form-debug'
+          onClick={switchDebug}
+          checked={formDebug}
+
+        />
+          Debug
       </Grid>
     </Grid>
   )

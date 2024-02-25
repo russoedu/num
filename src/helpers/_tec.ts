@@ -3,7 +3,7 @@ import { _array } from './_array'
 import { _number } from './_number'
 import { VN, PyramidResultT, Cycle, VnPositionCycleT, MultiplicityMultipleT, SingleDigitVN, MultiplicityType, vnOwnerPractitioner, OwnersAndPractitionersDataT, PercentageT, SingleDigitVnPositionCycleT, CycleType } from './types'
 
-class Tecniques {
+class TecniquesHelper {
   piramide (num: VN): PyramidResultT[] {
     const index: { [key in VN]: string } = {
       0:  'Terá uma vida atribulada, agidata e movimentada. Deverá aceitar a movimentação e atribulação, aproveitando esses fatos para produzir expansão, crescimentoe desenvolvimento na vida',
@@ -317,5 +317,5 @@ class Tecniques {
 /**
  * Techniques and Advanced techniques support functions
  */
-const _tec = new Tecniques()
+const _tec = new TecniquesHelper()
 export { _tec }

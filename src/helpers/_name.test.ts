@@ -29,5 +29,32 @@ describe('_name.ts', () => {
         'e',
       ])
     })
+    test('skipped chars', () => {
+      const res = [
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        '0',
+      ].map(char => _name.normalise(char))
+
+      expect(res).toEqual([
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        '0',
+      ])
+    })
   })
 })

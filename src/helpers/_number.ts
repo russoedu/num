@@ -62,6 +62,10 @@ class Num {
     return result
   }
 
+  leadingZero (n: number, chars = 2) {
+    return String(n).padStart(chars, '0')
+  }
+
   /**
    * Checks if two VNs match (are the same). Either because they are the same number
    * or matches in case of 11 and 2 or 22 and 4

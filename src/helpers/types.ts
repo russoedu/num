@@ -31,6 +31,7 @@ export type FormInput = {
   name: [string, React.Dispatch<React.SetStateAction<string>>],
   birthday: [string, React.Dispatch<React.SetStateAction<string>>],
   today: [string, React.Dispatch<React.SetStateAction<string>>],
+  debug: [boolean, React.Dispatch<React.SetStateAction<boolean>>],
   calculate: (clean?: boolean) => void
 }
 
@@ -92,6 +93,12 @@ export type Vowels = 'A'|'E'|'I'|'O'|'U'
 export type ResultValueT = {
   title: string,
   value: number,
+  age?: string
+}
+
+export type DebugResultValueT = {
+  title: string,
+  value: [VN, React.Dispatch<React.SetStateAction<VN>>] | [SingleDigitVN, React.Dispatch<React.SetStateAction<SingleDigitVN>>],
   age?: string
 }
 

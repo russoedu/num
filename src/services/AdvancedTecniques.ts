@@ -269,7 +269,10 @@ export class AdvancedTecniques {
     }
 
     // Cycle multiplicity
-    const cycleVns = this.#map.cycle.vnNumbers.map(c => c.vn)
+    const age = this.#map.age
+    const cycleVns = this.#map.cycle.vnNumbers
+      .filter(c => c.start >= age && c.end < age)
+      .map(c => c.vn)
     const cycleMultiples = _array.duplicatedFinalSingleDigitT(cycleVns)
     if (cycleMultiples.length > 0) {
       return cycleMultiples.map(vn => ({

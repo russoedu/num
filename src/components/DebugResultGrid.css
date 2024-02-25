@@ -1,0 +1,25 @@
+.debug-input > .css-acutoz-MuiFormLabel-root-MuiInputLabel-root {
+  display: none;
+  position: absolute;
+  left: 0;
+}
+
+.debug-input > .MuiFormLabel-root, .debug-input > .MuiOutlinedInput-notchedOutline {
+  font-size: 0;
+  display: none;
+}
+
+.debug-input > div {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.42);
+  border-radius: 5px;
+}
+
+.debug-input > div > input {
+  padding: 10px;
+  width: 60px;
+}
+
+.debug-input > .css-lte6em-MuiInputBase-root-MuiFilledInput-root::before {
+  border: none!important;
+}

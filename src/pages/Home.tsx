@@ -1,5 +1,5 @@
 import { Container } from '@mui/material'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 // import { Advancedbuttons } from '../_components/AdvancedButtons'
 import { AdvancedTecniquesResults } from '../componentsPages/AdvancedTecniquesResults'
 import { Form } from '../componentsPages/Form'
@@ -7,6 +7,7 @@ import { AdvancedTecniques } from '../services/AdvancedTecniques'
 import { NumericMap } from '../services/NumericMap'
 import { Spacer } from '../components/Spacer'
 import { MapOrCycle } from '../componentsPages/MapOrCycle'
+import { DebugForm } from '../componentsPages/DebugForm'
 
 /**
  * Home page
@@ -20,6 +21,9 @@ export function Home () {
 
   const todayState = useState(new Date().toISOString().split('T')[0])
   const today = todayState[0]
+
+  const debugState = useState(false)
+  const debug = debugState[0]
 
   const [result, setResult] = useState({} as NumericMap)
   const [advancedResult, setAdvancedResult] = useState({} as AdvancedTecniques)
@@ -44,6 +48,17 @@ export function Home () {
     }
   }
 
+  useEffect(() => {
+    if (typeof result.C1 === 'undefined') {
+      setAdvancedResult({} as AdvancedTecniques)
+      setHasResult(false)
+    } else {
+      const advanced = new AdvancedTecniques(result)
+      setAdvancedResult(advanced)
+      setHasResult(true)
+    }
+  }, [result])
+
   return (
     <Container maxWidth='lg'>
       <Form
@@ -51,12 +66,17 @@ export function Home () {
         birthday={birthdayState}
         calculate={calculate}
         today={todayState}
+        debug={debugState}
       />
       {hasResult
         ? (
           <>
-            <MapOrCycle result={result}/>
             {/* <Advancedbuttons advancedMap={advancedMap} advancedTecniques={advancedTecniques}/> */}
+            {
+              debug
+                ? <DebugForm resultForm={[result, setResult]}/>
+                : <MapOrCycle result={result}/>
+            }
             <AdvancedTecniquesResults result={advancedResult}/>
           </>
         )

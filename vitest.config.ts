@@ -10,15 +10,22 @@ const userConfig: UserConfig = {
     mockReset:    true,
     clearMocks:   true,
     restoreMocks: true,
-    include:      ['./src/**/*.{test,spec}.ts'],
-    reporters:    ['junit', 'basic'],
-    outputFile:   './report/junit.xml',
-    setupFiles:   ['./src/_vitest/init.ts'],
-    coverage:     {
+    include:      ['./src/**/*.test.ts'],
+    exclude:      [
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/public/**',
+      './copyPublic.js',
+    ],
+    reporters:  ['junit', 'basic'],
+    outputFile: './report/junit.xml',
+    setupFiles: ['./src/_vitest/init.ts'],
+    coverage:   {
       provider:         'v8',
       reporter:         ['html', 'cobertura', 'text', 'text-summary'],
-      all:              true,
       reportsDirectory: './report',
+      all:              true,
+      include:          ['src/**/*.ts'],
     },
   },
 }

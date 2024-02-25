@@ -326,6 +326,90 @@ describe('AdvancedTecniques', () => {
         comments: 'Quando tem Duplicidades ou mais deve ser mais reforçado.',
       })
     })
+    test.skip('map 3', () => {
+      const map = new NumericMap('', '1979-03-17', '2021-01-07')
+      map.MO = 1
+      map.EU = 2
+      map.CD = 3
+      map.EX = 4
+      map.C1 = 5
+      map.C2 = 5
+      map.C3 = 5
+      map.D1 = 6
+      map.D2 = 6
+      map.DM = 7
+      map.R1 = 8
+      map.R2 = 8
+      map.R3 = 8
+      map.R4 = 8
+      const am = new AdvancedTecniques(map)
+
+      expect(am.tec4Multiplicidades).toEqual({
+        data: [
+          {
+            type:      'Fixas',
+            multiples: [
+              {
+                positions: [
+                  'EU',
+                  'CD',
+                ],
+                vn:   1,
+                type: 'D',
+              },
+            ],
+          },
+          {
+            type:      '1º Ciclo (0/28 anos)',
+            multiples: [
+              {
+                positions: [
+                  'EU',
+                  'CD',
+                ],
+                vn:   1,
+                type: 'D',
+              },
+            ],
+          },
+          {
+            type:      '2º Ciclo (28/56 anos)',
+            multiples: [
+              {
+                positions: [
+                  'EU',
+                  'CD',
+                ],
+                vn:   1,
+                type: 'D',
+              },
+              {
+                positions: [
+                  'EX',
+                  'R2',
+                ],
+                vn:   7,
+                type: 'D',
+              },
+            ],
+          },
+          {
+            type:      '3º Ciclo (+ 56 anos)',
+            multiples: [
+              {
+                positions: [
+                  'EU',
+                  'CD',
+                ],
+                vn:   1,
+                type: 'D',
+              },
+            ],
+          },
+        ],
+        comments: 'Quando tem Duplicidades ou mais deve ser mais reforçado.',
+      })
+    })
   })
   describe('tec5PotenciaisComoReagem', () => {
     test('map 1', () => {
@@ -378,6 +462,47 @@ describe('AdvancedTecniques', () => {
           },
         ],
         result: 'Espiritualidade e Possuir',
+      })
+    })
+    test('map 3', () => {
+      const map = new NumericMap('', '1973-03-17', '2021-01-07')
+      map.MO = 1
+      map.EU = 2
+      map.CD = 3
+      map.EX = 1
+      map.C1 = 2
+      map.C2 = 3
+      map.C3 = 1
+      map.D1 = 2
+      map.D2 = 3
+      map.DM = 1
+      map.R1 = 2
+      map.R2 = 3
+      map.R3 = 7
+      map.R4 = 7
+
+      const am = new AdvancedTecniques(map)
+
+      expect(am.tec5PotenciaisComoReagem).toEqual({
+        percentage: [
+          {
+            name:  'Possuir',
+            value: 28,
+          },
+          {
+            name:  'Compartilhar',
+            value: 28,
+          },
+          {
+            name:  'Vivenciar',
+            value: 28,
+          },
+          {
+            name:  'Espiritualidade',
+            value: 14,
+          },
+        ],
+        result: 'Possuir, Compartilhar e Vivenciar',
       })
     })
   })
@@ -533,6 +658,78 @@ describe('AdvancedTecniques', () => {
           reason:  'Multiplicidade fixa de',
           vn:      1,
           content: 'Rapidez, não se prender a detalhes',
+        },
+      ])
+    })
+    test.skip('map 3', () => {
+      const map = new NumericMap('', '1979-03-17', '2021-01-07')
+      map.MO = 1
+      map.EU = 2
+      map.CD = 3
+      map.EX = 4
+      map.C1 = 2
+      map.C2 = 3
+      map.C3 = 1
+      map.D1 = 2
+      map.D2 = 3
+      map.DM = 5
+      map.R1 = 2
+      map.R2 = 3
+      map.R3 = 7
+      map.R4 = 7
+      const am = new AdvancedTecniques(map)
+
+      expect(am.tec8AdequacaoDaLinguagem).toEqual([
+        {
+          reason:  'Multiplicidade de',
+          vn:      2,
+          content: 'Calma / pausadamente / revelar com cuidado',
+        },
+        {
+          reason:  'Multiplicidade de',
+          vn:      3,
+          content: 'Bom humor / criatividade',
+        },
+        {
+          reason:  'Multiplicidade de',
+          vn:      7,
+          content: 'Profundidade / qualidade / holisticamente',
+        },
+      ])
+    })
+    test.skip('map 4', () => {
+      const map = new NumericMap('', '1979-03-17', '2021-01-07')
+      map.MO = 1
+      map.EU = 2
+      map.CD = 3
+      map.EX = 4
+      map.C1 = 5
+      map.C2 = 5
+      map.C3 = 5
+      map.D1 = 6
+      map.D2 = 6
+      map.DM = 7
+      map.R1 = 8
+      map.R2 = 8
+      map.R3 = 8
+      map.R4 = 8
+      const am = new AdvancedTecniques(map)
+
+      expect(am.tec8AdequacaoDaLinguagem).toEqual([
+        {
+          reason:  'Multiplicidade de',
+          vn:      2,
+          content: 'Calma / pausadamente / revelar com cuidado',
+        },
+        {
+          reason:  'Multiplicidade de',
+          vn:      3,
+          content: 'Bom humor / criatividade',
+        },
+        {
+          reason:  'Multiplicidade de',
+          vn:      7,
+          content: 'Profundidade / qualidade / holisticamente',
         },
       ])
     })
