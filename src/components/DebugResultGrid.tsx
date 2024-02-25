@@ -16,15 +16,21 @@ export function DebugResultGrid ({ data, xs }: { data: DebugResultValueT[], xs: 
                 </Typography>
               </td>
               <td>
-                <TextField
-                  id='outlined-basic'
-                  className='debug-input'
-                  label='X'
-                  variant='filled'
-                  size='small'
-                  onChange={(e) => d.value[1](Number(e.target.value) as any)}
-                  value={d.value[0]}
-                />
+                {
+                  d.title === 'DM'
+                    ? <Typography variant='h5' align='left' key={d.title} className='vn'>
+                      {d.value as any}
+                    </Typography>
+                    : <TextField
+                      id='outlined-basic'
+                      className='debug-input'
+                      label='X'
+                      variant='filled'
+                      size='small'
+                      onChange={(e) => d.value[1](Number(e.target.value) as any)}
+                      value={d.value[0]}
+                    />
+                }
               </td>
               {typeof d.age !== 'undefined'
                 ? <td key={d.title}>

@@ -72,7 +72,8 @@ export function DebugForm ({ resultForm }: { resultForm: [NumericMap, React.Disp
     m.C3 = c3Value
     m.D1 = d1Value
     m.D2 = d2Value
-    m.DM = dmValue
+    dm[1](_number.sum(Math.abs(d1Value - d2Value)))
+    m.DM = _number.sum(Math.abs(d1Value - d2Value))
     m.R1 = r1Value
     m.R2 = r2Value
     m.R3 = r3Value
