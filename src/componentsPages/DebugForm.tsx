@@ -1,11 +1,10 @@
+import { Divider, Paper } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
-import { Box, Divider, Paper, Typography } from '@mui/material'
-import { NumericMap } from '../services/NumericMap'
+import { useEffect, useState } from 'react'
 import { DebugResultGrid } from '../components/DebugResultGrid'
 import '../componentsTecniques/Tec.css'
-import { purple } from '../helpers/types'
-import { useEffect, useState } from 'react'
 import { _number } from '../helpers/_number'
+import { NumericMap } from '../services/NumericMap'
 
 /**
  * The main form component
