@@ -138,7 +138,7 @@ class TecniquesHelper {
       (positions.includes('R3') && positions.includes('R4'))
         ? 1
         : 0
-      const count = multiplicatedVNsPosition.length - 2 - difCycles
+      const count = Math.min(3, multiplicatedVNsPosition.length - 2 - difCycles)
 
       if (count >= 0) {
         multiples.push({

@@ -1,9 +1,20 @@
 import { TextField, Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2/Grid2'
-import { DebugResultValueT } from '../helpers/types'
+import { DebugResultValueT, restVn, difficultyVn } from '../helpers/types'
 import './DebugResultGrid.css'
+import { ChangeEvent } from 'react'
 
 export function DebugResultGrid ({ data, xs }: { data: DebugResultValueT[], xs: number }) {
+  function onChange (d: DebugResultValueT, e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    const val = Number(e.target.value)
+    if (
+      (d.type === 'difficulty' && difficultyVn.includes(val)) ||
+      (d.type === 'rest' && restVn.includes(val))
+    ) {
+      d.value[1](val as any)
+    }
+  }
+
   return (
     <Grid xs={xs} >
       <table className='table'>
@@ -17,7 +28,7 @@ export function DebugResultGrid ({ data, xs }: { data: DebugResultValueT[], xs: 
               </td>
               <td>
                 {
-                  d.title === 'DM'
+                  d.title === 'DM' || d.title === 'EX' || d.title === 'R3'
                     ? <Typography variant='h5' align='left' key={d.title} className='vn'>
                       {d.value as any}
                     </Typography>
@@ -27,7 +38,7 @@ export function DebugResultGrid ({ data, xs }: { data: DebugResultValueT[], xs: 
                       label='X'
                       variant='filled'
                       size='small'
-                      onChange={(e) => d.value[1](Number(e.target.value) as any)}
+                      onChange={(e) => onChange(d, e)}
                       value={d.value[0]}
                     />
                 }

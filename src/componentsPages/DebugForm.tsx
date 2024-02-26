@@ -62,11 +62,14 @@ export function DebugForm ({ resultForm }: { resultForm: [NumericMap, React.Disp
   useEffect(() => {
     const bdStr = `${_number.leadingZero(map.birthday.year, 4)}-${_number.leadingZero(map.birthday.month)}-${_number.leadingZero(map.birthday.day)}`
     const tdStr = `${_number.leadingZero(map.today.year, 4)}-${_number.leadingZero(map.today.month)}-${_number.leadingZero(map.today.day)}`
+
     const m = new NumericMap(map.name, bdStr, tdStr)
+
     m.MO = moValue
     m.EU = euValue
     m.CD = cdValue
-    m.EX = exValue
+    ex[1](_number.sum(moValue + euValue, true))
+    m.EX = _number.sum(moValue + euValue, true)
     m.C1 = c1Value
     m.C2 = c2Value
     m.C3 = c3Value
@@ -76,90 +79,37 @@ export function DebugForm ({ resultForm }: { resultForm: [NumericMap, React.Disp
     m.DM = _number.sum(Math.abs(d1Value - d2Value))
     m.R1 = r1Value
     m.R2 = r2Value
-    m.R3 = r3Value
+    r3[1](_number.sum(m.R1 + m.R2, true))
+    m.R3 = _number.sum(m.R1 + m.R2, true)
     m.R4 = r4Value
 
     setMap(m)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, effectValues)
-  /**
-   * Checks if both the name and birthday are filled to calculate it or to hide the maps
-   */
-  /*
-   * useEffect(() => {
-   *   const bdStr = `${map.birthday.year}-${map.birthday.month}-${map.birthday.day}`
-   *   const tdStr = `${map.today.year}-${map.today.month}-${map.today.day}`
-   *   const m = new NumericMap(map.name, bdStr, tdStr)
-   *   m.MO = moValue
-   *   m.EU = euValue
-   *   m.CD = cdValue
-   *   m.EX = exValue
-   *   m.C1 = c1Value
-   *   m.C2 = c2Value
-   *   m.C3 = c3Value
-   *   m.D1 = d1Value
-   *   m.D2 = d2Value
-   *   m.DM = dmValue
-   *   m.R1 = r1Value
-   *   m.R2 = r2Value
-   *   m.R3 = r3Value
-   *   m.R4 = r4Value
-   */
-
-  /*
-   *   setMap(m)
-   * }, [
-   *   moValue,
-   *   euValue,
-   *   cdValue,
-   *   exValue,
-   *   c1Value,
-   *   c2Value,
-   *   c3Value,
-   *   d1Value,
-   *   d2Value,
-   *   dmValue,
-   *   r1Value,
-   *   r2Value,
-   *   r3Value,
-   *   r4Value,
-   * ])
-   */
 
   return (
     <Paper variant='elevation' elevation={3} sx={{ padding: 3, marginTop: 5 }} >
       <Grid container spacing={1} columns={{ xs: 2, sm: 4, md: 8 }}>
-        <Grid xs={8}>
-          <Box sx={{ paddingBottom: 1 }}>
-            <Typography variant='h5' display='inline' color={purple} sx={{ fontWeight: 'bold', paddingRight: 1 }}>
-              {map.age}
-            </Typography>
-            <Typography variant='h6' display='inline'>
-          anos
-            </Typography>
-            <Divider sx={{ paddingTop: 1 }}/>
-          </Box>
-        </Grid>
         <DebugResultGrid
           data={[
-            { title: 'MO', value: mo },
-            { title: 'EU', value: eu },
-            { title: 'EX', value: ex },
+            { title: 'MO', value: mo, type: 'rest'},
+            { title: 'EU', value: eu, type: 'rest'},
+            { title: 'EX', value: ex, type: 'rest'},
           ]}
           xs={1}
         />
         <DebugResultGrid
           data={[
-            { title: 'CD', value: cd },
+            { title: 'CD', value: cd, type: 'rest'},
           ]}
           xs={1}
         />
         <Divider className='divider-sm'/>
         <DebugResultGrid
           data={[
-            { title: 'C1', value: c1, age: '0/28' },
-            { title: 'C2', value: c2, age: '28/56' },
-            { title: 'C3', value: c3, age: '+56' },
+            { title: 'C1', value: c1, age: '0/28', type: 'rest'},
+            { title: 'C2', value: c2, age: '28/56', type: 'rest'},
+            { title: 'C3', value: c3, age: '+56', type: 'rest'},
           ]}
           xs={2}
         />
@@ -167,38 +117,42 @@ export function DebugForm ({ resultForm }: { resultForm: [NumericMap, React.Disp
         <Divider className='divider-sm'/>
         <DebugResultGrid
           data={[
-            { title: 'D1', value: d1, age: '0/28' },
-            { title: 'D2', value: d2, age: '28/56' },
-            { title: 'DM', value: dm },
+            { title: 'D1', value: d1, age: '0/28', type: 'difficulty' },
+            { title: 'D2', value: d2, age: '28/56', type: 'difficulty' },
+            { title: 'DM', value: dm, type: 'difficulty' },
           ]}
           xs={2}
         />
         <Divider className='divider-sm'/>
         <DebugResultGrid
           data={[
-            { title: 'R1', value: r1, age: `${map.achievements.R1.start}/${map.achievements.R1.end}` },
-            { title: 'R2', value: r2, age: `${map.achievements.R2.start}/${map.achievements.R2.end}` },
-            { title: 'R3', value: r3, age: `${map.achievements.R3.start}/${map.achievements.R3.end}` },
-            { title: 'R4', value: r4, age: `+${map.achievements.R4.start}` },
+            {
+              title: 'R1',
+              value: r1,
+              age:   `${map.achievements.R1.start}/${map.achievements.R1.end}`,
+              type:  'rest',
+            },
+            {
+              title: 'R2',
+              value: r2,
+              age:   `${map.achievements.R2.start}/${map.achievements.R2.end}`,
+              type:  'rest',
+            },
+            {
+              title: 'R3',
+              value: r3,
+              age:   `${map.achievements.R3.start}/${map.achievements.R3.end}`,
+              type:  'rest',
+            },
+            {
+              title: 'R4',
+              value: r4,
+              age:   `+${map.achievements.R4.start}`,
+              type:  'rest',
+            },
           ]}
           xs={2}
         />
-        <Grid xs={8}>
-          <Divider sx={{ paddingTop: 1 }}/>
-          <Box sx={{ paddingTop: 1 }}>
-            <Typography variant='h6' display='inline'>
-              Ano Pessoal (AP)
-            </Typography>
-            &nbsp;
-            <Typography variant='h5' display='inline' className='vn'>
-              {map.personalYear.vn}
-            </Typography>
-            &nbsp;
-            <Typography variant='h6' display='inline'>
-              de {map.personalYear.start.toLocaleDateString()} a {map.personalYear.end.toLocaleDateString()}
-            </Typography>
-          </Box>
-        </Grid>
       </Grid>
     </Paper>
   )
