@@ -637,7 +637,7 @@ describe('AdvancedTecniques', () => {
     })
   })
   describe('tec8AdequacaoDaLinguagem', () => {
-    test('map 1', () => {
+    test('map 1 - purity', () => {
       const map = new NumericMap('DAINARI MOZZU', '1950-12-26', '2021-01-07')
       const am = new AdvancedTecniques(map)
 
@@ -649,7 +649,7 @@ describe('AdvancedTecniques', () => {
         },
       ])
     })
-    test('map 2', () => {
+    test('map 2 - fixed multiplicity', () => {
       const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
       const am = new AdvancedTecniques(map)
 
@@ -661,43 +661,31 @@ describe('AdvancedTecniques', () => {
         },
       ])
     })
-    test.skip('map 3', () => {
+    test('map 3 - cycle multiplicity', () => {
       const map = new NumericMap('', '1979-03-17', '2021-01-07')
       map.MO = 1
       map.EU = 2
       map.CD = 3
       map.EX = 4
-      map.C1 = 2
-      map.C2 = 3
-      map.C3 = 1
-      map.D1 = 2
-      map.D2 = 3
-      map.DM = 5
-      map.R1 = 2
-      map.R2 = 3
-      map.R3 = 7
-      map.R4 = 7
+      map.C1 = 5
+      map.C2 = 6
+      map.C3 = 7
+      map.D1 = 5
+      map.D2 = 5
+      map.DM = 0
+      map.R1 = 6
+      map.R2 = 6
+      map.R3 = 6
+      map.R4 = 6
       const am = new AdvancedTecniques(map)
 
-      expect(am.tec8AdequacaoDaLinguagem).toEqual([
-        {
-          reason:  'Multiplicidade de',
-          vn:      2,
-          content: 'Calma / pausadamente / revelar com cuidado',
-        },
-        {
-          reason:  'Multiplicidade de',
-          vn:      3,
-          content: 'Bom humor / criatividade',
-        },
-        {
-          reason:  'Multiplicidade de',
-          vn:      7,
-          content: 'Profundidade / qualidade / holisticamente',
-        },
-      ])
+      expect(am.tec8AdequacaoDaLinguagem).toEqual([{
+        reason:  'Multiplicidade de',
+        vn:      6,
+        content: 'Calma / pausadamente / revelar com cuidado',
+      }])
     })
-    test.skip('map 4', () => {
+    test('map 4 - cd', () => {
       const map = new NumericMap('', '1979-03-17', '2021-01-07')
       map.MO = 1
       map.EU = 2
@@ -717,19 +705,9 @@ describe('AdvancedTecniques', () => {
 
       expect(am.tec8AdequacaoDaLinguagem).toEqual([
         {
-          reason:  'Multiplicidade de',
-          vn:      2,
-          content: 'Calma / pausadamente / revelar com cuidado',
-        },
-        {
-          reason:  'Multiplicidade de',
+          reason:  'CD ',
           vn:      3,
           content: 'Bom humor / criatividade',
-        },
-        {
-          reason:  'Multiplicidade de',
-          vn:      7,
-          content: 'Profundidade / qualidade / holisticamente',
         },
       ])
     })
@@ -929,17 +907,555 @@ describe('AdvancedTecniques', () => {
     })
   })
   describe('tec12ConjuncaoCdMoOuMoCd', () => {
-    test('map 1', () => {
-      const map = new NumericMap('DAINARI MOZZU', '1950-12-26', '2021-01-07')
-      const am = new AdvancedTecniques(map)
+    describe('1', () => {
+      test('1 X 1', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 1
+        map.MO = 1
+        const am = new AdvancedTecniques(map)
 
-      expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('União baseada na justiça / retidão / verdade / prática da espiritualidade')
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Pureza de coragem / líder nato')
+      })
+      test('1 X 2', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 2
+        map.MO = 1
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Líder da união / só lidera na união / nunca sozinho')
+      })
+      test('1 X 3', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 1
+        map.MO = 3
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Para crescer e desenvolver-se é preciso coragem / força / determinação com criatividade e comunicabilidade')
+      })
+      test('1 X 4', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 1
+        map.MO = 4
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Lutar e conquistar mantendo estabilidade / segurança /  confiar em seus potenciais')
+      })
+      test('1 X 5', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 5
+        map.MO = 1
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Liderança com liberdade / desprendimento / múltiplas vivências')
+      })
+      test('1 X 6', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 1
+        map.MO = 6
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Liderança com afetividade / emoção / conciliação')
+      })
+      test('1 X 7', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 7
+        map.MO = 1
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Liderança com perfeição / exigência / sabedoria')
+      })
+      test('1 X 8', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 1
+        map.MO = 8
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Liderança com justiça / retidão / verdade')
+      })
+      test('1 X 9', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 9
+        map.MO = 1
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Ter força / coragem para amparar / auxiliar o próximo')
+      })
+      test('1 X 11', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 11
+        map.MO = 1
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Líder da união / só lidera na união / nunca sozinho / prática da espiritualidade')
+      })
+      test('1 X 22', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 22
+        map.MO = 1
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Lutar e conquistar mantendo estabilidade / segurança / confiar em seus potenciais / prática da espiritualidade')
+      })
     })
-    test('map 2', () => {
-      const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
-      const am = new AdvancedTecniques(map)
+    describe('2', () => {
+      test('2 X 2', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 2
+        map.MO = 2
+        const am = new AdvancedTecniques(map)
 
-      expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Liderança com afetividade / emoção / conciliação')
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Pureza de união / flexibilidade / viver sempre unido ')
+      })
+      test('2 X 3', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 2
+        map.MO = 3
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('União patrocina o crescimento / a expansão')
+      })
+      test('2 X 4', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 2
+        map.MO = 4
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('União proporciona segurança / estabilidade')
+      })
+      test('2 X 5', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 5
+        map.MO = 2
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('União com liberdade / desprendimento / múltiplas vivências')
+      })
+      test('2 X 6', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 2
+        map.MO = 6
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Prática afetiva perfeita / união com afetividade')
+      })
+      test('2 X 7', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 7
+        map.MO = 2
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('União patrocina o autoconhecimento')
+      })
+      test('2 X 8', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 2
+        map.MO = 8
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('União baseada na justiça / retidão / verdade')
+      })
+      test('2 X 9', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 9
+        map.MO = 2
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('União de almas / união profunda com solicitação de acentuado companheirismo')
+      })
+      test('2 X 11', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 11
+        map.MO = 2
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Pureza de união / flexibilidade / viver sempre unido / prática da espiritualidade')
+      })
+      test('2 X 22', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 22
+        map.MO = 2
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('União proporciona segurança / estabilidade / prática da espiritualidade')
+      })
+    })
+    describe('3', () => {
+      test('3 X 3', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 3
+        map.MO = 3
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Pureza de criação / talentos / expansão ')
+      })
+      test('3 X 4', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 3
+        map.MO = 4
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Crescimento proporciona segurança / estabilidade')
+      })
+      test('3 X 5', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 5
+        map.MO = 3
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Crescimento / expansão sem fronteiras / diversificação / multiplicidade')
+      })
+      test('3 X 6', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 3
+        map.MO = 6
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Prática efetiva com criatividade e desenvolvimento')
+      })
+      test('3 X 7', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 7
+        map.MO = 3
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Crescimento para desenvolvimento de espiritualidade / autoconhecimento / sabedoria')
+      })
+      test('3 X 8', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 3
+        map.MO = 8
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Crescimento justo / correto / verdadeiro')
+      })
+      test('3 X 9', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 9
+        map.MO = 3
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Crescimento da alma / pessoa com interesses diversificados (acentuada curiosidade)')
+      })
+      test('3 X 11', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 11
+        map.MO = 3
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('União patrocina o crescimento / a expansão / prática da espiritualidade')
+      })
+      test('3 X 22', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 22
+        map.MO = 3
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Crescimento proporciona segurança / estabilidade / prática da espiritualidade')
+      })
+    })
+    describe('4', () => {
+      test('4 X 4', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 4
+        map.MO = 4
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Pureza de estabilidade / segurança / trabalhador nato')
+      })
+      test('4 X 5', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 5
+        map.MO = 4
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Segurança / estabilidade é adquirida pela liberdade / vivências')
+      })
+      test('4 X 6', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 4
+        map.MO = 6
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Segurança nos sentimentos afetivos')
+      })
+      test('4 X 7', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 7
+        map.MO = 4
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Estabilidade na prática do autoconhecimento e da espiritualidade')
+      })
+      test('4 X 8', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 4
+        map.MO = 8
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Segurança no julgar / alto grau de correção / confiabilidade')
+      })
+      test('4 X 9', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 9
+        map.MO = 4
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Controle da alma /  acentuada necessidade de controlar diversos aspectos da vida ')
+      })
+      test('4 X 11', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 11
+        map.MO = 4
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('União proporciona segurança / estabilidade / prática da espiritualidade ')
+      })
+      test('4 X 22', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 22
+        map.MO = 4
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Pureza de estabilidade / segurança / trabalhador nato / prática da espiritualidade')
+      })
+    })
+    describe('5', () => {
+      test('5 X 5', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 5
+        map.MO = 5
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Pureza de liberdade / vivências / desprendimento para mudanças')
+      })
+      test('5 X 6', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 5
+        map.MO = 6
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Afetividade com liberdade / vivências / mudanças ')
+      })
+      test('5 X 7', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 7
+        map.MO = 5
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Necessidade de liberdade / vivências para se autoconhecer')
+      })
+      test('5 X 8', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 5
+        map.MO = 8
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Prática da justiça / retidão, considerando múltiplos aspectos (mediador)')
+      })
+      test('5 X 9', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 9
+        map.MO = 5
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Alma livre / a mais intensa liberdade / desprendimento acentuado em todos os aspectos da vida')
+      })
+      test('5 X 11', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 11
+        map.MO = 5
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('União com liberdade /desprendimento / múltiplas vivências / prática da espiritualidade')
+      })
+      test('5 X 22', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 22
+        map.MO = 5
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Segurança / estabilidade é adquirida pela liberdade / vivências / prática da espiritualidade')
+      })
+    })
+    describe('6', () => {
+      test('6 X 6', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 6
+        map.MO = 6
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Pureza de emoção / harmonia / alto potencial afetivo')
+      })
+      test('6 X 7', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 7
+        map.MO = 6
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Amor com sabedoria / profundidade e exigências')
+      })
+      test('6 X 8', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 6
+        map.MO = 8
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Amor com justiça / verdade / honestidade / retidão')
+      })
+      test('6 X 9', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 9
+        map.MO = 6
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Amor de almas / amor com entrega total e duradouro')
+      })
+      test('6 X 11', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 11
+        map.MO = 6
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Prática afetiva perfeita / união com afetividade / prática da espiritualidade')
+      })
+      test('6 X 22', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 22
+        map.MO = 6
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Segurança nos sentimentos afetivos / prática da espiritualidade')
+      })
+    })
+    describe('7', () => {
+      test('7 X 7', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 7
+        map.MO = 7
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Pureza de autoconhecimento / espiritualidade / conhecimentos ')
+      })
+      test('7 X 8', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 7
+        map.MO = 8
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Sabedoria justa / correta / verdadeira')
+      })
+      test('7 X 9', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 7
+        map.MO = 9
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Sabedoria da alma / pessoa sábia e conceituado conhecimento')
+      })
+      test('7 X 11', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 11
+        map.MO = 7
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('União patrocina o autoconhecimento / prática da espiritualidade')
+      })
+      test('7 X 22', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 22
+        map.MO = 7
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Estabilidade na prática do autoconhecimento e da espiritualidade')
+      })
+    })
+    describe('8', () => {
+      test('8 X 8', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 8
+        map.MO = 8
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Pureza de correção / alto grau de confiabilidade / excessivamente verdadeiro ')
+      })
+      test('8 X 9', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 8
+        map.MO = 9
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Alma justa / correta / verdadeira ')
+      })
+      test('8 X 11', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 11
+        map.MO = 8
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('União baseada na justiça / retidão / verdade / prática da espiritualidade')
+      })
+      test('8 X 22', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 22
+        map.MO = 8
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Segurança no julgar / alto grau de correção / confiabilidade / prática da espiritualidade')
+      })
+    })
+    describe('9', () => {
+      test('9 X 9', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 9
+        map.MO = 9
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Pureza da alma / pessoa autêntica / cristalina ')
+      })
+      test('9 X 11', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 11
+        map.MO = 9
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('União de almas / união profunda com solicitação de acentuado companheirismo / prática da espiritualidade')
+      })
+      test('9 X 22', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 22
+        map.MO = 9
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Controle da alma /acentuada necessidade de controlar diversos aspectos da vida / prática da espiritualidade')
+      })
+    })
+    describe('11', () => {
+      test('11 X 11', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 11
+        map.MO = 11
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Pureza de união / intuição / sensibilidade / prática da espiritualidade / reciclar energias ')
+      })
+      test('11 X 22', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 22
+        map.MO = 11
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('União proporciona segurança / estabilidade / intuição / sabedoria / prática da espiritualidade')
+      })
+    })
+    describe('22', () => {
+      test('22 X 22', () => {
+        const map = new NumericMap('', '1950-12-26', '2021-01-07')
+        map.CD = 22
+        map.MO = 22
+        const am = new AdvancedTecniques(map)
+
+        expect(am.tec12ConjuncaoCdMoOuMoCd).toBe('Pureza de estabilidade / sabedoria / magia / maestria / prática da espiritualidade')
+      })
     })
   })
   describe('tec13PotenciaisViciosReciclador1aLeitura', () => {

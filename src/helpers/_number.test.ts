@@ -66,6 +66,28 @@ describe('_number', () => {
       expect(res).toBeTruthy()
     })
   })
+  describe('leadingZero', () => {
+    test('single digit number with default chars', () => {
+      const res = _number.leadingZero(4)
+
+      expect(res).toBe('04')
+    })
+    test('single digit string with default chars', () => {
+      const res = _number.leadingZero('4')
+
+      expect(res).toBe('04')
+    })
+    test('double digit number with default chars', () => {
+      const res = _number.leadingZero(14)
+
+      expect(res).toBe('14')
+    })
+    test('triple digit string with default chars', () => {
+      const res = _number.leadingZero('254')
+
+      expect(res).toBe('254')
+    })
+  })
   describe('matchFull', () => {
     test('same number, not 11 or 22', () => {
       const res = _number.matchFull(4, 4)
@@ -126,6 +148,23 @@ describe('_number', () => {
       const res = _number.matchFull(0, 0)
 
       expect(res).toBeTruthy()
+    })
+  })
+  describe('vnToSingleVn', () => {
+    test('11', () => {
+      const res = _number.vnToSingleVn(11)
+
+      expect(res).toBe(2)
+    })
+    test('22', () => {
+      const res = _number.vnToSingleVn(22)
+
+      expect(res).toBe(4)
+    })
+    test('not 11 or 22', () => {
+      const res = _number.vnToSingleVn(8)
+
+      expect(res).toBe(8)
     })
   })
 })

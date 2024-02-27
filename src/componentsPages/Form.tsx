@@ -80,85 +80,91 @@ export function Form ({ name, birthday, today, calculate, debug }: FormInput) {
 
   return (
     <Grid container spacing={3} columns={{ xs: 6, md: 12 }}>
-      <Grid xs={6}>
-        <TextField
-          id='name'
-          className='input'
-          value={formName}
-          onChange={handleChange}
-          label='Nome completo'
-          variant='outlined'
-          autoComplete='off'
-          autoFocus
-          type='text'
-          focused
-          fullWidth
-          InputProps={{
-            endAdornment: <InputAdornment position='start'>
-              <div id='resetName' onClick={inputAction}>
-                <DeleteIcon id='clean-name' className='action-button'/>
-              </div>
-            </InputAdornment>,
-          }}
+      {
+        formDebug
+          ? <></>
+          : <>
+            <Grid xs={6}>
+              <TextField
+                id='name'
+                className='input'
+                value={formName}
+                onChange={handleChange}
+                label='Nome completo'
+                variant='outlined'
+                autoComplete='off'
+                autoFocus
+                type='text'
+                focused
+                fullWidth
+                InputProps={{
+                  endAdornment: <InputAdornment position='start'>
+                    <div id='resetName' onClick={inputAction}>
+                      <DeleteIcon id='clean-name' className='action-button'/>
+                    </div>
+                  </InputAdornment>,
+                }}
 
-        />
-      </Grid>
-      <Grid xs={6}>
-        <TextField
-          id='birthDay'
-          className='input'
-          value={formBirthday}
-          onChange={handleChange}
-          label='Data de nascimento'
-          variant='outlined'
-          autoComplete='off'
-          type='date'
-          focused
-          fullWidth
-          InputProps={{
-            endAdornment: <InputAdornment position='start'>
-              <div id='resetBirthDay' onClick={inputAction}>
-                <DeleteIcon className='action-button'/>
-              </div>
-            </InputAdornment>,
-          }}
+              />
+            </Grid>
+            <Grid xs={6}>
+              <TextField
+                id='birthDay'
+                className='input'
+                value={formBirthday}
+                onChange={handleChange}
+                label='Data de nascimento'
+                variant='outlined'
+                autoComplete='off'
+                type='date'
+                focused
+                fullWidth
+                InputProps={{
+                  endAdornment: <InputAdornment position='start'>
+                    <div id='resetBirthDay' onClick={inputAction}>
+                      <DeleteIcon className='action-button'/>
+                    </div>
+                  </InputAdornment>,
+                }}
 
-        />
-      </Grid>
-
-      <Grid xs={6}>
-        <TextField
-          id='year'
-          className='input'
-          value={formToday}
-          onChange={handleChange}
-          label='Data do cálculo'
-          variant='outlined'
-          autoComplete='off'
-          type='date'
-          focused
-          fullWidth
-          InputProps={{
-            endAdornment: <InputAdornment position='start'>
-              <div id='resetToday' onClick={inputAction}>
-                <RestartAltIcon className='action-button'/>
-              </div>
-            </InputAdornment>,
-          }}
-        />
-      </Grid>
-      <Grid xs={5}>
-        <Button
-          className='form-button'
-          size='large'
-          variant='contained'
-          onClick={reset}
-          fullWidth
-          disabled={!hasData}
-        >
+              />
+            </Grid>
+            <Grid xs={6}>
+              <TextField
+                id='year'
+                className='input'
+                value={formToday}
+                onChange={handleChange}
+                label='Data do cálculo'
+                variant='outlined'
+                autoComplete='off'
+                type='date'
+                focused
+                fullWidth
+                InputProps={{
+                  endAdornment: <InputAdornment position='start'>
+                    <div id='resetToday' onClick={inputAction}>
+                      <RestartAltIcon className='action-button'/>
+                    </div>
+                  </InputAdornment>,
+                }}
+              />
+            </Grid>
+            <Grid xs={5}>
+              <Button
+                className='form-button'
+                size='large'
+                variant='contained'
+                onClick={reset}
+                fullWidth
+                disabled={!hasData}
+              >
           Limpar
-        </Button>
-      </Grid>
+              </Button>
+            </Grid>
+          </>
+      }
+
       <Grid xs={1}>
         <Switch
           className='form-debug'

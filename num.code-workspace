@@ -54,12 +54,6 @@
         "webRoot": "${workspaceFolder}/src"
       },
       {
-        "name": "Test watch",
-        "command": "npm run test:watch",
-        "request": "launch",
-        "type": "node-terminal"
-      },
-      {
         "name": "Test",
         "command": "npm run test",
         "request": "launch",

@@ -271,7 +271,7 @@ export class AdvancedTecniques {
     // Cycle multiplicity
     const age = this.#map.age
     const cycleVns = this.#map.cycle.vnNumbers
-      .filter(c => c.start >= age && c.end < age)
+      .filter(c => c.start <= age && c.end > age)
       .map(c => c.vn)
     const cycleMultiples = _array.duplicatedFinalSingleDigitT(cycleVns)
     if (cycleMultiples.length > 0) {

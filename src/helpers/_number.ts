@@ -62,8 +62,14 @@ class Num {
     return result
   }
 
-  leadingZero (n: number, chars = 2) {
-    return String(n).padStart(chars, '0')
+  /**
+   * Add leading zeroes until the total characters is the one set in chars
+   * @param num - The number to be used
+   * @param chars - How many total chars should we have
+   * @returns - The number converted to string with leading zeroes
+   */
+  leadingZero (num: number|string, chars = 2) {
+    return String(num).padStart(chars, '0')
   }
 
   /**
