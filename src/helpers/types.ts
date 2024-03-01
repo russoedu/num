@@ -138,6 +138,8 @@ export type MultiplicityMultipleT = {
   vn: VN,
   positions: PositionT[]
   type: MultiplicityTypeT
+  start: number,
+  end: number,
 }
 
 export type MultiplicityT = {
@@ -165,7 +167,7 @@ export type VnPositionT = {
   position: PositionT,
 }
 
-export type VnPositionTypeT = {
+export type VnPositionCycleT = {
   vn: VN,
   position: PositionT,
   type: CycleType,
@@ -173,16 +175,10 @@ export type VnPositionTypeT = {
   end: number,
 }
 
-export type VnPositionCycleT = {
-  vn: VN,
-  position: PositionT,
-  start: number,
-  end: number,
-}
-
 export type SingleDigitVnPositionCycleT = {
   vn: SingleDigitVN,
   position: PositionT,
+  type: CycleType,
   start: number,
   end: number,
 }

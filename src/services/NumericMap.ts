@@ -2,7 +2,7 @@ import { _array } from '../helpers/_array'
 import { _date } from '../helpers/_date'
 import { _name } from '../helpers/_name'
 import { _number } from '../helpers/_number'
-import { Consonants, CyclesT, PersonalYearT, PositionT, VN, VnCountFinalDigit, VnCountSingleDigit, VnPositionCycleT, VnPositionT, SingleDigitVN, Vowels, consonants, letterValues, vowels, VnPositionTypeT, CycleType } from '../helpers/types'
+import { Consonants, CyclesT, PersonalYearT, PositionT, VN, VnCountFinalDigit, VnCountSingleDigit, VnPositionCycleT, VnPositionT, SingleDigitVN, Vowels, consonants, letterValues, vowels, CycleType } from '../helpers/types'
 
 export class NumericMap {
   constructor (name: string, birthday: string, today: string) {
@@ -120,25 +120,29 @@ export class NumericMap {
    * List of fixed numbers and VNs in the map
    */
   get fixedVNsPosition () {
-    return [
-      { position: 'MO', vn: this.MO, start: 0, end: Infinity },
-      { position: 'EU', vn: this.EU, start: 0, end: Infinity },
-      { position: 'CD', vn: this.CD, start: 0, end: Infinity },
-      { position: 'EX', vn: this.EX, start: 0, end: Infinity },
-      { position: 'DM', vn: this.DM, start: 0, end: Infinity },
-    ] as VnPositionCycleT[]
+    const vns: VnPositionCycleT[] = [
+      { position: 'MO', vn: this.MO, start: 0, end: Infinity, type: CycleType.FIXED },
+      { position: 'EU', vn: this.EU, start: 0, end: Infinity, type: CycleType.FIXED },
+      { position: 'CD', vn: this.CD, start: 0, end: Infinity, type: CycleType.FIXED },
+      { position: 'EX', vn: this.EX, start: 0, end: Infinity, type: CycleType.FIXED },
+      { position: 'DM', vn: this.DM, start: 0, end: Infinity, type: CycleType.FIXED },
+    ]
+
+    return vns
   }
 
   /**
    * List of fixed numbers and VNs in the map excluding EX
    */
   get fixedMainVNsPosition () {
-    return [
-      { position: 'MO', vn: this.MO, start: 0, end: Infinity },
-      { position: 'EU', vn: this.EU, start: 0, end: Infinity },
-      { position: 'CD', vn: this.CD, start: 0, end: Infinity },
-      { position: 'DM', vn: this.DM, start: 0, end: Infinity },
-    ] as VnPositionCycleT[]
+    const vns: VnPositionCycleT[] = [
+      { position: 'MO', vn: this.MO, start: 0, end: Infinity, type: CycleType.FIXED },
+      { position: 'EU', vn: this.EU, start: 0, end: Infinity, type: CycleType.FIXED },
+      { position: 'CD', vn: this.CD, start: 0, end: Infinity, type: CycleType.FIXED },
+      { position: 'DM', vn: this.DM, start: 0, end: Infinity, type: CycleType.FIXED },
+    ]
+
+    return vns
   }
 
   /**
@@ -150,8 +154,8 @@ export class NumericMap {
 
     const list: VnPositionCycleT[] = [
       ...this.fixedVNsPosition,
-      { position: 'D1', vn: this.D1, start, end },
-      { position: 'C1', vn: this.C1, start, end },
+      { position: 'D1', vn: this.D1, start, end, type: CycleType.CYCLE },
+      { position: 'C1', vn: this.C1, start, end, type: CycleType.CYCLE },
       ...this.achievementCycleList(start, end),
     ]
 
@@ -166,8 +170,8 @@ export class NumericMap {
     const end = 28
 
     const list: VnPositionCycleT[] = [
-      { position: 'D1', vn: this.D1, start, end },
-      { position: 'C1', vn: this.C1, start, end },
+      { position: 'D1', vn: this.D1, start, end, type: CycleType.CYCLE },
+      { position: 'C1', vn: this.C1, start, end, type: CycleType.CYCLE },
       ...this.achievementCycleList(start, end),
     ]
 
@@ -190,8 +194,8 @@ export class NumericMap {
 
     const list: VnPositionCycleT[] = [
       ...this.fixedVNsPosition,
-      { position: 'D2', vn: this.D2, start, end },
-      { position: 'C2', vn: this.C2, start, end },
+      { position: 'D2', vn: this.D2, start, end, type: CycleType.CYCLE },
+      { position: 'C2', vn: this.C2, start, end, type: CycleType.CYCLE },
       ...this.achievementCycleList(start, end),
     ]
 
@@ -206,8 +210,8 @@ export class NumericMap {
     const end = 56
 
     const list: VnPositionCycleT[] = [
-      { position: 'D2', vn: this.D2, start, end },
-      { position: 'C2', vn: this.C2, start, end },
+      { position: 'D2', vn: this.D2, start, end, type: CycleType.CYCLE },
+      { position: 'C2', vn: this.C2, start, end, type: CycleType.CYCLE },
       ...this.achievementCycleList(start, end),
     ]
 
@@ -230,7 +234,7 @@ export class NumericMap {
 
     const list: VnPositionCycleT[] = [
       ...this.fixedVNsPosition,
-      { position: 'C3', vn: this.C3, start, end },
+      { position: 'C3', vn: this.C3, start, end, type: CycleType.CYCLE },
       ...this.achievementCycleList(start, end),
     ]
 
@@ -245,7 +249,7 @@ export class NumericMap {
     const end = Infinity
 
     const list: VnPositionCycleT[] = [
-      { position: 'C3', vn: this.C3, start, end },
+      { position: 'C3', vn: this.C3, start, end, type: CycleType.CYCLE },
       ...this.achievementCycleList(start, end),
     ]
 
@@ -265,7 +269,7 @@ export class NumericMap {
   get allCyclesVNsPosition () {
     const start = 0
     const end = Infinity
-    const list: VnPositionTypeT[] = [
+    const list: VnPositionCycleT[] = [
       { position: 'MO', vn: this.MO, type: CycleType.FIXED, start: 0, end: Infinity },
       { position: 'EU', vn: this.EU, type: CycleType.FIXED, start: 0, end: Infinity },
       { position: 'CD', vn: this.CD, type: CycleType.FIXED, start: 0, end: Infinity },
@@ -299,6 +303,7 @@ export class NumericMap {
         vn:       this.achievements.R1.vn,
         start:    Math.max(this.achievements.R1.start, cycleStart),
         end:      Math.min(this.achievements.R1.end, cycleEnd),
+        type:     CycleType.CYCLE,
       })
     }
 
@@ -309,6 +314,7 @@ export class NumericMap {
         vn:       this.achievements.R2.vn,
         start:    Math.max(this.achievements.R2.start, cycleStart),
         end:      Math.min(this.achievements.R2.end, cycleEnd),
+        type:     CycleType.CYCLE,
       })
     }
 
@@ -319,6 +325,7 @@ export class NumericMap {
         vn:       this.achievements.R3.vn,
         start:    Math.max(this.achievements.R3.start, cycleStart),
         end:      Math.min(this.achievements.R3.end, cycleEnd),
+        type:     CycleType.CYCLE,
       })
     }
 
@@ -329,6 +336,7 @@ export class NumericMap {
         vn:       this.achievements.R4.vn,
         start:    Math.max(this.achievements.R4.start, cycleStart),
         end:      Math.min(this.achievements.R4.end, cycleEnd),
+        type:     CycleType.CYCLE,
       })
     }
 

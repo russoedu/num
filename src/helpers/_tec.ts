@@ -126,25 +126,35 @@ class TecniquesHelper {
       break
     }
 
-    const multiplicity = _array.duplicatedFinalSingleDigitT(multiplicityData)
+    const multipleVns = _array.duplicatedFinalSingleDigitT(multiplicityData).sort()
 
-    for (const num of multiplicity) {
-      const multiplicatedVNsPosition = vnPositions
-        .filter(vnp => _number.match(vnp.vn, num as SingleDigitVN))
+    for (const vn of multipleVns) {
+      const potentialMultiplicities = vnPositions
+        .filter(vnp => _number.match(vnp.vn, vn as SingleDigitVN))
+        .sort((a, b) => a.start === b.start ? a.end - b.end : a.start - b.start)
 
-      const positions = multiplicatedVNsPosition.map(m => m.position)
+      /*
+       * const cycleMultiple: MultiplicityMultipleT[] = []
+       * for (const potentialMultiplicity of potentialMultiplicities) {
+       */
+
+      // }
+
+      const positions = potentialMultiplicities.map(m => m.position)
       const difCycles = (positions.includes('R1') && (positions.includes('R2') || positions.includes('R3') || positions.includes('R4'))) ||
       (positions.includes('R2') && (positions.includes('R3') || positions.includes('R4'))) ||
       (positions.includes('R3') && positions.includes('R4'))
         ? 1
         : 0
-      const count = Math.min(3, multiplicatedVNsPosition.length - 2 - difCycles)
+      const count = Math.min(MultiplicityType.length, potentialMultiplicities.length - 2 - difCycles)
 
       if (count >= 0) {
         multiples.push({
-          positions: multiplicatedVNsPosition.map(vnp => vnp.position),
-          vn:        num,
+          positions: potentialMultiplicities.map(vnp => vnp.position),
+          vn,
           type:      MultiplicityType[count],
+          start:     0,
+          end:       Infinity,
         })
       }
     }
@@ -249,6 +259,7 @@ class TecniquesHelper {
       .map(vn => ({
         position: '' as any,
         vn,
+        type:     CycleType.FIXED,
         start:    Infinity,
         end:      Infinity,
       }))
