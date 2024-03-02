@@ -102,37 +102,54 @@ class TecniquesHelper {
    * @returns The VN, its positions and the multiplicity type
    */
   multiples (map: NumericMap, cycle: Cycle) {
-    let multiplicityData: VN[] = []
-    let vnPositions: VnPositionCycleT[] = []
+    /**
+     * Simple list of VNs that are in the cycle
+     */
+    let cycleVns: VN[] = []
+    /**
+     * Details of the VNs that are in the cycle
+     */
+    let cycleDetails: VnPositionCycleT[] = []
 
     const multiples: MultiplicityMultipleT[] = []
 
     switch (cycle) {
     case Cycle.FIXED:
-      multiplicityData = map.fixedVNs
-      vnPositions = map.fixedVNsPosition
+      cycleVns = map.fixedVNs
+      cycleDetails = map.fixedVNsPosition
       break
     case Cycle.FIRST:
-      multiplicityData = map.firstCycleVNs
-      vnPositions = map.firstCycleVNsPosition
+      cycleVns = map.firstCycleVNs
+      cycleDetails = map.firstCycleVNsPosition
       break
     case Cycle.SECOND:
-      multiplicityData = map.secondCycleVNs
-      vnPositions = map.secondCycleVNsPosition
+      cycleVns = map.secondCycleVNs
+      cycleDetails = map.secondCycleVNsPosition
       break
     case Cycle.THIRD:
-      multiplicityData = map.thirdCycleVNs
-      vnPositions = map.thirdCycleVNsPosition
+      cycleVns = map.thirdCycleVNs
+      cycleDetails = map.thirdCycleVNsPosition
       break
     }
 
-    const multipleVns = _array.duplicatedFinalSingleDigitT(multiplicityData).sort()
+    /**
+     * VNs that repeat in the chosen cycle
+     */
+    const multipleVns = _array.duplicatedFinalSingleDigitT(cycleVns).sort()
 
+    // Iterate only over the vns that repeat
     for (const vn of multipleVns) {
-      const potentialMultiplicities = vnPositions
+      /**
+       * Details of the VN that has multiples sorted by start and end
+       */
+      const potentialMultiplicities = cycleDetails
         .filter(vnp => _number.match(vnp.vn, vn as SingleDigitVN))
-        .sort((a, b) => a.start === b.start ? a.end - b.end : a.start - b.start)
 
+      // TODO wrong from here - we need to check the start and end. We need to go one by one and compare with the rest, if there's a match, add both to a group. When checking the next one, check if it's a match with the added groups. If it is, add to the group. Else, create a new group starting from the beginning
+
+      // TODO MO, CD, C1 (0-28), R2(25-35) - MO and CD are fixed, so they will go for sure. We should have T from 0 to 25 (MO, CD, C1) and Qt from 25 to 28 (MO, CD, C1, R2)
+
+      // TODO I believe we need 2 loops to compare each entry with all other entries
       /*
        * const cycleMultiple: MultiplicityMultipleT[] = []
        * for (const potentialMultiplicity of potentialMultiplicities) {

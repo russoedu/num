@@ -82,8 +82,8 @@ describe('NumericMap', () => {
               name: 'Fixas',
               vns:  [
                 {
-                  position: 'MO',
-                  vn:       6,
+                  position: 'DM',
+                  vn:       0,
                   start:    0,
                   end:      Infinity,
                   type:     'fixas',
@@ -103,15 +103,15 @@ describe('NumericMap', () => {
                   type:     'fixas',
                 },
                 {
-                  position: 'EX',
-                  vn:       7,
+                  position: 'MO',
+                  vn:       6,
                   start:    0,
                   end:      Infinity,
                   type:     'fixas',
                 },
                 {
-                  position: 'DM',
-                  vn:       0,
+                  position: 'EX',
+                  vn:       7,
                   start:    0,
                   end:      Infinity,
                   type:     'fixas',
@@ -122,8 +122,8 @@ describe('NumericMap', () => {
               name: '1º Ciclo (0/28 anos)',
               vns:  [
                 {
-                  position: 'D1',
-                  vn:       5,
+                  position: 'R1',
+                  vn:       11,
                   start:    0,
                   end:      28,
                   type:     'ciclos',
@@ -136,8 +136,8 @@ describe('NumericMap', () => {
                   type:     'ciclos',
                 },
                 {
-                  position: 'R1',
-                  vn:       11,
+                  position: 'D1',
+                  vn:       5,
                   start:    0,
                   end:      28,
                   type:     'ciclos',
@@ -148,24 +148,24 @@ describe('NumericMap', () => {
               name: '2º Ciclo (28/56 anos)',
               vns:  [
                 {
-                  position: 'D2',
-                  vn:       5,
-                  start:    28,
-                  end:      56,
-                  type:     'ciclos',
-                },
-                {
-                  position: 'C2',
-                  vn:       8,
-                  start:    28,
-                  end:      56,
-                  type:     'ciclos',
-                },
-                {
                   position: 'R1',
                   vn:       11,
                   start:    28,
                   end:      35,
+                  type:     'ciclos',
+                },
+                {
+                  position: 'R4',
+                  vn:       11,
+                  start:    55,
+                  end:      56,
+                  type:     'ciclos',
+                },
+                {
+                  position: 'D2',
+                  vn:       5,
+                  start:    28,
+                  end:      56,
                   type:     'ciclos',
                 },
                 {
@@ -176,17 +176,17 @@ describe('NumericMap', () => {
                   type:     'ciclos',
                 },
                 {
+                  position: 'C2',
+                  vn:       8,
+                  start:    28,
+                  end:      56,
+                  type:     'ciclos',
+                },
+                {
                   position: 'R3',
                   vn:       9,
                   start:    45,
                   end:      55,
-                  type:     'ciclos',
-                },
-                {
-                  position: 'R4',
-                  vn:       11,
-                  start:    55,
-                  end:      56,
                   type:     'ciclos',
                 },
               ],
@@ -195,15 +195,15 @@ describe('NumericMap', () => {
               name: '3º Ciclo (+ 56 anos)',
               vns:  [
                 {
-                  position: 'C3',
-                  vn:       8,
+                  position: 'R4',
+                  vn:       11,
                   start:    56,
                   end:      Infinity,
                   type:     'ciclos',
                 },
                 {
-                  position: 'R4',
-                  vn:       11,
+                  position: 'C3',
+                  vn:       8,
                   start:    56,
                   end:      Infinity,
                   type:     'ciclos',
@@ -302,6 +302,13 @@ describe('NumericMap', () => {
               name: 'Fixas',
               vns:  [
                 {
+                  position: 'DM',
+                  vn:       2,
+                  start:    0,
+                  end:      Infinity,
+                  type:     'fixas',
+                },
+                {
                   position: 'MO',
                   vn:       11,
                   start:    0,
@@ -316,13 +323,6 @@ describe('NumericMap', () => {
                   type:     'fixas',
                 },
                 {
-                  position: 'CD',
-                  vn:       8,
-                  start:    0,
-                  end:      Infinity,
-                  type:     'fixas',
-                },
-                {
                   position: 'EX',
                   vn:       22,
                   start:    0,
@@ -330,8 +330,8 @@ describe('NumericMap', () => {
                   type:     'fixas',
                 },
                 {
-                  position: 'DM',
-                  vn:       2,
+                  position: 'CD',
+                  vn:       8,
                   start:    0,
                   end:      Infinity,
                   type:     'fixas',
@@ -342,8 +342,8 @@ describe('NumericMap', () => {
               name: '1º Ciclo (0/28 anos)',
               vns:  [
                 {
-                  position: 'D1',
-                  vn:       5,
+                  position: 'R1',
+                  vn:       11,
                   start:    0,
                   end:      28,
                   type:     'ciclos',
@@ -356,8 +356,8 @@ describe('NumericMap', () => {
                   type:     'ciclos',
                 },
                 {
-                  position: 'R1',
-                  vn:       11,
+                  position: 'D1',
+                  vn:       5,
                   start:    0,
                   end:      28,
                   type:     'ciclos',
@@ -375,13 +375,6 @@ describe('NumericMap', () => {
                   type:     'ciclos',
                 },
                 {
-                  position: 'C2',
-                  vn:       8,
-                  start:    28,
-                  end:      56,
-                  type:     'ciclos',
-                },
-                {
                   position: 'R2',
                   vn:       5,
                   start:    28,
@@ -393,6 +386,13 @@ describe('NumericMap', () => {
                   vn:       7,
                   start:    38,
                   end:      48,
+                  type:     'ciclos',
+                },
+                {
+                  position: 'C2',
+                  vn:       8,
+                  start:    28,
+                  end:      56,
                   type:     'ciclos',
                 },
                 {
@@ -515,6 +515,20 @@ describe('NumericMap', () => {
               name: 'Fixas',
               vns:  [
                 {
+                  position: 'CD',
+                  vn:       1,
+                  start:    0,
+                  end:      Infinity,
+                  type:     'fixas',
+                },
+                {
+                  position: 'DM',
+                  vn:       1,
+                  start:    0,
+                  end:      Infinity,
+                  type:     'fixas',
+                },
+                {
                   position: 'MO',
                   vn:       2,
                   start:    0,
@@ -529,22 +543,8 @@ describe('NumericMap', () => {
                   type:     'fixas',
                 },
                 {
-                  position: 'CD',
-                  vn:       1,
-                  start:    0,
-                  end:      Infinity,
-                  type:     'fixas',
-                },
-                {
                   position: 'EX',
                   vn:       6,
-                  start:    0,
-                  end:      Infinity,
-                  type:     'fixas',
-                },
-                {
-                  position: 'DM',
-                  vn:       1,
                   start:    0,
                   end:      Infinity,
                   type:     'fixas',
@@ -581,13 +581,6 @@ describe('NumericMap', () => {
               name: '2º Ciclo (28/56 anos)',
               vns:  [
                 {
-                  position: 'D2',
-                  vn:       5,
-                  start:    28,
-                  end:      56,
-                  type:     'ciclos',
-                },
-                {
                   position: 'C2',
                   vn:       1,
                   start:    28,
@@ -595,10 +588,10 @@ describe('NumericMap', () => {
                   type:     'ciclos',
                 },
                 {
-                  position: 'R1',
-                  vn:       8,
-                  start:    28,
-                  end:      35,
+                  position: 'R3',
+                  vn:       11,
+                  start:    45,
+                  end:      55,
                   type:     'ciclos',
                 },
                 {
@@ -609,10 +602,17 @@ describe('NumericMap', () => {
                   type:     'ciclos',
                 },
                 {
-                  position: 'R3',
-                  vn:       11,
-                  start:    45,
-                  end:      55,
+                  position: 'D2',
+                  vn:       5,
+                  start:    28,
+                  end:      56,
+                  type:     'ciclos',
+                },
+                {
+                  position: 'R1',
+                  vn:       8,
+                  start:    28,
+                  end:      35,
                   type:     'ciclos',
                 },
                 {
@@ -810,20 +810,20 @@ describe('NumericMap', () => {
       const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
 
       expect(nm.allCyclesVNsPosition).toEqual([
-        { position: 'MO', vn: 6, type: CycleType.FIXED, start: 0, end: Infinity },
+        { position: 'DM', vn: 0, type: CycleType.FIXED, start: 0, end: Infinity },
         { position: 'EU', vn: 1, type: CycleType.FIXED, start: 0, end: Infinity },
         { position: 'CD', vn: 1, type: CycleType.FIXED, start: 0, end: Infinity },
-        { position: 'EX', vn: 7, type: CycleType.FIXED, start: 0, end: Infinity },
+        { position: 'R1', vn: 11, type: CycleType.CYCLE, start: 0, end: 35 },
+        { position: 'R4', vn: 11, type: CycleType.CYCLE, start: 55, end: Infinity },
+        { position: 'C1', vn: 3, type: CycleType.CYCLE, start: 0, end: 28 },
         { position: 'D1', vn: 5, type: CycleType.CYCLE, start: 0, end: 28 },
         { position: 'D2', vn: 5, type: CycleType.CYCLE, start: 28, end: 56 },
-        { position: 'DM', vn: 0, type: CycleType.FIXED, start: 0, end: Infinity },
-        { position: 'C1', vn: 3, type: CycleType.CYCLE, start: 0, end: 28 },
+        { position: 'MO', vn: 6, type: CycleType.FIXED, start: 0, end: Infinity },
+        { position: 'EX', vn: 7, type: CycleType.FIXED, start: 0, end: Infinity },
+        { position: 'R2', vn: 7, type: CycleType.CYCLE, start: 35, end: 45 },
         { position: 'C2', vn: 8, type: CycleType.CYCLE, start: 28, end: 56 },
         { position: 'C3', vn: 8, type: CycleType.CYCLE, start: 56, end: Infinity },
-        { position: 'R1', vn: 11, type: CycleType.CYCLE, start: 0, end: 35 },
-        { position: 'R2', vn: 7, type: CycleType.CYCLE, start: 35, end: 45 },
         { position: 'R3', vn: 9, type: CycleType.CYCLE, start: 45, end: 55 },
-        { position: 'R4', vn: 11, type: CycleType.CYCLE, start: 55, end: Infinity },
       ])
     })
     test('fixedVNs', () => {
@@ -840,110 +840,110 @@ describe('NumericMap', () => {
       const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
 
       expect(nm.fixedVNsPosition).toEqual([
-        { position: 'MO', vn: 6, start: 0, end: Infinity, type: 'fixas' },
+        { position: 'DM', vn: 0, start: 0, end: Infinity, type: 'fixas' },
         { position: 'EU', vn: 1, start: 0, end: Infinity, type: 'fixas' },
         { position: 'CD', vn: 1, start: 0, end: Infinity, type: 'fixas' },
+        { position: 'MO', vn: 6, start: 0, end: Infinity, type: 'fixas' },
         { position: 'EX', vn: 7, start: 0, end: Infinity, type: 'fixas' },
-        { position: 'DM', vn: 0, start: 0, end: Infinity, type: 'fixas' },
       ])
     })
     test('fixedMainVNsPosition', () => {
       const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
 
       expect(nm.fixedMainVNsPosition).toEqual([
-        { position: 'MO', vn: 6, start: 0, end: Infinity, type: 'fixas' },
+        { position: 'DM', vn: 0, start: 0, end: Infinity, type: 'fixas' },
         { position: 'EU', vn: 1, start: 0, end: Infinity, type: 'fixas' },
         { position: 'CD', vn: 1, start: 0, end: Infinity, type: 'fixas' },
-        { position: 'DM', vn: 0, start: 0, end: Infinity, type: 'fixas' },
+        { position: 'MO', vn: 6, start: 0, end: Infinity, type: 'fixas' },
       ])
     })
     test('firstCycleVNsPosition', () => {
       const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
 
       expect(nm.firstCycleVNsPosition).toEqual([
-        { position: 'MO', vn: 6, start: 0, end: Infinity, type: 'fixas' },
+        { position: 'DM', vn: 0, start: 0, end: Infinity, type: 'fixas' },
         { position: 'EU', vn: 1, start: 0, end: Infinity, type: 'fixas' },
         { position: 'CD', vn: 1, start: 0, end: Infinity, type: 'fixas' },
-        { position: 'EX', vn: 7, start: 0, end: Infinity, type: 'fixas' },
-        { position: 'DM', vn: 0, start: 0, end: Infinity, type: 'fixas' },
-        { position: 'D1', vn: 5, start: 0, end: 28, type: 'ciclos' },
-        { position: 'C1', vn: 3, start: 0, end: 28, type: 'ciclos' },
         { position: 'R1', vn: 11, start: 0, end: 28, type: 'ciclos' },
+        { position: 'C1', vn: 3, start: 0, end: 28, type: 'ciclos' },
+        { position: 'D1', vn: 5, start: 0, end: 28, type: 'ciclos' },
+        { position: 'MO', vn: 6, start: 0, end: Infinity, type: 'fixas' },
+        { position: 'EX', vn: 7, start: 0, end: Infinity, type: 'fixas' },
       ])
     })
     test('firstCycleOnlyVNsPosition', () => {
       const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
 
       expect(nm.firstCycleOnlyVNsPosition).toEqual([
-        { position: 'D1', vn: 5, start: 0, end: 28, type: 'ciclos' },
-        { position: 'C1', vn: 3, start: 0, end: 28, type: 'ciclos' },
         { position: 'R1', vn: 11, start: 0, end: 28, type: 'ciclos' },
+        { position: 'C1', vn: 3, start: 0, end: 28, type: 'ciclos' },
+        { position: 'D1', vn: 5, start: 0, end: 28, type: 'ciclos' },
       ])
     })
     test('firstCycleVNs', () => {
       const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
 
-      expect(nm.firstCycleVNs).toEqual([6, 1, 1, 7, 0, 5, 3, 11])
+      expect(nm.firstCycleVNs).toEqual([0, 1, 1, 11, 3, 5, 6, 7])
     })
     test('secondCycleVNsPosition', () => {
       const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
 
       expect(nm.secondCycleVNsPosition).toEqual([
-        { position: 'MO', vn: 6, start: 0, end: Infinity, type: 'fixas' },
+        { position: 'DM', vn: 0, start: 0, end: Infinity, type: 'fixas' },
         { position: 'EU', vn: 1, start: 0, end: Infinity, type: 'fixas' },
         { position: 'CD', vn: 1, start: 0, end: Infinity, type: 'fixas' },
-        { position: 'EX', vn: 7, start: 0, end: Infinity, type: 'fixas' },
-        { position: 'DM', vn: 0, start: 0, end: Infinity, type: 'fixas' },
-        { position: 'D2', vn: 5, start: 28, end: 56, type: 'ciclos' },
-        { position: 'C2', vn: 8, start: 28, end: 56, type: 'ciclos' },
         { position: 'R1', vn: 11, start: 28, end: 35, type: 'ciclos' },
-        { position: 'R2', vn: 7, start: 35, end: 45, type: 'ciclos' },
-        { position: 'R3', vn: 9, start: 45, end: 55, type: 'ciclos' },
         { position: 'R4', vn: 11, start: 55, end: 56, type: 'ciclos' },
+        { position: 'D2', vn: 5, start: 28, end: 56, type: 'ciclos' },
+        { position: 'MO', vn: 6, start: 0, end: Infinity, type: 'fixas' },
+        { position: 'EX', vn: 7, start: 0, end: Infinity, type: 'fixas' },
+        { position: 'R2', vn: 7, start: 35, end: 45, type: 'ciclos' },
+        { position: 'C2', vn: 8, start: 28, end: 56, type: 'ciclos' },
+        { position: 'R3', vn: 9, start: 45, end: 55, type: 'ciclos' },
       ])
     })
     test('secondCycleOnlyVNsPosition', () => {
       const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
 
       expect(nm.secondCycleOnlyVNsPosition).toEqual([
-        { position: 'D2', vn: 5, start: 28, end: 56, type: 'ciclos' },
-        { position: 'C2', vn: 8, start: 28, end: 56, type: 'ciclos' },
         { position: 'R1', vn: 11, start: 28, end: 35, type: 'ciclos' },
-        { position: 'R2', vn: 7, start: 35, end: 45, type: 'ciclos' },
-        { position: 'R3', vn: 9, start: 45, end: 55, type: 'ciclos' },
         { position: 'R4', vn: 11, start: 55, end: 56, type: 'ciclos' },
+        { position: 'D2', vn: 5, start: 28, end: 56, type: 'ciclos' },
+        { position: 'R2', vn: 7, start: 35, end: 45, type: 'ciclos' },
+        { position: 'C2', vn: 8, start: 28, end: 56, type: 'ciclos' },
+        { position: 'R3', vn: 9, start: 45, end: 55, type: 'ciclos' },
       ])
     })
     test('secondCycleVNs', () => {
       const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
 
-      expect(nm.secondCycleVNs).toEqual([6, 1, 1, 7, 0, 5, 8, 11, 7, 9, 11])
+      expect(nm.secondCycleVNs).toEqual([0, 1, 1, 11, 11, 5, 6, 7, 7, 8, 9])
     })
     test('thirdCycleVNsPosition', () => {
       const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
 
       expect(nm.thirdCycleVNsPosition).toEqual([
-        { position: 'MO', vn: 6, start: 0, end: Infinity, type: 'fixas' },
+        { position: 'DM', vn: 0, start: 0, end: Infinity, type: 'fixas' },
         { position: 'EU', vn: 1, start: 0, end: Infinity, type: 'fixas' },
         { position: 'CD', vn: 1, start: 0, end: Infinity, type: 'fixas' },
-        { position: 'EX', vn: 7, start: 0, end: Infinity, type: 'fixas' },
-        { position: 'DM', vn: 0, start: 0, end: Infinity, type: 'fixas' },
-        { position: 'C3', vn: 8, start: 56, end: Infinity, type: 'ciclos' },
         { position: 'R4', vn: 11, start: 56, end: Infinity, type: 'ciclos' },
+        { position: 'MO', vn: 6, start: 0, end: Infinity, type: 'fixas' },
+        { position: 'EX', vn: 7, start: 0, end: Infinity, type: 'fixas' },
+        { position: 'C3', vn: 8, start: 56, end: Infinity, type: 'ciclos' },
       ])
     })
     test('thirdCycleOnlyVNsPosition', () => {
       const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
 
       expect(nm.thirdCycleOnlyVNsPosition).toEqual([
-        { position: 'C3', vn: 8, start: 56, end: Infinity, type: 'ciclos'},
         { position: 'R4', vn: 11, start: 56, end: Infinity, type: 'ciclos' },
+        { position: 'C3', vn: 8, start: 56, end: Infinity, type: 'ciclos'},
       ])
     })
     test('thirdCycleVNs', () => {
       const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2024-01-02')
 
-      expect(nm.thirdCycleVNs).toEqual([6, 1, 1, 7, 0, 8, 11])
+      expect(nm.thirdCycleVNs).toEqual([0, 1, 1, 11, 6, 7, 8])
     })
     test('cycle - first limit', () => {
       const nm = new NumericMap('EDUARDO RUSSO', '1979-03-17', '2007-03-16')
@@ -952,14 +952,14 @@ describe('NumericMap', () => {
         cycle:     '1º Ciclo - 0/28 anos',
         index:     1,
         vnNumbers: [
-          { position: 'MO', vn: 6, start: 0, end: Infinity, type: 'fixas' },
+          { position: 'DM', vn: 0, start: 0, end: Infinity, type: 'fixas' },
           { position: 'EU', vn: 1, start: 0, end: Infinity, type: 'fixas' },
           { position: 'CD', vn: 1, start: 0, end: Infinity, type: 'fixas' },
-          { position: 'EX', vn: 7, start: 0, end: Infinity, type: 'fixas' },
-          { position: 'DM', vn: 0, start: 0, end: Infinity, type: 'fixas' },
-          { position: 'D1', vn: 5, start: 0, end: 28, type: 'ciclos' },
-          { position: 'C1', vn: 3, start: 0, end: 28, type: 'ciclos' },
           { position: 'R1', vn: 11, start: 0, end: 28, type: 'ciclos' },
+          { position: 'C1', vn: 3, start: 0, end: 28, type: 'ciclos' },
+          { position: 'D1', vn: 5, start: 0, end: 28, type: 'ciclos' },
+          { position: 'MO', vn: 6, start: 0, end: Infinity, type: 'fixas' },
+          { position: 'EX', vn: 7, start: 0, end: Infinity, type: 'fixas' },
         ],
       })
     })
@@ -970,17 +970,17 @@ describe('NumericMap', () => {
         cycle:     '2º Ciclo - 28/56 anos',
         index:     2,
         vnNumbers: [
-          { position: 'MO', vn: 6, start: 0, end: Infinity, type: 'fixas' },
+          { position: 'DM', vn: 0, start: 0, end: Infinity, type: 'fixas' },
           { position: 'EU', vn: 1, start: 0, end: Infinity, type: 'fixas' },
           { position: 'CD', vn: 1, start: 0, end: Infinity, type: 'fixas' },
-          { position: 'EX', vn: 7, start: 0, end: Infinity, type: 'fixas' },
-          { position: 'DM', vn: 0, start: 0, end: Infinity, type: 'fixas' },
-          { position: 'D2', vn: 5, start: 28, end: 56, type: 'ciclos' },
-          { position: 'C2', vn: 8, start: 28, end: 56, type: 'ciclos' },
           { position: 'R1', vn: 11, start: 28, end: 35, type: 'ciclos' },
-          { position: 'R2', vn: 7, start: 35, end: 45, type: 'ciclos' },
-          { position: 'R3', vn: 9, start: 45, end: 55, type: 'ciclos' },
           { position: 'R4', vn: 11, start: 55, end: 56, type: 'ciclos' },
+          { position: 'D2', vn: 5, start: 28, end: 56, type: 'ciclos' },
+          { position: 'MO', vn: 6, start: 0, end: Infinity, type: 'fixas' },
+          { position: 'EX', vn: 7, start: 0, end: Infinity, type: 'fixas' },
+          { position: 'R2', vn: 7, start: 35, end: 45, type: 'ciclos' },
+          { position: 'C2', vn: 8, start: 28, end: 56, type: 'ciclos' },
+          { position: 'R3', vn: 9, start: 45, end: 55, type: 'ciclos' },
         ],
       })
     })
@@ -991,17 +991,17 @@ describe('NumericMap', () => {
         cycle:     '2º Ciclo - 28/56 anos',
         index:     2,
         vnNumbers: [
-          { position: 'MO', vn: 6, start: 0, end: Infinity, type: 'fixas' },
+          { position: 'DM', vn: 0, start: 0, end: Infinity, type: 'fixas' },
           { position: 'EU', vn: 1, start: 0, end: Infinity, type: 'fixas' },
           { position: 'CD', vn: 1, start: 0, end: Infinity, type: 'fixas' },
-          { position: 'EX', vn: 7, start: 0, end: Infinity, type: 'fixas' },
-          { position: 'DM', vn: 0, start: 0, end: Infinity, type: 'fixas' },
-          { position: 'D2', vn: 5, start: 28, end: 56, type: 'ciclos' },
-          { position: 'C2', vn: 8, start: 28, end: 56, type: 'ciclos' },
           { position: 'R1', vn: 11, start: 28, end: 35, type: 'ciclos' },
-          { position: 'R2', vn: 7, start: 35, end: 45, type: 'ciclos' },
-          { position: 'R3', vn: 9, start: 45, end: 55, type: 'ciclos' },
           { position: 'R4', vn: 11, start: 55, end: 56, type: 'ciclos' },
+          { position: 'D2', vn: 5, start: 28, end: 56, type: 'ciclos' },
+          { position: 'MO', vn: 6, start: 0, end: Infinity, type: 'fixas' },
+          { position: 'EX', vn: 7, start: 0, end: Infinity, type: 'fixas' },
+          { position: 'R2', vn: 7, start: 35, end: 45, type: 'ciclos' },
+          { position: 'C2', vn: 8, start: 28, end: 56, type: 'ciclos' },
+          { position: 'R3', vn: 9, start: 45, end: 55, type: 'ciclos' },
         ],
       })
     })
@@ -1012,13 +1012,13 @@ describe('NumericMap', () => {
         cycle:     '3º Ciclo - + 56 anos',
         index:     3,
         vnNumbers: [
-          { position: 'MO', vn: 6, start: 0, end: Infinity, type: 'fixas' },
+          { position: 'DM', vn: 0, start: 0, end: Infinity, type: 'fixas' },
           { position: 'EU', vn: 1, start: 0, end: Infinity, type: 'fixas' },
           { position: 'CD', vn: 1, start: 0, end: Infinity, type: 'fixas' },
-          { position: 'EX', vn: 7, start: 0, end: Infinity, type: 'fixas' },
-          { position: 'DM', vn: 0, start: 0, end: Infinity, type: 'fixas' },
-          { position: 'C3', vn: 8, start: 56, end: Infinity, type: 'ciclos' },
           { position: 'R4', vn: 11, start: 56, end: Infinity, type: 'ciclos' },
+          { position: 'MO', vn: 6, start: 0, end: Infinity, type: 'fixas' },
+          { position: 'EX', vn: 7, start: 0, end: Infinity, type: 'fixas' },
+          { position: 'C3', vn: 8, start: 56, end: Infinity, type: 'ciclos' },
         ],
       })
     })
@@ -1029,13 +1029,13 @@ describe('NumericMap', () => {
         cycle:     '3º Ciclo - + 56 anos',
         index:     3,
         vnNumbers: [
-          { position: 'MO', vn: 6, start: 0, end: Infinity, type: 'fixas' },
+          { position: 'DM', vn: 0, start: 0, end: Infinity, type: 'fixas' },
           { position: 'EU', vn: 1, start: 0, end: Infinity, type: 'fixas' },
           { position: 'CD', vn: 1, start: 0, end: Infinity, type: 'fixas' },
-          { position: 'EX', vn: 7, start: 0, end: Infinity, type: 'fixas' },
-          { position: 'DM', vn: 0, start: 0, end: Infinity, type: 'fixas' },
-          { position: 'C3', vn: 8, start: 56, end: Infinity, type: 'ciclos'},
           { position: 'R4', vn: 11, start: 56, end: Infinity, type: 'ciclos' },
+          { position: 'MO', vn: 6, start: 0, end: Infinity, type: 'fixas' },
+          { position: 'EX', vn: 7, start: 0, end: Infinity, type: 'fixas' },
+          { position: 'C3', vn: 8, start: 56, end: Infinity, type: 'ciclos'},
         ],
       })
     })

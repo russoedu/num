@@ -330,22 +330,8 @@ describe('AdvancedTecniques', () => {
         comments: 'Quando tem Duplicidades ou mais deve ser mais reforçado.',
       })
     })
-    test.skip('map 3', () => {
-      const map = new NumericMap('', '1979-03-17', '2021-01-07')
-      map.MO = 1
-      map.EU = 2
-      map.CD = 3
-      map.EX = 4
-      map.C1 = 5
-      map.C2 = 5
-      map.C3 = 5
-      map.D1 = 6
-      map.D2 = 6
-      map.DM = 7
-      map.R1 = 8
-      map.R2 = 8
-      map.R3 = 8
-      map.R4 = 8
+    test('map 3', () => {
+      const map = new NumericMap('Bai Ossur Cheool', '1995-12-24', '2021-01-07')
       const am = new AdvancedTecniques(map)
 
       expect(am.tec4Multiplicidades).toEqual({

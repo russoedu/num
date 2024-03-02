@@ -12,7 +12,7 @@ export class NumericMap {
     const [birthdayYear, birthdayMonth, birthdayDay] = birthday.split('-').map(d => Number(d))
     const [todayYear, todayMonth, todayDay] = today.split('-').map(d => Number(d))
 
-    this.name = _name.normalise(name)
+    this.name = _name.normalise(name).toUpperCase()
     this.birthday = { year: birthdayYear, month: birthdayMonth, day: birthdayDay }
 
     this.today = { year: todayYear, month: todayMonth, day: todayDay }
@@ -120,7 +120,7 @@ export class NumericMap {
    * List of fixed numbers and VNs in the map
    */
   get fixedVNsPosition () {
-    const vns: VnPositionCycleT[] = [
+    const list: VnPositionCycleT[] = [
       { position: 'MO', vn: this.MO, start: 0, end: Infinity, type: CycleType.FIXED },
       { position: 'EU', vn: this.EU, start: 0, end: Infinity, type: CycleType.FIXED },
       { position: 'CD', vn: this.CD, start: 0, end: Infinity, type: CycleType.FIXED },
@@ -128,21 +128,25 @@ export class NumericMap {
       { position: 'DM', vn: this.DM, start: 0, end: Infinity, type: CycleType.FIXED },
     ]
 
-    return vns
+    _array.sortVnAge(list)
+
+    return list
   }
 
   /**
    * List of fixed numbers and VNs in the map excluding EX
    */
   get fixedMainVNsPosition () {
-    const vns: VnPositionCycleT[] = [
+    const list: VnPositionCycleT[] = [
       { position: 'MO', vn: this.MO, start: 0, end: Infinity, type: CycleType.FIXED },
       { position: 'EU', vn: this.EU, start: 0, end: Infinity, type: CycleType.FIXED },
       { position: 'CD', vn: this.CD, start: 0, end: Infinity, type: CycleType.FIXED },
       { position: 'DM', vn: this.DM, start: 0, end: Infinity, type: CycleType.FIXED },
     ]
 
-    return vns
+    _array.sortVnAge(list)
+
+    return list
   }
 
   /**
@@ -159,6 +163,8 @@ export class NumericMap {
       ...this.achievementCycleList(start, end),
     ]
 
+    _array.sortVnAge(list)
+
     return list
   }
 
@@ -174,6 +180,8 @@ export class NumericMap {
       { position: 'C1', vn: this.C1, start, end, type: CycleType.CYCLE },
       ...this.achievementCycleList(start, end),
     ]
+
+    _array.sortVnAge(list)
 
     return list
   }
@@ -199,6 +207,8 @@ export class NumericMap {
       ...this.achievementCycleList(start, end),
     ]
 
+    _array.sortVnAge(list)
+
     return list
   }
 
@@ -214,6 +224,8 @@ export class NumericMap {
       { position: 'C2', vn: this.C2, start, end, type: CycleType.CYCLE },
       ...this.achievementCycleList(start, end),
     ]
+
+    _array.sortVnAge(list)
 
     return list
   }
@@ -238,6 +250,8 @@ export class NumericMap {
       ...this.achievementCycleList(start, end),
     ]
 
+    _array.sortVnAge(list)
+
     return list
   }
 
@@ -252,6 +266,8 @@ export class NumericMap {
       { position: 'C3', vn: this.C3, start, end, type: CycleType.CYCLE },
       ...this.achievementCycleList(start, end),
     ]
+
+    _array.sortVnAge(list)
 
     return list
   }
@@ -283,6 +299,8 @@ export class NumericMap {
       ...this.achievementCycleList(start, end)
         .map(e => ({ ...e, type: CycleType.CYCLE })),
     ]
+
+    _array.sortVnAge(list)
 
     return list
   }

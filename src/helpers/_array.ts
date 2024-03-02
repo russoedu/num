@@ -1,5 +1,5 @@
 import { _number } from './_number'
-import { SingleDigitVN, VN } from './types'
+import { SingleDigitVN, VN, VnPositionCycleT } from './types'
 
 class ArrayHelper {
   /**
@@ -84,6 +84,27 @@ class ArrayHelper {
     const intersection = new Set([...setA].filter(x => setB.has(x)))
 
     return Array.from(intersection)
+  }
+
+  /**
+   * Sorts the array (in place) by VN and age
+   * @param list - The VnPositionCycle list to be sorted by age and VN
+   * @returns The sorted list
+   */
+  sortVnAge (list: VnPositionCycleT[]) {
+    const sorted = list
+      .sort((a, b) => a.start === b.start ? a.end - b.end : a.start - b.start)
+      .sort((a, b) => {
+        const aConv = _number.vnToSingleVn(a.vn)
+        const bConv = _number.vnToSingleVn(b.vn)
+
+        if (aConv < bConv) return -1
+        if (aConv > bConv) return 1
+
+        return a.vn - b.vn
+      })
+
+    return sorted
   }
 }
 
