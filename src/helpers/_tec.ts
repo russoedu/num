@@ -1,7 +1,7 @@
 import { NumericMap } from '../services/NumericMap'
 import { _array } from './_array'
 import { _number } from './_number'
-import { VN, PyramidResultT, Cycle, VnPositionCycleT, MultiplicityMultipleT, SingleDigitVN, MultiplicityType, vnOwnerPractitioner, OwnersAndPractitionersDataT, PercentageT, SingleDigitVnPositionCycleT, CycleType, PositionT } from './types'
+import { VN, PyramidResultT, Cycle, VnPositionCycleT, MultiplicityMultipleT, SingleDigitVN, MultiplicityType, vnOwnerPractitioner, OwnersAndPractitionersDataT, PercentageT, SingleDigitVnPositionCycleT, CycleType } from './types'
 
 class TecniquesHelper {
   piramide (num: VN): PyramidResultT[] {
@@ -185,13 +185,6 @@ class TecniquesHelper {
           prev.positions.push(...cur.positions)
           prev.positions = _array.unique(prev.positions)
           prev.type = this.#multiplicityType(prev.positions)
-          matches.splice(i, 1)
-        }
-      }
-
-      const fixedPositions: PositionT[] = ['MO', 'EU', 'CD', 'DM', 'EX']
-      for (let i = 0; i < matches.length; i++) {
-        if (cycle !== Cycle.FIXED && _array.notInArray(matches[i].positions, fixedPositions).length === 0) {
           matches.splice(i, 1)
         }
       }

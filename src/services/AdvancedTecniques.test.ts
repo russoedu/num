@@ -340,6 +340,16 @@ describe('AdvancedTecniques', () => {
                 start: 35,
                 end:   45,
               },
+              {
+                vn:        7,
+                positions: [
+                  'EU',
+                  'EX',
+                ],
+                type:  'D',
+                start: 28,
+                end:   56,
+              },
             ],
           },
           {
@@ -350,6 +360,16 @@ describe('AdvancedTecniques', () => {
                 positions: [
                   'C3',
                   'CD',
+                ],
+                type:  'D',
+                start: 56,
+                end:   Infinity,
+              },
+              {
+                vn:        7,
+                positions: [
+                  'EU',
+                  'EX',
                 ],
                 type:  'D',
                 start: 56,
@@ -454,6 +474,17 @@ describe('AdvancedTecniques', () => {
                 type:  'Qd',
                 start: 28,
                 end:   30,
+              },
+              {
+                vn:        9,
+                positions: [
+                  'MO',
+                  'EU',
+                  'EX',
+                ],
+                type:  'T',
+                start: 28,
+                end:   56,
               },
               {
                 vn:        9,
