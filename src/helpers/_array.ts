@@ -1,5 +1,5 @@
 import { _number } from './_number'
-import { SingleDigitVN, VN, VnPositionCycleT } from './types'
+import { MultiplicityMultipleT, SingleDigitVN, VN, VnPositionCycleT } from './types'
 
 class ArrayHelper {
   /**
@@ -91,7 +91,7 @@ class ArrayHelper {
    * @param list - The VnPositionCycle list to be sorted by age and VN
    * @returns The sorted list
    */
-  sortVnAge (list: VnPositionCycleT[]) {
+  sortVnAge (list: VnPositionCycleT[]|MultiplicityMultipleT[]) {
     const sorted = list
       .sort((a, b) => a.start === b.start ? a.end - b.end : a.start - b.start)
       .sort((a, b) => {

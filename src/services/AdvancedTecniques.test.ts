@@ -147,8 +147,8 @@ describe('AdvancedTecniques', () => {
       expect(am.tec2Ausencia).toEqual([2, 4])
     })
   })
-  describe.skip('tec4Multiplicidades', () => {
-    test('map 1', () => {
+  describe('tec4Multiplicidades', () => {
+    test.skip('map 1', () => {
       const map = new NumericMap('RANAUDI OZZIM', '1950-12-26', '2021-01-07')
       const am = new AdvancedTecniques(map)
 
@@ -261,7 +261,7 @@ describe('AdvancedTecniques', () => {
       })
     })
     test('map 2', () => {
-      const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
+      const map = new NumericMap('Fabio Gandolfo Severino', '1964-10-08', '2021-01-07')
       const am = new AdvancedTecniques(map)
 
       expect(am.tec4Multiplicidades).toEqual({
@@ -270,12 +270,14 @@ describe('AdvancedTecniques', () => {
             type:      'Fixas',
             multiples: [
               {
+                vn:        7,
                 positions: [
                   'EU',
-                  'CD',
+                  'EX',
                 ],
-                vn:   1,
-                type: 'D',
+                type:  'D',
+                start: 0,
+                end:   Infinity,
               },
             ],
           },
@@ -283,12 +285,35 @@ describe('AdvancedTecniques', () => {
             type:      '1º Ciclo (0/28 anos)',
             multiples: [
               {
+                vn:        1,
                 positions: [
-                  'EU',
-                  'CD',
+                  'C1',
+                  'R2',
                 ],
-                vn:   1,
-                type: 'D',
+                type:  'D',
+                start: 25,
+                end:   28,
+              },
+              {
+                vn:        7,
+                positions: [
+                  'D1',
+                  'EU',
+                  'EX',
+                ],
+                type:  'T',
+                start: 0,
+                end:   28,
+              },
+              {
+                vn:        9,
+                positions: [
+                  'R1',
+                  'MO',
+                ],
+                type:  'D',
+                start: 0,
+                end:   25,
               },
             ],
           },
@@ -296,20 +321,24 @@ describe('AdvancedTecniques', () => {
             type:      '2º Ciclo (28/56 anos)',
             multiples: [
               {
+                vn:        1,
                 positions: [
-                  'EU',
-                  'CD',
+                  'R2',
+                  'D2',
                 ],
-                vn:   1,
-                type: 'D',
+                type:  'D',
+                start: 28,
+                end:   35,
               },
               {
+                vn:        1,
                 positions: [
-                  'EX',
-                  'R2',
+                  'D2',
+                  'R3',
                 ],
-                vn:   7,
-                type: 'D',
+                type:  'D',
+                start: 35,
+                end:   45,
               },
             ],
           },
@@ -317,21 +346,23 @@ describe('AdvancedTecniques', () => {
             type:      '3º Ciclo (+ 56 anos)',
             multiples: [
               {
+                vn:        2,
                 positions: [
-                  'EU',
+                  'C3',
                   'CD',
                 ],
-                vn:   1,
-                type: 'D',
+                type:  'D',
+                start: 56,
+                end:   Infinity,
               },
             ],
           },
         ],
-        comments: 'Quando tem Duplicidades ou mais deve ser mais reforçado.',
+        comments: 'Quando tem Duplicidades ou mais deve ser mais reforçado. De Triplicidade em diante deve procurar ajuda e viver a multiplicidade e o número seguinte.',
       })
     })
     test('map 3', () => {
-      const map = new NumericMap('Bai Ossur Cheool', '1995-12-24', '2021-01-07')
+      const map = new NumericMap('IBA Ossur Cheool', '1995-12-24', '2021-01-07')
       const am = new AdvancedTecniques(map)
 
       expect(am.tec4Multiplicidades).toEqual({
@@ -340,12 +371,15 @@ describe('AdvancedTecniques', () => {
             type:      'Fixas',
             multiples: [
               {
+                vn:        9,
                 positions: [
+                  'MO',
                   'EU',
-                  'CD',
+                  'EX',
                 ],
-                vn:   1,
-                type: 'D',
+                type:  'T',
+                start: 0,
+                end:   Infinity,
               },
             ],
           },
@@ -353,12 +387,26 @@ describe('AdvancedTecniques', () => {
             type:      '1º Ciclo (0/28 anos)',
             multiples: [
               {
+                vn:        3,
                 positions: [
-                  'EU',
-                  'CD',
+                  'D1',
+                  'C1',
                 ],
-                vn:   1,
-                type: 'D',
+                type:  'D',
+                start: 0,
+                end:   28,
+              },
+              {
+                vn:        9,
+                positions: [
+                  'R1',
+                  'MO',
+                  'EU',
+                  'EX',
+                ],
+                type:  'Qd',
+                start: 0,
+                end:   28,
               },
             ],
           },
@@ -366,20 +414,58 @@ describe('AdvancedTecniques', () => {
             type:      '2º Ciclo (28/56 anos)',
             multiples: [
               {
+                vn:        3,
                 positions: [
-                  'EU',
-                  'CD',
-                ],
-                vn:   1,
-                type: 'D',
-              },
-              {
-                positions: [
-                  'EX',
+                  'D2',
                   'R2',
                 ],
-                vn:   7,
-                type: 'D',
+                type:  'D',
+                start: 30,
+                end:   40,
+              },
+              {
+                vn:        3,
+                positions: [
+                  'D2',
+                  'R3',
+                ],
+                type:  'D',
+                start: 40,
+                end:   50,
+              },
+              {
+                vn:        6,
+                positions: [
+                  'CD',
+                  'C2',
+                ],
+                type:  'D',
+                start: 28,
+                end:   56,
+              },
+              {
+                vn:        9,
+                positions: [
+                  'MO',
+                  'R1',
+                  'EU',
+                  'EX',
+                ],
+                type:  'Qd',
+                start: 28,
+                end:   30,
+              },
+              {
+                vn:        9,
+                positions: [
+                  'MO',
+                  'R4',
+                  'EU',
+                  'EX',
+                ],
+                type:  'Qd',
+                start: 50,
+                end:   56,
               },
             ],
           },
@@ -387,17 +473,31 @@ describe('AdvancedTecniques', () => {
             type:      '3º Ciclo (+ 56 anos)',
             multiples: [
               {
+                vn:        6,
                 positions: [
-                  'EU',
                   'CD',
+                  'C3',
                 ],
-                vn:   1,
-                type: 'D',
+                type:  'D',
+                start: 56,
+                end:   Infinity,
+              },
+              {
+                vn:        9,
+                positions: [
+                  'MO',
+                  'EU',
+                  'EX',
+                  'R4',
+                ],
+                type:  'Qd',
+                start: 56,
+                end:   Infinity,
               },
             ],
           },
         ],
-        comments: 'Quando tem Duplicidades ou mais deve ser mais reforçado.',
+        comments: 'Quando tem Duplicidades ou mais deve ser mais reforçado. De Triplicidade em diante deve procurar ajuda e viver a multiplicidade e o número seguinte.',
       })
     })
   })

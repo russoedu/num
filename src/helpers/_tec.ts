@@ -1,7 +1,7 @@
 import { NumericMap } from '../services/NumericMap'
 import { _array } from './_array'
 import { _number } from './_number'
-import { VN, PyramidResultT, Cycle, VnPositionCycleT, MultiplicityMultipleT, SingleDigitVN, MultiplicityType, vnOwnerPractitioner, OwnersAndPractitionersDataT, PercentageT, SingleDigitVnPositionCycleT, CycleType } from './types'
+import { VN, PyramidResultT, Cycle, VnPositionCycleT, MultiplicityMultipleT, SingleDigitVN, MultiplicityType, vnOwnerPractitioner, OwnersAndPractitionersDataT, PercentageT, SingleDigitVnPositionCycleT, CycleType, PositionT } from './types'
 
 class TecniquesHelper {
   piramide (num: VN): PyramidResultT[] {
@@ -110,7 +110,14 @@ class TecniquesHelper {
      * Details of the VNs that are in the cycle
      */
     let cycleDetails: VnPositionCycleT[] = []
+    /**
+     * The start and end of the cycle
+     */
+    const { start: cycleStart, end: cycleEnd } = this.cycleStartEnd(cycle)
 
+    /**
+     * The result multiplicities
+     */
     const multiples: MultiplicityMultipleT[] = []
 
     switch (cycle) {
@@ -139,44 +146,66 @@ class TecniquesHelper {
 
     // Iterate only over the vns that repeat
     for (const vn of multipleVns) {
+      const matches: MultiplicityMultipleT[] = []
+
       /**
        * Details of the VN that has multiples sorted by start and end
        */
       const potentialMultiplicities = cycleDetails
         .filter(vnp => _number.match(vnp.vn, vn as SingleDigitVN))
 
-      // TODO wrong from here - we need to check the start and end. We need to go one by one and compare with the rest, if there's a match, add both to a group. When checking the next one, check if it's a match with the added groups. If it is, add to the group. Else, create a new group starting from the beginning
+      for (let i = 0; i < potentialMultiplicities.length - 1; i++) {
+        const cur = potentialMultiplicities[i]
+        for (let j = i + 1; j < potentialMultiplicities.length; j++) {
+          const check = potentialMultiplicities[j]
 
-      // TODO MO, CD, C1 (0-28), R2(25-35) - MO and CD are fixed, so they will go for sure. We should have T from 0 to 25 (MO, CD, C1) and Qt from 25 to 28 (MO, CD, C1, R2)
+          const start = Math.max(cur.start, check.start, cycleStart)
+          const end = Math.min(cur.end, check.end, cycleEnd)
 
-      // TODO I believe we need 2 loops to compare each entry with all other entries
-      /*
-       * const cycleMultiple: MultiplicityMultipleT[] = []
-       * for (const potentialMultiplicity of potentialMultiplicities) {
-       */
-
-      // }
-
-      const positions = potentialMultiplicities.map(m => m.position)
-      const difCycles = (positions.includes('R1') && (positions.includes('R2') || positions.includes('R3') || positions.includes('R4'))) ||
-      (positions.includes('R2') && (positions.includes('R3') || positions.includes('R4'))) ||
-      (positions.includes('R3') && positions.includes('R4'))
-        ? 1
-        : 0
-      const count = Math.min(MultiplicityType.length, potentialMultiplicities.length - 2 - difCycles)
-
-      if (count >= 0) {
-        multiples.push({
-          positions: potentialMultiplicities.map(vnp => vnp.position),
-          vn,
-          type:      MultiplicityType[count],
-          start:     0,
-          end:       Infinity,
-        })
+          if (start < end && start >= cur.start && end <= cur.end) {
+            // Add the first match
+            matches.push({
+              vn,
+              positions: [cur.position, check.position],
+              type:      'D',
+              start,
+              end,
+            })
+          }
+        }
       }
+
+      _array.sortVnAge(matches)
+
+      for (let i = matches.length - 1; i > 0; i--) {
+        const cur = matches[i]
+        const prev = matches[i - 1]
+
+        if (cur.start === prev.start && cur.end === prev.end) {
+          prev.positions.push(...cur.positions)
+          prev.positions = _array.unique(prev.positions)
+          prev.type = this.#multiplicityType(prev.positions)
+          matches.splice(i, 1)
+        }
+      }
+
+      const fixedPositions: PositionT[] = ['MO', 'EU', 'CD', 'DM', 'EX']
+      for (let i = 0; i < matches.length; i++) {
+        if (cycle !== Cycle.FIXED && _array.notInArray(matches[i].positions, fixedPositions).length === 0) {
+          matches.splice(i, 1)
+        }
+      }
+
+      multiples.push(...matches)
     }
 
     return multiples
+  }
+
+  #multiplicityType (matches: any[]) {
+    const t = Math.min(MultiplicityType.length, matches.length - 2)
+
+    return MultiplicityType[t]
   }
 
   /**
@@ -339,6 +368,46 @@ class TecniquesHelper {
     }
 
     return pairNumList
+  }
+
+  /**
+   * Retrieves the cycle start and end
+   * @param cycle - The cycle to be checked
+   * @returns The start and end in an object
+   */
+  cycleStartEnd (cycle: Cycle) {
+    /**
+     * The start of the cycle
+     */
+    let start: number = 0
+    /**
+     * The emd of the cycle
+     */
+    let end: number = 0
+
+    switch (cycle) {
+    case Cycle.FIXED:
+      start = 0
+      end = Infinity
+      break
+    case Cycle.FIRST:
+      start = 0
+      end = 28
+      break
+    case Cycle.SECOND:
+      start = 28
+      end = 56
+      break
+    case Cycle.THIRD:
+      start = 56
+      end = Infinity
+      break
+    }
+
+    return {
+      start,
+      end,
+    }
   }
 }
 
