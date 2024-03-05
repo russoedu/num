@@ -49,20 +49,12 @@ class TecniquesHelper {
           description: index[2],
         },
         {
-          vn:          11,
-          description: index[11],
-        },
-        {
           vn:          3,
           description: index[3],
         },
         {
           vn:          4,
           description: index[4],
-        },
-        {
-          vn:          22,
-          description: index[22],
         },
         {
           vn:          5,
