@@ -14,16 +14,16 @@ export class AdvancedTecniques {
     this.tec5PotenciaisComoReagem = this.#tec5PotenciaisComoReagem()
     this.tec6PotenciaisComoSentem = this.#tec6PotenciaisComoSentem()
     this.tec7Riscos1aLeitura = this.#tec7Riscos1aLeitura()
-    this.tec7Riscos2aLeitura = this.#tec7Riscos2aLeitura()
-    this.tec8AdequacaoDaLinguagem = this.#tec8AdequacaoDaLinguagem()
+    this.tec7Riscos2aLeitura = this.#tec7Riscos2aLeitura(this.tec7Riscos1aLeitura)
     this.tec9VibracaoDaExpressao = this.#tec9VibracaoDaExpressao()
-    this.tec10InterpretacaoDoPrimeiroCiclo = this.#tec10InterpretacaoDoPrimeiroCiclo()
-    this.tec11DonosPraticantes = this.#tec11DonosPraticantes()
+    this.tec10InterpretacaoDoPrimeiroCiclo = this.#tec10InterpretacaoDoPrimeiroCiclo(this.tec2Ausencia)
+    this.tec11DonosPraticantes = this.#tec11DonosPraticantes(this.tec2Ausencia)
     this.tec12ConjuncaoCdMoOuMoCd = this.#tec12ConjuncaoCdMoOuMoCd()
     this.tec13PotenciaisViciosReciclador1aLeitura = this.#tec13PotenciaisViciosReciclador1aLeitura()
     this.tec13PotenciaisViciosReciclador2aLeitura = this.#tec13PotenciaisViciosReciclador2aLeitura()
     this.tec13PotenciaisViciosReciclador3aLeitura = this.#tec13PotenciaisViciosReciclador3aLeitura()
     this.tec14Pureza = this.#tec14Pureza()
+    this.tec8AdequacaoDaLinguagem = this.#tec8AdequacaoDaLinguagem(this.tec14Pureza)
     this.tec15RealizacaoEspontanea = this.#tec15RealizacaoEspontanea()
     this.tec16ConquistaEspontanea = this.#tec16ConquistaEspontanea()
     this.tec17Renascimento = this.#tec17Renascimento()
@@ -214,10 +214,11 @@ export class AdvancedTecniques {
 
   /**
    * First reading risks tecnique
+   * @param tec7Riscos1aLeitura - The first reading
    * @returns First reading risks tecnique results
    */
-  #tec7Riscos2aLeitura () {
-    const firstReadingPercentage = this.#tec7Riscos1aLeitura().percentage
+  #tec7Riscos2aLeitura (tec7Riscos1aLeitura: PercentageResultT) {
+    const firstReadingPercentage = tec7Riscos1aLeitura.percentage
     const percentage: PercentageT[] = [
       {
         name:  'CP',
@@ -243,17 +244,17 @@ export class AdvancedTecniques {
 
   /**
    * Reading style
+   * @param tec14Pureza - Result from tec 14
    * @returns Reading style results
    */
-  #tec8AdequacaoDaLinguagem (): LanguageStyleT[] {
-    const tec14 = this.#tec14Pureza()
+  #tec8AdequacaoDaLinguagem (tec14Pureza: false | SingleDigitVN): LanguageStyleT[] {
     // Has purity
-    if (tec14 !== false) {
+    if (tec14Pureza !== false) {
       return [
         {
           reason:  'Pureza de',
-          vn:      tec14,
-          content: _tec.styleFromTec14(tec14),
+          vn:      tec14Pureza,
+          content: _tec.styleFromTec14(tec14Pureza),
         },
       ]
     }
@@ -319,9 +320,10 @@ export class AdvancedTecniques {
 
   /**
    * First Cycle interpretation
+   * @param tec2Ausencia - Result from tec 2
    * @returns First Cycle interpretation results
    */
-  #tec10InterpretacaoDoPrimeiroCiclo () {
+  #tec10InterpretacaoDoPrimeiroCiclo (tec2Ausencia: SingleDigitVN[]) {
     const int: CycleInterpretationT[] = []
 
     for (const vn of CycleInterpretationVns) {
@@ -355,7 +357,7 @@ export class AdvancedTecniques {
           relation: Relation.DIFICULDADE_D1_DM,
         })
       }
-      if (this.#tec2Ausencia().includes(vn.vn)) {
+      if (tec2Ausencia.includes(vn.vn)) {
         int.push({
           person:   vn.person,
           relation: Relation.AUSENCIA,
@@ -368,9 +370,10 @@ export class AdvancedTecniques {
 
   /**
    * Owners and practitioners interpretation
+   * @param tec2Ausencia - Result from tec 2
    * @returns Owners and practitioners interpretation results
    */
-  #tec11DonosPraticantes () {
+  #tec11DonosPraticantes (tec2Ausencia: SingleDigitVN[]) {
     const normal: OwnersAndPractitionersDataT[] = []
     const unique = this.#map.uniqueVNs
     const hasZero = unique.includes(0)
@@ -393,7 +396,7 @@ export class AdvancedTecniques {
     if (hasZero) {
       const zeroAge: OwnersAndPractitionersDataT[] = []
 
-      for (const vn of this.#tec2Ausencia()) {
+      for (const vn of tec2Ausencia) {
         if (!unique.includes(vn)) {
           zeroAge.push(_tec.ownerAndPractitionersSupport(this.#map, vn))
         }
