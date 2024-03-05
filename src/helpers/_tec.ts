@@ -154,6 +154,7 @@ class TecniquesHelper {
       const potentialMultiplicities = cycleDetails
         .filter(vnp => _number.match(vnp.vn, vn as SingleDigitVN))
 
+      // Check each with each and if the ages match, add the pair to "matches"
       for (let i = 0; i < potentialMultiplicities.length - 1; i++) {
         const cur = potentialMultiplicities[i]
         for (let j = i + 1; j < potentialMultiplicities.length; j++) {
@@ -166,7 +167,7 @@ class TecniquesHelper {
             // Add the first match
             matches.push({
               vn,
-              positions: [cur.position, check.position],
+              positions: _array.sortUniquePosition([cur.position, check.position]),
               type:      'D',
               start,
               end,
@@ -175,15 +176,17 @@ class TecniquesHelper {
         }
       }
 
+      // Sort matches so all ages are grouped for the next step
       _array.sortVnAge(matches)
 
+      // From the end of the array, compare each pair with the previous pair. If they match,
       for (let i = matches.length - 1; i > 0; i--) {
         const cur = matches[i]
         const prev = matches[i - 1]
 
         if (cur.start === prev.start && cur.end === prev.end) {
           prev.positions.push(...cur.positions)
-          prev.positions = _array.unique(prev.positions)
+          prev.positions = _array.sortUniquePosition(prev.positions)
           prev.type = this.#multiplicityType(prev.positions)
           matches.splice(i, 1)
         }

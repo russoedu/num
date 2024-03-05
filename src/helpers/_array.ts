@@ -1,5 +1,5 @@
 import { _number } from './_number'
-import { MultiplicityMultipleT, SingleDigitVN, VN, VnPositionCycleT } from './types'
+import { MultiplicityMultipleT, PositionT, SingleDigitVN, VN, VnPositionCycleT } from './types'
 
 class ArrayHelper {
   /**
@@ -103,6 +103,20 @@ class ArrayHelper {
 
         return a.vn - b.vn
       })
+
+    return sorted
+  }
+
+  /**
+   * Creates a new array with unique values and sorts by the 2normal2 map position
+   * @param positions - The list of VN positions
+   * @returns A new array sorted and with unique values
+   */
+  sortUniquePosition (positions: PositionT[]) {
+    const order = ['MO', 'EU', 'CD', 'DM', 'EX', 'C1', 'C2', 'C3', 'D1', 'D2', 'R1', 'R2', 'R3', 'R4']
+    const unique = _array.unique(positions)
+
+    const sorted = unique.sort((a, b) => order.indexOf(a) - order.indexOf(b))
 
     return sorted
   }

@@ -75,8 +75,6 @@ export class AdvancedTecniques {
    * @returns Multiplicity tecnique results
    */
   #tec4Multiplicidades () {
-    // TODO fix, setting the multiplicity age - _tec.multiples is wrong
-
     // Creates the array with all cycles
     const data: MultiplicityT[] = [
       {
