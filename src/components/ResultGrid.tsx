@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material'
+import { Tooltip, Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2/Grid2'
 import { ResultValueT } from '../helpers/types'
 
@@ -10,9 +10,11 @@ export function ResultGrid ({ data, xs }: { data: ResultValueT[], xs: number }) 
           {data.map(d => (
             <tr key={d.title}>
               <td>
-                <Typography variant='h6' align='right'>
-                  {d.title}
-                </Typography>
+                <Tooltip title={d.description}>
+                  <Typography variant='h6' align='right'>
+                    {d.title}
+                  </Typography>
+                </Tooltip>
               </td>
               <td>
                 <Typography variant='h5' align='left' key={d.title} className='vn'>

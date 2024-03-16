@@ -1,7 +1,7 @@
 import { _array } from '../helpers/_array'
 import { _number } from '../helpers/_number'
 import { _tec } from '../helpers/_tec'
-import { AchievementsT, ConquestsT, Cycle, CycleInterpretationT, CycleInterpretationVns, CycleType, ExpressionVibrationT, LanguageStyleT, MissingPositiveVibration, MultiplicitesT, MultiplicityT, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultT, PercentageT, PyramidT, RebirthT, Relation, RiskT, SingleDigitVN, StrongDecisiveMomementPositionT, StrongOpositionItemT, StrongOpositionT, VN, VicesAndReciclerDataT, VnPositionCycleT } from '../helpers/types'
+import { AchievementsT, AffectivePractice, ConquestsT, Cycle, CycleInterpretationT, CycleInterpretationVns, CycleType, ExpressionVibrationT, LanguageStyleT, MissingPositiveVibration, MultiplicitesT, MultiplicityT, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultT, PercentageT, PyramidT, RebirthT, Relation, RiskT, SingleDigitVN, StrongDecisiveMomementPositionT, StrongOpositionItemT, StrongOpositionT, VN, VicesAndReciclerDataT, VnPositionCycleT } from '../helpers/types'
 import { NumericMap } from './NumericMap'
 
 export class AdvancedTecniques {
@@ -30,6 +30,7 @@ export class AdvancedTecniques {
     this.tec18MomentoDecisivoForte = this.#tec18MomentoDecisivoForte()
     this.tec19AusenciaDeVibracaoPositiva = this.#tec19AusenciaDeVibracaoPositiva()
     this.tec20OposicoesFortes = this.#tec20OposicoesFortes()
+    this.tec23PraticaAfetiva = this.#tec23PraticaAfetiva(this.tec2Ausencia)
   }
 
   /**
@@ -218,6 +219,7 @@ export class AdvancedTecniques {
    * @returns First reading risks tecnique results
    */
   #tec7Riscos2aLeitura (tec7Riscos1aLeitura: PercentageResultT) {
+    // TODO entender VG
     const firstReadingPercentage = tec7Riscos1aLeitura.percentage
     const percentage: PercentageT[] = [
       {
@@ -877,6 +879,16 @@ export class AdvancedTecniques {
     return ofList
   }
 
+  #tec23PraticaAfetiva (tec2Ausencia: SingleDigitVN[]) {
+    console.log(tec2Ausencia)
+
+    return {} as any
+    /*
+     * const difficulties = this.#map.challenges
+     * if (tec2Ausencia.filter(item => [2, 6].indexOf(item) === -1))
+     */
+  }
+
   /**
    * The numeric map
    */
@@ -989,17 +1001,9 @@ export class AdvancedTecniques {
    */
   tec20OposicoesFortes: StrongOpositionT[]
   /**
-   * TÉCNICA 21 – BLOQUEIO VIBRACIONAL – RISCOS
-   */
-
-  /**
-   * TÉCNICA 22 – INTERFERÊNCIA NO MAPA – RISCOS
-   */
-
-  /**
    * TÉCNICA 23 – PRÁTICA AFETIVA
    */
-
+  tec23PraticaAfetiva: AffectivePractice
   /**
    * TÉCNICA 24 – FERTILIDADE E FILHOS – PAIS E PROVEDORES – FORMAÇÃO DOS FILHOS
    */

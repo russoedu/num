@@ -95,6 +95,7 @@ export type Vowels = 'A'|'E'|'I'|'O'|'U'
 export type ResultValueT = {
   title: string,
   value: number,
+  description: string,
   age?: string
 }
 
@@ -330,6 +331,14 @@ export type StrongOpositionT = {
   type: CycleType,
   start: number,
   end: number,
+}
+
+export type AffectivePractice = {
+  vns: '2' | '6' | '2 e 6',
+  message: string
+  challenges: {
+    vn: number
+  }
 }
 
 /* v8 ignore end */

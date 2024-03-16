@@ -13,6 +13,18 @@
       "vite.config.ts": true,
       "vitest.config.ts": true,
       "copyPublic.js": true,
+
+      //least frequent folders
+      "src/pages": true,
+      "src/App.*": true,
+      "src/main.*": true,
+      "src/services/NumericMap.*": true,
+      "src/components": true,
+      "src/componentsPages/DebugForm.*": true,
+      "src/componentsPages/Footer.*": true,
+      "src/componentsPages/Form.*": true,
+      "src/componentsPages/Header*": true,
+      "src/componentsPages/Map*": true,
     },
     "debug.javascript.terminalOptions": {
       "skipFiles": [
@@ -28,7 +40,31 @@
       "Pessoal",
       "Pitagórica"
     ],
-    "cSpell.enabled": false
+    "cSpell.enabled": false,
+    "material-icon-theme.activeIconPack": "react",
+    "material-icon-theme.files.associations": {
+      "Tec0Cycles.tsx": "Supabase",
+      "Tec1Piramide.tsx": "Supabase",
+      "Tec2Ausencias.tsx": "Supabase",
+      "Tec3Map.tsx": "Supabase",
+      "Tec4Multiplicidades.tsx": "Supabase",
+      "Tec5PotenciaisComoReagem.tsx": "Supabase",
+      "Tec6PotenciaisComoSentem.tsx": "Supabase",
+      "Tec7Riscos.tsx": "Mojo",
+      "Tec8AdequacaoDaLinguagem.tsx": "Supabase",
+      "Tec9VibracaoDaExpressao.tsx": "Mojo",
+      "Tec10InterpretacaoDoPrimeiroCiclo.tsx": "Mojo",
+      "Tec11DonosPraticantes.tsx": "Supabase",
+      "Tec12ConjuncaoCdMoOuMoCd.tsx": "Supabase",
+      "Tec13PotenciaisViciosReciclador.tsx": "Supabase",
+      "Tec14Pureza.tsx": "Supabase",
+      "Tec15RealizacaoEspontanea.tsx": "Mojo",
+      "Tec16ConquistaEspontanea.tsx": "Mojo",
+      "Tec17Renascimento.tsx": "Supabase",
+      "Tec18MomentoDecisivoForte.tsx": "Supabase",
+      "Tec19AusenciaDeVibracaoPositiva.tsx": "Mojo",
+      "Tec20OposicoesFortes.tsx": "Mojo",
+    }
   },
   "launch": {
     "version": "0.2.0",
@@ -62,12 +98,6 @@
       {
         "name": "Build",
         "command": "npm run build",
-        "request": "launch",
-        "type": "node-terminal"
-      },
-      {
-        "name": "Start prod",
-        "command": "npm start",
         "request": "launch",
         "type": "node-terminal"
       },

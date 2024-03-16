@@ -41,6 +41,7 @@ describe('_name.ts', () => {
         '8',
         '9',
         '0',
+        '!',
       ].map(char => _name.normalise(char))
 
       expect(res).toEqual([
@@ -54,6 +55,7 @@ describe('_name.ts', () => {
         '8',
         '9',
         '0',
+        '!',
       ])
     })
   })

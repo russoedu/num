@@ -21,3 +21,13 @@
   top: -10px;
   left: 10px;
 }
+
+.version {
+  font-size: 15px;
+  position: absolute !important;
+  left: auto !important;
+  top: 35px !important;
+  right: 10px;
+  font-family: math;
+  font-weight: lighter;
+}
