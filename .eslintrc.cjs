@@ -75,7 +75,7 @@ module.exports = {
         varsIgnorePattern: '^env$|^_.+?',
       },
     ],
-    'multiline-comment-style': ['error', 'starred-block'],
+    // 'multiline-comment-style': ['error', 'starred-block'],
     quotes:                    ['error', 'single'],
     'jsx-quotes':              ['error', 'prefer-single'],
   },

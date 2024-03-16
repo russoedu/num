@@ -27,12 +27,12 @@ export function Tec7Riscos ({ result }: { result: AdvancedTecniques }) {
         {
           tec7Riscos1aLeitura.percentage.map((p, i) => (
             <AdvancedGrid i={i} key={i}>
-              <Grid2 xs={12} sm={9} md={6}>
+              <Grid2 xs={12} sm={7} md={6}>
                 <Typography variant='h6'>
                   {p.name}
                 </Typography>
               </Grid2>
-              <Grid2 xs={2} sm={3} md={6}>
+              <Grid2 xs={2}>
                 <Typography variant='h6'>
                   {p.value}%
                 </Typography>
@@ -51,12 +51,21 @@ export function Tec7Riscos ({ result }: { result: AdvancedTecniques }) {
         {
           tec7Riscos2aLeitura.percentage.map((p, i) => (
             <AdvancedGrid i={i} key={i}>
-              <Grid2 xs={10} sm={3}>
-                <Typography variant='h6'>
+              <Grid2 xs={12} sm={1}>
+                <Typography variant='h5'>
                   {p.name}
                 </Typography>
               </Grid2>
-              <Grid2 xs={2} sm={9}>
+              <Grid2 xs={11} sm={8} md={5} lg={4}>
+                <Typography variant='h6'>
+                  {
+                    p.name === 'CP'
+                      ? 'exigência / solidão / violência / agressão'
+                      : 'acomodação / dependência / depressão'
+                  }
+                </Typography>
+              </Grid2>
+              <Grid2 xs={1} sm={3}>
                 <Typography variant='h6'>
                   {p.value}%
                 </Typography>
@@ -66,7 +75,7 @@ export function Tec7Riscos ({ result }: { result: AdvancedTecniques }) {
         }
       </Grid2>
       <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
-            ---- Preciso de mais detalhes para calcular ----
+        {tec7Riscos2aLeitura.sixAlert}
       </Typography>
       <Spacer/>
     </>

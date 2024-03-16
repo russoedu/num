@@ -888,12 +888,13 @@ describe('AdvancedTecniques', () => {
             name:  'CP',
             value: 70,
           },
-          {
-            name:  'VG',
-            value: 63,
-          },
+          // {
+          //   name:  'VG',
+          //   value: 63,
+          // },
         ],
-        result: 'SC e CP',
+        result:   'SC e CP',
+        sixAlert: '⚠️ ATENÇÃO: este mapa tem VN 6',
       })
     })
     test('map 2', () => {
@@ -910,12 +911,13 @@ describe('AdvancedTecniques', () => {
             name:  'CP',
             value: 63,
           },
-          {
-            name:  'VG',
-            value: 49,
-          },
+          // {
+          //   name:  'VG',
+          //   value: 49,
+          // },
         ],
-        result: 'SC e CP',
+        sixAlert: '⚠️ ATENÇÃO: este mapa tem VN 6',
+        result:   'SC e CP',
       })
     })
   })

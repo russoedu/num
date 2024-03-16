@@ -260,7 +260,7 @@ class TecniquesHelper {
    * @param percentage - The list of percetages sum and name
    * @returns The percetages that should be considered
    */
-  getResults (percentage: PercentageT[]) {
+  getPercentageResults (percentage: PercentageT[]) {
     percentage
       .sort((a, b) => b.value - a.value)
 

@@ -162,6 +162,12 @@ export type PercentageResultT = {
   percentage: PercentageT[],
   result: string
 }
+export type PercentageResultExtraT = {
+  title: string,
+  result: string,
+  percentage: PercentageT[],
+  sixAlert: string
+}
 
 export type VnPositionT = {
   vn: VN,

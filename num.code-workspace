@@ -68,6 +68,7 @@
     "todo-tree.general.tags":[
       "DONE",
       "TODO",
+      "CHECK"
     ],
     "todo-tree.highlights.defaultHighlight": {
       "type": "whole-line",
@@ -84,7 +85,12 @@
           "icon": "check-circle-fill",
           "iconColour": "green",
           "background": "darkgreen",
-      }
+      },
+      "CHECK": {
+        "icon": "question",
+        "iconColour": "orange",
+        "background": "darkorange",
+    }
   }
   },
   "launch": {

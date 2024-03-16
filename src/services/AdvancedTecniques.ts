@@ -1,7 +1,7 @@
 import { _array } from '../helpers/_array'
 import { _number } from '../helpers/_number'
 import { _tec } from '../helpers/_tec'
-import { AchievementsT, AffectivePractice, ConquestsT, Cycle, CycleInterpretationT, CycleInterpretationVns, CycleType, ExpressionVibrationT, LanguageStyleT, MissingPositiveVibration, MultiplicitesT, MultiplicityT, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultT, PercentageT, PyramidT, RebirthT, Relation, RiskT, SingleDigitVN, StrongDecisiveMomementPositionT, StrongOpositionItemT, StrongOpositionT, VN, VicesAndReciclerDataT, VnPositionCycleT } from '../helpers/types'
+import { AchievementsT, AffectivePractice, ConquestsT, Cycle, CycleInterpretationT, CycleInterpretationVns, CycleType, ExpressionVibrationT, LanguageStyleT, MissingPositiveVibration, MultiplicitesT, MultiplicityT, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultExtraT, PercentageResultT, PercentageT, PyramidT, RebirthT, Relation, RiskT, SingleDigitVN, StrongDecisiveMomementPositionT, StrongOpositionItemT, StrongOpositionT, VN, VicesAndReciclerDataT, VnPositionCycleT } from '../helpers/types'
 import { NumericMap } from './NumericMap'
 
 export class AdvancedTecniques {
@@ -38,7 +38,7 @@ export class AdvancedTecniques {
    * @returns Pyramid tecnique results
    */
   #tec1Piramide () {
-    // DONE
+    // DONE #tec1Piramide
     const pyramid: PyramidT[] = [
       {
         position: 'CD',
@@ -66,7 +66,7 @@ export class AdvancedTecniques {
    * @returns Ausency tecnique results
    */
   #tec2Ausencia () {
-    // DONE
+    // DONE #tec2Ausencia
     const unique = this.#map.uniqueVNs
     const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
@@ -78,7 +78,7 @@ export class AdvancedTecniques {
    * @returns Multiplicity tecnique results
    */
   #tec4Multiplicidades () {
-    // DONE
+    // DONE #tec4Multiplicidades
 
     // Creates the array with all cycles
     const data: MultiplicityT[] = [
@@ -128,7 +128,7 @@ export class AdvancedTecniques {
    * @returns Reaction potentials tecnique results
    */
   #tec5PotenciaisComoReagem () {
-    // DONE
+    // DONE #tec5PotenciaisComoReagem
     const percentage: PercentageT[] = [
       {
         name:  'Possuir',
@@ -168,7 +168,7 @@ export class AdvancedTecniques {
    * @returns Feeling potential tecnique results
    */
   #tec6PotenciaisComoSentem () {
-    // DONE
+    // DONE #tec6PotenciaisComoSentem
     const percentage: PercentageT[] = [
       {
         name:  'Emoção',
@@ -196,7 +196,7 @@ export class AdvancedTecniques {
    * @returns First reading risks tecnique results
    */
   #tec7Riscos1aLeitura () {
-    // DONE
+    // DONE #tec7Riscos1aLeitura
     const percentage: PercentageT[] = [
       {
         name:  'Exigência / solidão / violência / agressão',
@@ -212,7 +212,7 @@ export class AdvancedTecniques {
       },
     ]
 
-    const result = _array.join(_tec.getResults(percentage).map(r => r.name))
+    const result = _array.join(_tec.getPercentageResults(percentage).map(r => r.name))
 
     return {
       percentage,
@@ -226,7 +226,7 @@ export class AdvancedTecniques {
    * @returns First reading risks tecnique results
    */
   #tec7Riscos2aLeitura (tec7Riscos1aLeitura: PercentageResultT) {
-    // TODO entender VG
+    // CHECK #tec7Riscos2aLeitura
     const firstReadingPercentage = tec7Riscos1aLeitura.percentage
     const percentage: PercentageT[] = [
       {
@@ -234,20 +234,25 @@ export class AdvancedTecniques {
         value: firstReadingPercentage[0].value + firstReadingPercentage[2].value,
       },
       {
-        name:  'VG',
-        value: firstReadingPercentage[1].value + firstReadingPercentage[2].value,
-      },
-      {
         name:  'SC',
         value: firstReadingPercentage[0].value + firstReadingPercentage[1].value,
       },
+      // {
+      //   name:  'VG',
+      //   value: firstReadingPercentage[1].value + firstReadingPercentage[2].value,
+      // },
     ]
 
-    const result = _array.join(_tec.getResults(percentage).map(r => r.name))
+    const result = _array.join(_tec.getPercentageResults(percentage).map(r => r.name))
+
+    const sixAlert = this.#map.uniqueVNs.includes(6)
+      ? '⚠️ ATENÇÃO: este mapa tem VN 6'
+      : ''
 
     return {
       percentage,
       result,
+      sixAlert,
     }
   }
 
@@ -257,7 +262,7 @@ export class AdvancedTecniques {
    * @returns Reading style results
    */
   #tec8AdequacaoDaLinguagem (tec14Pureza: false | SingleDigitVN): LanguageStyleT[] {
-    // DONE
+    // DONE #tec8AdequacaoDaLinguagem
 
     // Has purity
     if (tec14Pureza !== false) {
@@ -309,7 +314,7 @@ export class AdvancedTecniques {
    * @returns Expression vibration results
    */
   #tec9VibracaoDaExpressao () {
-    // TODO
+    // TODO #tec9VibracaoDaExpressao
     const ex = this.#map.EX
 
     if ([1, 4, 7, 8].includes(ex)) {
@@ -336,7 +341,7 @@ export class AdvancedTecniques {
    * @returns First Cycle interpretation results
    */
   #tec10InterpretacaoDoPrimeiroCiclo (tec2Ausencia: SingleDigitVN[]) {
-    // TODO
+    // TODO #tec10InterpretacaoDoPrimeiroCiclo
     const int: CycleInterpretationT[] = []
 
     for (const vn of CycleInterpretationVns) {
@@ -387,7 +392,7 @@ export class AdvancedTecniques {
    * @returns Owners and practitioners interpretation results
    */
   #tec11DonosPraticantes (tec2Ausencia: SingleDigitVN[]) {
-    // DONE
+    // DONE #tec11DonosPraticantes
     const normal: OwnersAndPractitionersDataT[] = []
     const unique = this.#map.uniqueVNs
     const hasZero = unique.includes(0)
@@ -432,7 +437,7 @@ export class AdvancedTecniques {
    * @returns CD x MO or MO x CD conjuction results
    */
   #tec12ConjuncaoCdMoOuMoCd () {
-    // DONE
+    // DONE #tec12ConjuncaoCdMoOuMoCd
     const small = Math.min(this.#map.CD, this.#map.MO).toString()
     const big = Math.max(this.#map.CD, this.#map.MO).toString()
 
@@ -581,7 +586,7 @@ export class AdvancedTecniques {
    * @returns Potentials, vices and recicler 1st reading interpretation results
    */
   #tec13PotenciaisViciosReciclador1aLeitura () {
-    // DONE
+    // DONE #tec13PotenciaisViciosReciclador1aLeitura
     const percentage: PercentageT[] = [
       {
         name:  'Honestidade',
@@ -605,7 +610,7 @@ export class AdvancedTecniques {
       .filter(fixed => [7, 9, 11, 22].includes(fixed))
       .length > 0
 
-    const resultList = _tec.getResults(percentage).map(r => r.name)
+    const resultList = _tec.getPercentageResults(percentage).map(r => r.name)
 
     if (!resultList.includes('Espiritualidade') && hasEspiritualityOnFixes) {
       resultList.push('Espiritualidade')
@@ -622,7 +627,7 @@ export class AdvancedTecniques {
    * @returns Potentials, vices and recicler 2nd reading interpretation results
    */
   #tec13PotenciaisViciosReciclador2aLeitura () {
-    // DONE
+    // DONE #tec13PotenciaisViciosReciclador2aLeitura
     const percentage = this.#map.vnCount([1, 3, 4, 5, 7, 8, 9]).count * 7
 
     return percentage >= 80
@@ -635,7 +640,7 @@ export class AdvancedTecniques {
    * @returns Potentials, vices and recicler 2nd reading interpretation results
    */
   #tec13PotenciaisViciosReciclador3aLeitura () {
-    // DONE
+    // DONE #tec13PotenciaisViciosReciclador3aLeitura
     const percentage = this.#map.vnCount([7, 9, 11, 22]).count * 7
     const risk: RiskT = percentage <= 15
       ? 'fraco'
@@ -668,7 +673,7 @@ export class AdvancedTecniques {
    * @returns Purity interpretation results
    */
   #tec14Pureza () {
-    // DONE
+    // DONE #tec14Pureza
     const cd = _number.sum(this.#map.CD)
     const mo = _number.sum(this.#map.MO)
     const dm = _number.sum(this.#map.DM)
@@ -685,7 +690,7 @@ export class AdvancedTecniques {
    * @returns Spontaneous Achievements interpretation results
    */
   #tec15RealizacaoEspontanea () {
-    // TODO
+    // TODO #tec15RealizacaoEspontanea
     const result: AchievementsT[] = []
 
     const positions = ['CD', 'MO', 'EU'] as ('CD' | 'MO' | 'EU')[]
@@ -722,7 +727,7 @@ export class AdvancedTecniques {
    * @returns Spontaneous Achievements interpretation results
    */
   #tec16ConquistaEspontanea () {
-    // TODO
+    // TODO #tec16ConquistaEspontanea
     const result: ConquestsT[] = []
     const positions = ['D1', 'D2', 'DM'] as ['D1', 'D2', 'DM']
 
@@ -754,7 +759,7 @@ export class AdvancedTecniques {
    * @returns Rebirth interpretation results
    */
   #tec17Renascimento () {
-    // DONE
+    // DONE #tec17Renascimento
     const result: RebirthT[] = []
     const positions = ['R2', 'R3', 'R4'] as ['R2', 'R3', 'R4']
 
@@ -777,7 +782,7 @@ export class AdvancedTecniques {
    * @returns Strong Decisive Momement results
    */
   #tec18MomentoDecisivoForte () {
-    // DONE
+    // DONE #tec18MomentoDecisivoForte
     const result: StrongDecisiveMomementPositionT[] = []
 
     if (this.#map.CD === 7 || this.#map.CD === 8 || this.#map.CD === 9) {
@@ -808,7 +813,7 @@ export class AdvancedTecniques {
    * @returns Missing Positive Vibration results
    */
   #tec19AusenciaDeVibracaoPositiva () {
-    // TODO
+    // TODO #tec19AusenciaDeVibracaoPositiva
     const allReceivedVns: VnPositionCycleT[] = _tec.tec19AllReceivedVns(this.#map)
     const avp: MissingPositiveVibration[] = []
 
@@ -833,7 +838,7 @@ export class AdvancedTecniques {
    * @returns Strong Oposition results
    */
   #tec20OposicoesFortes () {
-    // TODO
+    // TODO #tec20OposicoesFortes
     const ofList: StrongOpositionT[] = []
     const mapVns = this.#map.uniqueVNs
     const strongOpositionsList: StrongOpositionItemT[] = [
@@ -953,7 +958,7 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 7 – RISCOS - SEGUNDA LEITURA
    */
-  tec7Riscos2aLeitura: PercentageResultT
+  tec7Riscos2aLeitura: PercentageResultExtraT
 
   /**
    * TÉCNICA 8 – ADEQUAÇÃO DA LINGUAGEM
