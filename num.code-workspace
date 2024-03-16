@@ -64,7 +64,28 @@
       "Tec18MomentoDecisivoForte.tsx": "Supabase",
       "Tec19AusenciaDeVibracaoPositiva.tsx": "Mojo",
       "Tec20OposicoesFortes.tsx": "Mojo",
-    }
+    },
+    "todo-tree.general.tags":[
+      "DONE",
+      "TODO",
+    ],
+    "todo-tree.highlights.defaultHighlight": {
+      "type": "whole-line",
+      "foreground": "white",
+      "gutterIcon": true
+    },
+    "todo-tree.highlights.customHighlight": {
+      "TODO": {
+          "icon": "alert-fill",
+          "iconColour": "red",
+          "background": "darkred",
+      },
+      "DONE": {
+          "icon": "check-circle-fill",
+          "iconColour": "green",
+          "background": "darkgreen",
+      }
+  }
   },
   "launch": {
     "version": "0.2.0",
