@@ -163,7 +163,6 @@ export type PercentageResultT = {
   result: string
 }
 export type PercentageResultExtraT = {
-  title: string,
   result: string,
   percentage: PercentageT[],
   sixAlert: string
