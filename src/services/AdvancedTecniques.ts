@@ -697,7 +697,6 @@ export class AdvancedTecniques {
    */
   #tec15RealizacaoEspontanea () {
     // TODO #tec15RealizacaoEspontanea
-
     const result: AchievementsT[] = []
 
     const positions = ['CD', 'MO', 'EU'] as ('CD' | 'MO' | 'EU')[]
