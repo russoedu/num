@@ -16,7 +16,7 @@ export class AdvancedTecniques {
     this.tec7Riscos1aLeitura = this.#tec7Riscos1aLeitura()
     this.tec7Riscos2aLeitura = this.#tec7Riscos2aLeitura(this.tec7Riscos1aLeitura)
     this.tec9VibracaoDaExpressao = this.#tec9VibracaoDaExpressao()
-    this.tec10InterpretacaoDoPrimeiroCiclo = this.#tec10InterpretacaoDoPrimeiroCiclo(this.tec2Ausencia)
+    this.tec10InterpretacaoDoPrimeiroCiclo = this.#tec10InterpretacaoDoPrimeiroCiclo()
     this.tec11DonosPraticantes = this.#tec11DonosPraticantes(this.tec2Ausencia)
     this.tec12ConjuncaoCdMoOuMoCd = this.#tec12ConjuncaoCdMoOuMoCd()
     this.tec13PotenciaisViciosReciclador1aLeitura = this.#tec13PotenciaisViciosReciclador1aLeitura()
@@ -343,42 +343,45 @@ export class AdvancedTecniques {
    * @param tec2Ausencia - Result from tec 2
    * @returns First Cycle interpretation results
    */
-  #tec10InterpretacaoDoPrimeiroCiclo (tec2Ausencia: SingleDigitVN[]) {
-    // TODO #tec10InterpretacaoDoPrimeiroCiclo
+  #tec10InterpretacaoDoPrimeiroCiclo () {
+    // CHECK #tec10InterpretacaoDoPrimeiroCiclo
     const int: CycleInterpretationT[] = []
+    const missing = _array.unique(this.#map.firstCycleVNs)
 
     for (const vn of CycleInterpretationVns) {
-      if (this.#map.EU === vn.vn) {
+      if (_number.match(this.#map.EU, vn.vn)) {
         int.push({
           person:   vn.person,
           relation: Relation.ADORACAO_EU,
         })
       }
-      if (this.#map.C1 === vn.vn) {
+      if (_number.match(this.#map.C1, vn.vn)) {
         int.push({
           person:   vn.person,
           relation: Relation.FORTISSIMA_C1,
         })
       }
-      if (this.#map.MO === vn.vn) {
+      if (_number.match(this.#map.MO, vn.vn)) {
         int.push({
           person:   vn.person,
           relation: Relation.FORTE_MO,
         })
       }
-      if (this.#map.CD === vn.vn || this.#map.achievements.R1.vn === vn.vn) {
+      if (_number.match(this.#map.CD, vn.vn) ||
+        _number.match(this.#map.achievements.R1.vn, vn.vn)) {
         int.push({
           person:   vn.person,
           relation: Relation.MEDIA_CD_R1,
         })
       }
-      if (this.#map.D1 === vn.vn || this.#map.DM === vn.vn) {
+      if (_number.match(this.#map.D1, vn.vn) ||
+        _number.match(this.#map.DM, vn.vn)) {
         int.push({
           person:   vn.person,
           relation: Relation.DIFICULDADE_D1_DM,
         })
       }
-      if (tec2Ausencia.includes(vn.vn)) {
+      if (!missing.includes(vn.vn)) {
         int.push({
           person:   vn.person,
           relation: Relation.AUSENCIA,

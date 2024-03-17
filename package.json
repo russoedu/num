@@ -1,6 +1,6 @@
 {
   "name": "numerologia",
-  "version": "0.1.25",
+  "version": "0.1.28",
   "description": "Numerologia calculation app",
   "type": "module",
   "author": {
@@ -17,6 +17,11 @@
     "preview": "vite preview",
     "test": "vitest --coverage"
   },
+  "pre-commit": [
+    "install",
+    "test",
+    "build"
+  ],
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
