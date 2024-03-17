@@ -998,22 +998,48 @@ describe('AdvancedTecniques', () => {
     })
   })
   describe('tec9VibracaoDaExpressao', () => {
-    test('map 1', () => {
-      const map = new NumericMap('DAINARI MOZZU', '1950-12-26', '2021-01-07')
-      const am = new AdvancedTecniques(map)
-
-      expect(am.tec9VibracaoDaExpressao).toEqual({
-        title: 'Calma e delicadeza',
-        more:  '',
-      })
-    })
-    test('map 2', () => {
-      const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
+    test('ex type 1', () => {
+      const map = new NumericMap('amari omum', '1950-12-26', '2021-01-07')
+      map.EX = 22
       const am = new AdvancedTecniques(map)
 
       expect(am.tec9VibracaoDaExpressao).toEqual({
         title: 'Bons ouvintes',
-        more:  'Falam pouco, com objetividade e clareza',
+        more:  'Veio na vida muito mais para ouvir que falar. Quando fala, o faz com objetividade e clareza, mas deve ter cuidado pra não falar com frieza.',
+        exIs3: false,
+      })
+    })
+    test('ex type 2, but not 3', () => {
+      const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
+      map.EX = 9
+      const am = new AdvancedTecniques(map)
+
+      expect(am.tec9VibracaoDaExpressao).toEqual({
+        title: 'Bons falantes',
+        more:  'Veio na vida pra falar, domina o ato de expressão oral, fala com criatividade, desprendimento. Convence pela fala. Mas deve ter cuidado pra não falar demais.',
+        exIs3: false,
+      })
+    })
+    test('ex type 2, is 3', () => {
+      const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
+      map.EX = 3
+      const am = new AdvancedTecniques(map)
+
+      expect(am.tec9VibracaoDaExpressao).toEqual({
+        title: 'Bons falantes',
+        more:  'Veio na vida pra falar, domina o ato de expressão oral, fala com criatividade, desprendimento. Convence pela fala. Mas deve ter cuidado pra não falar demais.',
+        exIs3: true,
+      })
+    })
+    test('ex type 3', () => {
+      const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
+      map.EX = 11
+      const am = new AdvancedTecniques(map)
+
+      expect(am.tec9VibracaoDaExpressao).toEqual({
+        title: 'Calma e delicadeza',
+        more:  'Veio na vida para falar com calma e delicadeza, como é doce, é difícil ser interrompido e pode se alongar, entrar em muitos detalhes, e acaba divagando e dispersando, portanto deve evitar ser confuso.',
+        exIs3: false,
       })
     })
   })

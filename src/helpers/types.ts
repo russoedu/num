@@ -295,7 +295,11 @@ export type CyclesT = {
   }[]
 }
 
-export type ExpressionVibrationT = { title: string, more: string }
+export type ExpressionVibrationT = {
+  title: string,
+  more: string,
+  exIs3: boolean
+}
 
 export type AchievementsT = {
   position: 'CD' | 'MO' | 'EU',

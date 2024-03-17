@@ -226,7 +226,7 @@ export class AdvancedTecniques {
    * @returns First reading risks tecnique results
    */
   #tec7Riscos2aLeitura (tec7Riscos1aLeitura: PercentageResultT) {
-    // CHECK #tec7Riscos2aLeitura
+    // DONE #tec7Riscos2aLeitura
     const firstReadingPercentage = tec7Riscos1aLeitura.percentage
     const percentage: PercentageT[] = [
       {
@@ -314,23 +314,26 @@ export class AdvancedTecniques {
    * @returns Expression vibration results
    */
   #tec9VibracaoDaExpressao () {
-    // TODO #tec9VibracaoDaExpressao
-    const ex = this.#map.EX
+    //  CHECK #tec9VibracaoDaExpressao
 
-    if ([1, 4, 7, 8].includes(ex)) {
+    const exIs3 = this.#map.EX === 3
+    if ([1, 4, 22, 7, 8].includes(this.#map.EX)) {
       return {
         title: 'Bons ouvintes',
-        more:  'Falam pouco, com objetividade e clareza',
+        more:  'Veio na vida muito mais para ouvir que falar. Quando fala, o faz com objetividade e clareza, mas deve ter cuidado pra não falar com frieza.',
+        exIs3,
       }
-    } else if ([3, 5, 9].includes(ex)) {
+    } else if ([3, 5, 9].includes(this.#map.EX)) {
       return {
         title: 'Bons falantes',
-        more:  'Dominam o ato de expressão oral. Falam com criatividade e desprendimento',
+        more:  'Veio na vida pra falar, domina o ato de expressão oral, fala com criatividade, desprendimento. Convence pela fala. Mas deve ter cuidado pra não falar demais.',
+        exIs3,
       }
     } else {
       return {
         title: 'Calma e delicadeza',
-        more:  '',
+        more:  'Veio na vida para falar com calma e delicadeza, como é doce, é difícil ser interrompido e pode se alongar, entrar em muitos detalhes, e acaba divagando e dispersando, portanto deve evitar ser confuso.',
+        exIs3,
       }
     }
   }
