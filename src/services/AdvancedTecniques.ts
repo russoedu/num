@@ -344,9 +344,12 @@ export class AdvancedTecniques {
    * @returns First Cycle interpretation results
    */
   #tec10InterpretacaoDoPrimeiroCiclo () {
-    // CHECK #tec10InterpretacaoDoPrimeiroCiclo
+    // TODO #tec10InterpretacaoDoPrimeiroCiclo
     const int: CycleInterpretationT[] = []
-    const missing = _array.unique(this.#map.firstCycleVNs)
+    const firstCycleVNs = _array
+      .unique(this.#map.firstCycleVNsPosition
+        .filter(c => c.position !== 'EX')
+        .map(c => _number.vnToSingleVn(c.vn)))
 
     for (const vn of CycleInterpretationVns) {
       if (_number.match(this.#map.EU, vn.vn)) {
@@ -381,7 +384,7 @@ export class AdvancedTecniques {
           relation: Relation.DIFICULDADE_D1_DM,
         })
       }
-      if (!missing.includes(vn.vn)) {
+      if (!firstCycleVNs.includes(vn.vn)) {
         int.push({
           person:   vn.person,
           relation: Relation.AUSENCIA,
@@ -389,6 +392,30 @@ export class AdvancedTecniques {
       }
     }
 
+    // TODO add this part
+    // Demais leituras das VNs no primeiro Ciclo de vida
+
+    // C1 = 3: Criança agitada, alegre, comunicativa.
+    // D1 = 3: Criança agitada, inquieta, impaciente.
+
+    // C1 = 4: Começa a trabalhar cedo, por volta de 12 anos. Quer trabalhar cedo em trabalho remunerado, sem marcas. Sendo que essa atividade não pode ultrapassar 6h diárias e que não comprometa a formação do adolescente.
+    // D1= 4: É forçado a trabalhar cedo em trabalho remunerado, por necessidades financeiras da família que podem atrapalhar a formação.
+
+    // C1 = 5: Mudanças, alterações de vida sem dificuldades.
+    // D1 = 5: Mudanças, alterações de vida com dificuldades.
+    // Obs.: Se em conjunção com 3, acentuadas.
+
+    // C1 = 6: Tendência de apego excessivo ao lar, familiares.
+    // D1 = 6: Dificuldades no relacionamento com todos os membros da família.
+    // Obs.: Se em conjunção com 2, acentuadas.
+
+    // C1 = 8 ou D1 = 8: Evitar envolvimento com ilegalidade até os 28 anos completos.
+
+    // C1 = 7 ou C1 = 9 ou D1 = 7: Será marcado por inquietações difíceis de serem compreendidas pela família.
+    // Se os pais ou familiares praticarem espiritualidade não haverá incompreensão, porém as inquietações continuarão existindo.
+    // As inquietações são sonambulismo, amigos invisíveis, manias religiosas, visões, dispersão, estranheza (não se enquadra nos padrões considerados normais).
+
+    // D1 = 0: É uma vida atribulada, agitada e movimentada com acentuada intensidade de acontecimentos.
     return int
   }
 
