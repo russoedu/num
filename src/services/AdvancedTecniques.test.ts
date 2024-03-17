@@ -1055,6 +1055,18 @@ describe('AdvancedTecniques', () => {
         },
         {
           person:   'da mãe',
+          relation: 'Adoração e identificação',
+        },
+        {
+          person:   'da mãe',
+          relation: 'Igualdade, grande aproximação',
+        },
+        {
+          person:   'da mãe',
+          relation: 'Aproximação',
+        },
+        {
+          person:   'da mãe',
           relation: 'Dificuldade',
         },
         {
@@ -1078,6 +1090,10 @@ describe('AdvancedTecniques', () => {
         },
         {
           person:   'do pai',
+          relation: 'Aproximação',
+        },
+        {
+          person:   'da mãe',
           relation: 'Aproximação',
         },
         {
