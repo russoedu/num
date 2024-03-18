@@ -1,7 +1,7 @@
 import { _array } from '../helpers/_array'
 import { _number } from '../helpers/_number'
 import { _tec } from '../helpers/_tec'
-import { AchievementsT, AffectivePractice, ConquestsT, Cycle, CycleInterpretationT, CycleInterpretationVns, CycleType, ExpressionVibrationT, LanguageStyleT, MissingPositiveVibration, MultiplicitesT, MultiplicityT, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultExtraT, PercentageResultT, PercentageT, PyramidT, RebirthT, Relation, RiskT, SingleDigitVN, StrongDecisiveMomementPositionT, StrongOpositionItemT, StrongOpositionT, VN, VicesAndReciclerDataT, VnPositionCycleT } from '../helpers/types'
+import { AchievementsT, AffectivePractice, ConquestsT, Cycle, CycleType, ExpressionVibrationT, FirstCycleInterpretationT, LanguageStyleT, MissingPositiveVibration, MultiplicitesT, MultiplicityT, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultExtraT, PercentageResultT, PercentageT, PyramidT, RebirthT, RiskT, SingleDigitVN, StrongDecisiveMomementPositionT, StrongOpositionItemT, StrongOpositionT, VN, VicesAndReciclerDataT, VnPositionCycleT } from '../helpers/types'
 import { NumericMap } from './NumericMap'
 
 export class AdvancedTecniques {
@@ -314,7 +314,7 @@ export class AdvancedTecniques {
    * @returns Expression vibration results
    */
   #tec9VibracaoDaExpressao () {
-    //  CHECK #tec9VibracaoDaExpressao
+    //  DONE #tec9VibracaoDaExpressao
 
     const exIs3 = this.#map.EX === 3
     if ([1, 4, 22, 7, 8].includes(this.#map.EX)) {
@@ -344,79 +344,19 @@ export class AdvancedTecniques {
    * @returns First Cycle interpretation results
    */
   #tec10InterpretacaoDoPrimeiroCiclo () {
-    // TODO #tec10InterpretacaoDoPrimeiroCiclo
-    const int: CycleInterpretationT[] = []
+    // CHECK #tec10InterpretacaoDoPrimeiroCiclo
+
     const firstCycleVNs = _array
       .unique(this.#map.firstCycleVNsPosition
         .filter(c => c.position !== 'EX')
         .map(c => _number.vnToSingleVn(c.vn)))
 
-    for (const vn of CycleInterpretationVns) {
-      if (_number.match(this.#map.EU, vn.vn)) {
-        int.push({
-          person:   vn.person,
-          relation: Relation.ADORACAO_EU,
-        })
-      }
-      if (_number.match(this.#map.C1, vn.vn)) {
-        int.push({
-          person:   vn.person,
-          relation: Relation.FORTISSIMA_C1,
-        })
-      }
-      if (_number.match(this.#map.MO, vn.vn)) {
-        int.push({
-          person:   vn.person,
-          relation: Relation.FORTE_MO,
-        })
-      }
-      if (_number.match(this.#map.CD, vn.vn) ||
-        _number.match(this.#map.achievements.R1.vn, vn.vn)) {
-        int.push({
-          person:   vn.person,
-          relation: Relation.MEDIA_CD_R1,
-        })
-      }
-      if (_number.match(this.#map.D1, vn.vn) ||
-        _number.match(this.#map.DM, vn.vn)) {
-        int.push({
-          person:   vn.person,
-          relation: Relation.DIFICULDADE_D1_DM,
-        })
-      }
-      if (!firstCycleVNs.includes(vn.vn)) {
-        int.push({
-          person:   vn.person,
-          relation: Relation.AUSENCIA,
-        })
-      }
+    const firstCycleInt: FirstCycleInterpretationT = {
+      relations: _tec.tec10Relations(this.#map, firstCycleVNs),
+      extra:     _tec.tec10Extra(this.#map, firstCycleVNs),
     }
 
-    // TODO add this part
-    // Demais leituras das VNs no primeiro Ciclo de vida
-
-    // C1 = 3: Criança agitada, alegre, comunicativa.
-    // D1 = 3: Criança agitada, inquieta, impaciente.
-
-    // C1 = 4: Começa a trabalhar cedo, por volta de 12 anos. Quer trabalhar cedo em trabalho remunerado, sem marcas. Sendo que essa atividade não pode ultrapassar 6h diárias e que não comprometa a formação do adolescente.
-    // D1= 4: É forçado a trabalhar cedo em trabalho remunerado, por necessidades financeiras da família que podem atrapalhar a formação.
-
-    // C1 = 5: Mudanças, alterações de vida sem dificuldades.
-    // D1 = 5: Mudanças, alterações de vida com dificuldades.
-    // Obs.: Se em conjunção com 3, acentuadas.
-
-    // C1 = 6: Tendência de apego excessivo ao lar, familiares.
-    // D1 = 6: Dificuldades no relacionamento com todos os membros da família.
-    // Obs.: Se em conjunção com 2, acentuadas.
-
-    // C1 = 8 ou D1 = 8: Evitar envolvimento com ilegalidade até os 28 anos completos.
-
-    // C1 = 7 ou C1 = 9 ou D1 = 7: Será marcado por inquietações difíceis de serem compreendidas pela família.
-    // Se os pais ou familiares praticarem espiritualidade não haverá incompreensão, porém as inquietações continuarão existindo.
-    // As inquietações são sonambulismo, amigos invisíveis, manias religiosas, visões, dispersão, estranheza (não se enquadra nos padrões considerados normais).
-
-    // D1 = 0: É uma vida atribulada, agitada e movimentada com acentuada intensidade de acontecimentos.
-    return int
+    return firstCycleInt
   }
 
   /**
@@ -1006,7 +946,7 @@ export class AdvancedTecniques {
   /**
    * TÉCNICA 10 – INTERPRETANDO O 1º CICLO DE VIDA
    */
-  tec10InterpretacaoDoPrimeiroCiclo: CycleInterpretationT[]
+  tec10InterpretacaoDoPrimeiroCiclo: FirstCycleInterpretationT
   /**
    * TÉCNICA 11 – DONOS E PRATICANTES – RISCOS
    */

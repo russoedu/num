@@ -1,7 +1,7 @@
 import { NumericMap } from '../services/NumericMap'
 import { _array } from './_array'
 import { _number } from './_number'
-import { VN, PyramidResultT, Cycle, VnPositionCycleT, MultiplicityMultipleT, SingleDigitVN, MultiplicityType, vnOwnerPractitioner, OwnersAndPractitionersDataT, PercentageT, SingleDigitVnPositionCycleT, CycleType } from './types'
+import { VN, PyramidResultT, Cycle, VnPositionCycleT, MultiplicityMultipleT, SingleDigitVN, MultiplicityType, vnOwnerPractitioner, OwnersAndPractitionersDataT, PercentageT, SingleDigitVnPositionCycleT, CycleType, CycleInterpretationVns, Relation, relationSortOrder, FirstCycleRelationsT, FirstCycleExtraT } from './types'
 
 class TecniquesHelper {
   piramide (num: VN): PyramidResultT[] {
@@ -273,6 +273,249 @@ class TecniquesHelper {
     }
 
     return resultList
+  }
+
+  /**
+   * Retrieves the relations for tecnique 10
+   * @param map - The full numeric map
+   * @param firstCycleVNs - The list of VNs from the first cycle, excluding EX
+   */
+  tec10Relations (map: NumericMap, firstCycleVNs: SingleDigitVN[]) {
+    const relations: FirstCycleRelationsT[] = []
+
+    for (const vn of CycleInterpretationVns) {
+      if (_number.match(map.EU, vn.vn)) {
+        relations.push({
+          person:   vn.person,
+          relation: Relation.ADORACAO_EU,
+        })
+      }
+      if (_number.match(map.C1, vn.vn)) {
+        relations.push({
+          person:   vn.person,
+          relation: Relation.FORTISSIMA_C1,
+        })
+      }
+      if (_number.match(map.MO, vn.vn)) {
+        relations.push({
+          person:   vn.person,
+          relation: Relation.FORTE_MO,
+        })
+      }
+      if (_number.match(map.CD, vn.vn) ||
+        _number.match(map.achievements.R1.vn, vn.vn)) {
+        relations.push({
+          person:   vn.person,
+          relation: Relation.MEDIA_CD_R1,
+        })
+      }
+      if (_number.match(map.D1, vn.vn) ||
+        _number.match(map.DM, vn.vn)) {
+        relations.push({
+          person:   vn.person,
+          relation: Relation.DIFICULDADE_D1_DM,
+        })
+      }
+      if (!firstCycleVNs.includes(vn.vn)) {
+        relations.push({
+          person:   vn.person,
+          relation: Relation.AUSENCIA,
+        })
+      }
+    }
+
+    relations.sort((a, b) => {
+      const aIndex = relationSortOrder.indexOf(a.relation)
+      const bIndex = relationSortOrder.indexOf(b.relation)
+
+      return aIndex - bIndex
+    })
+
+    return relations
+  }
+
+  /**
+   * Retrieves the relations for tecnique 10
+   * @param map - The full numeric map
+   * @param firstCycleVNs - The list of VNs from the first cycle, excluding EX
+   */
+  tec10Extra (map: NumericMap, firstCycleVNs: SingleDigitVN[]) {
+    const extra: FirstCycleExtraT[] = []
+
+    const dm1 = _number.match(map.DM, 1)
+    const d11 = _number.match(map.D1, 1)
+    // Challenges
+    if (dm1 || d11) {
+      const d = dm1 && d11
+        ? 'D1 e DM'
+        : dm1
+          ? 'DM'
+          : 'D1'
+      extra.push({
+        position:    d,
+        vn:          1,
+        description: 'Com seu pai deveria aprender a independência, ousadia, coragem, autoconfiança e determinação.',
+      })
+    }
+
+    const dm2 = _number.match(map.DM, 2)
+    const d12 = _number.match(map.D1, 2)
+    if (dm2 || d12) {
+      const d = dm2 && d12
+        ? 'D1 e DM'
+        : dm2
+          ? 'DM'
+          : 'D1'
+      extra.push({
+        position:    d,
+        vn:          2,
+        description: 'Com sua mãe deveria aprender união e parceria, praticando concessão, flexibilidade, colaboração e adaptação.',
+      })
+    }
+
+    const dm4 = _number.match(map.DM, 4)
+    const d14 = _number.match(map.D1, 4)
+    if (dm4 || d14) {
+      const d = dm4 && d14
+        ? 'D1 e DM'
+        : dm4
+          ? 'DM'
+          : 'D1'
+      extra.push({
+        position:    d,
+        vn:          4,
+        description: 'Com seus avós deveria aprender estrutura, estabilidade e segurança.',
+      })
+    }
+
+    // VN 3
+    if (_number.match(map.C1, 3)) {
+      extra.push({
+        position:    'C1',
+        vn:          3,
+        description: 'Era previsto que fosse uma criança agitada, alegre, comunicativa.',
+      })
+    }
+    if (_number.match(map.D1, 3)) {
+      extra.push({
+        position:    'D1',
+        vn:          3,
+        description: 'Era previsto que fosse uma criança agitada, inquieta, impaciente.',
+      })
+    }
+
+    // VN 4
+    if (_number.match(map.C1, 4)) {
+      extra.push({
+        position:    'C1',
+        vn:          4,
+        description: 'Provavelmente começou a trabalhar cedo. Quer trabalhar cedo em trabalho remunerado, sem marcas. Sendo que essa atividade não pode ultrapassar 6 h diárias e que não comprometa a formação do adolescente.',
+      })
+    }
+    if (_number.match(map.D1, 4)) {
+      extra.push({
+        position:    'D1',
+        vn:          4,
+        description: 'Provavelmente foi forçada a trabalhar cedo em trabalho remunerado, por necessidades financeiras da família que podem atrapalhar a formação.',
+      })
+    }
+
+    // VN 5
+    if (_number.match(map.D1, 5)) {
+      extra.push({
+        position:    'C1',
+        vn:          5,
+        description: 'Momento de mudanças, alterações de vida sem dificuldades.',
+      })
+    }
+    if (_number.match(map.D1, 5)) {
+      extra.push({
+        position:    'D1',
+        vn:          5,
+        description: 'Momento de mudanças, alterações de vida com dificuldades. Deveria aprender a ter liberdade, independência, mudanças, desprendimento e transformações.',
+        obs:         firstCycleVNs.includes(3)
+          ? 'Obs.: Acentuadas, pois possui 3 no primeiro ciclo.'
+          : undefined,
+      })
+    }
+
+    // VN 6
+    if (_number.match(map.D1, 6)) {
+      extra.push({
+        position:    'C1',
+        vn:          6,
+        description: 'Você deve ter tendência de apego excessivo ao lar, familiares.',
+      })
+    }
+    if (_number.match(map.D1, 6)) {
+      extra.push({
+        position:    'D1',
+        vn:          6,
+        description: 'Você deve ter tido dificuldades no relacionamento com todos os membros da família. Com a família deveria aprender a harmonia, afetuosidade, conciliação, cooperação e valorização do lar.',
+        obs:         firstCycleVNs.includes(2)
+          ? 'Obs.: Acentuadas, pois possui 2 no primeiro ciclo.'
+          : undefined,
+      })
+    }
+
+    // VN 7
+    const c17 = _number.match(map.C1, 7)
+    const d17 = _number.match(map.D1, 7)
+    if (c17 || d17) {
+      const position = c17 && d17
+        ? 'C1 e D1'
+        : c17
+          ? 'C1'
+          : 'D1'
+      extra.push({
+        position,
+        vn:          7,
+        description: 'Período marcado por inquietações difíceis de serem compreendidas pela família, essas inquietações seriam aliviadas com a prática da espiritualidade.',
+      })
+    }
+
+    // VN 8
+    const c18 = _number.match(map.C1, 8)
+    const d18 = _number.match(map.D1, 8)
+    if (c18 || d18) {
+      const position = c18 && d18
+        ? 'C1 e D1'
+        : c18
+          ? 'C1'
+          : 'D1'
+      extra.push({
+        position,
+        vn:          8,
+        description: 'Evite envolvimento com ilegalidade até os 28 anos completos.',
+      })
+    }
+
+    // VN 9
+    if (_number.match(map.C1, 9)) {
+      extra.push({
+        position:    'C1',
+        vn:          9,
+        description: 'Período marcado por inquietações difíceis de serem compreendidas pela família, essas inquietações seriam aliviadas com a prática da espiritualidade.',
+      })
+    }
+
+    // VN 0
+    if (_number.match(map.D1, 0)) {
+      extra.push({
+        position:    'D1',
+        vn:          0,
+        description: 'É uma vida atribulada, agitada e movimentada com acentuada intensidade de acontecimentos.',
+      })
+    }
+
+    // extra.sort((a, b) => {
+    //   const aIndex = relationSortOrder.indexOf(a.relation)
+    //   const bIndex = relationSortOrder.indexOf(b.relation)
+
+    //   return aIndex - bIndex
+    // })
+
+    return extra
   }
 
   /**

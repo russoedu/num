@@ -210,6 +210,15 @@ export enum Relation {
   'AUSENCIA' = 'Não previsto convívio significativo',
 }
 
+export const relationSortOrder = [
+  Relation.ADORACAO_EU,
+  Relation.FORTISSIMA_C1,
+  Relation.FORTE_MO,
+  Relation.MEDIA_CD_R1,
+  Relation.DIFICULDADE_D1_DM,
+  Relation.AUSENCIA,
+]
+
 export enum Person {
   'PAI' = 'do pai',
   'MAE' = 'da mãe',
@@ -236,9 +245,19 @@ export const CycleInterpretationVns = [
   },
 ]
 
-export type CycleInterpretationT = {
+export type FirstCycleRelationsT = {
   relation: Relation,
   person: Person
+}
+export type FirstCycleExtraT = {
+  position: PositionT|string,
+  vn: VN,
+  description: string,
+  obs?: string,
+}
+export type FirstCycleInterpretationT = {
+  relations: FirstCycleRelationsT[],
+  extra: FirstCycleExtraT[]
 }
 
 export type LanguageStyleT = {

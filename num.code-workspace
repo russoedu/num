@@ -52,7 +52,7 @@
       "Tec6PotenciaisComoSentem.tsx": "Supabase",
       "Tec7Riscos.tsx": "Supabase",
       "Tec8AdequacaoDaLinguagem.tsx": "Supabase",
-      "Tec9VibracaoDaExpressao.tsx": "Mojo",
+      "Tec9VibracaoDaExpressao.tsx": "Supabase",
       "Tec10InterpretacaoDoPrimeiroCiclo.tsx": "Mojo",
       "Tec11DonosPraticantes.tsx": "Supabase",
       "Tec12ConjuncaoCdMoOuMoCd.tsx": "Supabase",
@@ -78,8 +78,8 @@
     "todo-tree.highlights.customHighlight": {
       "TODO": {
           "icon": "alert-fill",
-          "iconColour": "red",
-          "background": "darkred",
+          "iconColour": "grey",
+          "background": "black",
       },
       "DONE": {
           "icon": "check-circle-fill",
