@@ -370,4 +370,5 @@ export type AffectivePractice = {
   }
 }
 
+export const espiritualityNumbers = [7, 9, 11, 22] as VN[]
 /* v8 ignore end */

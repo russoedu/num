@@ -1,7 +1,7 @@
 import { NumericMap } from '../services/NumericMap'
 import { _array } from './_array'
 import { _number } from './_number'
-import { VN, PyramidResultT, Cycle, VnPositionCycleT, MultiplicityMultipleT, SingleDigitVN, MultiplicityType, vnOwnerPractitioner, OwnersAndPractitionersDataT, PercentageT, SingleDigitVnPositionCycleT, CycleType, CycleInterpretationVns, Relation, relationSortOrder, FirstCycleRelationsT, FirstCycleExtraT } from './types'
+import { VN, PyramidResultT, Cycle, VnPositionCycleT, MultiplicityMultipleT, SingleDigitVN, MultiplicityType, vnOwnerPractitioner, OwnersAndPractitionersDataT, PercentageT, SingleDigitVnPositionCycleT, CycleType, CycleInterpretationVns, Relation, relationSortOrder, FirstCycleRelationsT, FirstCycleExtraT, espiritualityNumbers } from './types'
 
 class TecniquesHelper {
   piramide (num: VN): PyramidResultT[] {
@@ -525,16 +525,15 @@ class TecniquesHelper {
    */
   tec10Espirituality (firstCycleVnsPositions: VnPositionCycleT[]) {
     // Espirituality numbers
-    const espNumbers = [7, 9, 11, 22]
     const filtered = firstCycleVnsPositions
-      .filter(vnp => espNumbers.includes(vnp.vn))
+      .filter(vnp => espiritualityNumbers.includes(vnp.vn))
 
     // The map doesn't have any spirituality number
     if (filtered.length === 0) return undefined
 
     let hasMultiple = false
 
-    for (const espNumber of espNumbers) {
+    for (const espNumber of espiritualityNumbers) {
       hasMultiple ||= filtered
         .filter(vnp => espNumber === vnp.vn)
         .length > 1

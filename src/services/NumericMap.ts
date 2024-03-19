@@ -389,7 +389,7 @@ export class NumericMap {
   /**
    * The achievements compiled into an array
    */
-  get achievementsArray () {
+  get achievementsArray (): { vn: VN, start: number, end: number }[] {
     return Object.entries(this.achievements).map(achievement => achievement[1])
   }
 

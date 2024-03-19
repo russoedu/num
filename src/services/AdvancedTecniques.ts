@@ -1,7 +1,7 @@
 import { _array } from '../helpers/_array'
 import { _number } from '../helpers/_number'
 import { _tec } from '../helpers/_tec'
-import { AchievementsT, AffectivePractice, ConquestsT, Cycle, CycleType, ExpressionVibrationT, FirstCycleInterpretationT, LanguageStyleT, MissingPositiveVibration, MultiplicitesT, MultiplicityT, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultExtraT, PercentageResultT, PercentageT, PyramidT, RebirthT, RiskT, SingleDigitVN, StrongDecisiveMomementPositionT, StrongOpositionItemT, StrongOpositionT, VN, VicesAndReciclerDataT, VnPositionCycleT } from '../helpers/types'
+import { AchievementsT, AffectivePractice, ConquestsT, Cycle, CycleType, ExpressionVibrationT, FirstCycleInterpretationT, LanguageStyleT, MissingPositiveVibration, MultiplicitesT, MultiplicityT, OwnersAndPractitionersDataT, OwnersAndPractitionersT, PercentageResultExtraT, PercentageResultT, PercentageT, PyramidT, RebirthT, RiskT, SingleDigitVN, StrongDecisiveMomementPositionT, StrongOpositionItemT, StrongOpositionT, VN, VicesAndReciclerDataT, VnPositionCycleT, espiritualityNumbers } from '../helpers/types'
 import { NumericMap } from './NumericMap'
 
 export class AdvancedTecniques {
@@ -582,7 +582,7 @@ export class AdvancedTecniques {
     ]
 
     const hasEspiritualityOnFixes = this.#map.fixedMainVNs
-      .filter(fixed => [7, 9, 11, 22].includes(fixed))
+      .filter(fixed => espiritualityNumbers.includes(fixed))
       .length > 0
 
     const resultList = _tec.getPercentageResults(percentage).map(r => r.name)
@@ -615,8 +615,9 @@ export class AdvancedTecniques {
    * @returns Potentials, vices and recicler 2nd reading interpretation results
    */
   #tec13PotenciaisViciosReciclador3aLeitura () {
-    // DONE #tec13PotenciaisViciosReciclador3aLeitura
-    const percentage = this.#map.vnCount([7, 9, 11, 22]).count * 7
+    // TODO #tec13PotenciaisViciosReciclador3aLeitura
+    // Need to check this sentence: Mas, se tiver número de espiritualidade numa das fixas, tem que colocar que espiritualidade é potencial.
+    const percentage = this.#map.vnCount(espiritualityNumbers).count * 7
     const risk: RiskT = percentage <= 15
       ? 'fraco'
       : percentage <= 40
@@ -671,11 +672,7 @@ export class AdvancedTecniques {
     const positions = ['CD', 'MO', 'EU'] as ('CD' | 'MO' | 'EU')[]
 
     for (const position of positions) {
-      const vn = position === 'MO'
-        ? this.#map.MO
-        : position === 'CD'
-          ? this.#map.CD
-          : this.#map.EU
+      const vn = this.#map[position as keyof NumericMap]
 
       for (const achievement of this.#map.achievementsArray) {
         if (achievement.vn === vn) {
