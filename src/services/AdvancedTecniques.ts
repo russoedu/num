@@ -346,14 +346,16 @@ export class AdvancedTecniques {
   #tec10InterpretacaoDoPrimeiroCiclo () {
     // CHECK #tec10InterpretacaoDoPrimeiroCiclo
 
+    const firstCycleVnsPositions = this.#map.firstCycleVNsPosition
+      .filter(c => c.position !== 'EX')
     const firstCycleVNs = _array
-      .unique(this.#map.firstCycleVNsPosition
-        .filter(c => c.position !== 'EX')
+      .unique(firstCycleVnsPositions
         .map(c => _number.vnToSingleVn(c.vn)))
 
     const firstCycleInt: FirstCycleInterpretationT = {
-      relations: _tec.tec10Relations(this.#map, firstCycleVNs),
-      extra:     _tec.tec10Extra(this.#map, firstCycleVNs),
+      relations:     _tec.tec10Relations(this.#map, firstCycleVNs),
+      extra:         _tec.tec10Extra(this.#map, firstCycleVNs),
+      espirituality: _tec.tec10Espirituality(firstCycleVnsPositions),
     }
 
     return firstCycleInt

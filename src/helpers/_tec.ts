@@ -519,6 +519,33 @@ class TecniquesHelper {
   }
 
   /**
+   * Retrieves the espirituality for tecnique 10
+   * @param map - The full numeric map
+   * @param firstCycleVnsPositions - The list of VNs and positions from the first cycle, excluding EX
+   */
+  tec10Espirituality (firstCycleVnsPositions: VnPositionCycleT[]) {
+    // Espirituality numbers
+    const espNumbers = [7, 9, 11, 22]
+    const filtered = firstCycleVnsPositions
+      .filter(vnp => espNumbers.includes(vnp.vn))
+
+    // The map doesn't have any spirituality number
+    if (filtered.length === 0) return undefined
+
+    let hasMultiple = false
+
+    for (const espNumber of espNumbers) {
+      hasMultiple ||= filtered
+        .filter(vnp => espNumber === vnp.vn)
+        .length > 1
+    }
+
+    return hasMultiple
+      ? 'Período marcado por inquietações intensificadas (multiplicidade de números de espiritualidade no primeiro ciclo).'
+      : 'Período marcado por inquietações (presença de números de espiritualidade no primeiro ciclo).'
+  }
+
+  /**
    * List of all VNs and when it was received
    * @param map - The full numeric map
    */

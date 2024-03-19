@@ -68,10 +68,20 @@ export function Tec10InterpretacaoDoPrimeiroCiclo ({ result }: { result: Advance
           ))
         }
       </Grid2>
-      <Typography variant='h5' padding='20px 0 5px'>
-        Conjunções com as VNs de espiritualidade
-      </Typography>
-        ---
+      {
+        tec10InterpretacaoDoPrimeiroCiclo.espirituality
+          ? <>
+            <Typography variant='h5' padding='20px 0 5px'>
+              Conjunções com as VNs de espiritualidade
+            </Typography>
+            <AdvancedGrid i={0} key={'esp-0'}>
+              <Typography variant='h6'>
+                {tec10InterpretacaoDoPrimeiroCiclo.espirituality}
+              </Typography>
+            </AdvancedGrid>
+          </>
+          : <></>
+      }
       <Spacer/>
     </>
   )

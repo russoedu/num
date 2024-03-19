@@ -1043,68 +1043,125 @@ describe('AdvancedTecniques', () => {
       })
     })
   })
-  describe.skip('tec10InterpretacaoDoPrimeiroCiclo', () => {
+  describe('tec10InterpretacaoDoPrimeiroCiclo', () => {
     test('map 1', () => {
-      const map = new NumericMap('DINAURA MOZZI', '1950-12-26', '2021-01-07')
+      const map = new NumericMap('DANUIRA ZIMOZ', '1950-12-26', '2021-01-07')
       const am = new AdvancedTecniques(map)
 
-      expect(am.tec10InterpretacaoDoPrimeiroCiclo).toEqual([
-        {
-          person:   'do pai',
-          relation: 'Não previsto convívio significativo',
-        },
-        {
-          person:   'da mãe',
-          relation: 'Adoração e identificação',
-        },
-        {
-          person:   'da mãe',
-          relation: 'Igualdade, grande aproximação',
-        },
-        {
-          person:   'da mãe',
-          relation: 'Aproximação',
-        },
-        {
-          person:   'da mãe',
-          relation: 'Dificuldade',
-        },
-        {
-          person:   'dos irmãos e/ou irmãs, tios e/ou tias e primos e/ou primas',
-          relation: 'Fortíssima identificação',
-        },
-      ])
+      expect(am.tec10InterpretacaoDoPrimeiroCiclo).toEqual({
+        relations: [
+          {
+            person:   'da mãe',
+            relation: 'Adoração e identificação',
+          },
+          {
+            person:   'dos irmãos e/ou irmãs, tios e/ou tias e primos e/ou primas',
+            relation: 'Fortíssima identificação',
+          },
+          {
+            person:   'da mãe',
+            relation: 'Igualdade, grande aproximação',
+          },
+          {
+            person:   'da mãe',
+            relation: 'Aproximação',
+          },
+          {
+            person:   'da mãe',
+            relation: 'Dificuldade',
+          },
+          {
+            person:   'do pai',
+            relation: 'Não previsto convívio significativo',
+          },
+          {
+            person:   'dos avôs e/ou avós',
+            relation: 'Não previsto convívio significativo',
+          },
+        ],
+        extra: [
+          {
+            position:    'DM',
+            vn:          2,
+            description: 'Com sua mãe deveria aprender união e parceria, praticando concessão, flexibilidade, colaboração e adaptação.',
+          },
+          {
+            position:    'C1',
+            vn:          3,
+            description: 'Era previsto que fosse uma criança agitada, alegre, comunicativa.',
+          },
+          {
+            position:    'C1',
+            vn:          5,
+            description: 'Momento de mudanças, alterações de vida sem dificuldades.',
+          },
+          {
+            position:    'D1',
+            vn:          5,
+            description: 'Momento de mudanças, alterações de vida com dificuldades. Deveria aprender a ter liberdade, independência, mudanças, desprendimento e transformações.',
+            obs:         'Obs.: Acentuadas, pois possui 3 no primeiro ciclo.',
+          },
+          {
+            position:    'D1',
+            vn:          0,
+            description: 'É uma vida atribulada, agitada e movimentada com acentuada intensidade de acontecimentos.',
+          },
+        ],
+        espirituality: 'Período marcado por inquietações intensificadas (multiplicidade de números de espiritualidade no primeiro ciclo).',
+      })
     })
     test('map 2', () => {
       const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
       const am = new AdvancedTecniques(map)
 
-      expect(am.tec10InterpretacaoDoPrimeiroCiclo).toEqual([
-        {
-          person:   'do pai',
-          relation: 'Adoração e identificação',
-        },
-        {
-          person:   'do pai',
-          relation: 'Aproximação',
-        },
-        {
-          person:   'da mãe',
-          relation: 'Aproximação',
-        },
-        {
-          person:   'da mãe',
-          relation: 'Não previsto convívio significativo',
-        },
-        {
-          person:   'dos irmãos e/ou irmãs, tios e/ou tias e primos e/ou primas',
-          relation: 'Fortíssima identificação',
-        },
-        {
-          person:   'dos avôs e/ou avós',
-          relation: 'Não previsto convívio significativo',
-        },
-      ])
+      expect(am.tec10InterpretacaoDoPrimeiroCiclo).toEqual({
+        relations: [
+          {
+            person:   'do pai',
+            relation: 'Adoração e identificação',
+          },
+          {
+            person:   'dos irmãos e/ou irmãs, tios e/ou tias e primos e/ou primas',
+            relation: 'Fortíssima identificação',
+          },
+          {
+            person:   'do pai',
+            relation: 'Aproximação',
+          },
+          {
+            person:   'da mãe',
+            relation: 'Aproximação',
+          },
+          {
+            person:   'dos avôs e/ou avós',
+            relation: 'Não previsto convívio significativo',
+          },
+        ],
+        extra: [
+          {
+            position:    'C1',
+            vn:          3,
+            description: 'Era previsto que fosse uma criança agitada, alegre, comunicativa.',
+          },
+          {
+            position:    'C1',
+            vn:          5,
+            description: 'Momento de mudanças, alterações de vida sem dificuldades.',
+          },
+          {
+            position:    'D1',
+            vn:          5,
+            description: 'Momento de mudanças, alterações de vida com dificuldades. Deveria aprender a ter liberdade, independência, mudanças, desprendimento e transformações.',
+            obs:         'Obs.: Acentuadas, pois possui 3 no primeiro ciclo.',
+          },
+          {
+            position:    'D1',
+            vn:          0,
+            description: 'É uma vida atribulada, agitada e movimentada com acentuada intensidade de acontecimentos.',
+          },
+        ],
+        espirituality: 'Período marcado por inquietações (presença de números de espiritualidade no primeiro ciclo).',
+      })
     })
   })
   describe('tec11DonosPraticantes', () => {
