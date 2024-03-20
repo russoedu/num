@@ -1107,7 +1107,7 @@ describe('AdvancedTecniques', () => {
             description: 'É uma vida atribulada, agitada e movimentada com acentuada intensidade de acontecimentos.',
           },
         ],
-        espirituality: 'Período marcado por inquietações intensificadas (multiplicidade de números de espiritualidade no primeiro ciclo).',
+        espirituality: 'Inquietações intensificadas devido ao desenvolvimento da espiritualidade.',
       })
     })
     test('map 2', () => {
@@ -1160,7 +1160,7 @@ describe('AdvancedTecniques', () => {
             description: 'É uma vida atribulada, agitada e movimentada com acentuada intensidade de acontecimentos.',
           },
         ],
-        espirituality: 'Período marcado por inquietações (presença de números de espiritualidade no primeiro ciclo).',
+        espirituality: 'Inquietações devido ao desenvolvimento da espiritualidade.',
       })
     })
   })

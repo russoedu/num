@@ -529,7 +529,7 @@ class TecniquesHelper {
       .filter(vnp => espiritualityNumbers.includes(vnp.vn))
 
     // The map doesn't have any spirituality number
-    if (filtered.length === 0) return undefined
+    if (filtered.length === 0) return 'Não há inquietações devido ao desenvolvimento da espiritualidade'
 
     let hasMultiple = false
 
@@ -540,8 +540,8 @@ class TecniquesHelper {
     }
 
     return hasMultiple
-      ? 'Período marcado por inquietações intensificadas (multiplicidade de números de espiritualidade no primeiro ciclo).'
-      : 'Período marcado por inquietações (presença de números de espiritualidade no primeiro ciclo).'
+      ? 'Inquietações intensificadas devido ao desenvolvimento da espiritualidade.'
+      : 'Inquietações devido ao desenvolvimento da espiritualidade.'
   }
 
   /**

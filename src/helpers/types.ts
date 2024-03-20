@@ -258,7 +258,7 @@ export type FirstCycleExtraT = {
 export type FirstCycleInterpretationT = {
   relations: FirstCycleRelationsT[],
   extra: FirstCycleExtraT[],
-  espirituality?: string,
+  espirituality: string,
 }
 
 export type LanguageStyleT = {
