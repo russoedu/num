@@ -416,7 +416,7 @@ class TecniquesHelper {
       extra.push({
         position:    'D1',
         vn:          4,
-        description: 'Provavelmente foi forçada a trabalhar cedo em trabalho remunerado, por necessidades financeiras da família que podem atrapalhar a formação.',
+        description: 'Provavelmente foi forçado a trabalhar cedo em trabalho remunerado, por necessidades financeiras da família que podem atrapalhar a formação.',
       })
     }
 
@@ -500,7 +500,7 @@ class TecniquesHelper {
     }
 
     // VN 0
-    if (_number.match(map.D1, 0)) {
+    if (map.D1 === 0) {
       extra.push({
         position:    'D1',
         vn:          0,

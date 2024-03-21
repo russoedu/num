@@ -615,7 +615,7 @@ export class AdvancedTecniques {
    * @returns Potentials, vices and recicler 2nd reading interpretation results
    */
   #tec13PotenciaisViciosReciclador3aLeitura () {
-    // TODO #tec13PotenciaisViciosReciclador3aLeitura
+    // CHECK #tec13PotenciaisViciosReciclador3aLeitura
     // Need to check this sentence: Mas, se tiver número de espiritualidade numa das fixas, tem que colocar que espiritualidade é potencial.
     const percentage = this.#map.vnCount(espiritualityNumbers).count * 7
     const risk: RiskT = percentage <= 15
@@ -666,7 +666,7 @@ export class AdvancedTecniques {
    * @returns Spontaneous Achievements interpretation results
    */
   #tec15RealizacaoEspontanea () {
-    // TODO #tec15RealizacaoEspontanea
+    // CHECK #tec15RealizacaoEspontanea
     const result: AchievementsT[] = []
 
     const positions = ['CD', 'MO', 'EU'] as ('CD' | 'MO' | 'EU')[]
