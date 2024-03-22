@@ -528,20 +528,11 @@ class TecniquesHelper {
     const filtered = firstCycleVnsPositions
       .filter(vnp => espiritualityNumbers.includes(vnp.vn))
 
-    // The map doesn't have any spirituality number
-    if (filtered.length === 0) return 'Não há inquietações devido ao desenvolvimento da espiritualidade'
-
-    let hasMultiple = false
-
-    for (const espNumber of espiritualityNumbers) {
-      hasMultiple ||= filtered
-        .filter(vnp => espNumber === vnp.vn)
-        .length > 1
-    }
-
-    return hasMultiple
-      ? 'Inquietações intensificadas devido ao desenvolvimento da espiritualidade.'
-      : 'Inquietações devido ao desenvolvimento da espiritualidade.'
+    return filtered.length === 0
+      ? 'Não há inquietações devido ao desenvolvimento da espiritualidade'
+      : filtered.length === 1
+        ? 'Inquietações devido ao desenvolvimento da espiritualidade.'
+        : 'Inquietações intensificadas devido ao desenvolvimento da espiritualidade.'
   }
 
   /**

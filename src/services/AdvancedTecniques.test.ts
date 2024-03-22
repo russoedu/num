@@ -1043,8 +1043,8 @@ describe('AdvancedTecniques', () => {
       })
     })
   })
-  describe.skip('tec10InterpretacaoDoPrimeiroCiclo', () => {
-    test('map 1', () => {
+  describe('tec10InterpretacaoDoPrimeiroCiclo', () => {
+    test('map 1 - multiple espirituality', () => {
       const map = new NumericMap('DANUIRA ZIMOZ', '1950-12-26', '2021-01-07')
       const am = new AdvancedTecniques(map)
 
@@ -1101,16 +1101,11 @@ describe('AdvancedTecniques', () => {
             description: 'Momento de mudanças, alterações de vida com dificuldades. Deveria aprender a ter liberdade, independência, mudanças, desprendimento e transformações.',
             obs:         'Obs.: Acentuadas, pois possui 3 no primeiro ciclo.',
           },
-          {
-            position:    'D1',
-            vn:          0,
-            description: 'É uma vida atribulada, agitada e movimentada com acentuada intensidade de acontecimentos.',
-          },
         ],
         espirituality: 'Inquietações intensificadas devido ao desenvolvimento da espiritualidade.',
       })
     })
-    test('map 2', () => {
+    test('map 2 - espirituality', () => {
       const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
       const am = new AdvancedTecniques(map)
 
@@ -1154,13 +1149,57 @@ describe('AdvancedTecniques', () => {
             description: 'Momento de mudanças, alterações de vida com dificuldades. Deveria aprender a ter liberdade, independência, mudanças, desprendimento e transformações.',
             obs:         'Obs.: Acentuadas, pois possui 3 no primeiro ciclo.',
           },
-          {
-            position:    'D1',
-            vn:          0,
-            description: 'É uma vida atribulada, agitada e movimentada com acentuada intensidade de acontecimentos.',
-          },
         ],
         espirituality: 'Inquietações devido ao desenvolvimento da espiritualidade.',
+      })
+    })
+    test('map 3 - no espirituality', () => {
+      const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
+      map.R1 = 1
+      const am = new AdvancedTecniques(map)
+
+      expect(am.tec10InterpretacaoDoPrimeiroCiclo).toEqual({
+        relations: [
+          {
+            person:   'do pai',
+            relation: 'Adoração e identificação',
+          },
+          {
+            person:   'dos irmãos e/ou irmãs, tios e/ou tias e primos e/ou primas',
+            relation: 'Fortíssima identificação',
+          },
+          {
+            person:   'do pai',
+            relation: 'Aproximação',
+          },
+          {
+            person:   'da mãe',
+            relation: 'Não previsto convívio significativo',
+          },
+          {
+            person:   'dos avôs e/ou avós',
+            relation: 'Não previsto convívio significativo',
+          },
+        ],
+        extra: [
+          {
+            position:    'C1',
+            vn:          3,
+            description: 'Era previsto que fosse uma criança agitada, alegre, comunicativa.',
+          },
+          {
+            position:    'C1',
+            vn:          5,
+            description: 'Momento de mudanças, alterações de vida sem dificuldades.',
+          },
+          {
+            position:    'D1',
+            vn:          5,
+            description: 'Momento de mudanças, alterações de vida com dificuldades. Deveria aprender a ter liberdade, independência, mudanças, desprendimento e transformações.',
+            obs:         'Obs.: Acentuadas, pois possui 3 no primeiro ciclo.',
+          },
+        ],
+        espirituality: 'Não há inquietações devido ao desenvolvimento da espiritualidade',
       })
     })
   })
