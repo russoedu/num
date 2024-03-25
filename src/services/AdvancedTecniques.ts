@@ -672,7 +672,7 @@ export class AdvancedTecniques {
     const positions = ['CD', 'MO', 'EU'] as ('CD' | 'MO' | 'EU')[]
 
     for (const position of positions) {
-      const vn = this.#map[position as keyof NumericMap]
+      const vn = this.#map[position as keyof NumericMap] as VN
 
       for (const achievement of this.#map.achievementsArray) {
         if (achievement.vn === vn) {
@@ -707,7 +707,7 @@ export class AdvancedTecniques {
       const challenge = this.#map.challenges[position]
 
       for (const achievement of this.#map.achievementCycleList(challenge.start, challenge.end)) {
-        if (_number.vnToSingleVn(achievement.vn) === challenge.vn) {
+        if (_number.match(achievement.vn, challenge.vn)) {
           const existing = result.find(r => r.position === position)
 
           if (typeof existing !== 'undefined' && existing.end === achievement.start) {

@@ -512,7 +512,15 @@ export class NumericMap {
    * The list of challenges with the VN, start and end
    */
   get challenges () {
-    const challenges = {
+    type ChallengeType = 'D1' | 'D2' | 'DM'
+
+    const challenges: {
+      [key in ChallengeType]: {
+        vn: SingleDigitVN,
+        start: number,
+        end: number,
+      }
+    } = {
       D1: {
         vn:    this.D1,
         start: 0,
