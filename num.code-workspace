@@ -14,7 +14,7 @@
       "vitest.config.ts": true,
       "copyPublic.js": true,
 
-      //least frequent folders
+      // least frequent folders
       "src/pages": true,
       "src/App.*": true,
       "src/main.*": true,
@@ -78,7 +78,7 @@
     "todo-tree.highlights.customHighlight": {
       "TODO": {
           "icon": "alert-fill",
-          "iconColour": "grey",
+          "iconColour": "red",
           "background": "black",
       },
       "DONE": {
@@ -110,10 +110,16 @@
         "type": "node-terminal"
       },
       {
+        "name": "Tauri dev",
+        "command": "npm run tauri:dev",
+        "request": "launch",
+        "type": "node-terminal"
+      }
+      {
         "name": "Edge debug",
         "type": "msedge",
         "request": "launch",
-        "url": "http://localhost:5173",
+        "url": "http://localhost:1420",
         "webRoot": "${workspaceFolder}/src"
       },
       {

@@ -33,14 +33,22 @@ export function App () {
     },
   )
 
+  const onTauri = (window as any).__TAURI_INTERNALS__
+
   return (
     <StrictMode>
       <ThemeProvider theme={theme}>
         <StyledEngineProvider injectFirst>
           <CssBaseline>
-            <Header/>
+            {onTauri
+              ? <></>
+              : <Header/>
+            }
             <Home/>
-            <Footer/>
+            {onTauri
+              ? <></>
+              : <Footer/>
+            }
           </CssBaseline>
         </StyledEngineProvider>
       </ThemeProvider>

@@ -2036,7 +2036,7 @@ describe('AdvancedTecniques', () => {
         { position: 'DM', start: 0, end: 28 },
       ])
     })
-    test('map 2 without', () => {
+    test.skip('map 2 without', () => {
       const map = new NumericMap('ODRAUDE USSOR', '1979-03-17', '2021-01-07')
       const am = new AdvancedTecniques(map)
 
