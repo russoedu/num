@@ -1,0 +1,49 @@
+.form-container {
+  position: fixed;
+  -webkit-backdrop-filter: blur(9px);
+  backdrop-filter: blur(9px);
+  border-style: solid;
+  border-color: #E5EAF2;
+  border-width: 0;
+  border-bottom-width: thin;
+  width: 100%;
+  margin: 0;
+  left: 0;
+  padding-left: 0;
+  padding-right: 0;
+  z-index: 10000;
+
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12);
+  background-color: #894fd608;
+}
+
+.web-container {
+  margin-top: 100px;
+}
+
+.tauri-container {
+  margin-top: 20px;
+}
+.tauri-container>.form-container {
+  top:0
+}
+.web-container>.form-container {
+  top:60px;
+  padding-top: 20px;
+}
+.content-container {
+  padding-top: 120px;
+}
+@media only screen and (max-width: 899px) {
+  .content-container {
+    padding-top: 0px;
+  }
+  .form-container {
+    position: inherit;
+  }
+  .web-container {
+    margin-top: 80px;
+  }
+}

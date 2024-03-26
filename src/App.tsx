@@ -7,6 +7,7 @@ import { Header } from './componentsPages/Header'
 import { Home } from './pages/Home'
 import './App.css'
 import { purple, ThemeT } from './helpers/types'
+import { _onTauri } from './helpers/_onTauri'
 
 export function App () {
   const tm: ThemeT = {
@@ -33,19 +34,17 @@ export function App () {
     },
   )
 
-  const onTauri = (window as any).__TAURI_INTERNALS__
-
   return (
     <StrictMode>
       <ThemeProvider theme={theme}>
         <StyledEngineProvider injectFirst>
           <CssBaseline>
-            {onTauri
+            {_onTauri
               ? <></>
               : <Header/>
             }
             <Home/>
-            {onTauri
+            {_onTauri
               ? <></>
               : <Footer/>
             }

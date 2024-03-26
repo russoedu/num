@@ -14,7 +14,7 @@
       "vitest.config.ts": true,
       "copyPublic.js": true,
 
-      // least frequent folders
+      /*least frequent folders*/
       "src/pages": true,
       "src/App.*": true,
       "src/main.*": true,

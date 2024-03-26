@@ -8,6 +8,8 @@ import { NumericMap } from '../services/NumericMap'
 import { Spacer } from '../components/Spacer'
 import { MapOrCycle } from '../componentsPages/MapOrCycle'
 import { DebugForm } from '../componentsPages/DebugForm'
+import './Home.css'
+import { _onTauri } from '../helpers/_onTauri'
 
 /**
  * Home page
@@ -60,7 +62,7 @@ export function Home () {
   }, [result])
 
   return (
-    <Container maxWidth='lg'>
+    <Container className={ _onTauri ? 'tauri-container' : 'web-container'} maxWidth='lg'>
       <Form
         name={nameState}
         birthday={birthdayState}
