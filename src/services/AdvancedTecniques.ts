@@ -181,9 +181,7 @@ export class AdvancedTecniques {
     ]
       .sort((a, b) => b.value - a.value)
 
-    const result = percentage[0].value - percentage[1].value > 10
-      ? percentage[0].name
-      : `${percentage[0].name} e ${percentage[1].name}`
+    const result = _array.join(_tec.getPercentageResults(percentage).map(r => r.name))
 
     return {
       percentage,
@@ -197,6 +195,12 @@ export class AdvancedTecniques {
    */
   #tec7Riscos1aLeitura () {
     // DONE #tec7Riscos1aLeitura
+    const sortOrder = [
+      'Exigência / solidão / violência / agressão',
+      'Desprendimento / incerteza / insegurança',
+      'Acomodação / dependência / depressão',
+    ]
+
     const percentage: PercentageT[] = [
       {
         name:  'Exigência / solidão / violência / agressão',
@@ -212,7 +216,14 @@ export class AdvancedTecniques {
       },
     ]
 
-    const result = _array.join(_tec.getPercentageResults(percentage).map(r => r.name))
+    const results = _tec.getPercentageResults(percentage).map(r => r.name)
+
+    const result = results.length !== 1
+      ? 'Não há risco pois houve empate'
+      : results[0]
+
+    percentage
+      .sort((a, b) => sortOrder.indexOf(a.name) - sortOrder.indexOf(b.name))
 
     return {
       percentage,
@@ -226,7 +237,7 @@ export class AdvancedTecniques {
    * @returns First reading risks tecnique results
    */
   #tec7Riscos2aLeitura (tec7Riscos1aLeitura: PercentageResultT) {
-    // DONE #tec7Riscos2aLeitura
+    // CHECK #tec7Riscos2aLeitura
     const firstReadingPercentage = tec7Riscos1aLeitura.percentage
     const percentage: PercentageT[] = [
       {
@@ -243,7 +254,11 @@ export class AdvancedTecniques {
       // },
     ]
 
-    const result = _array.join(_tec.getPercentageResults(percentage).map(r => r.name))
+    const riskResults = percentage.filter(p => p.value > 80)
+
+    const result = riskResults.length > 0
+      ? _array.join(_tec.getPercentageResults(riskResults).map(r => r.name))
+      : 'Na segunda leitura só há risco se acima de 80%'
 
     const sixAlert = this.#map.uniqueVNs.includes(6)
       ? '⚠️ ATENÇÃO: este mapa tem VN 6'
@@ -615,7 +630,7 @@ export class AdvancedTecniques {
    * @returns Potentials, vices and recicler 2nd reading interpretation results
    */
   #tec13PotenciaisViciosReciclador3aLeitura () {
-    // CHECK #tec13PotenciaisViciosReciclador3aLeitura
+    // DONE #tec13PotenciaisViciosReciclador3aLeitura
     // Need to check this sentence: Mas, se tiver número de espiritualidade numa das fixas, tem que colocar que espiritualidade é potencial.
     const percentage = this.#map.vnCount(espiritualityNumbers).count * 7
     const risk: RiskT = percentage <= 15
@@ -649,7 +664,7 @@ export class AdvancedTecniques {
    * @returns Purity interpretation results
    */
   #tec14Pureza () {
-    // DONE #tec14Pureza
+    // CHECK #tec14Pureza
     const cd = _number.sum(this.#map.CD)
     const mo = _number.sum(this.#map.MO)
     const dm = _number.sum(this.#map.DM)
@@ -666,7 +681,7 @@ export class AdvancedTecniques {
    * @returns Spontaneous Achievements interpretation results
    */
   #tec15RealizacaoEspontanea () {
-    // CHECK #tec15RealizacaoEspontanea
+    // DONE #tec15RealizacaoEspontanea
     const result: AchievementsT[] = []
 
     const positions = ['CD', 'MO', 'EU'] as ('CD' | 'MO' | 'EU')[]
@@ -699,7 +714,7 @@ export class AdvancedTecniques {
    * @returns Spontaneous Achievements interpretation results
    */
   #tec16ConquistaEspontanea () {
-    // TODO #tec16ConquistaEspontanea
+    // DONE #tec16ConquistaEspontanea
     const result: ConquestsT[] = []
     const positions = ['D1', 'D2', 'DM'] as ['D1', 'D2', 'DM']
 
@@ -785,7 +800,7 @@ export class AdvancedTecniques {
    * @returns Missing Positive Vibration results
    */
   #tec19AusenciaDeVibracaoPositiva () {
-    // TODO #tec19AusenciaDeVibracaoPositiva
+    // DONE #tec19AusenciaDeVibracaoPositiva
     const allReceivedVns: VnPositionCycleT[] = _tec.tec19AllReceivedVns(this.#map)
     const avp: MissingPositiveVibration[] = []
 
@@ -811,20 +826,20 @@ export class AdvancedTecniques {
    */
   #tec20OposicoesFortes () {
     // TODO #tec20OposicoesFortes
-    const ofList: StrongOpositionT[] = []
+    const soList: StrongOpositionT[] = []
     const mapVns = this.#map.uniqueVNs
     const strongOpositionsList: StrongOpositionItemT[] = [
       { pair: [1, 2], message: 'Independência x Associar-se' },
-      { pair: [1, 11], message: 'Independência x Associar-se' },
       { pair: [1, 9], message: 'Para si X Doar' },
+      { pair: [1, 11], message: 'Independência x Associar-se' },
       { pair: [2, 8], message: 'Dar (compartilhar) x Possuir' },
-      { pair: [11, 8], message: 'Dar (compartilhar) x Possuir' },
       { pair: [4, 5], message: 'Manter x Vivenciar' },
-      { pair: [22, 5], message: 'Manter x Vivenciar' },
       { pair: [4, 9], message: 'Manter x Doar' },
-      { pair: [22, 9], message: 'Manter x Doar' },
       { pair: [7, 8], message: 'Espiritualidade x Posses materiais' },
       { pair: [8, 9], message: 'Posses materiais x Espiritualidade' },
+      { pair: [11, 8], message: 'Dar (compartilhar) x Possuir' },
+      { pair: [22, 5], message: 'Manter x Vivenciar' },
+      { pair: [22, 9], message: 'Manter x Doar' },
     ]
 
     for (const oposition of strongOpositionsList) {
@@ -848,7 +863,7 @@ export class AdvancedTecniques {
           for (const n2 of num2List) {
             if (done2) break
             if (n1.type === CycleType.FIXED && n2.type === CycleType.FIXED) {
-              ofList.push({
+              soList.push({
                 pair:    oposition.pair,
                 message: oposition.message,
                 type:    CycleType.FIXED,
@@ -862,7 +877,7 @@ export class AdvancedTecniques {
               (n1.start <= n2.start && n1.end >= n2.start) ||
               // n2 started before
               (n2.start <= n1.start && n2.end >= n1.start)) {
-              ofList.push({
+              soList.push({
                 pair:    oposition.pair,
                 message: oposition.message,
                 type:    CycleType.CYCLE,
@@ -872,11 +887,20 @@ export class AdvancedTecniques {
             }
           }
         }
-        console.log(done1)
       }
     }
 
-    return ofList
+    soList.sort((a, b) => {
+      return a.start === b.start
+        ? a.end === b.end
+          ? strongOpositionsList.indexOf({ pair: a.pair, message: a.message }) - strongOpositionsList.indexOf({ pair: b.pair, message: b.message })
+          : a.end - b.end
+        : a.start - b.start
+    })
+
+    const filtered = soList.filter(v => v.start !== v.end)
+
+    return filtered
   }
 
   #tec23PraticaAfetiva (tec2Ausencia: SingleDigitVN[]) {

@@ -16,9 +16,9 @@
       "icons/icon.ico"
     ]
   },
-  "productName": "numba",
+  "productName": "numanga",
   "version": "0.0.0",
-  "identifier": "com.numba.dev",
+  "identifier": "com.numanga",
   "plugins": {},
   "app": {
     "security": {
@@ -26,7 +26,7 @@
     },
     "windows": [
       {
-        "title": "numba",
+        "title": "Numanga",
         "width": 1024,
         "height": 768,
         "minWidth": 800,

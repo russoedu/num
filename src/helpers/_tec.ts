@@ -346,13 +346,13 @@ class TecniquesHelper {
     const d11 = _number.match(map.D1, 1)
     // Challenges
     if (dm1 || d11) {
-      const d = dm1 && d11
+      const position = dm1 && d11
         ? 'D1 e DM'
         : dm1
           ? 'DM'
           : 'D1'
       extra.push({
-        position:    d,
+        position,
         vn:          1,
         description: 'Com seu pai deveria aprender a independência, ousadia, coragem, autoconfiança e determinação.',
       })
@@ -361,13 +361,13 @@ class TecniquesHelper {
     const dm2 = _number.match(map.DM, 2)
     const d12 = _number.match(map.D1, 2)
     if (dm2 || d12) {
-      const d = dm2 && d12
+      const position = dm2 && d12
         ? 'D1 e DM'
         : dm2
           ? 'DM'
           : 'D1'
       extra.push({
-        position:    d,
+        position,
         vn:          2,
         description: 'Com sua mãe deveria aprender união e parceria, praticando concessão, flexibilidade, colaboração e adaptação.',
       })
@@ -376,13 +376,13 @@ class TecniquesHelper {
     const dm4 = _number.match(map.DM, 4)
     const d14 = _number.match(map.D1, 4)
     if (dm4 || d14) {
-      const d = dm4 && d14
+      const position = dm4 && d14
         ? 'D1 e DM'
         : dm4
           ? 'DM'
           : 'D1'
       extra.push({
-        position:    d,
+        position,
         vn:          4,
         description: 'Com seus avós deveria aprender estrutura, estabilidade e segurança.',
       })
@@ -421,7 +421,7 @@ class TecniquesHelper {
     }
 
     // VN 5
-    if (_number.match(map.D1, 5)) {
+    if (_number.match(map.C1, 5)) {
       extra.push({
         position:    'C1',
         vn:          5,
@@ -440,7 +440,7 @@ class TecniquesHelper {
     }
 
     // VN 6
-    if (_number.match(map.D1, 6)) {
+    if (_number.match(map.C1, 6)) {
       extra.push({
         position:    'C1',
         vn:          6,

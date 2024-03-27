@@ -1,7 +1,7 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-use tauri::{menu::{Menu, SubmenuBuilder}, utils::platform::{Target}, Manager};
+use tauri::{menu::{Menu, SubmenuBuilder}, utils::platform::Target};
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command]
@@ -22,9 +22,9 @@ fn main() {
             // .unwrap();
         // })
         .setup(move |app| {
-            let app_name = "Numba";
-            let main_window = app.get_webview_window("main").unwrap();
-            let _ = main_window.set_title(app_name);
+            // let app_name = "Numba";
+            // let main_window = app.get_webview_window("main").unwrap();
+            // let _ = main_window.set_title(app_name);
 
             let handle = app.handle();
             

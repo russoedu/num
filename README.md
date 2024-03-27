@@ -1,4 +1,4 @@
-# Numerologia App
+# Numanga App
 
 business model
 - subscription -> need to create

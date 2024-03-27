@@ -829,25 +829,25 @@ describe('AdvancedTecniques', () => {
   })
   describe('tec7Riscos1aLeitura', () => {
     test('map 1', () => {
-      const map = new NumericMap('DAINARI MOZZU', '1950-12-26', '2021-01-07')
+      const map = new NumericMap('DINAURA MOZZI', '1950-12-26', '2021-01-07')
       const am = new AdvancedTecniques(map)
 
       expect(am.tec7Riscos1aLeitura).toEqual({
         percentage: [
           {
-            name:  'Acomodação / dependência / depressão',
-            value: 42,
+            name:  'Exigência / solidão / violência / agressão',
+            value: 28,
           },
           {
             name:  'Desprendimento / incerteza / insegurança',
             value: 35,
           },
           {
-            name:  'Exigência / solidão / violência / agressão',
-            value: 28,
+            name:  'Acomodação / dependência / depressão',
+            value: 42,
           },
         ],
-        result: 'Acomodação / dependência / depressão e Desprendimento / incerteza / insegurança',
+        result: 'Não há risco pois houve empate',
       })
     })
     test('map 2', () => {
@@ -875,25 +875,25 @@ describe('AdvancedTecniques', () => {
   })
   describe('tec7Riscos2aLeitura', () => {
     test('map 1', () => {
-      const map = new NumericMap('DAINARI MOZZU', '1950-12-26', '2021-01-07')
+      const map = new NumericMap('DIRANAU MIZZO', '1950-12-26', '2021-01-07')
       const am = new AdvancedTecniques(map)
 
       expect(am.tec7Riscos2aLeitura).toEqual({
         percentage: [
           {
-            name:  'SC',
-            value: 77,
-          },
-          {
             name:  'CP',
             value: 70,
+          },
+          {
+            name:  'SC',
+            value: 63,
           },
           // {
           //   name:  'VG',
           //   value: 63,
           // },
         ],
-        result:   'SC e CP',
+        result:   'Na segunda leitura só há risco se acima de 80%',
         sixAlert: '⚠️ ATENÇÃO: este mapa tem VN 6',
       })
     })
@@ -904,12 +904,12 @@ describe('AdvancedTecniques', () => {
       expect(am.tec7Riscos2aLeitura).toEqual({
         percentage: [
           {
-            name:  'SC',
-            value: 70,
-          },
-          {
             name:  'CP',
             value: 63,
+          },
+          {
+            name:  'SC',
+            value: 70,
           },
           // {
           //   name:  'VG',
@@ -917,7 +917,7 @@ describe('AdvancedTecniques', () => {
           // },
         ],
         sixAlert: '⚠️ ATENÇÃO: este mapa tem VN 6',
-        result:   'SC e CP',
+        result:   'Na segunda leitura só há risco se acima de 80%',
       })
     })
   })
@@ -1091,11 +1091,6 @@ describe('AdvancedTecniques', () => {
             description: 'Era previsto que fosse uma criança agitada, alegre, comunicativa.',
           },
           {
-            position:    'C1',
-            vn:          5,
-            description: 'Momento de mudanças, alterações de vida sem dificuldades.',
-          },
-          {
             position:    'D1',
             vn:          5,
             description: 'Momento de mudanças, alterações de vida com dificuldades. Deveria aprender a ter liberdade, independência, mudanças, desprendimento e transformações.',
@@ -1137,11 +1132,6 @@ describe('AdvancedTecniques', () => {
             position:    'C1',
             vn:          3,
             description: 'Era previsto que fosse uma criança agitada, alegre, comunicativa.',
-          },
-          {
-            position:    'C1',
-            vn:          5,
-            description: 'Momento de mudanças, alterações de vida sem dificuldades.',
           },
           {
             position:    'D1',
@@ -1186,11 +1176,6 @@ describe('AdvancedTecniques', () => {
             position:    'C1',
             vn:          3,
             description: 'Era previsto que fosse uma criança agitada, alegre, comunicativa.',
-          },
-          {
-            position:    'C1',
-            vn:          5,
-            description: 'Momento de mudanças, alterações de vida sem dificuldades.',
           },
           {
             position:    'D1',
@@ -2332,6 +2317,16 @@ describe('AdvancedTecniques', () => {
       expect(am.tec20OposicoesFortes).toEqual([
         {
           pair: [
+            22,
+            5,
+          ],
+          message: 'Manter x Vivenciar',
+          type:    'ciclos',
+          start:   0,
+          end:     38,
+        },
+        {
+          pair: [
             2,
             8,
           ],
@@ -2352,26 +2347,6 @@ describe('AdvancedTecniques', () => {
         },
         {
           pair: [
-            22,
-            5,
-          ],
-          message: 'Manter x Vivenciar',
-          type:    'ciclos',
-          start:   0,
-          end:     38,
-        },
-        {
-          pair: [
-            22,
-            9,
-          ],
-          message: 'Manter x Doar',
-          type:    'ciclos',
-          start:   48,
-          end:     Infinity,
-        },
-        {
-          pair: [
             7,
             8,
           ],
@@ -2386,6 +2361,16 @@ describe('AdvancedTecniques', () => {
             9,
           ],
           message: 'Posses materiais x Espiritualidade',
+          type:    'ciclos',
+          start:   48,
+          end:     Infinity,
+        },
+        {
+          pair: [
+            22,
+            9,
+          ],
+          message: 'Manter x Doar',
           type:    'ciclos',
           start:   48,
           end:     Infinity,
@@ -2413,6 +2398,26 @@ describe('AdvancedTecniques', () => {
       expect(am.tec20OposicoesFortes).toEqual([
         {
           pair: [
+            7,
+            8,
+          ],
+          message: 'Espiritualidade x Posses materiais',
+          type:    'ciclos',
+          start:   0,
+          end:     28,
+        },
+        {
+          pair: [
+            2,
+            8,
+          ],
+          message: 'Dar (compartilhar) x Possuir',
+          type:    'ciclos',
+          start:   0,
+          end:     35,
+        },
+        {
+          pair: [
             1,
             2,
           ],
@@ -2420,6 +2425,16 @@ describe('AdvancedTecniques', () => {
           type:    'fixas',
           start:   0,
           end:     Infinity,
+        },
+        {
+          pair: [
+            4,
+            5,
+          ],
+          message: 'Manter x Vivenciar',
+          type:    'ciclos',
+          start:   28,
+          end:     56,
         },
         {
           pair: [
@@ -2443,26 +2458,6 @@ describe('AdvancedTecniques', () => {
         },
         {
           pair: [
-            2,
-            8,
-          ],
-          message: 'Dar (compartilhar) x Possuir',
-          type:    'ciclos',
-          start:   0,
-          end:     35,
-        },
-        {
-          pair: [
-            4,
-            5,
-          ],
-          message: 'Manter x Vivenciar',
-          type:    'ciclos',
-          start:   28,
-          end:     56,
-        },
-        {
-          pair: [
             4,
             9,
           ],
@@ -2470,16 +2465,6 @@ describe('AdvancedTecniques', () => {
           type:    'ciclos',
           start:   55,
           end:     Infinity,
-        },
-        {
-          pair: [
-            7,
-            8,
-          ],
-          message: 'Espiritualidade x Posses materiais',
-          type:    'ciclos',
-          start:   0,
-          end:     28,
         },
       ])
     })
