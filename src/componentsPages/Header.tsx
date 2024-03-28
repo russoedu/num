@@ -11,7 +11,7 @@ export function Header () {
     <AppBar position='fixed' component='nav'>
       <Toolbar className='header-footer-toolbar' variant='dense'>
         <Typography className='header-logo' variant='h6' color='inherit' component='div'>
-          <img src='logo.svg' alt='NumPi' height={52}/>
+          <img src='logo.svg' alt='numanga' height={52}/>
           <span className='version'>
             v {pkg.version}
           </span>
