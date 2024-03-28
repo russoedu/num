@@ -11,32 +11,20 @@ fn greet(name: &str) -> String {
 
 fn main() {
     tauri::Builder::default()
-        // .setup(|app| {
-        //     let quit = MenuItemBuilder::new("Quit").id("quit").build(app);
-        //     let hide = MenuItemBuilder::new("Hide").id("hide").build(app);
-        //     let show = MenuItemBuilder::new("Show").id("show").build(app);
-        //     // we could opt handle an error case better than calling unwrap
-            // let menu = MenuBuilder::new(app)
-            // .items(&[&quit, &hide, &show])
-            // .build()
-            // .unwrap();
-        // })
-        .setup(move |app| {
-            // let app_name = "Numba";
-            // let main_window = app.get_webview_window("main").unwrap();
-            // let _ = main_window.set_title(app_name);
-
+        .setup(|app| {
             let handle = app.handle();
             
             let file_menu = SubmenuBuilder::new(handle, "File")
                 .close_window()
                 .quit()
                 .build()?;
+
             let edit_menu = SubmenuBuilder::new(handle, "Edit")
                 .cut()
                 .copy()
                 .paste()
                 .build()?;
+
             let window_menu_windows = SubmenuBuilder::new(handle, "Window")
                 .maximize()
                 .minimize()
@@ -44,6 +32,7 @@ fn main() {
                 .hide()
                 .hide_others()
                 .build()?;
+            
             let window_menu_mac = SubmenuBuilder::new(handle, "Window")
                 .fullscreen()
                 .separator()
