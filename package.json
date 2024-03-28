@@ -1,6 +1,6 @@
 {
   "name": "numanga",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "description": "Numerologia calculation app",
   "type": "module",
   "author": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/russoedu/num.git"
+    "url": "https://github.com/russoedu/numanga.git"
   },
   "scripts": {
     "dev": "vite",
