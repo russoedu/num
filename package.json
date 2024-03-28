@@ -1,6 +1,6 @@
 {
   "name": "numanga",
-  "version": "0.3.4",
+  "version": "0.3.6",
   "description": "Numerologia calculation app",
   "type": "module",
   "author": {
@@ -16,6 +16,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "vitest --coverage",
+    "postinstall": "node updateTauriConf.js.js",
     "tauri:dev": "tauri dev",
     "tauri": "tauri"
   },
@@ -36,7 +37,7 @@
   "devDependencies": {
     "@tauri-apps/cli": "^2.0.0-beta.11",
     "@types/node": "^20.11.30",
-    "@types/react": "^18.2.72",
+    "@types/react": "^18.2.73",
     "@types/react-dom": "^18.2.22",
     "@types/react-helmet": "^6.1.11",
     "@typescript-eslint/eslint-plugin": "^7.4.0",

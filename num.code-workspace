@@ -13,6 +13,7 @@
       "vite.config.ts": true,
       "vitest.config.ts": true,
       "copyPublic.js": true,
+      "updateTauriConf.js.js": true,
 
       /*least frequent folders*/
       "src/pages": true,
